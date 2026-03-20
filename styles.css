@@ -896,6 +896,123 @@ img {
     font-size: 0.85rem;
 }
 
+/* ===== DOWNLOAD GATE MODAL ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(15, 25, 35, 0.7);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 44px 40px 36px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    position: relative;
+    animation: modalSlideIn 0.35s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--text);
+}
+
+.modal-icon {
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.modal-card h3 {
+    font-size: 1.35rem;
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.modal-form .form-group {
+    margin-bottom: 14px;
+}
+
+.modal-form .form-note {
+    margin-top: 10px;
+}
+
+.modal-success {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.modal-success .success-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.modal-success h3 {
+    color: #22c55e;
+    margin-bottom: 8px;
+}
+
+.modal-success p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Make btn-download work as a button element too */
+button.btn-download {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .services-grid,
@@ -1033,5 +1150,14 @@ img {
     .hero-stats {
         flex-direction: column;
         gap: 16px;
+    }
+
+    .modal-card {
+        padding: 32px 24px 28px;
+    }
+
+    .blog-actions {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

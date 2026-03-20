@@ -324,7 +324,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/aerospace-composite-materials.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/aerospace-composite-materials.pdf" data-title="Aerospace Composite Materials">&#11015; Download PDF</button>
                     </div>
                 </article>
                 <article class="blog-card">
@@ -337,7 +337,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/automotive-lightweighting-ev.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/automotive-lightweighting-ev.pdf" data-title="Automotive Lightweighting">&#11015; Download PDF</button>
                     </div>
                 </article>
                 <article class="blog-card">
@@ -350,7 +350,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/energy-corrosion-resistant-alloys.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/energy-corrosion-resistant-alloys.pdf" data-title="Energy Corrosion-Resistant Alloys">&#11015; Download PDF</button>
                     </div>
                 </article>
                 <article class="blog-card">
@@ -363,7 +363,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/biomedical-biocompatible-polymers.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/biomedical-biocompatible-polymers.pdf" data-title="Biomedical Biocompatible Polymers">&#11015; Download PDF</button>
                     </div>
                 </article>
                 <article class="blog-card">
@@ -376,7 +376,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/construction-fiber-reinforced-concrete.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/construction-fiber-reinforced-concrete.pdf" data-title="Construction Fiber-Reinforced Concrete">&#11015; Download PDF</button>
                     </div>
                 </article>
                 <article class="blog-card">
@@ -389,7 +389,7 @@
                     </div>
                     <div class="blog-actions">
                         <a href="#contact" class="card-link">Read full article &rarr;</a>
-                        <a href="articles/consumer-sustainable-packaging.pdf" download class="btn-download" title="Download PDF">&#11015; Download PDF</a>
+                        <button class="btn-download gated-download" data-pdf="articles/consumer-sustainable-packaging.pdf" data-title="Consumer Sustainable Packaging">&#11015; Download PDF</button>
                     </div>
                 </article>
             </div>
@@ -490,6 +490,30 @@
             </div>
         </div>
     </footer>
+
+    <!-- PDF Download Gate Modal -->
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="modal-icon">&#128218;</div>
+            <h3>Get Your Free Article</h3>
+            <p class="modal-subtitle">Enter your details below and the PDF will download instantly. No spam — just expert insights.</p>
+            <form class="modal-form" id="downloadForm">
+                <div class="form-group">
+                    <input type="text" id="dlName" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="dlEmail" name="email" placeholder="Work Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dlCompany" name="company" placeholder="Company (optional)">
+                </div>
+                <input type="hidden" id="dlArticle" name="article" value="">
+                <button type="submit" class="btn btn-primary btn-lg btn-full">&#11015; Download Now — Free</button>
+                <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

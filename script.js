@@ -84,7 +84,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Apply animation to cards
-document.querySelectorAll('.service-card, .expertise-card, .industry-card, .testimonial-card, .process-step').forEach(el => {
+document.querySelectorAll('.service-card, .expertise-card, .industry-card, .testimonial-card, .process-step, .blog-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';

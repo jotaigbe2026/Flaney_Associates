@@ -645,6 +645,87 @@ img {
     font-size: 0.82rem;
 }
 
+/* ===== BLOG ===== */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 48px;
+}
+
+.blog-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.blog-category {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    align-self: flex-start;
+}
+
+.blog-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.blog-card h3 a {
+    color: var(--primary-dark);
+    transition: color var(--transition);
+}
+
+.blog-card h3 a:hover {
+    color: var(--accent);
+}
+
+.blog-card > p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.blog-date,
+.blog-read {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.blog-cta {
+    text-align: center;
+}
+
 /* ===== CTA / CONTACT ===== */
 .cta-section {
     background: linear-gradient(135deg, #0f2740 0%, #1a3a5c 50%, #2d6da8 100%);
@@ -790,7 +871,8 @@ img {
 @media (max-width: 1024px) {
     .services-grid,
     .testimonials-grid,
-    .industries-grid {
+    .industries-grid,
+    .blog-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -871,7 +953,8 @@ img {
     .services-grid,
     .testimonials-grid,
     .industries-grid,
-    .expertise-grid {
+    .expertise-grid,
+    .blog-grid {
         grid-template-columns: 1fr;
     }
 

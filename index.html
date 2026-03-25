@@ -413,13 +413,19 @@
                     </ul>
                 </div>
                 <div class="cta-form-wrapper">
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/placeholder" method="POST">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/info@otaigbeconsultancy.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Consultation Request — Otaigbe Consultancy">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="">
+                        <input type="text" name="_honey" style="display:none">
                         <h3>Get Your Free Consultation</h3>
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Work Email" required>
+                            <input type="email" name="email" id="contactEmail" placeholder="Work Email" required>
+                            <span class="email-feedback" id="contactEmailFeedback"></span>
                         </div>
                         <div class="form-group">
                             <input type="text" name="company" placeholder="Company Name">
@@ -514,6 +520,7 @@
                 </div>
                 <div class="form-group">
                     <input type="email" id="dlEmail" name="email" placeholder="Work Email" required>
+                    <span class="email-feedback" id="dlEmailFeedback"></span>
                 </div>
                 <div class="form-group">
                     <input type="text" id="dlCompany" name="company" placeholder="Company (optional)">

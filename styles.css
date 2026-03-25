@@ -1030,6 +1030,31 @@ img {
     line-height: 1.6;
 }
 
+/* ===== EMAIL VALIDATION FEEDBACK ===== */
+.email-feedback {
+    display: block;
+    font-size: 0.78rem;
+    margin-top: 4px;
+    min-height: 18px;
+    transition: all var(--transition);
+}
+
+.email-feedback.valid {
+    color: #22c55e;
+}
+
+.email-feedback.invalid {
+    color: #ef4444;
+}
+
+.form-group input.email-valid {
+    border-color: #22c55e;
+}
+
+.form-group input.email-invalid {
+    border-color: #ef4444;
+}
+
 /* Make btn-download work as a button element too */
 button.btn-download {
     border: none;

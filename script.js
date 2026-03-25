@@ -86,7 +86,7 @@ function attachEmailValidation(inputId, feedbackId) {
     });
 }
 
-// ===== SEND LEAD TO FORMSUBMIT (sends email to info@otaigbeconsultancy.com) =====
+// ===== SEND LEAD TO FORMSUBMIT (sends email to info@flaneyassociates.com) =====
 function sendToFormsubmit(data, subject) {
     const formData = new FormData();
     formData.append('name', data.name);
@@ -99,7 +99,7 @@ function sendToFormsubmit(data, subject) {
     formData.append('_captcha', 'false');
     formData.append('_template', 'table');
 
-    return fetch('https://formsubmit.co/ajax/info@otaigbeconsultancy.com', {
+    return fetch('https://formsubmit.co/ajax/info@flaneyassociates.com', {
         method: 'POST',
         body: formData
     });
@@ -185,7 +185,7 @@ if (form) {
             message: form.querySelector('[name="message"]').value.trim()
         };
 
-        sendToFormsubmit(formData, 'New Consultation Request — Otaigbe Consultancy')
+        sendToFormsubmit(formData, 'New Consultation Request — Flaney Associates')
             .then(res => {
                 if (res.ok) {
                     btn.textContent = 'Request Sent!';
@@ -224,7 +224,7 @@ let pendingPdfTitle = '';
 
 function getStoredLead() {
     try {
-        const data = localStorage.getItem('otaigbe_lead');
+        const data = localStorage.getItem('flaney_lead');
         return data ? JSON.parse(data) : null;
     } catch (e) {
         return null;
@@ -233,7 +233,7 @@ function getStoredLead() {
 
 function storeLead(name, email, company) {
     try {
-        localStorage.setItem('otaigbe_lead', JSON.stringify({ name, email, company, ts: Date.now() }));
+        localStorage.setItem('flaney_lead', JSON.stringify({ name, email, company, ts: Date.now() }));
     } catch (e) {}
 }
 
@@ -370,7 +370,7 @@ downloadForm.addEventListener('submit', function(e) {
     // Send lead to your email via Formsubmit
     sendToFormsubmit(
         { name, email, company, article: pendingPdfTitle },
-        'PDF Download Lead: ' + pendingPdfTitle + ' — Otaigbe Consultancy'
+        'PDF Download Lead: ' + pendingPdfTitle + ' — Flaney Associates'
     )
     .then(() => {
         showSuccess();

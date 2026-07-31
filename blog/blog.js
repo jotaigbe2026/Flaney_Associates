@@ -36,6 +36,13 @@
     let activeCat = 'all';
     let query = '';
 
+    // Fold typographic characters to ASCII so typing "didn't" matches "didn’t".
+    // generate_blog.py applies the same folding when it writes data-title.
+    const FOLD = { '‘': "'", '’': "'", '“': '"', '”': '"',
+                   '–': '-', '—': '-', '…': '...', ' ': ' ' };
+    const fold = s => s.replace(/[‘’“”–—… ]/g,
+                                c => FOLD[c]).toLowerCase();
+
     function apply() {
         let shown = 0;
         cards.forEach(card => {
@@ -56,7 +63,7 @@
     let timer;
     search.addEventListener('input', e => {
         clearTimeout(timer);
-        const value = e.target.value.trim().toLowerCase();
+        const value = fold(e.target.value.trim());
         timer = setTimeout(() => { query = value; apply(); }, 150);
     });
 

@@ -13,6 +13,8 @@ to flaneyassociates.com. No body text is invented for them.
 
     python3 generate_blog.py
 """
+import hashlib
+import html as htmlmod
 import json
 import os
 import re
@@ -82,6 +84,73 @@ def promote_pseudo_headings(html):
     return re.sub(r"<p>(.*?)</p>", fix_paragraph, html, flags=re.S)
 
 
+INLINE = "em|strong|i|b|u"
+
+
+def _norm(s):
+    """Comparison key: entities decoded, tags and punctuation dropped.
+
+    Titles arrive entity-encoded from the API ("Pglass &#038; PET"), so they
+    must be decoded before matching against body text that renders the same.
+    """
+    return re.sub(r"[^a-z0-9]", "", htmlmod.unescape(strip_tags(s)).lower())
+
+
+def drop_leading_title(html, title):
+    """Remove the article title from the top of the body.
+
+    Most posts open by repeating their own title — either as a heading or as a
+    bold/italic run at the start of the first paragraph. The page already
+    renders the title as its <h1>, so left in place it shows up twice.
+    """
+    want = _norm(title)
+    if len(want) < 12:
+        return html
+
+    # case 1: a leading heading that is just the title
+    m = re.match(r"\s*<(h[1-6])>(.*?)</\1>\s*", html, flags=re.S)
+    if m and _norm(m.group(2)) == want:
+        return html[m.end():]
+
+    # case 2: a leading emphasis run at the start of the first paragraph
+    m = re.match(r"(\s*<p>\s*)((?:<(?:%s)>\s*)+)(.*?)((?:\s*</(?:%s)>)+)\s*"
+                 % (INLINE, INLINE), html, flags=re.S)
+    if m and _norm(m.group(3)) == want:
+        return m.group(1) + html[m.end():]
+
+    return html
+
+
+def balance_inline_tags(html):
+    """Drop inline close tags with no matching open tag, and empty inline pairs.
+
+    Promoting a bold run to a heading discards the tags inside it, which can
+    orphan an <em> that opened just outside the run.
+    """
+    open_counts = {}
+
+    def fix(m):
+        tag = m.group(2).lower()
+        closing = m.group(1) == "/"
+        if closing:
+            if open_counts.get(tag, 0) == 0:
+                return ""
+            open_counts[tag] -= 1
+        else:
+            open_counts[tag] = open_counts.get(tag, 0) + 1
+        return m.group(0)
+
+    html = re.sub(r"<(/?)(%s)>" % INLINE, fix, html)
+    # any tag left open at the end never closes — drop those openers
+    for tag, n in open_counts.items():
+        for _ in range(n):
+            html = re.sub(r"<%s>" % tag, "", html, count=1)
+    # collapse pairs that now wrap nothing
+    for _ in range(3):
+        html = re.sub(r"<(%s)>\s*</\1>" % INLINE, " ", html)
+    return html
+
+
 def absolutize(html):
     """Point every link at the source site and make outbound links safe."""
 
@@ -98,17 +167,24 @@ def absolutize(html):
     return re.sub(r'href="([^"]*)"', fix, html)
 
 
-def clean(html):
+def clean(html, title=None):
     if not html:
         return ""
     html = html.replace("&#8221;", '"').replace("&#8220;", '"')
     html = SHORTCODE.sub("", html)
+    # Gutenberg block delimiters (<!-- wp:paragraph -->) ship in the API output
+    html = re.sub(r"<!--\s*/?\s*wp:.*?-->", "", html, flags=re.S)
     html = BAD_ATTR.sub("", html)
     html = WRAPPER_DIV.sub("", html)
-    html = re.sub(r"<(u|span)>|</(u|span)>", "", html)
+    html = re.sub(r"</?span>", "", html)
+    html = re.sub(r"<(/?)u>", r"<\1em>", html)
     html = html.replace("<b>", "<strong>").replace("</b>", "</strong>")
     html = EMPTY_P.sub("", html)
     html = promote_pseudo_headings(html)
+    if title:
+        html = drop_leading_title(html, title)
+    html = balance_inline_tags(html)
+    html = EMPTY_P.sub("", html)
     html = absolutize(html)
     # wide tables scroll inside their own box so the page body never does
     html = re.sub(r"(?is)<table.*?</table>",
@@ -121,8 +197,29 @@ def strip_tags(html):
 
 
 def attr(text):
-    """Escape a (possibly entity-encoded) string for use in an attribute."""
-    return strip_tags(text).replace('"', "&quot;")
+    """Escape a (possibly entity-encoded) string for use in an attribute.
+
+    Decode first: source titles and excerpts arrive entity-encoded, and the
+    archive's search reads these values back through `dataset`, which returns
+    them decoded. Leaving "&#8217;" in place would mean a search for "didn't"
+    never matched. Re-escape only the characters an attribute actually needs.
+    """
+    text = htmlmod.unescape(strip_tags(text))
+    return text.replace("&", "&amp;").replace('"', "&quot;")
+
+
+#: typographic characters folded to ASCII so a search for "didn't" matches
+#: "didn’t". blog.js applies the same folding to the query.
+TYPOGRAPHIC = {"‘": "'", "’": "'", "“": '"', "”": '"',
+               "–": "-", "—": "-", "…": "...", " ": " "}
+
+
+def search_key(text):
+    """Lowercased, ASCII-folded haystack for the archive's client-side search."""
+    text = htmlmod.unescape(strip_tags(text))
+    for src, dst in TYPOGRAPHIC.items():
+        text = text.replace(src, dst)
+    return text.lower().replace("&", "&amp;").replace('"', "&quot;")
 
 
 def _tidy_summary(text, title):
@@ -151,7 +248,7 @@ def summarise(p, limit=260):
     text = ""
 
     if not p["gated"]:
-        text = _tidy_summary(strip_tags(clean(p["content"])), title)
+        text = _tidy_summary(strip_tags(clean(p["content"], title)), title)
 
     if len(text.split()) < 8:
         raw = (p["excerpt"] or "").replace("&#8221;", '"').replace("&#8220;", '"')
@@ -160,6 +257,22 @@ def summarise(p, limit=260):
     if len(text) > limit:
         text = text[:limit - 1].rsplit(" ", 1)[0].rstrip(",;:.") + "…"
     return text
+
+
+# ---------------------------------------------------------------- assets
+
+def asset_version(name):
+    """Short content hash appended to asset URLs.
+
+    Without it, browsers keep serving a cached blog.css/blog.js after a deploy,
+    so returning visitors can get new markup with the old stylesheet or an old
+    search index with the new script.
+    """
+    try:
+        with open(os.path.join(BLOG, name), "rb") as f:
+            return hashlib.md5(f.read()).hexdigest()[:8]
+    except OSError:
+        return "1"
 
 
 # ---------------------------------------------------------------- components
@@ -258,16 +371,18 @@ def head(title, description, depth=1, extra=""):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{up}styles.css">
-    <link rel="stylesheet" href="{up}blog/blog.css">
+    <link rel="stylesheet" href="{up}blog/blog.css?v={cssv}">
 </head>
 <body>
-""".format(title=title, desc=description, up=up, extra=extra)
+""".format(title=title, desc=description, up=up, extra=extra,
+               cssv=asset_version("blog.css"))
 
 
 # ------------------------------------------------------------------- helpers
 
 def fmt_date(iso):
-    return datetime.strptime(iso[:10], "%Y-%m-%d").strftime("%B %-d, %Y")
+    d = datetime.strptime(iso[:10], "%Y-%m-%d")
+    return "%s %d, %d" % (d.strftime("%B"), d.day, d.year)
 
 
 def read_time(words):
@@ -318,7 +433,7 @@ def card(p, prefix=""):
                     </div>
                 </article>
 """.format(
-        search=attr(p["title"] + " " + excerpt).lower(),
+        search=search_key(p["title"] + " " + excerpt),
         catattr=attr("|".join(cats)),
         href=href, la=link_attrs, media=media,
         cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
@@ -402,17 +517,14 @@ def build_index(posts):
 
 """
     html += footer(1) + "\n"
-    html += """    <script src="blog.js"></script>
-</body>
-</html>
-"""
+    html += '    <script src="blog.js?v=%s"></script>\n</body>\n</html>\n' % asset_version("blog.js")
     with open(os.path.join(BLOG, "index.html"), "w") as f:
         f.write(html)
     return len(posts)
 
 
 def build_post(p, posts):
-    body = clean(p["content"])
+    body = clean(p["content"], strip_tags(p["title"]))
     cats = p["categories"] or ["Materials Engineering"]
     desc = summarise(p, limit=300).replace('"', "&quot;")
 
@@ -474,7 +586,8 @@ def build_post(p, posts):
     # related — same category first, then most recent, full-text only
     others = [q for q in posts if q["slug"] != p["slug"] and not q["gated"]]
     same = [q for q in others if set(q["categories"]) & set(p["categories"])]
-    related = (same + [q for q in others if q not in same])[:3]
+    same_slugs = {q["slug"] for q in same}
+    related = (same + [q for q in others if q["slug"] not in same_slugs])[:3]
     if related:
         html += """
     <section class="section related-section">
@@ -500,7 +613,7 @@ def build_post(p, posts):
 
 """
     html += footer(1) + "\n"
-    html += "    <script src=\"blog.js\"></script>\n</body>\n</html>\n"
+    html += '    <script src="blog.js?v=%s"></script>\n</body>\n</html>\n' % asset_version("blog.js")
 
     with open(os.path.join(BLOG, "%s.html" % p["slug"]), "w") as f:
         f.write(html)
@@ -551,10 +664,12 @@ def update_homepage(posts, n=6):
         action = "inserted"
 
     # the imported cards rely on blog.css
-    if 'href="blog/blog.css"' not in page:
+    css = '<link rel="stylesheet" href="blog/blog.css?v=%s">' % asset_version("blog.css")
+    if 'href="blog/blog.css' in page:
+        page = re.sub(r'<link rel="stylesheet" href="blog/blog\.css[^"]*">', css, page)
+    else:
         page = page.replace('<link rel="stylesheet" href="styles.css">',
-                            '<link rel="stylesheet" href="styles.css">\n'
-                            '    <link rel="stylesheet" href="blog/blog.css">', 1)
+                            '<link rel="stylesheet" href="styles.css">\n    ' + css, 1)
 
     # point the nav/footer "Blog" entries at the full archive
     page = page.replace('<li><a href="#blog">Blog</a></li>',

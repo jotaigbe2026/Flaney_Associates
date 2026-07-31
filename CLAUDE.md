@@ -77,11 +77,22 @@ python3 generate_blog.py    # rebuild all blog HTML
 36 of the 55 source posts sit behind the Simple Membership plugin on flaneyassociates.com; the API returns a login stub instead of a body. Those are flagged `gated: true` and appear on the archive as cards with their real title, date, categories, image and published abstract, badged **Members only** and linking to the source site. **No body text is ever invented for them.** Only the 19 public posts get their own page.
 
 ### Content cleaning (`generate_blog.py`)
-The source HTML arrives with WPBakery artifacts, handled by `clean()`:
+The source HTML arrives with editor artifacts, handled by `clean()`:
 - literal `[vc_*]` / `[wpb_*]` shortcodes are stripped (WordPress renders these server-side, the API does not)
+- Gutenberg block delimiters (`<!-- wp:paragraph -->`) are stripped — some posts use blocks rather than WPBakery
 - inline `style`/`class`/`id` attributes and wrapper `<div>`s are removed
 - `promote_pseudo_headings()` turns bold runs that act as section headings into real `<h3>`s — deliberately conservative, so inline emphasis is left alone
+- `drop_leading_title()` removes the title from the top of the body; most posts repeat it, and the page already renders it as the `<h1>`
+- `balance_inline_tags()` drops close tags orphaned by heading promotion
 - tables are wrapped in `.table-scroll` so wide content scrolls itself, never the page
+
+Titles arrive entity-encoded (`Pglass &#038; PET`), so anything comparing or indexing them must decode first — see `_norm()` and `attr()`.
+
+### Search index
+`search_key()` folds curly quotes and dashes to ASCII when writing each card's `data-title`; `blog.js` folds the query the same way. Without this, searching `didn't` misses `didn’t`. Keep the two tables in sync.
+
+### Cache busting
+`asset_version()` appends a content hash to `blog.css` / `blog.js` URLs. Without it, returning visitors get new markup with a stale stylesheet or an old search script after a deploy.
 
 `summarise()` builds card and meta descriptions **from the article body**, not the WordPress excerpt: several source excerpts carry shortcodes, repeat the title, or describe a different article entirely. Gated posts have no body, so their published abstract is used once cleaned.
 

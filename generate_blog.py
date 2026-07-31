@@ -1,0 +1,584 @@
+#!/usr/bin/env python3
+"""Build the blog from content extracted off flaneyassociates.com.
+
+Reads blog/data/posts.json (produced by extract_blog.py) and writes:
+
+    blog/index.html      archive of all 55 posts, searchable + filterable
+    blog/<slug>.html     one page per post whose full text is public
+    blog/blog.css        styles layered on top of the site-wide styles.css
+
+Posts still gated behind the source site's membership plugin are listed on
+the archive with their real title, date, category and abstract, and link out
+to flaneyassociates.com. No body text is invented for them.
+
+    python3 generate_blog.py
+"""
+import json
+import os
+import re
+from datetime import datetime
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+BLOG = os.path.join(ROOT, "blog")
+DATA = os.path.join(BLOG, "data", "posts.json")
+SOURCE_SITE = "https://flaneyassociates.com"
+
+# ---------------------------------------------------------------- sanitising
+
+SHORTCODE = re.compile(r"\[/?(?:vc_|wpb_)[a-z_]*(?:[^\]]*)\]", re.I)
+BAD_ATTR = re.compile(
+    r'\s(?:style|class|id|data-[\w-]+|width|height|srcset|sizes|loading|decoding)="[^"]*"', re.I
+)
+WRAPPER_DIV = re.compile(r"</?div[^>]*>", re.I)
+EMPTY_P = re.compile(r"<p>(?:\s|&nbsp;|<br\s*/?>)*</p>", re.I)
+
+
+def promote_pseudo_headings(html):
+    """WPBakery collapsed section headings into inline <strong> inside long <p>.
+
+    Split those paragraphs so a bold run that genuinely acts as a heading
+    becomes an <h3>. Deliberately conservative — a bold run is only promoted
+    when it begins a new block, reads like a short title, and the text after
+    it starts a fresh sentence. Inline emphasis is left alone.
+    """
+
+    def looks_like_heading(t):
+        t = t.strip()
+        if not (3 < len(t) <= 80):
+            return False
+        if t[-1] in ",;:-–—.":
+            return False
+        return len(t.split()) <= 12
+
+    def fix_paragraph(m):
+        parts = re.split(r"(<strong>(?:(?!</strong>).)*</strong>)", m.group(1), flags=re.S)
+        if len(parts) < 3:
+            return m.group(0)
+        out, buf = [], ""
+
+        def flush():
+            nonlocal buf
+            if re.sub(r"<[^>]+>", "", buf).strip():
+                out.append("<p>%s</p>" % buf.strip())
+            buf = ""
+
+        for i, part in enumerate(parts):
+            sm = re.fullmatch(r"<strong>((?:(?!</strong>).)*)</strong>", part, flags=re.S)
+            if sm:
+                text = re.sub(r"<[^>]+>", "", sm.group(1)).strip()
+                pending = re.sub(r"<[^>]+>", "", buf).strip()
+                starts_block = (not pending) or pending[-1] in ".!?”\"'"
+                after = re.sub(r"<[^>]+>", "", "".join(parts[i + 1:])).strip()
+                opens_new = (not after) or after[0].isupper() or after[0].isdigit()
+                prev_was_heading = bool(out) and out[-1].startswith("<h3>")
+                if looks_like_heading(text) and starts_block and opens_new and not prev_was_heading:
+                    flush()
+                    out.append("<h3>%s</h3>" % text)
+                    continue
+            buf += part
+        flush()
+        return "".join(out) if out else m.group(0)
+
+    return re.sub(r"<p>(.*?)</p>", fix_paragraph, html, flags=re.S)
+
+
+def absolutize(html):
+    """Point every link at the source site and make outbound links safe."""
+
+    def fix(m):
+        url = m.group(1)
+        if url.startswith("/"):
+            url = SOURCE_SITE + url
+        if url.startswith("http") and "flaneyassociates.com" not in url:
+            return 'href="%s" target="_blank" rel="noopener noreferrer"' % url
+        if url.startswith("http"):
+            return 'href="%s" target="_blank" rel="noopener"' % url
+        return 'href="%s"' % url
+
+    return re.sub(r'href="([^"]*)"', fix, html)
+
+
+def clean(html):
+    if not html:
+        return ""
+    html = html.replace("&#8221;", '"').replace("&#8220;", '"')
+    html = SHORTCODE.sub("", html)
+    html = BAD_ATTR.sub("", html)
+    html = WRAPPER_DIV.sub("", html)
+    html = re.sub(r"<(u|span)>|</(u|span)>", "", html)
+    html = html.replace("<b>", "<strong>").replace("</b>", "</strong>")
+    html = EMPTY_P.sub("", html)
+    html = promote_pseudo_headings(html)
+    html = absolutize(html)
+    # wide tables scroll inside their own box so the page body never does
+    html = re.sub(r"(?is)<table.*?</table>",
+                  lambda m: '<div class="table-scroll">%s</div>' % m.group(0), html)
+    return re.sub(r"[ \t]{2,}", " ", html).strip()
+
+
+def strip_tags(html):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html or "")).strip()
+
+
+def attr(text):
+    """Escape a (possibly entity-encoded) string for use in an attribute."""
+    return strip_tags(text).replace('"', "&quot;")
+
+
+def _tidy_summary(text, title):
+    text = re.sub(r'^\s*(?:css=)?"*\s*', "", strip_tags(text))
+    title = (title or "").strip().rstrip(":")
+    if title and text.lower().startswith(title.lower()):
+        text = text[len(title):].lstrip(" :–—-")
+    # drop a leading section label the text may have swallowed
+    text = re.sub(r"^(Introduction|Abstract|Overview)\b[\s:–—-]*", "", text, flags=re.I)
+    text = re.sub(r"\s*\[(?:…|\.\.\.)\]\s*$", "", text)
+    # stripping inline tags leaves gaps before punctuation
+    text = re.sub(r"\s+([,.;:!?%])", r"\1", text)
+    return re.sub(r"\(\s+|\s+\)", lambda m: m.group(0).strip(), text).strip()
+
+
+def summarise(p, limit=260):
+    """A clean one-paragraph summary for cards and meta descriptions.
+
+    Prefer the article's own opening: several of the source site's WordPress
+    excerpts carry WPBakery shortcodes, repeat the title, or — on a handful of
+    posts — describe an entirely different article. Where the body is available
+    it is the only trustworthy summary. Gated posts have no body, so their
+    published abstract is used as-is once cleaned.
+    """
+    title = strip_tags(p["title"])
+    text = ""
+
+    if not p["gated"]:
+        text = _tidy_summary(strip_tags(clean(p["content"])), title)
+
+    if len(text.split()) < 8:
+        raw = (p["excerpt"] or "").replace("&#8221;", '"').replace("&#8220;", '"')
+        text = _tidy_summary(SHORTCODE.sub("", raw), title) or text
+
+    if len(text) > limit:
+        text = text[:limit - 1].rsplit(" ", 1)[0].rstrip(",;:.") + "…"
+    return text
+
+
+# ---------------------------------------------------------------- components
+
+def nav(depth=1, solid=False):
+    """Site navbar. `solid` is for pages with no dark hero behind it, where the
+    default transparent/white-text treatment would be invisible."""
+    up = "../" * depth
+    cls = "navbar navbar-solid" if solid else "navbar"
+    return """    <nav class="{cls}" id="navbar">
+        <div class="container nav-container">
+            <a href="{up}index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                Flaney<span class="logo-accent">Associates</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="{up}index.html#services">Services</a></li>
+                <li><a href="{up}index.html#expertise">Expertise</a></li>
+                <li><a href="{up}index.html#industries">Industries</a></li>
+                <li><a href="{up}blog/index.html" class="active">Blog</a></li>
+                <li><a href="{up}index.html#about">About</a></li>
+                <li><a href="{up}index.html#contact" class="btn btn-nav">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>""".format(up=up, cls=cls)
+
+
+def footer(depth=1):
+    up = "../" * depth
+    return """    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{up}index.html" class="logo">
+                        <span class="logo-icon">&#9670;</span>
+                        Flaney<span class="logo-accent">Associates</span>
+                    </a>
+                    <p>Expert materials engineering firm. Helping you build better products through advanced materials science and innovation.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/joshua-otaigbe-ceng-fimmm-faeng-22751322" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="tel:+16014027282" class="social-link" aria-label="Phone">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="{up}index.html#services">Materials Selection</a></li>
+                        <li><a href="{up}index.html#services">Failure Analysis</a></li>
+                        <li><a href="{up}index.html#services">Process Optimization</a></li>
+                        <li><a href="{up}index.html#services">R&amp;D Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="{up}index.html#about">About Us</a></li>
+                        <li><a href="{up}index.html#expertise">Expertise</a></li>
+                        <li><a href="{up}index.html#industries">Industries</a></li>
+                        <li><a href="{up}blog/index.html">Blog</a></li>
+                        <li><a href="{up}index.html#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@flaneyassociates.com">info@flaneyassociates.com</a></li>
+                        <li><a href="tel:+16014027282">+1 (601) 402-7282</a></li>
+                        <li><a href="{up}index.html#contact">Schedule a Call</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flaney Associates. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>""".format(up=up)
+
+
+def head(title, description, depth=1, extra=""):
+    up = "../" * depth
+    return """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content="{desc}">
+{extra}    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{up}styles.css">
+    <link rel="stylesheet" href="{up}blog/blog.css">
+</head>
+<body>
+""".format(title=title, desc=description, up=up, extra=extra)
+
+
+# ------------------------------------------------------------------- helpers
+
+def fmt_date(iso):
+    return datetime.strptime(iso[:10], "%Y-%m-%d").strftime("%B %-d, %Y")
+
+
+def read_time(words):
+    return max(1, round(words / 200))
+
+
+def card(p, prefix=""):
+    """Render one archive card. Gated posts link out to the source site.
+
+    `prefix` is prepended to blog-relative URLs so the same card works from
+    the homepage (prefix="blog/") as from inside blog/ (prefix="").
+    """
+    img = p.get("local_image")
+    if img:
+        media = '<img src="{pre}images/{f}" alt="{alt}" loading="lazy">'.format(
+            pre=prefix, f=img, alt=attr(p["image_alt"] or p["title"]))
+    else:
+        media = '<div class="blog-thumb-fallback" aria-hidden="true">&#9670;</div>'
+
+    cats = p["categories"] or ["Materials Engineering"]
+    excerpt = summarise(p)
+
+    if p["gated"]:
+        href = p["link"]
+        link_attrs = ' target="_blank" rel="noopener"'
+        action = ('<a class="card-link" href="%s"%s>Read on flaneyassociates.com &rarr;</a>'
+                  % (href, link_attrs))
+        badge = '<span class="post-badge post-badge-locked">&#128274; Members only</span>'
+        meta_extra = ""
+    else:
+        href = "%s%s.html" % (prefix, p["slug"])
+        link_attrs = ""
+        action = '<a class="card-link" href="%s">Read full article &rarr;</a>' % href
+        badge = ""
+        meta_extra = '<span class="blog-read">%d min read</span>' % read_time(p["words"])
+
+    return """                <article class="post-card" data-title="{search}" data-cats="{catattr}">
+                    <a class="post-thumb" href="{href}"{la}>{media}</a>
+                    <div class="post-body">
+                        <div class="post-cats">{cats}{badge}</div>
+                        <h3><a href="{href}"{la}>{title}</a></h3>
+                        <p>{excerpt}</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">{date}</span>
+                            {meta_extra}
+                        </div>
+                        {action}
+                    </div>
+                </article>
+""".format(
+        search=attr(p["title"] + " " + excerpt).lower(),
+        catattr=attr("|".join(cats)),
+        href=href, la=link_attrs, media=media,
+        cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
+        badge=badge, title=p["title"], excerpt=excerpt,
+        date=fmt_date(p["date"]), meta_extra=meta_extra, action=action)
+
+
+# -------------------------------------------------------------- page writers
+
+def build_index(posts):
+    all_cats = sorted({c for p in posts for c in (p["categories"] or [])})
+    full = [p for p in posts if not p["gated"]]
+
+    chips = ['<button class="filter-chip active" data-cat="all">All posts '
+             '<span class="chip-count">%d</span></button>' % len(posts)]
+    for c in all_cats:
+        n = sum(1 for p in posts if c in p["categories"])
+        chips.append('<button class="filter-chip" data-cat="%s">%s <span class="chip-count">%d</span></button>'
+                     % (attr(c), c, n))
+
+    html = head(
+        "Blog &amp; Publications | Flaney Associates",
+        "Materials engineering insights, research notes and publications from "
+        "Flaney Associates — polymers, composites, nanotechnology, sustainable "
+        "materials and AI in materials discovery.",
+        depth=1,
+    )
+    html += nav(1) + "\n"
+    html += """
+    <header class="blog-hero">
+        <div class="container">
+            <div class="hero-badge">Insights &amp; Publications</div>
+            <h1>The Flaney Associates Blog</h1>
+            <p class="blog-hero-sub">{total} articles and publications on materials engineering — polymers and composites, nanotechnology, sustainable materials, protective coatings, and the growing role of AI in materials discovery.</p>
+            <div class="blog-hero-stats">
+                <div class="stat"><span class="stat-number">{total}</span><span class="stat-label">Articles</span></div>
+                <div class="stat"><span class="stat-number">{full}</span><span class="stat-label">Full text here</span></div>
+                <div class="stat"><span class="stat-number">{cats}</span><span class="stat-label">Topics</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="blog-toolbar">
+        <div class="container">
+            <div class="blog-search">
+                <input type="search" id="postSearch" placeholder="Search articles by title or keyword…" aria-label="Search articles">
+            </div>
+            <div class="filter-chips" id="filterChips">
+{chips}
+            </div>
+        </div>
+    </div>
+
+    <main class="section blog-archive">
+        <div class="container">
+            <p class="results-count" id="resultsCount"></p>
+            <div class="post-grid" id="postGrid">
+""".format(total=len(posts), full=len(full), cats=len(all_cats),
+           chips="\n".join("                " + c for c in chips))
+
+    for p in posts:
+        html += card(p)
+
+    html += """            </div>
+            <p class="no-results" id="noResults" hidden>No articles match that search. <button class="link-btn" id="clearFilters">Clear filters</button></p>
+
+            <div class="archive-note">
+                <h4>About this archive</h4>
+                <p>Articles marked <strong>&#128274; Members only</strong> are published behind the membership area on <a href="https://flaneyassociates.com" target="_blank" rel="noopener">flaneyassociates.com</a>. Their titles, dates and abstracts are shown here; follow the link to read the full text or download the paper.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="section cta-band">
+        <div class="container">
+            <h2>Have a materials challenge of your own?</h2>
+            <p>Talk through your polymer, composite or failure-analysis problem with us — the first consultation is free.</p>
+            <a href="../index.html#contact" class="btn btn-primary btn-lg">Schedule a Free Consultation</a>
+        </div>
+    </section>
+
+"""
+    html += footer(1) + "\n"
+    html += """    <script src="blog.js"></script>
+</body>
+</html>
+"""
+    with open(os.path.join(BLOG, "index.html"), "w") as f:
+        f.write(html)
+    return len(posts)
+
+
+def build_post(p, posts):
+    body = clean(p["content"])
+    cats = p["categories"] or ["Materials Engineering"]
+    desc = summarise(p, limit=300).replace('"', "&quot;")
+
+    og = """    <meta property="og:type" content="article">
+    <meta property="og:title" content="{t}">
+    <meta property="og:description" content="{d}">
+    <meta property="article:published_time" content="{pub}">
+{img}    <link rel="canonical" href="{canon}">
+""".format(t=attr(p["title"]), d=desc, pub=p["date"], canon=p["link"],
+           img=('    <meta property="og:image" content="%s">\n' % p["image"]) if p["image"] else "")
+
+    html = head("%s | Flaney Associates" % strip_tags(p["title"]), desc, depth=1, extra=og)
+    html += nav(1, solid=True) + "\n"
+
+    hero_img = ""
+    if p.get("local_image"):
+        hero_img = """        <figure class="article-figure">
+            <img src="images/{f}" alt="{alt}">
+        </figure>
+""".format(f=p["local_image"], alt=attr(p["image_alt"] or p["title"]))
+
+    html += """
+    <article class="article-page">
+        <div class="container container-narrow">
+            <a class="back-link" href="index.html">&larr; All articles</a>
+            <div class="post-cats">{cats}</div>
+            <h1>{title}</h1>
+            <div class="article-meta">
+                <span>{date}</span>
+                <span aria-hidden="true">&middot;</span>
+                <span>{mins} min read</span>
+                <span aria-hidden="true">&middot;</span>
+                <span>{author}</span>
+            </div>
+        </div>
+{img}        <div class="container container-narrow">
+            <div class="article-body">
+{body}
+            </div>
+
+            <div class="article-source">
+                <p>Originally published on <a href="{link}" target="_blank" rel="noopener">flaneyassociates.com</a> on {date}.</p>
+            </div>
+
+            <div class="article-author">
+                <div class="author-avatar" aria-hidden="true">JO</div>
+                <div>
+                    <h4>Joshua U. Otaigbe, PhD</h4>
+                    <p>Materials engineering consultant specialising in polymers, composites and hybrid materials. Get in touch at <a href="mailto:info@flaneyassociates.com">info@flaneyassociates.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+""".format(cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
+           title=p["title"], date=fmt_date(p["date"]), mins=read_time(p["words"]),
+           author=p["author"] or "Flaney Associates", img=hero_img,
+           body=body, link=p["link"])
+
+    # related — same category first, then most recent, full-text only
+    others = [q for q in posts if q["slug"] != p["slug"] and not q["gated"]]
+    same = [q for q in others if set(q["categories"]) & set(p["categories"])]
+    related = (same + [q for q in others if q not in same])[:3]
+    if related:
+        html += """
+    <section class="section related-section">
+        <div class="container">
+            <h2 class="related-heading">Related articles</h2>
+            <div class="post-grid">
+"""
+        for q in related:
+            html += card(q)
+        html += """            </div>
+        </div>
+    </section>
+"""
+
+    html += """
+    <section class="section cta-band">
+        <div class="container">
+            <h2>Need expert input on a materials problem?</h2>
+            <p>We help manufacturers and innovators solve complex materials challenges — from polymer processing to failure analysis.</p>
+            <a href="../index.html#contact" class="btn btn-primary btn-lg">Schedule a Free Consultation</a>
+        </div>
+    </section>
+
+"""
+    html += footer(1) + "\n"
+    html += "    <script src=\"blog.js\"></script>\n</body>\n</html>\n"
+
+    with open(os.path.join(BLOG, "%s.html" % p["slug"]), "w") as f:
+        f.write(html)
+
+
+BEGIN = "            <!-- BEGIN imported-blog (generated by generate_blog.py — do not edit by hand) -->"
+END = "            <!-- END imported-blog -->"
+
+
+def update_homepage(posts, n=6):
+    """Inject a 'latest from the blog' strip into index.html's #blog section.
+
+    The strip sits above the site's existing hand-written blog cards, which are
+    left untouched. Re-running the generator replaces only the marked block, so
+    this is safe to run repeatedly.
+    """
+    path = os.path.join(ROOT, "index.html")
+    page = open(path).read()
+
+    latest = [p for p in posts if not p["gated"]][:n]
+    block = [BEGIN,
+             '            <div class="blog-subhead">',
+             '                <h3>Latest from the Flaney Associates blog</h3>',
+             '                <a href="blog/index.html">View all %d articles &amp; publications &rarr;</a>'
+             % len(posts),
+             "            </div>",
+             '            <div class="post-grid">']
+    for p in latest:
+        block.append(card(p, prefix="blog/").rstrip("\n"))
+    block += ["            </div>",
+              '            <hr class="blog-divider">',
+              '            <div class="blog-subhead">',
+              "                <h3>Sector briefings</h3>",
+              "            </div>",
+              END]
+    block = "\n".join(block) + "\n"
+
+    if BEGIN in page:
+        page = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END) + r"\n",
+                      lambda _: block, page, flags=re.S)
+        action = "replaced"
+    else:
+        anchor = '            <div class="blog-grid">'
+        if anchor not in page:
+            print("! index.html: could not find .blog-grid anchor — homepage not updated")
+            return
+        page = page.replace(anchor, block + anchor, 1)
+        action = "inserted"
+
+    # the imported cards rely on blog.css
+    if 'href="blog/blog.css"' not in page:
+        page = page.replace('<link rel="stylesheet" href="styles.css">',
+                            '<link rel="stylesheet" href="styles.css">\n'
+                            '    <link rel="stylesheet" href="blog/blog.css">', 1)
+
+    # point the nav/footer "Blog" entries at the full archive
+    page = page.replace('<li><a href="#blog">Blog</a></li>',
+                        '<li><a href="blog/index.html">Blog</a></li>')
+
+    open(path, "w").write(page)
+    print("index.html               %s latest-posts strip (%d cards)" % (action, len(latest)))
+
+
+def main():
+    posts = json.load(open(DATA))
+    posts.sort(key=lambda p: p["date"], reverse=True)
+    os.makedirs(BLOG, exist_ok=True)
+
+    build_index(posts)
+    full = [p for p in posts if not p["gated"]]
+    for p in full:
+        build_post(p, posts)
+
+    print("blog/index.html          %d posts listed" % len(posts))
+    print("blog/<slug>.html         %d full-text article pages" % len(full))
+    print("gated (abstract + link)  %d" % (len(posts) - len(full)))
+    update_homepage(posts)
+
+
+if __name__ == "__main__":
+    main()

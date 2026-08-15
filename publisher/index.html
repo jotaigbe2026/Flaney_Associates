@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flaney Publisher — Monthly Blog Post</title>
+    <meta name="description" content="Authoring dashboard for the Flaney Associates blog: compose the monthly post, schedule it, and download a ready-to-commit bundle.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="publisher.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">
+            <span class="mark">&#9670;</span>
+            Flaney Publisher
+            <span class="sub">Monthly blog post</span>
+        </div>
+        <div class="topbar-actions">
+            <button class="btn btn-ghost btn-sm" id="startNextMonth" type="button">&#128197; Start next month's post</button>
+            <button class="btn btn-ghost btn-sm" id="resetForm" type="button">Clear</button>
+            <a class="btn btn-ghost btn-sm" href="../blog/index.html" target="_blank" rel="noopener">View blog &#8599;</a>
+        </div>
+    </div>
+</header>
+
+<main class="workspace">
+
+    <!-- ==================== LEFT: the form ==================== -->
+    <div class="form-column">
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">1</span>
+                <h2>Monthly template</h2>
+                <span class="hint" id="templateStatus">Saved on this device</span>
+            </div>
+            <div class="panel-body">
+                <div class="field">
+                    <label for="titlePattern">Title pattern <span class="opt">— leave empty to write a fresh headline each month</span></label>
+                    <input type="text" id="titlePattern" placeholder="Empty — you write the headline">
+                    <p class="help">Empty is the recommended setting: every post in your archive uses a real headline, and a dated one performs worse when shared. If you do want a pattern, the tokens are <code>{month}</code>, <code>{year}</code>, <code>{month_short}</code> and <code>{n}</code> (post number in the series).</p>
+                </div>
+                <div class="row row-2">
+                    <div class="field">
+                        <label for="defaultAuthor">Default author</label>
+                        <input type="text" id="defaultAuthor" placeholder="Joshua Otaigbe">
+                    </div>
+                    <div class="field">
+                        <label for="publishDay">Publishes on day</label>
+                        <input type="number" id="publishDay" min="1" max="28" placeholder="1">
+                        <p class="help">Day of the month the next post is scheduled for.</p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="standingByline">Standing byline <span class="opt">— optional</span></label>
+                    <textarea id="standingByline" rows="3" placeholder="Signed at the end of every post in the series, in italics — your name and what you do."></textarea>
+                    <p class="help">Set in italics as the last line of the article, above the PDF box. Clear it for a single post if that month is a guest or co-authored piece.</p>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap">
+                    <button class="btn btn-outline btn-sm" id="saveTemplate" type="button">Save for this browser</button>
+                    <button class="btn btn-outline btn-sm" id="exportTemplate" type="button">&#11015; Download for repo</button>
+                </div>
+                <p class="help" style="margin-top:10px">Defaults come from <code>publisher/template.json</code> in the repository, so they work on any machine. <em>Save for this browser</em> keeps a local override; <em>Download for repo</em> writes the file back out so the change can be committed for good.</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">2</span>
+                <h2>Article details</h2>
+            </div>
+            <div class="panel-body">
+                <div class="field">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="The headline readers will see on LinkedIn">
+                    <p class="field-error" id="titleError" hidden></p>
+                    <p class="slug-preview" id="slugPreview"></p>
+                </div>
+
+                <div class="field">
+                    <label for="slug">URL slug</label>
+                    <input type="text" id="slug" placeholder="auto-generated-from-the-title">
+                    <p class="field-error" id="slugError" hidden></p>
+                </div>
+
+                <div class="field">
+                    <span class="label">Categories</span>
+                    <div class="chips" id="categoryChips"></div>
+                    <p class="field-error" id="categoryError" hidden></p>
+                </div>
+
+                <div class="row row-2">
+                    <div class="field">
+                        <label for="pubDate">Publication date</label>
+                        <input type="date" id="pubDate">
+                        <p class="help" id="dateHelp"></p>
+                    </div>
+                    <div class="field">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" placeholder="Joshua Otaigbe">
+                    </div>
+                </div>
+
+                <div class="notice notice-info" id="scheduleNotice" hidden></div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">3</span>
+                <h2>The article</h2>
+                <span class="hint" id="bodyHint">Paste and go</span>
+            </div>
+            <div class="panel-body">
+                <div class="field">
+                    <label for="body">Copy and paste the article</label>
+                    <textarea id="body" class="body-input" placeholder="Paste straight from Word, Google Docs or a plain text file.
+
+Blank lines separate paragraphs. A short line on its own becomes a heading. You can also use Markdown:
+
+## A section heading
+- a bullet
+**bold** and *italic*
+> a pull quote"></textarea>
+                    <p class="field-error" id="bodyError" hidden></p>
+                    <div class="stats" id="bodyStats"></div>
+                </div>
+                <div class="field">
+                    <label for="summary">Card summary <span class="opt">— leave blank to use the opening paragraph</span></label>
+                    <textarea id="summary" rows="2" placeholder="Shown on the archive card, the homepage strip, Google results and the LinkedIn link preview."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">4</span>
+                <h2>Featured image</h2>
+            </div>
+            <div class="panel-body">
+                <label class="dropzone" id="imageDrop" for="imageInput">
+                    <div class="icon">&#128247;</div>
+                    <div class="t">Drop an image here, or click to choose</div>
+                    <div class="d">JPG, PNG or WebP — 1200&times;630 or wider works best for LinkedIn</div>
+                    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/gif">
+                </label>
+                <div class="thumb" id="imageThumb">
+                    <img id="imagePreview" alt="">
+                    <div class="thumb-bar">
+                        <span class="name" id="imageName"></span>
+                        <span id="imageSize"></span>
+                        <button class="btn btn-outline btn-sm" id="imageRemove" type="button">Remove</button>
+                    </div>
+                </div>
+                <div class="field" style="margin-top:14px">
+                    <label for="imageAlt">Image description <span class="opt">— for screen readers and search</span></label>
+                    <input type="text" id="imageAlt" placeholder="e.g. Carbon fibre laminate under polarised light">
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">5</span>
+                <h2>Gated PDF</h2>
+                <span class="hint">Captures a lead before download</span>
+            </div>
+            <div class="panel-body">
+                <div class="choice">
+                    <label class="choice-option on" id="pdfAutoOption">
+                        <input type="radio" name="pdfSource" value="auto" checked>
+                        <span>
+                            <span class="t">Generate it from the article</span>
+                            <span class="d">Builds a branded PDF — letterhead, navy headings, your byline and contact footer — from the text above.</span>
+                        </span>
+                    </label>
+                    <label class="choice-option" id="pdfUploadOption">
+                        <input type="radio" name="pdfSource" value="upload">
+                        <span>
+                            <span class="t">Upload my own PDF</span>
+                            <span class="d">Use a version you typeset elsewhere. Replaces the generated file.</span>
+                        </span>
+                    </label>
+                    <label class="choice-option" id="pdfNoneOption">
+                        <input type="radio" name="pdfSource" value="none">
+                        <span>
+                            <span class="t">No download for this post</span>
+                            <span class="d">The article publishes without a gated PDF.</span>
+                        </span>
+                    </label>
+                </div>
+
+                <div id="pdfUploadWrap" hidden style="margin-top:14px">
+                    <label class="dropzone" id="pdfDrop" for="pdfInput">
+                        <div class="icon">&#128196;</div>
+                        <div class="t">Drop a PDF here, or click to choose</div>
+                        <div class="d">Saved as <code id="pdfTargetName">articles/&lt;slug&gt;.pdf</code></div>
+                        <input type="file" id="pdfInput" accept="application/pdf">
+                    </label>
+                    <div class="notice notice-ok" id="pdfUploadInfo" hidden></div>
+                </div>
+
+                <div class="notice notice-info" style="margin-top:14px">
+                    <span>Readers enter name, email and company once; the lead is emailed to <strong>info@flaneyassociates.com</strong> and remembered, so repeat visitors download straight away. Same system the homepage briefings use.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <span class="step">6</span>
+                <h2>Publish</h2>
+            </div>
+            <div class="panel-body">
+                <button class="btn btn-primary btn-lg" id="generate" type="button">Generate the publish bundle</button>
+                <div id="generateFeedback"></div>
+            </div>
+        </section>
+
+        <section class="panel" id="queuePanel">
+            <div class="panel-head">
+                <h2>Scheduled queue</h2>
+                <span class="hint" id="queueHint"></span>
+            </div>
+            <div class="panel-body">
+                <ul class="queue" id="queueList"></ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== RIGHT: preview and output ==================== -->
+    <div class="preview-column">
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Preview</h2>
+                <div class="tabs" role="tablist">
+                    <button class="tab on" data-view="article" type="button">Article page</button>
+                    <button class="tab" data-view="card" type="button">Archive card</button>
+                    <button class="tab" data-view="share" type="button">LinkedIn</button>
+                    <button class="tab" data-view="files" type="button">Files</button>
+                </div>
+            </div>
+
+            <div class="viewport on" data-view="article">
+                <iframe id="previewFrame" title="Article preview"></iframe>
+            </div>
+
+            <div class="viewport" data-view="card">
+                <div class="card-stage">
+                    <iframe id="cardFrame" title="Archive card preview"></iframe>
+                </div>
+            </div>
+
+            <div class="viewport" data-view="share">
+                <div class="share">
+                    <div class="field">
+                        <span class="label">Page URL — this is what you share</span>
+                        <div class="copybox url" id="shareUrl"></div>
+                        <button class="btn btn-outline btn-sm" data-copy="shareUrl" type="button" style="margin-top:8px">Copy URL</button>
+                    </div>
+                    <div class="field">
+                        <span class="label">Draft LinkedIn post</span>
+                        <div class="copybox" id="shareText"></div>
+                        <button class="btn btn-outline btn-sm" data-copy="shareText" type="button" style="margin-top:8px">Copy post text</button>
+                    </div>
+                    <div class="notice notice-info">
+                        <span>LinkedIn reads the page's <strong>og:title</strong>, <strong>og:description</strong> and <strong>og:image</strong> to build the link card. All three are written into the generated page, so paste the URL on its own line and let LinkedIn expand it.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="viewport" data-view="files">
+                <div class="panel-body">
+                    <ul class="filelist" id="fileList">
+                        <li><span class="path">Nothing generated yet</span></li>
+                    </ul>
+                    <div style="margin-top:16px" id="bundleActions" hidden>
+                        <button class="btn btn-primary" id="downloadZip" type="button">&#11015; Download all as .zip</button>
+                    </div>
+                    <div style="margin-top:20px" id="commitBlock" hidden>
+                        <span class="label">Then, from the repository root</span>
+                        <pre class="terminal" id="commitCommands"></pre>
+                        <button class="btn btn-outline btn-sm" data-copy="commitCommands" type="button" style="margin-top:8px">Copy commands</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="lib/zip.js"></script>
+<script src="lib/pdf.js"></script>
+<script src="lib/template.js"></script>
+<script src="publisher.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "_comment": "Defaults for the monthly post, loaded by publisher/. Committed to the repo so the template survives a cleared cache and works on any machine. The dashboard's 'Save for this browser' button stores a per-device override in localStorage that wins over this file; 'Download for repo' writes this file back out so a change can be committed.",
+
+  "titlePattern": "",
+  "author": "Joshua Otaigbe",
+  "publishDay": 15,
+  "categories": [
+    "Advanced Materials Engineering"
+  ],
+  "byline": "Written by Joshua U. Otaigbe, PhD"
+}

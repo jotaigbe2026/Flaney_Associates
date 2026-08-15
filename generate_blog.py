@@ -238,12 +238,22 @@ def _tidy_summary(text, title):
 def summarise(p, limit=260):
     """A clean one-paragraph summary for cards and meta descriptions.
 
-    Prefer the article's own opening: several of the source site's WordPress
-    excerpts carry WPBakery shortcodes, repeat the title, or — on a handful of
-    posts — describe an entirely different article. Where the body is available
-    it is the only trustworthy summary. Gated posts have no body, so their
-    published abstract is used as-is once cleaned.
+    A stored `summary` always wins. Every post carries one: it is what this
+    function computed the first time, and for posts written in publisher/ it is
+    whatever the author typed. Storing it means the archive, the homepage strip
+    and the article page agree no matter which renderer produced them — the
+    publisher builds those pages in JavaScript, and re-deriving this from the
+    body in two languages is the one thing guaranteed to drift.
+
+    Falling back, prefer the article's own opening: several of the source site's
+    WordPress excerpts carry WPBakery shortcodes, repeat the title, or — on a
+    handful of posts — describe an entirely different article. Where the body is
+    available it is the only trustworthy summary. Gated posts have no body, so
+    their published abstract is used as-is once cleaned.
     """
+    if p.get("summary"):
+        return p["summary"]
+
     title = strip_tags(p["title"])
     text = ""
 
@@ -358,6 +368,44 @@ def footer(depth=1):
     </footer>""".format(up=up)
 
 
+def download_modal():
+    """Lead-capture modal for gated PDFs — identical to the one in index.html.
+
+    lead-capture.js wires it up wherever it appears, so article pages get the
+    same gate the homepage briefings use.
+    """
+    return """    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="modal-icon">&#128218;</div>
+            <h3>Get Your Free Article</h3>
+            <p class="modal-subtitle">Enter your details below and the PDF will download instantly. No spam — just expert insights.</p>
+            <form class="modal-form" id="downloadForm">
+                <div class="form-group">
+                    <input type="text" id="dlName" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="dlEmail" name="email" placeholder="Work Email" required>
+                    <span class="email-feedback" id="dlEmailFeedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dlCompany" name="company" placeholder="Company (optional)">
+                </div>
+                <input type="hidden" id="dlArticle" name="article" value="">
+                <button type="submit" class="btn btn-primary btn-lg btn-full">&#11015; Download Now — Free</button>
+                <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+            </form>
+        </div>
+    </div>"""
+
+
+def scripts(depth=1):
+    """lead-capture.js first: blog.js calls hideScheduledCards() from it."""
+    up = "../" * depth
+    return ('    <script src="%slead-capture.js"></script>\n'
+            '    <script src="blog.js?v=%s"></script>\n' % (up, asset_version("blog.js")))
+
+
 def head(title, description, depth=1, extra=""):
     up = "../" * depth
     return """<!DOCTYPE html>
@@ -419,7 +467,7 @@ def card(p, prefix=""):
         badge = ""
         meta_extra = '<span class="blog-read">%d min read</span>' % read_time(p["words"])
 
-    return """                <article class="post-card" data-title="{search}" data-cats="{catattr}">
+    return """                <article class="post-card" data-title="{search}" data-cats="{catattr}" data-publish="{publish}">
                     <a class="post-thumb" href="{href}"{la}>{media}</a>
                     <div class="post-body">
                         <div class="post-cats">{cats}{badge}</div>
@@ -434,7 +482,7 @@ def card(p, prefix=""):
                 </article>
 """.format(
         search=search_key(p["title"] + " " + excerpt),
-        catattr=attr("|".join(cats)),
+        catattr=attr("|".join(cats)), publish=p["date"][:10],
         href=href, la=link_attrs, media=media,
         cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
         badge=badge, title=p["title"], excerpt=excerpt,
@@ -469,7 +517,7 @@ def build_index(posts):
             <h1>The Flaney Associates Blog</h1>
             <p class="blog-hero-sub">{total} articles and publications on materials engineering — polymers and composites, nanotechnology, sustainable materials, protective coatings, and the growing role of AI in materials discovery.</p>
             <div class="blog-hero-stats">
-                <div class="stat"><span class="stat-number">{total}</span><span class="stat-label">Articles</span></div>
+                <div class="stat"><span class="stat-number" data-total="{total}">{total}</span><span class="stat-label">Articles</span></div>
                 <div class="stat"><span class="stat-number">{full}</span><span class="stat-label">Full text here</span></div>
                 <div class="stat"><span class="stat-number">{cats}</span><span class="stat-label">Topics</span></div>
             </div>
@@ -517,7 +565,7 @@ def build_index(posts):
 
 """
     html += footer(1) + "\n"
-    html += '    <script src="blog.js?v=%s"></script>\n</body>\n</html>\n' % asset_version("blog.js")
+    html += scripts(1) + "</body>\n</html>\n"
     with open(os.path.join(BLOG, "index.html"), "w") as f:
         f.write(html)
     return len(posts)
@@ -526,7 +574,7 @@ def build_index(posts):
 def build_post(p, posts):
     body = clean(p["content"], strip_tags(p["title"]))
     cats = p["categories"] or ["Materials Engineering"]
-    desc = summarise(p, limit=300).replace('"', "&quot;")
+    desc = summarise(p).replace('"', "&quot;")
 
     og = """    <meta property="og:type" content="article">
     <meta property="og:title" content="{t}">
@@ -546,8 +594,35 @@ def build_post(p, posts):
         </figure>
 """.format(f=p["local_image"], alt=attr(p["image_alt"] or p["title"]))
 
+    # Gated PDF, when the post has one. Posts authored in publisher/ carry a
+    # `pdf` path; the imported WordPress archive does not.
+    download_block = ""
+    if p.get("pdf"):
+        download_block = """
+            <div class="article-download">
+                <div class="article-download-text">
+                    <h4>&#128196; Download this article as a PDF</h4>
+                    <p>Take the full briefing with you — formatted for print, filing and sharing with your team.</p>
+                </div>
+                <button class="btn btn-primary gated-download" data-pdf="../{pdf}" data-title="{t}">&#11015; Get the PDF</button>
+            </div>
+""".format(pdf=p["pdf"], t=attr(p["title"]))
+
+    if p.get("local"):
+        source_block = ("""
+            <div class="article-source">
+                <p>Published by Flaney Associates on %s.</p>
+            </div>
+""" % fmt_date(p["date"]))
+    else:
+        source_block = ("""
+            <div class="article-source">
+                <p>Originally published on <a href="%s" target="_blank" rel="noopener">flaneyassociates.com</a> on %s.</p>
+            </div>
+""" % (p["link"], fmt_date(p["date"])))
+
     html += """
-    <article class="article-page">
+    <article class="article-page" data-publish="{publish}">
         <div class="container container-narrow">
             <a class="back-link" href="index.html">&larr; All articles</a>
             <div class="post-cats">{cats}</div>
@@ -564,11 +639,7 @@ def build_post(p, posts):
             <div class="article-body">
 {body}
             </div>
-
-            <div class="article-source">
-                <p>Originally published on <a href="{link}" target="_blank" rel="noopener">flaneyassociates.com</a> on {date}.</p>
-            </div>
-
+{download}{source}
             <div class="article-author">
                 <div class="author-avatar" aria-hidden="true">JO</div>
                 <div>
@@ -580,8 +651,8 @@ def build_post(p, posts):
     </article>
 """.format(cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
            title=p["title"], date=fmt_date(p["date"]), mins=read_time(p["words"]),
-           author=p["author"] or "Flaney Associates", img=hero_img,
-           body=body, link=p["link"])
+           author=p["author"] or "Flaney Associates", img=hero_img, body=body,
+           publish=p["date"][:10], download=download_block, source=source_block)
 
     # related — same category first, then most recent, full-text only
     others = [q for q in posts if q["slug"] != p["slug"] and not q["gated"]]
@@ -613,7 +684,8 @@ def build_post(p, posts):
 
 """
     html += footer(1) + "\n"
-    html += '    <script src="blog.js?v=%s"></script>\n</body>\n</html>\n' % asset_version("blog.js")
+    html += download_modal() + "\n\n"
+    html += scripts(1) + "</body>\n</html>\n"
 
     with open(os.path.join(BLOG, "%s.html" % p["slug"]), "w") as f:
         f.write(html)

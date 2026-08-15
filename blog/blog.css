@@ -450,6 +450,26 @@
     margin: 1.4em 0;
 }
 
+/* Pull quotes. Nothing in the imported WordPress archive uses one, so this went
+   unstyled for a while — but a post written in publisher/ can, and without a
+   rule here a blockquote is indistinguishable from body copy. */
+.article-body blockquote {
+    margin: 1.9em 0;
+    padding: 2px 0 2px 22px;
+    border-left: 3px solid var(--accent);
+    color: var(--primary);
+    font-size: 1.08rem;
+    line-height: 1.65;
+}
+
+.article-body blockquote p {
+    margin-bottom: 0.7em;
+}
+
+.article-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
 /* Wide content must scroll inside itself, never the page. */
 .article-body .table-scroll {
     overflow-x: auto;
@@ -570,4 +590,64 @@
     .article-page { padding-top: 110px; }
     .article-figure { padding: 0 16px; }
     .article-author { flex-direction: column; gap: 12px; }
+}
+
+/* ---- Gated PDF call-to-action on article pages ----
+   Posts authored in publisher/ carry a downloadable PDF. The button reuses the
+   .gated-download hook, so lead-capture.js gates it exactly like the sector
+   briefings on the homepage. */
+.article-download {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 44px;
+    padding: 24px 28px;
+    background: var(--accent-light);
+    border: 1px solid #cfe3fb;
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+}
+
+.article-download-text { flex: 1; }
+
+.article-download h4 {
+    font-size: 1.05rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.article-download p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.55;
+}
+
+.article-download .btn { flex-shrink: 0; }
+
+/* An article dated ahead is reachable at its URL so it can be proofed, but it
+   is not listed anywhere yet — say so rather than letting it read as live.
+   Inserted by blog.js; never present in the generated HTML. */
+.scheduled-banner {
+    max-width: 760px;
+    margin: 0 auto 28px;
+    padding: 13px 18px;
+    background: #fef3e2;
+    color: #8a5200;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.scheduled-banner strong { font-weight: 700; }
+
+@media (max-width: 640px) {
+    .article-download {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+    .article-download .btn { width: 100%; }
+    .scheduled-banner { margin: 0 24px 24px; }
 }

@@ -125,12 +125,34 @@ def fetch_images(posts):
     return ok, missing
 
 
+def local_posts():
+    """Posts written in publisher/ rather than imported from WordPress.
+
+    They exist only in posts.json, so a refresh that rewrote the file from the
+    API alone would delete them. They are flagged `local: true` and carried
+    across untouched.
+    """
+    try:
+        existing = json.load(open(DATA))
+    except (OSError, ValueError):
+        return []
+    return [p for p in existing if p.get("local")]
+
+
 def main():
     print("fetching posts…")
     posts = fetch_posts()
 
     print("fetching featured images…")
     ok, missing = fetch_images(posts)
+
+    kept = local_posts()
+    if kept:
+        remote = {p["slug"] for p in posts}
+        kept = [p for p in kept if p["slug"] not in remote]
+        posts.extend(kept)
+        posts.sort(key=lambda p: p["date"], reverse=True)
+        print("  keeping %d locally authored post(s)" % len(kept))
 
     os.makedirs(os.path.dirname(DATA), exist_ok=True)
     json.dump(posts, open(DATA, "w"), indent=1)

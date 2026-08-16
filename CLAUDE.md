@@ -58,6 +58,9 @@ Defaults live in **`publisher/template.json`**, committed to the repo:
 
 An empty `titlePattern` is treated as a setting, not as missing data: **Start next month's post** fills in everything else and puts the cursor in the title field.
 
+### publisher/ is served publicly
+Pages serves the whole repository, so the dashboard is live at `/Flaney_Associates/publisher/`. Reviewed and accepted (August 2026): it reads only files that are already public (`posts.json`, `index.html`, `template.json`), writes nothing anywhere, holds no credentials, and carries `noindex` so it stays out of search results. Keeping it deployed is what lets it be used from any machine without cloning the repo or running a local server.
+
 ### Why the bundle includes regenerated pages
 A new article page on its own would never be linked from anywhere. The archive and the homepage strip both list every post, so both have to be rebuilt on every publish — which is exactly what `generate_blog.py` does. The publisher reproduces that work in the browser so a post can ship without running Python.
 
@@ -138,6 +141,8 @@ Every post carries a stored `summary`. `summarise()` returns it verbatim when pr
 Every card and article page carries `data-publish="YYYY-MM-DD"`. `hideScheduledCards()` in `lead-capture.js` hides any card dated ahead of today, and `blog.js` drops those cards from the archive's search, category filters and every count — the hero total, the subtitle, the chip badges and the results line. A scheduled post is committed like any other and simply appears on its own on the right morning; no rebuild, no deploy.
 
 The article page itself stays reachable at its URL so it can be proofed, and `blog.js` puts a "Scheduled preview" banner on it until the date passes.
+
+**Scheduling is presentation, not embargo.** A scheduled post's full text sits in `blog/data/posts.json` and at `blog/<slug>.html` from the moment it is committed, and both are publicly readable — Pages serves a static site, so there is no server that could withhold them. The hiding happens in the visitor's browser. Reviewed and accepted (August 2026): it is what buys the auto-appear behaviour and the ability to proof the real page early, and these are engineering articles rather than embargoed results. **If a post ever genuinely needs an embargo, do not commit it until the day** — no amount of client-side hiding will give you one.
 
 ### Gated posts
 36 of the 55 source posts sit behind the Simple Membership plugin on flaneyassociates.com; the API returns a login stub instead of a body. Those are flagged `gated: true` and appear on the archive as cards with their real title, date, categories, image and published abstract, badged **Members only** and linking to the source site. **No body text is ever invented for them.** Only the 19 public posts get their own page.

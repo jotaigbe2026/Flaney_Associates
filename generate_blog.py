@@ -20,6 +20,8 @@ import os
 import re
 from datetime import datetime
 
+import stamp_assets
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BLOG = os.path.join(ROOT, "blog")
 DATA = os.path.join(BLOG, "data", "posts.json")
@@ -271,15 +273,16 @@ def summarise(p, limit=260):
 
 # ---------------------------------------------------------------- assets
 
-def asset_version(name):
+def asset_version(name, base=None):
     """Short content hash appended to asset URLs.
 
     Without it, browsers keep serving a cached blog.css/blog.js after a deploy,
     so returning visitors can get new markup with the old stylesheet or an old
-    search index with the new script.
+    search index with the new script. `base` selects the directory the asset
+    lives in — lead-capture.js sits at the repository root, not in blog/.
     """
     try:
-        with open(os.path.join(BLOG, name), "rb") as f:
+        with open(os.path.join(base or BLOG, name), "rb") as f:
             return hashlib.md5(f.read()).hexdigest()[:8]
     except OSError:
         return "1"
@@ -400,10 +403,16 @@ def download_modal():
 
 
 def scripts(depth=1):
-    """lead-capture.js first: blog.js calls hideScheduledCards() from it."""
+    """lead-capture.js first: blog.js calls hideScheduledCards() from it.
+
+    Both carry a content hash for the same reason blog.css does — a cached
+    lead-capture.js against new markup means the download gate silently stops
+    working, which looks like a broken button rather than a stale file.
+    """
     up = "../" * depth
-    return ('    <script src="%slead-capture.js"></script>\n'
-            '    <script src="blog.js?v=%s"></script>\n' % (up, asset_version("blog.js")))
+    return ('    <script src="%slead-capture.js?v=%s"></script>\n'
+            '    <script src="blog.js?v=%s"></script>\n'
+            % (up, asset_version("lead-capture.js", ROOT), asset_version("blog.js")))
 
 
 def head(title, description, depth=1, extra=""):
@@ -774,6 +783,7 @@ def main():
     print("blog/<slug>.html         %d full-text article pages" % len(full))
     print("gated (abstract + link)  %d" % (len(posts) - len(full)))
     update_homepage(posts)
+    stamp_assets.main()
 
 
 if __name__ == "__main__":

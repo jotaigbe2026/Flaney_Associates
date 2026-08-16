@@ -630,7 +630,7 @@ ${post.content}
 `;
         html += footer(1) + '\n';
         html += downloadModal() + '\n\n';
-        html += `    <script src="../lead-capture.js"><\/script>\n`;
+        html += `    <script src="../lead-capture.js${assets.lead}"><\/script>\n`;
         html += `    <script src="blog.js${assets.js}"><\/script>\n</body>\n</html>\n`;
         return html;
     }
@@ -710,7 +710,7 @@ ${chips.map(c => '                ' + c).join('\n')}
 
 `;
         html += footer(1) + '\n';
-        html += `    <script src="../lead-capture.js"><\/script>\n`;
+        html += `    <script src="../lead-capture.js${assets.lead}"><\/script>\n`;
         html += `    <script src="blog.js${assets.js}"><\/script>\n</body>\n</html>\n`;
         return html;
     }

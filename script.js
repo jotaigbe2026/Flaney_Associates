@@ -39,7 +39,17 @@ document.addEventListener('click', (e) => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+
+        // The logo is href="#", and querySelector('#') is a syntax error, so
+        // this threw on every logo click and the click did nothing at all —
+        // preventDefault had already run. A bare hash means "back to the top".
+        if (!href || href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const target = document.querySelector(href);
         if (target) {
             const offset = 80;
             const top = target.getBoundingClientRect().top + window.scrollY - offset;

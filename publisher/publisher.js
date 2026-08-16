@@ -914,22 +914,36 @@
 
     // ------------------------------------------------------------------- boot
 
+    /* Always revalidate the site's own data. These files change every time a
+       post is published, and a cached copy means the dashboard quietly works
+       from a stale archive — offering a slug that is already taken, or missing
+       a post from the edit list. `no-cache` still allows a conditional request,
+       so an unchanged file costs a 304 rather than a re-download. */
+    function fresh(url) {
+        return fetch(url, { cache: 'no-cache' });
+    }
+
     /* Reuse whatever ?v= the deployed archive is already using. Recomputing a
        hash here would disagree with generate_blog.py's md5 and churn the URLs
        on every publish. */
     function readAssetVersions(html) {
         const css = html.match(/blog\.css(\?v=[a-z0-9]+)?/);
         const js = html.match(/blog\.js(\?v=[a-z0-9]+)?/);
-        return { css: (css && css[1]) || '', js: (js && js[1]) || '' };
+        const lead = html.match(/lead-capture\.js(\?v=[a-z0-9]+)?/);
+        return {
+            css: (css && css[1]) || '',
+            js: (js && js[1]) || '',
+            lead: (lead && lead[1]) || ''
+        };
     }
 
     function boot() {
         Promise.all([
-            fetch('../blog/data/posts.json').then(r => r.json()),
-            fetch('../blog/index.html').then(r => r.text()),
-            fetch('../index.html').then(r => r.text()),
+            fresh('../blog/data/posts.json').then(r => r.json()),
+            fresh('../blog/index.html').then(r => r.text()),
+            fresh('../index.html').then(r => r.text()),
             // Optional: the dashboard still works on localStorage alone.
-            fetch('template.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
+            fresh('template.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
         ]).then(function (results) {
             state.posts = results[0];
             state.assets = readAssetVersions(results[1]);

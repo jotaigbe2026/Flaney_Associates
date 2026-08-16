@@ -126,17 +126,24 @@ def fetch_images(posts):
 
 
 def local_posts():
-    """Posts written in publisher/ rather than imported from WordPress.
+    """Posts this repo owns, which a refresh from the API must not clobber.
 
-    They exist only in posts.json, so a refresh that rewrote the file from the
-    API alone would delete them. They are flagged `local: true` and carried
-    across untouched.
+    Two kinds:
+
+    - `local`  written in publisher/ rather than imported. They exist only in
+               posts.json, so rewriting the file from the API alone would
+               delete them outright.
+    - `edited` imported from WordPress but since changed here — a new image, a
+               corrected paragraph. The API still serves the original, so
+               without this the refresh would quietly undo the edit.
+
+    Both are carried across untouched and win over the API's copy.
     """
     try:
         existing = json.load(open(DATA))
     except (OSError, ValueError):
         return []
-    return [p for p in existing if p.get("local")]
+    return [p for p in existing if p.get("local") or p.get("edited")]
 
 
 def main():
@@ -148,11 +155,15 @@ def main():
 
     kept = local_posts()
     if kept:
-        remote = {p["slug"] for p in posts}
-        kept = [p for p in kept if p["slug"] not in remote]
+        # An edited post exists on both sides; the local copy is the one to
+        # keep, so drop the API's version rather than the other way round.
+        owned = {p["slug"] for p in kept}
+        posts = [p for p in posts if p["slug"] not in owned]
         posts.extend(kept)
         posts.sort(key=lambda p: p["date"], reverse=True)
-        print("  keeping %d locally authored post(s)" % len(kept))
+        authored = sum(1 for p in kept if p.get("local"))
+        print("  keeping %d locally authored, %d edited post(s)"
+              % (authored, len(kept) - authored))
 
     os.makedirs(os.path.dirname(DATA), exist_ok=True)
     json.dump(posts, open(DATA, "w"), indent=1)

@@ -161,6 +161,18 @@ input:focus, select:focus, textarea:focus {
 textarea { resize: vertical; line-height: 1.65; }
 textarea.body-input { min-height: 340px; font-size: 0.92rem; }
 
+/* A locked field is still readable and selectable — it is published data, not
+   a disabled control. Only the fact that it cannot be typed into is signalled. */
+input[readonly] {
+    background: var(--bg-alt);
+    color: var(--text-light);
+    cursor: default;
+}
+input[readonly]:focus {
+    border-color: var(--border);
+    box-shadow: none;
+}
+
 .help { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; }
 .help code {
     background: var(--bg-alt);

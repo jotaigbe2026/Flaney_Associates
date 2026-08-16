@@ -73,8 +73,20 @@
             <div class="panel-head">
                 <span class="step">2</span>
                 <h2>Article details</h2>
+                <div class="tabs" id="modeTabs">
+                    <button class="tab on" data-mode="new" type="button">New post</button>
+                    <button class="tab" data-mode="edit" type="button">Edit published</button>
+                </div>
             </div>
             <div class="panel-body">
+                <div class="field" id="editPicker" hidden>
+                    <label for="editPost">Which published article?</label>
+                    <select id="editPost"></select>
+                    <p class="help">Only articles whose full text lives on this site are listed. The 36 &ldquo;Members only&rdquo; posts are not here &mdash; their body has never been on this site, so there is nothing to edit.</p>
+                </div>
+
+                <div class="notice notice-warn" id="editNotice" hidden></div>
+
                 <div class="field">
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="The headline readers will see on LinkedIn">
@@ -83,7 +95,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="slug">URL slug</label>
+                    <label for="slug">URL slug <span class="opt" id="slugLockNote" hidden>&mdash; locked, this article is already published at this address</span></label>
                     <input type="text" id="slug" placeholder="auto-generated-from-the-title">
                     <p class="field-error" id="slugError" hidden></p>
                 </div>
@@ -96,7 +108,7 @@
 
                 <div class="row row-2">
                     <div class="field">
-                        <label for="pubDate">Publication date</label>
+                        <label for="pubDate">Publication date <span class="opt" id="dateLockNote" hidden>&mdash; kept</span></label>
                         <input type="date" id="pubDate">
                         <p class="help" id="dateHelp"></p>
                     </div>

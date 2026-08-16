@@ -43,6 +43,23 @@ This is required (rather than opening index.html directly) because the gated PDF
 
 5. Unzip over the repository root and commit. Running `python3 generate_blog.py` afterwards is optional and produces no diff.
 
+### Editing a published post
+The **Edit published** tab in step 2 lists the 19 posts whose body actually lives on this site (gated posts are excluded — their text has never been here, so an edit would look like it silently failed). Choosing one loads it back into the form; **Generate** then rebuilds the same files with `replace` status rather than creating new ones.
+
+Three deliberate constraints:
+
+- **The slug is locked.** Changing a live URL breaks every LinkedIn post and search result pointing at it, and strands the old page — the bundle has no way to delete a file.
+- **The date is locked.** A correction is not a republication, so a typo fix does not get promoted to the top of the archive and the homepage.
+- **The PDF is rebuilt** from the edited text, so a reader can never download a PDF contradicting the corrected page.
+
+Two things make this work, and both are easy to break:
+
+**The body is loaded from the rendered page, not from `posts.json`.** `posts.json` holds the *raw* WordPress markup — shortcodes, editor attributes, the lot — and `clean()` is applied by `generate_blog.py` at render time. Loading that raw source would show markup the author never wrote. `loadBody()` therefore fetches `blog/<slug>.html` and takes `.article-body`'s innerHTML, which is the authoritative cleaned text.
+
+**`build_post()` skips `clean()` for `local`/`edited` posts.** `clean()` is *not* idempotent: `promote_pseudo_headings()` promotes bold runs the previous pass left alone, so a second pass keeps changing the text (measured: only 5 of 19 rendered bodies survive a second `clean()` unchanged). Since the publisher stores already-clean content, re-cleaning would rewrite the article on every regeneration. Both renderers now use an edited body verbatim, which is what makes their output byte-identical — verified by SHA-256 on a real edit.
+
+A consequence worth knowing: `template.js`'s `article()` renders `content` verbatim and so is only correct for `local`/`edited` posts. That is all it is ever asked to do — the bundle writes exactly one article page, the post being created or edited — but do not reuse it to render an imported post.
+
 ### The monthly template
 Defaults live in **`publisher/template.json`**, committed to the repo:
 

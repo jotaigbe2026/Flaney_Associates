@@ -82,6 +82,8 @@ window.FlaneyTemplate = (function () {
 
     const BLOCK_TAGS = ['P', 'H2', 'H3', 'H4', 'UL', 'OL', 'LI', 'BLOCKQUOTE', 'TABLE'];
 
+    const STRIP_ATTR = /^(style|class|id|data-[\w-]+|width|height|srcset|sizes|loading|decoding)$/i;
+
     function looksLikeHeading(line) {
         const t = line.trim();
         if (!(t.length > 3 && t.length <= 80)) return false;
@@ -194,11 +196,13 @@ window.FlaneyTemplate = (function () {
             .replace(/\[\/?(?:vc_|wpb_)[a-z_]*[^\]]*\]/gi, '')
             .replace(/<!--\s*\/?\s*wp:[\s\S]*?-->/g, '');
 
+        // Mirrors BAD_ATTR in generate_blog.py — strip presentational and loader
+        // attributes, keep the rest. An allowlist would be tighter but diverges:
+        // dropping the `start` off <ol start="2"> silently renumbers the list
+        // back to 1, and Python would have kept it.
         body.querySelectorAll('*').forEach(function (el) {
             Array.from(el.attributes).forEach(function (a) {
-                const keep = (el.tagName === 'A' && a.name === 'href') ||
-                    (el.tagName === 'IMG' && (a.name === 'src' || a.name === 'alt'));
-                if (!keep) el.removeAttribute(a.name);
+                if (STRIP_ATTR.test(a.name)) el.removeAttribute(a.name);
             });
         });
 

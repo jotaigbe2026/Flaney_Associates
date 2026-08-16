@@ -572,7 +572,16 @@ def build_index(posts):
 
 
 def build_post(p, posts):
-    body = clean(p["content"], strip_tags(p["title"]))
+    # clean() sanitises the WordPress import — shortcodes, editor attributes,
+    # bold runs standing in for headings. Content written or edited in
+    # publisher/ has already been through the equivalent and is stored clean,
+    # so running it again is not a no-op: promote_pseudo_headings() is not
+    # idempotent, and a second pass promotes bold runs the first pass left
+    # alone. Re-cleaning would rewrite the article on every regeneration.
+    if p.get("local") or p.get("edited"):
+        body = p["content"]
+    else:
+        body = clean(p["content"], strip_tags(p["title"]))
     cats = p["categories"] or ["Materials Engineering"]
     desc = summarise(p).replace('"', "&quot;")
 

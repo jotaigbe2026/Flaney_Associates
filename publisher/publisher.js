@@ -26,6 +26,8 @@
         selected: new Set(),
         image: null,          // { name, ext, bytes, url, type }
         pdfUpload: null,      // { name, bytes }
+        editing: null,        // the published post being revised, or null
+        originalImage: '',    // its existing blog/images/ filename
         bundle: null,
         ready: false
     };
@@ -33,7 +35,8 @@
     const $ = id => document.getElementById(id);
     const el = {};
     ['titlePattern', 'defaultAuthor', 'publishDay', 'standingByline', 'saveTemplate',
-        'exportTemplate', 'templateStatus', 'title', 'titleError', 'slug', 'slugError', 'slugPreview',
+        'exportTemplate', 'templateStatus', 'editPicker', 'editPost', 'editNotice',
+        'slugLockNote', 'dateLockNote', 'title', 'titleError', 'slug', 'slugError', 'slugPreview',
         'categoryChips', 'categoryError', 'pubDate', 'dateHelp', 'author', 'scheduleNotice',
         'body', 'bodyError', 'bodyStats', 'bodyHint', 'summary', 'imageDrop', 'imageInput',
         'imageThumb', 'imagePreview', 'imageName', 'imageSize', 'imageRemove', 'imageAlt',
@@ -199,6 +202,136 @@
         render();
     }
 
+    // ------------------------------------------------------------- edit mode
+
+    /* Only posts whose body actually lives on this site. A gated post has no
+       content here — the membership plugin on flaneyassociates.com holds it —
+       so offering it for editing would look like the edit silently failed. */
+    function editablePosts() {
+        return state.posts.filter(p => !p.gated)
+            .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    }
+
+    function renderPostPicker() {
+        const posts = editablePosts();
+        el.editPost.innerHTML = '<option value="">— choose an article —</option>' +
+            posts.map(p => `<option value="${T.esc(p.slug)}">${T.esc(T.stripTags(p.title))}` +
+                `  (${T.fmtDate(p.date)})</option>`).join('');
+    }
+
+    function setMode(mode) {
+        const editing = mode === 'edit';
+        document.querySelectorAll('#modeTabs .tab').forEach(t =>
+            t.classList.toggle('on', t.dataset.mode === mode));
+        el.editPicker.hidden = !editing;
+        el.startNextMonth.disabled = editing;
+
+        if (!editing) {
+            state.editing = null;
+            state.originalImage = '';
+            el.editPost.value = '';
+            el.editNotice.hidden = true;
+            el.slug.readOnly = false;
+            el.pubDate.readOnly = false;
+            el.slugLockNote.hidden = true;
+            el.dateLockNote.hidden = true;
+            el.generate.textContent = 'Generate the publish bundle';
+            clearForm();
+        }
+        render();
+    }
+
+    /* Load a published post back into the form.
+       The URL and the date stay put: changing a live slug breaks every link
+       already pointing at it and strands the old page, and a correction is not
+       a republication — bumping the date would shove a typo fix to the top of
+       the archive and the homepage. */
+    /* The body to edit is the one on the published page, not posts.json's.
+       posts.json stores the raw WordPress markup — shortcodes, editor cruft and
+       all — and generate_blog.py runs clean() over it at render time. Loading
+       that raw source would show you markup you never wrote and, on saving,
+       replace the cleaned article with a differently-cleaned one. The rendered
+       page is the authoritative cleaned text. */
+    function loadBody(post) {
+        return fetch('../blog/' + post.slug + '.html?x=' + Date.now())
+            .then(r => r.ok ? r.text() : Promise.reject(new Error('page not found')))
+            .then(function (html) {
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                const el = doc.querySelector('.article-body');
+                if (!el) throw new Error('no article body');
+                return el.innerHTML.trim();
+            })
+            .catch(() => T.parseBody(post.content || ''));
+    }
+
+    function loadPostForEditing(slug) {
+        const post = state.posts.find(p => p.slug === slug);
+        if (!post) return;
+
+        state.editing = post;
+        state.originalImage = post.local_image || '';
+        clearImage();
+        state.pdfUpload = null;
+
+        el.title.value = T.stripTags(post.title);
+        el.slug.value = post.slug;
+        el.pubDate.value = String(post.date).slice(0, 10);
+        el.author.value = post.author || '';
+        el.body.value = '';
+        loadBody(post).then(function (body) {
+            el.body.value = body;
+            render();
+        });
+        el.summary.value = post.summary || post.excerpt || '';
+        el.imageAlt.value = post.image_alt || '';
+
+        el.slug.readOnly = true;
+        el.pubDate.readOnly = true;
+        el.slugLockNote.hidden = false;
+        el.dateLockNote.hidden = false;
+        el.generate.textContent = 'Rebuild the bundle for this post';
+
+        state.selected.clear();
+        (post.categories || []).forEach(c => state.selected.add(c));
+        renderCategories();
+
+        // The PDF is rebuilt from the edited text so the download can never
+        // contradict the corrected page.
+        const wanted = post.pdf ? 'auto' : 'none';
+        document.querySelectorAll('input[name=pdfSource]').forEach(function (radio) {
+            radio.checked = radio.value === wanted;
+            radio.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+
+        const bits = [];
+        if (post.local) bits.push('Written in the publisher.');
+        else bits.push('Imported from flaneyassociates.com — saving marks it as edited here, ' +
+            'so a later <code>extract_blog.py</code> refresh will not undo your change.');
+        if (state.originalImage) {
+            bits.push('It already has an image (<code>' + T.esc(state.originalImage) +
+                '</code>). Leave the image box empty to keep it.');
+        }
+        notice(el.editNotice, 'warn', bits.join(' '));
+
+        toast('Loaded — the URL and date stay as published');
+        render();
+    }
+
+    function clearForm() {
+        ['title', 'slug', 'body', 'summary', 'imageAlt'].forEach(id => { el[id].value = ''; });
+        clearImage();
+        state.pdfUpload = null;
+        state.bundle = null;
+        el.pdfUploadInfo.hidden = true;
+        el.generateFeedback.innerHTML = '';
+        el.fileList.innerHTML = '<li><span class="path">Nothing generated yet</span></li>';
+        el.bundleActions.hidden = true;
+        el.commitBlock.hidden = true;
+        state.selected.clear();
+        (currentTemplate().merged.categories || []).forEach(c => state.selected.add(c));
+        renderCategories();
+    }
+
     // -------------------------------------------------------------- categories
 
     function renderCategories() {
@@ -238,13 +371,15 @@
     // ----------------------------------------------------------- post assembly
 
     function currentPost() {
+        const editing = state.editing;
         const title = el.title.value.trim();
-        const slug = (el.slug.value.trim() || T.slugify(title));
-        const date = el.pubDate.value || todayISO();
+        const slug = editing ? editing.slug : (el.slug.value.trim() || T.slugify(title));
         const byline = el.standingByline.value.trim();
 
         let content = T.parseBody(el.body.value);
-        if (byline && content) {
+        // Only sign a new post. An edited body already carries whatever sign-off
+        // it was published with, so appending again would duplicate it.
+        if (!editing && byline && content) {
             // <em> rather than a class: clean() in generate_blog.py strips class
             // attributes, so styling that way would vanish on the first
             // regeneration. An inline tag survives, and toBlocks() carries the
@@ -257,12 +392,26 @@
         const summary = el.summary.value.trim() || T.summarise(content, title);
         const wantsPdf = document.querySelector('input[name=pdfSource]:checked').value !== 'none';
 
-        return {
-            id: state.posts.reduce((max, p) => Math.max(max, p.id || 0), 16000) + 1,
+        // A replacement image reuses extract_blog.py's naming, so the file lands
+        // exactly where the rest of the pipeline expects it. With no new upload,
+        // an edited post keeps the image it already has.
+        let localImage = editing ? (editing.local_image || '') : '';
+        let socialImage = editing ? (editing.image || '') : '';
+        if (state.image) {
+            localImage = slug.slice(0, 80) + state.image.ext;
+            socialImage = T.SITE + '/blog/images/' + localImage;
+        }
+
+        return Object.assign({}, editing || {}, {
+            id: editing ? editing.id
+                : state.posts.reduce((max, p) => Math.max(max, p.id || 0), 16000) + 1,
             slug: slug,
-            date: date + 'T09:00:00',
-            modified: date + 'T09:00:00',
-            link: T.SITE + '/blog/' + slug + '.html',
+            // Keep a published post's date verbatim — a correction is not a
+            // republication, and re-dating it would shove a typo fix to the top
+            // of the archive and into the homepage strip.
+            date: editing ? editing.date : (el.pubDate.value || todayISO()) + 'T09:00:00',
+            modified: todayISO() + 'T09:00:00',
+            link: editing ? editing.link : T.SITE + '/blog/' + slug + '.html',
             title: title,
             excerpt: summary,
             content: content,
@@ -270,13 +419,16 @@
             words: words,
             categories: cats,
             author: el.author.value.trim() || 'Joshua Otaigbe',
-            image: state.image ? T.SITE + '/blog/images/' + slug + state.image.ext : '',
+            image: socialImage,
             image_alt: el.imageAlt.value.trim(),
-            local_image: state.image ? slug + state.image.ext : '',
+            local_image: localImage,
             pdf: wantsPdf ? 'articles/' + slug + '.pdf' : '',
             summary: summary,
-            local: true
-        };
+            local: editing ? !!editing.local : true,
+            // Tells extract_blog.py this post is owned here now, so a refresh
+            // from the WordPress API will not quietly undo the edit.
+            edited: editing ? true : undefined
+        });
     }
 
     // ---------------------------------------------------------------- preview
@@ -357,7 +509,12 @@
             `<span class="stat-pill"><strong>${(post.content.match(/<li>/g) || []).length}</strong> list items</span>`;
         el.bodyHint.textContent = post.words ? T.readTime(post.words) + ' min read' : 'Paste and go';
 
-        if (!el.pubDate.value) {
+        if (state.editing) {
+            notice(el.scheduleNotice, 'ok',
+                'Revising a published article. It keeps its address and its date of <strong>' +
+                T.fmtDate(post.date) + '</strong>, so it stays where it is in the archive ' +
+                'rather than being promoted as new. The change is live once you commit.');
+        } else if (!el.pubDate.value) {
             el.scheduleNotice.hidden = true;
         } else if (scheduled) {
             notice(el.scheduleNotice, 'info',
@@ -407,7 +564,9 @@
         let slugProblem = '';
         if (!post.slug) slugProblem = 'A URL slug is required.';
         else if (!/^[a-z0-9-]+$/.test(post.slug)) slugProblem = 'Use lower-case letters, numbers and hyphens only.';
-        else if (state.posts.some(p => p.slug === post.slug)) slugProblem = 'That slug is already used by another post — change it.';
+        else if (!state.editing && state.posts.some(p => p.slug === post.slug)) {
+            slugProblem = 'That slug is already used by another post — change it.';
+        }
         flag(el.slug, el.slugError, slugProblem);
 
         flag(el.pubDate, el.categoryError, '');
@@ -442,13 +601,14 @@
         }
 
         const files = [];
+        const editing = !!state.editing;
 
         // 1. the article page
         const related = T.pickRelated(post, state.posts, 3);
         files.push({
             name: 'blog/' + post.slug + '.html',
             data: T.article(post, related, state.assets),
-            status: 'new'
+            status: editing ? 'replace' : 'new'
         });
 
         // 2. the featured image
@@ -456,7 +616,7 @@
             files.push({
                 name: 'blog/images/' + post.local_image,
                 data: state.image.bytes,
-                status: 'new'
+                status: state.originalImage === post.local_image ? 'replace' : 'new'
             });
         }
 
@@ -479,12 +639,18 @@
 
         return pdfPromise.then(function (pdfBytes) {
             if (pdfBytes) {
-                files.push({ name: post.pdf, data: pdfBytes, status: 'new' });
+                files.push({
+                    name: post.pdf, data: pdfBytes,
+                    status: (editing && state.editing.pdf) ? 'replace' : 'new'
+                });
             }
 
-            // 4. posts.json, with the new entry slotted in by date
-            const merged = state.posts.concat([post])
-                .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+            // 4. posts.json — the entry replaced in place when editing, so the
+            // post keeps its position rather than appearing twice.
+            const merged = (editing
+                ? state.posts.map(p => (p.slug === post.slug ? post : p))
+                : state.posts.concat([post])
+            ).sort((a, b) => String(b.date).localeCompare(String(a.date)));
             files.push({
                 name: 'blog/data/posts.json',
                 data: JSON.stringify(merged, null, 1),
@@ -540,7 +706,8 @@
         el.commitCommands.innerHTML =
             '<span class="c"># unzip the bundle over the repository root, then</span>\n' +
             'git add -A\n' +
-            'git commit -m ' + JSON.stringify('Publish: ' + bundle.post.title) + '\n' +
+            'git commit -m ' + JSON.stringify(
+                (state.editing ? 'Update: ' : 'Publish: ') + bundle.post.title) + '\n' +
             'git push origin main';
 
         document.querySelector('.tab[data-view=files]').click();
@@ -556,7 +723,8 @@
         let slugTouched = false;
         el.slug.addEventListener('input', () => { slugTouched = true; });
         el.title.addEventListener('input', function () {
-            if (!slugTouched) el.slug.value = T.slugify(el.title.value);
+            // Never in edit mode: the slug is the published address.
+            if (!slugTouched && !state.editing) el.slug.value = T.slugify(el.title.value);
         });
 
         el.saveTemplate.addEventListener('click', saveTemplate);
@@ -568,20 +736,23 @@
 
         el.resetForm.addEventListener('click', function () {
             if (!confirm('Clear the form? The saved monthly template is kept.')) return;
-            ['title', 'slug', 'body', 'summary', 'imageAlt'].forEach(id => { el[id].value = ''; });
-            state.selected.clear();
-            (currentTemplate().merged.categories || []).forEach(c => state.selected.add(c));
-            clearImage();
-            state.pdfUpload = null;
-            state.bundle = null;
             slugTouched = false;
-            el.pdfUploadInfo.hidden = true;
-            el.generateFeedback.innerHTML = '';
-            el.fileList.innerHTML = '<li><span class="path">Nothing generated yet</span></li>';
-            el.bundleActions.hidden = true;
-            el.commitBlock.hidden = true;
-            renderCategories();
-            render();
+            setMode('new');
+        });
+
+        document.querySelectorAll('#modeTabs .tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                if (tab.dataset.mode === 'edit' && !state.editing && el.body.value.trim() &&
+                    !confirm('Switch to editing a published post? The draft in the form is lost.')) {
+                    return;
+                }
+                slugTouched = false;
+                setMode(tab.dataset.mode);
+            });
+        });
+
+        el.editPost.addEventListener('change', function () {
+            if (el.editPost.value) loadPostForEditing(el.editPost.value);
         });
 
         // --- tabs
@@ -774,6 +945,7 @@
             (template.categories || []).forEach(c => state.selected.add(c));
             renderCategories();
             renderQueue();
+            renderPostPicker();
 
             el.author.value = el.defaultAuthor.value;
             el.pubDate.value = nextOpenSlot(

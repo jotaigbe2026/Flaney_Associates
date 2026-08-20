@@ -75,13 +75,19 @@ a:hover { color: var(--accent-hover); }
 }
 .topbar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
+/* Shown only when the layout has stacked and the preview is off-screen. */
+#jumpPreview { display: none; }
+
 /* ===== Layout ===== */
 .workspace {
     max-width: 1560px;
     margin: 0 auto;
     padding: 24px;
     display: grid;
-    grid-template-columns: minmax(420px, 5fr) minmax(440px, 6fr);
+    /* Narrow minimums so the two-column layout survives an un-maximised
+       window. When it does collapse, the preview drops below all six steps
+       and reads as missing — see the jump button in the top bar. */
+    grid-template-columns: minmax(340px, 5fr) minmax(360px, 6fr);
     gap: 24px;
     align-items: start;
 }
@@ -475,10 +481,12 @@ pre.terminal .c { color: #6b8299; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 
 /* ===== Responsive ===== */
-@media (max-width: 1180px) {
+@media (max-width: 800px) {
     .workspace { grid-template-columns: 1fr; }
     .preview-column { position: static; }
     #previewFrame { height: 70vh; }
+    /* Only useful once the preview is no longer beside the form. */
+    #jumpPreview { display: inline-flex; }
 }
 @media (max-width: 640px) {
     .workspace { padding: 16px; }

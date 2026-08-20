@@ -50,7 +50,7 @@
         'generate', 'generateFeedback', 'queueList', 'queueHint', 'previewFrame', 'cardFrame',
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
-        'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary'
+        'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary', 'jumpPreview'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -997,6 +997,10 @@
         });
 
         el.deletePost.addEventListener('click', confirmDelete);
+        el.jumpPreview.addEventListener('click', function () {
+            document.querySelector('.preview-column').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
         el.chooseFolder.addEventListener('click', chooseFolder);
         if (CAN_WRITE_FOLDER) {
             readHandle().then(function (handle) {

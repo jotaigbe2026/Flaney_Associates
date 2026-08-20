@@ -243,6 +243,17 @@ window.FlaneyTemplate = (function () {
             s.innerHTML = el.innerHTML; el.replaceWith(s);
         });
 
+        /* Word and Google Docs wrap headings in bookmark anchors for their
+           internal table of contents — <a name="augmenting_not_replacing">.
+           They are not links, they render as nothing, and they hid every
+           heading from the promotion below by sitting between the paragraph
+           and its bold run. An anchor with no href is unwrapped. */
+        Array.from(body.querySelectorAll('a')).forEach(function (el) {
+            if (el.getAttribute('href')) return;
+            while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el);
+            el.remove();
+        });
+
         body.querySelectorAll('a[href]').forEach(function (el) {
             const href = el.getAttribute('href') || '';
             if (/^https?:/i.test(href) && href.indexOf('flaneyassociates.com') === -1) {
@@ -304,6 +315,12 @@ window.FlaneyTemplate = (function () {
             const h = doc.createElement('h3');
             h.textContent = text;
             el.replaceWith(h);
+        });
+
+        // Word wraps long lines mid-heading, so a heading that arrived as a real
+        // <h2> can still carry a newline through to the page.
+        body.querySelectorAll('h2, h3, h4').forEach(function (el) {
+            el.innerHTML = el.innerHTML.replace(/\s+/g, ' ').trim();
         });
 
         body.querySelectorAll('table').forEach(function (el) {

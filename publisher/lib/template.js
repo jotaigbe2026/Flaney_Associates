@@ -255,6 +255,48 @@ window.FlaneyTemplate = (function () {
             if (!el.textContent.trim() && !el.querySelector('img')) el.remove();
         });
 
+        /* A paragraph that is nothing but a short bold run is a heading someone
+           made by bolding text instead of using a Heading style — extremely
+           common in Word. generate_blog.py does the same thing to the imported
+           WordPress copy in promote_pseudo_headings(); the same rule is applied
+           here so a pasted document behaves the same way. Deliberately
+           conservative: a bold sentence in the middle of a paragraph is left
+           alone, and so is anything long or ending in punctuation. */
+        Array.from(body.querySelectorAll('p')).forEach(function (el) {
+            const only = el.children.length === 1 && el.children[0].tagName === 'STRONG';
+            if (!only) return;
+            if (el.textContent.trim() !== el.children[0].textContent.trim()) return;
+            if (!looksLikeHeading(el.textContent)) return;
+            const h = doc.createElement('h3');
+            h.textContent = el.textContent.trim();
+            el.replaceWith(h);
+        });
+
+        /* Word exports bulleted and numbered lists as ordinary paragraphs with
+           the marker glyph inlined — <p class=MsoListParagraph>· Item</p> — so
+           without this a list arrives as a run of stray paragraphs each opening
+           with a bullet character. Consecutive markers are grouped into one
+           list, which is what the author saw in the document. */
+        const MARKER = /^\s*(?:[-\u2022\u25AA\u25E6\u00B7*]|\d+[.)])\s+/;
+        Array.from(body.querySelectorAll('p')).forEach(function (el) {
+            if (!MARKER.test(el.textContent)) return;
+            const ordered = /^\s*\d/.test(el.textContent);
+            const prev = el.previousElementSibling;
+            const tag = ordered ? 'OL' : 'UL';
+
+            const item = doc.createElement('li');
+            item.innerHTML = el.innerHTML.replace(/^(\s|&nbsp;)*(?:[-\u2022\u25AA\u25E6\u00B7*]|\d+[.)])(\s|&nbsp;)+/, '');
+
+            if (prev && prev.tagName === tag) {
+                prev.appendChild(item);
+                el.remove();
+            } else {
+                const list = doc.createElement(tag.toLowerCase());
+                list.appendChild(item);
+                el.replaceWith(list);
+            }
+        });
+
         body.querySelectorAll('table').forEach(function (el) {
             const wrap = doc.createElement('div');
             wrap.className = 'table-scroll';

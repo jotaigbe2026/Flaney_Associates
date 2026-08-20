@@ -50,7 +50,7 @@
         'generate', 'generateFeedback', 'queueList', 'queueHint', 'previewFrame', 'cardFrame',
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
-        'chooseFolder', 'folderStatus', 'deletePost'
+        'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -952,6 +952,17 @@
         el.repoPath.addEventListener('input', function () {
             savePaths({ repo: el.repoPath.value.trim() });
             if (state.bundle) el.commitCommands.innerHTML = publishCommand(state.bundle);
+        });
+
+        /* An edited post keeps the excerpt it was published with, which is
+           right for a hand-written one and wrong after a rewrite — the card,
+           the Google result and the LinkedIn preview all keep the old text. */
+        el.regenSummary.addEventListener('click', function () {
+            const content = T.parseBody(el.body.value);
+            if (!content) { toast('Paste the article first'); return; }
+            el.summary.value = T.summarise(content, el.title.value.trim());
+            render();
+            toast('Excerpt rebuilt from the article');
         });
 
         el.deletePost.addEventListener('click', confirmDelete);

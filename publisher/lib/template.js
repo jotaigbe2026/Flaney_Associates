@@ -204,10 +204,17 @@ window.FlaneyTemplate = (function () {
         body.querySelectorAll('script, style, meta, link, noscript, ' +
             'header, footer, nav, form, input, button, iframe, o\\:p').forEach(el => el.remove());
 
-        // Strip WordPress/WPBakery leftovers that survive a copy-paste.
+        // Strip WordPress/WPBakery leftovers and every HTML comment. Word wraps
+        // its bullet glyphs in conditional comments —
+        //   <li><!--[if !supportLists]-->·&nbsp;&nbsp;<!--[endif]-->Item</li>
+        // — which browsers hide in the document but which render as a stray
+        // bullet and a run of spaces once the markup is reused.
         body.innerHTML = body.innerHTML
             .replace(/\[\/?(?:vc_|wpb_)[a-z_]*[^\]]*\]/gi, '')
-            .replace(/<!--\s*\/?\s*wp:[\s\S]*?-->/g, '');
+            .replace(/<!--[\s\S]*?-->/g, '');
+
+        // A page break Word emits between sections; meaningless here.
+        body.querySelectorAll('br[clear]').forEach(el => el.remove());
 
         // Mirrors BAD_ATTR in generate_blog.py — strip presentational and loader
         // attributes, keep the rest. An allowlist would be tighter but diverges:
@@ -321,6 +328,16 @@ window.FlaneyTemplate = (function () {
         // <h2> can still carry a newline through to the page.
         body.querySelectorAll('h2, h3, h4').forEach(function (el) {
             el.innerHTML = el.innerHTML.replace(/\s+/g, ' ').trim();
+        });
+
+        /* The marker glyph Word leaves at the front of a real list item, now
+           that its surrounding conditional comment is gone. Removing it here
+           rather than in the grouping above covers lists that arrived as
+           genuine <ul><li> markup as well as those rebuilt from paragraphs. */
+        body.querySelectorAll('li').forEach(function (el) {
+            el.innerHTML = el.innerHTML
+                .replace(/^(?:\s|&nbsp;|\u00a0)*(?:[\u00b7\u2022\u25AA\u25E6*-]|\d+[.)])(?:\s|&nbsp;|\u00a0)+/, '')
+                .trim();
         });
 
         body.querySelectorAll('table').forEach(function (el) {

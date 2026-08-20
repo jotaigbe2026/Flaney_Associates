@@ -255,22 +255,6 @@ window.FlaneyTemplate = (function () {
             if (!el.textContent.trim() && !el.querySelector('img')) el.remove();
         });
 
-        /* A paragraph that is nothing but a short bold run is a heading someone
-           made by bolding text instead of using a Heading style — extremely
-           common in Word. generate_blog.py does the same thing to the imported
-           WordPress copy in promote_pseudo_headings(); the same rule is applied
-           here so a pasted document behaves the same way. Deliberately
-           conservative: a bold sentence in the middle of a paragraph is left
-           alone, and so is anything long or ending in punctuation. */
-        Array.from(body.querySelectorAll('p')).forEach(function (el) {
-            const only = el.children.length === 1 && el.children[0].tagName === 'STRONG';
-            if (!only) return;
-            if (el.textContent.trim() !== el.children[0].textContent.trim()) return;
-            if (!looksLikeHeading(el.textContent)) return;
-            const h = doc.createElement('h3');
-            h.textContent = el.textContent.trim();
-            el.replaceWith(h);
-        });
 
         /* Word exports bulleted and numbered lists as ordinary paragraphs with
            the marker glyph inlined — <p class=MsoListParagraph>· Item</p> — so
@@ -295,6 +279,31 @@ window.FlaneyTemplate = (function () {
                 list.appendChild(item);
                 el.replaceWith(list);
             }
+        });
+
+        /* Promote a standalone short line to a heading. Word only emits <h2>
+           when a built-in Heading style was used; a heading made by enlarging
+           or bolding the text arrives as an ordinary paragraph, which is how an
+           article came through with 38 paragraphs and 1 heading. Both shapes
+           are handled — a bare line and a line that is entirely one bold run.
+
+           Runs after the list grouping above, so a numbered item is already an
+           <li> and cannot be mistaken for a heading. Conservative by design,
+           matching promote_pseudo_headings() in generate_blog.py: at most 12
+           words, no terminal punctuation, must start with a capital or digit.
+           Whitespace is collapsed because Word wraps long lines mid-heading. */
+        Array.from(body.querySelectorAll('p')).forEach(function (el) {
+            const boldOnly = el.children.length === 1 &&
+                el.children[0].tagName === 'STRONG' &&
+                el.textContent.trim() === el.children[0].textContent.trim();
+            if (el.children.length !== 0 && !boldOnly) return;
+
+            const text = el.textContent.replace(/\s+/g, ' ').trim();
+            if (!looksLikeHeading(text)) return;
+
+            const h = doc.createElement('h3');
+            h.textContent = text;
+            el.replaceWith(h);
         });
 
         body.querySelectorAll('table').forEach(function (el) {

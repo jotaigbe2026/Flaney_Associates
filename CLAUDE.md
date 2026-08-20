@@ -60,6 +60,13 @@ Two things make this work, and both are easy to break:
 
 A consequence worth knowing: `template.js`'s `article()` renders `content` verbatim and so is only correct for `local`/`edited` posts. That is all it is ever asked to do — the bundle writes exactly one article page, the post being created or edited — but do not reuse it to render an imported post.
 
+### Getting a bundle into the repo
+The Files tab prints one command that unzips the bundle, commits and pushes. **Double-clicking the zip in Finder does not work** — macOS extracts it into a new folder rather than merging it into the repo, so the files land in the wrong place. `unzip -o` merges and overwrites without prompting.
+
+The command picks the newest matching download (`ls -t | head -1`) because a second download of the same post arrives as `flaney-<slug>-1.zip`, and unzipping the older one would quietly publish a stale bundle.
+
+The repository path it needs lives in `localStorage` under `flaney_publisher_paths`, **not** in `template.json` — that file is committed and served publicly, and a local filesystem path (with the machine's username in it) does not belong there. The field is in step 1; without it the command shows a placeholder.
+
 ### The monthly template
 Defaults live in **`publisher/template.json`**, committed to the repo:
 

@@ -16,6 +16,10 @@
 
     const T = window.FlaneyTemplate;
     const TEMPLATE_KEY = 'flaney_publisher_template';
+    //: Kept apart from the template on purpose. The template is exported to
+    //: publisher/template.json, which is committed and served publicly; a local
+    //: filesystem path does not belong in it.
+    const PATHS_KEY = 'flaney_publisher_paths';
 
     const state = {
         posts: [],
@@ -35,7 +39,7 @@
     const $ = id => document.getElementById(id);
     const el = {};
     ['titlePattern', 'defaultAuthor', 'publishDay', 'standingByline', 'saveTemplate',
-        'exportTemplate', 'templateStatus', 'editPicker', 'editPost', 'editNotice',
+        'exportTemplate', 'repoPath', 'templateStatus', 'editPicker', 'editPost', 'editNotice',
         'slugLockNote', 'dateLockNote', 'title', 'titleError', 'slug', 'slugError', 'slugPreview',
         'categoryChips', 'categoryError', 'pubDate', 'dateHelp', 'author', 'scheduleNotice',
         'body', 'bodyError', 'bodyStats', 'bodyHint', 'summary', 'imageDrop', 'imageInput',
@@ -703,14 +707,49 @@
 
         el.bundleActions.hidden = false;
         el.commitBlock.hidden = false;
-        el.commitCommands.innerHTML =
-            '<span class="c"># unzip the bundle over the repository root, then</span>\n' +
-            'git add -A\n' +
-            'git commit -m ' + JSON.stringify(
-                (state.editing ? 'Update: ' : 'Publish: ') + bundle.post.title) + '\n' +
-            'git push origin main';
+        el.commitCommands.innerHTML = publishCommand(bundle);
 
         document.querySelector('.tab[data-view=files]').click();
+    }
+
+    // ------------------------------------------------------- publish command
+
+    function loadPaths() {
+        try { return JSON.parse(localStorage.getItem(PATHS_KEY) || '{}'); } catch (e) { return {}; }
+    }
+
+    function savePaths(paths) {
+        try { localStorage.setItem(PATHS_KEY, JSON.stringify(paths)); } catch (e) {}
+    }
+
+    /* One paste that does the lot: unzip the bundle into the repository, commit
+       and push.
+
+       Double-clicking the zip in Finder does NOT work — macOS extracts it into a
+       new folder rather than merging it into the repo, so the files land in the
+       wrong place. `unzip -o` merges and overwrites without prompting.
+
+       `ls -t | head -1` picks the newest matching download because a second
+       download of the same post lands as flaney-<slug>-1.zip, and unzipping the
+       older one would quietly publish a stale bundle. */
+    function publishCommand(bundle) {
+        const repo = loadPaths().repo || '<your-repo-folder>';
+        const zip = '~/Downloads/flaney-' + bundle.post.slug + '*.zip';
+        // Titles are stored entity-encoded ("Pglass &#038; PET"), and a commit
+        // message wants the characters, not the entities.
+        const decoder = document.createElement('textarea');
+        decoder.innerHTML = T.stripTags(bundle.post.title);
+        const message = (state.editing ? 'Update: ' : 'Publish: ') + decoder.value;
+
+        const command = 'cd ' + JSON.stringify(repo) + ' \\\n' +
+            '  && unzip -o "$(ls -t ' + zip + ' | head -1)" \\\n' +
+            '  && git add -A \\\n' +
+            '  && git commit -m ' + JSON.stringify(message) + ' \\\n' +
+            '  && git push origin main';
+
+        const hint = loadPaths().repo ? ''
+            : '<span class="c"># fill in "Repository folder" in step 1 and this completes itself</span>\n';
+        return hint + T.esc(command);
     }
 
     // ------------------------------------------------------------------ wiring
@@ -725,6 +764,12 @@
         el.title.addEventListener('input', function () {
             // Never in edit mode: the slug is the published address.
             if (!slugTouched && !state.editing) el.slug.value = T.slugify(el.title.value);
+        });
+
+        el.repoPath.value = loadPaths().repo || '';
+        el.repoPath.addEventListener('input', function () {
+            savePaths({ repo: el.repoPath.value.trim() });
+            if (state.bundle) el.commitCommands.innerHTML = publishCommand(state.bundle);
         });
 
         el.saveTemplate.addEventListener('click', saveTemplate);

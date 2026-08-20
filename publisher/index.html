@@ -61,6 +61,11 @@
                     <textarea id="standingByline" rows="3" placeholder="Signed at the end of every post in the series, in italics — your name and what you do."></textarea>
                     <p class="help">Set in italics as the last line of the article, above the PDF box. Clear it for a single post if that month is a guest or co-authored piece.</p>
                 </div>
+                <div class="field">
+                    <label for="repoPath">Repository folder on this Mac <span class="opt">&mdash; builds your publish command</span></label>
+                    <input type="text" id="repoPath" placeholder="/Users/you/Claude Coding/Flaney_Associates" spellcheck="false">
+                    <p class="help">Kept in this browser only, never written to <code>template.json</code> &mdash; that file is committed and served publicly, so a path there would be readable by anyone.</p>
+                </div>
                 <div style="display:flex; gap:10px; flex-wrap:wrap">
                     <button class="btn btn-outline btn-sm" id="saveTemplate" type="button">Save for this browser</button>
                     <button class="btn btn-outline btn-sm" id="exportTemplate" type="button">&#11015; Download for repo</button>
@@ -310,6 +315,6 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
 <script src="lib/zip.js?v=87fd8664"></script>
 <script src="lib/pdf.js?v=b4f0c65b"></script>
 <script src="lib/template.js?v=d2c29e2f"></script>
-<script src="publisher.js?v=05cddc07"></script>
+<script src="publisher.js?v=a6ebc10c"></script>
 </body>
 </html>

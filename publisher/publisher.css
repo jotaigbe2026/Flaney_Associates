@@ -239,6 +239,13 @@ input.invalid, textarea.invalid { border-color: var(--err); }
 .btn-ghost:hover:not(:disabled) { background: rgba(255,255,255,0.12); }
 .btn-outline { background: #fff; border-color: var(--border); color: var(--primary); }
 .btn-outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.btn-danger {
+    background: #fff;
+    border-color: #f0b4b1;
+    color: var(--err);
+}
+.btn-danger:hover:not(:disabled) { background: #fdeaea; border-color: var(--err); }
+
 .btn-lg { padding: 14px 28px; font-size: 0.98rem; width: 100%; }
 .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
 

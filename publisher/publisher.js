@@ -32,6 +32,7 @@
         pdfUpload: null,      // { name, bytes }
         editing: null,        // the published post being revised, or null
         repoDir: null,        // FileSystemDirectoryHandle, when connected
+        pendingDir: null,     // remembered, but awaiting re-approval
         originalImage: '',    // its existing blog/images/ filename
         bundle: null,
         ready: false
@@ -49,7 +50,7 @@
         'generate', 'generateFeedback', 'queueList', 'queueHint', 'previewFrame', 'cardFrame',
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
-        'chooseFolder', 'folderStatus'
+        'chooseFolder', 'folderStatus', 'deletePost'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -239,6 +240,7 @@
             el.editNotice.hidden = true;
             el.slug.readOnly = false;
             el.pubDate.readOnly = false;
+            el.deletePost.hidden = true;
             el.slugLockNote.hidden = true;
             el.dateLockNote.hidden = true;
             el.generate.textContent = 'Generate the publish bundle';
@@ -293,6 +295,7 @@
 
         el.slug.readOnly = true;
         el.pubDate.readOnly = true;
+        el.deletePost.hidden = false;
         el.slugLockNote.hidden = false;
         el.dateLockNote.hidden = false;
         el.generate.textContent = 'Rebuild the bundle for this post';
@@ -766,6 +769,20 @@
     }
 
     async function chooseFolder() {
+        // A remembered folder only needs re-approval after a browser restart —
+        // Chrome will not carry write permission across sessions. Ask for that
+        // first, so the common case is one click rather than navigating the
+        // folder picker again.
+        if (state.pendingDir) {
+            if (await ensurePermission(state.pendingDir)) {
+                state.repoDir = state.pendingDir;
+                state.pendingDir = null;
+                showFolderStatus();
+                toast('Reconnected');
+                return;
+            }
+        }
+
         let dir;
         try {
             dir = await window.showDirectoryPicker({ mode: 'readwrite' });
@@ -822,12 +839,70 @@
             notice(el.folderStatus, 'ok', 'Connected to <strong>' + T.esc(state.repoDir.name) +
                 '</strong>. Generate writes the files straight in \u2014 no download, no unzipping.');
             el.chooseFolder.textContent = 'Choose a different folder';
+        } else if (state.pendingDir) {
+            notice(el.folderStatus, 'warn',
+                '<strong>' + T.esc(state.pendingDir.name) + '</strong> is remembered, but Chrome ' +
+                'drops write permission when it restarts. One click to reconnect \u2014 you will not ' +
+                'have to find the folder again.');
+            el.chooseFolder.textContent = '\uD83D\uDD11 Reconnect ' + state.pendingDir.name;
         } else {
             notice(el.folderStatus, 'info',
                 'Connect your <strong>Flaney_Associates</strong> folder once and Generate will write ' +
                 'the files straight into it, with no zip to download or unpack.');
             el.chooseFolder.textContent = '\uD83D\uDCC1 Connect repository folder';
         }
+    }
+
+    // ----------------------------------------------------------- deleting
+
+    /* Removing a post needs files deleted, and neither a zip nor a folder write
+       can express "delete this". So the bundle carries a manifest that
+       publish.sh acts on: it removes the listed paths, then regenerates the
+       whole site with generate_blog.py — necessary because other articles carry
+       "Related articles" cards pointing at the deleted one, and leaving those
+       behind would litter the site with links to a 404. */
+    function buildDeleteBundle() {
+        const post = state.editing;
+        const remaining = state.posts.filter(p => p.slug !== post.slug);
+
+        const doomed = ['blog/' + post.slug + '.html'];
+        if (post.local_image) doomed.push('blog/images/' + post.local_image);
+        if (post.pdf) doomed.push(post.pdf);
+
+        const files = [
+            { name: 'blog/data/posts.json', data: JSON.stringify(remaining, null, 1), status: 'replace' },
+            { name: 'blog/index.html', data: T.archive(remaining, state.assets), status: 'replace' }
+        ];
+        if (state.homepageHTML) {
+            const updated = T.homepage(state.homepageHTML, remaining, 6);
+            if (updated) files.push({ name: 'index.html', data: updated, status: 'replace' });
+        }
+        files.push({
+            name: '.publish-delete',
+            data: doomed.join('\n') + '\n',
+            status: 'delete'
+        });
+
+        return { post: post, files: files, deleting: doomed };
+    }
+
+    function confirmDelete() {
+        const post = state.editing;
+        if (!post) return;
+        const title = T.stripTags(post.title);
+        if (!confirm('Delete "' + title + '" permanently?\n\n' +
+                'Its page, image and PDF are removed and the URL stops working — ' +
+                'any link to it from LinkedIn or Google will 404.\n\n' +
+                'Nothing is deleted until you run ./publish.sh.')) return;
+
+        const bundle = buildDeleteBundle();
+        renderBundle(bundle);
+        notice(el.generateFeedback, 'warn',
+            'Ready to delete <strong>' + T.esc(title) + '</strong>. ' +
+            (state.repoDir ? 'Files written. ' : 'Download the zip. ') +
+            'Nothing is removed until <code>./publish.sh</code> runs.');
+        if (state.repoDir) writeBundleToFolder(bundle.files);
+        toast('Delete prepared — run ./publish.sh to apply it');
     }
 
     // ------------------------------------------------------- publish command
@@ -879,14 +954,17 @@
             if (state.bundle) el.commitCommands.innerHTML = publishCommand(state.bundle);
         });
 
+        el.deletePost.addEventListener('click', confirmDelete);
         el.chooseFolder.addEventListener('click', chooseFolder);
         if (CAN_WRITE_FOLDER) {
             readHandle().then(function (handle) {
                 if (!handle) { showFolderStatus(); return; }
                 handle.queryPermission({ mode: 'readwrite' }).then(function (p) {
                     // A stored handle needs re-approval after a browser restart;
-                    // treat it as connected only once permission is actually held.
+                    // treat it as connected only once permission is actually held,
+                    // but keep it aside so reconnecting is a single click.
                     if (p === 'granted') state.repoDir = handle;
+                    else state.pendingDir = handle;
                     showFolderStatus();
                 });
             });
@@ -1179,13 +1257,18 @@
 
     // ------------------------------------------------------------------- boot
 
-    /* Always revalidate the site's own data. These files change every time a
-       post is published, and a cached copy means the dashboard quietly works
-       from a stale archive — offering a slug that is already taken, or missing
-       a post from the edit list. `no-cache` still allows a conditional request,
-       so an unchanged file costs a 304 rather than a re-download. */
+    /* Always re-fetch the site's own data. These files change every time a post
+       is published, and a cached copy means the dashboard quietly works from a
+       stale archive — offering a slug that is already taken, or leaving a
+       just-published post out of the edit list.
+
+       `cache: 'reload'`, not `'no-cache'`. The latter only revalidates, and a
+       conditional request answered with 304 hands back the cached body: measured
+       against this site, 'no-cache' returned 55 posts where the file held 56.
+       'reload' bypasses the cache outright, which is what is actually wanted for
+       a file that is small and changes on every publish. */
     function fresh(url) {
-        return fetch(url, { cache: 'no-cache' });
+        return fetch(url, { cache: 'reload' });
     }
 
     /* Reuse whatever ?v= the deployed archive is already using. Recomputing a

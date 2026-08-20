@@ -36,6 +36,37 @@ if [ -z "$(git status --porcelain)" ]; then
     exit 0
 fi
 
+# ---- 1b. apply a deletion, if the dashboard asked for one
+# Neither a zip nor a folder write can express "remove this file", so a delete
+# arrives as a manifest of paths. Only ever trust paths inside blog/ and
+# articles/ — a manifest is just a text file, and this deletes without asking.
+DELETED=no
+if [ -f .publish-delete ]; then
+    say "Applying a deletion:"
+    while IFS= read -r path; do
+        [ -n "$path" ] || continue
+        case "$path" in
+            blog/*|articles/*) ;;
+            *) say "  refused (outside blog/ and articles/): $path"; continue ;;
+        esac
+        case "$path" in
+            *..*) say "  refused (path traversal): $path"; continue ;;
+        esac
+        if [ -e "$path" ]; then
+            rm -f "$path" && say "  removed $path"
+        else
+            say "  already gone: $path"
+        fi
+    done < .publish-delete
+    rm -f .publish-delete
+    DELETED=yes
+
+    # Other articles carry "Related articles" cards pointing at the deleted
+    # post; without a full rebuild those become links to a 404.
+    say "Rebuilding the site so nothing still links to it…"
+    python3 generate_blog.py >/dev/null || fail "generate_blog.py failed."
+fi
+
 # ---- 2. work out what this publish is about
 # Only call it a post publish if a post actually changed. Otherwise the message
 # would name whichever post happened to be edited last, which is misleading in
@@ -67,7 +98,10 @@ except Exception:
 PY
 )
 
-if [ "$POST_PUBLISH" = "no" ] || [ -z "$TITLE" ]; then
+if [ "$DELETED" = "yes" ]; then
+    MESSAGE="Delete a published post"
+    SLUG=""
+elif [ "$POST_PUBLISH" = "no" ] || [ -z "$TITLE" ]; then
     SLUG=""
     MESSAGE="Site update"
 elif git ls-files --error-unmatch "blog/$SLUG.html" >/dev/null 2>&1; then

@@ -69,6 +69,11 @@ Two guards: a PNG that actually uses transparency stays a PNG, because JPEG cann
 
 The chosen format decides the stored filename, so a converted photo becomes `<slug>.jpg` — which also means a format change naturally busts any cached copy of the old image.
 
+### Deleting a published post
+Edit mode has a **Delete this post** button. Neither a zip nor a folder write can express "remove this file", so the delete arrives as a manifest (`.publish-delete`) listing the paths to remove; `publish.sh` applies it, then **re-runs `generate_blog.py`** — necessary because other articles carry *Related articles* cards pointing at the deleted post, and skipping the rebuild would leave links to a 404 scattered across the site.
+
+The manifest is a plain text file that causes unprompted deletion, so `publish.sh` only honours paths under `blog/` or `articles/` and rejects anything containing `..`. Verified against a manifest listing `/etc/hosts`, `../outside/victim.txt` and a repo-root file: all three refused, the legitimate paths removed.
+
 ### Getting a bundle into the repo
 
 **The short version: press Generate, then run `./publish.sh`.**

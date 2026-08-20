@@ -965,6 +965,37 @@
             toast('Excerpt rebuilt from the article');
         });
 
+        /* Capture the formatted clipboard, not the flattened text.
+           A <textarea> only ever receives text/plain, and Word, Google Docs and
+           most web pages put no line breaks in that flavour — which is how an
+           article arrived as two paragraphs of 2,102 and 3,401 characters with
+           its headings stranded mid-sentence. The text/html flavour carries the
+           real structure: headings, paragraphs, lists, bold, links. fromHTML()
+           already knows how to clean it. */
+        el.body.addEventListener('paste', function (e) {
+            const html = e.clipboardData && e.clipboardData.getData('text/html');
+            if (!html || !html.trim()) return;      // plain text: paste normally
+
+            e.preventDefault();
+            const cleaned = T.parseBody(html);
+            if (!cleaned) return;
+
+            const start = el.body.selectionStart, end = el.body.selectionEnd;
+            const value = el.body.value;
+            el.body.value = value.slice(0, start) + cleaned + value.slice(end);
+            el.body.selectionStart = el.body.selectionEnd = start + cleaned.length;
+            el.body.dispatchEvent(new Event('input', { bubbles: true }));
+
+            const headings = (cleaned.match(/<h[234]>/g) || []).length;
+            const paras = (cleaned.match(/<p>/g) || []).length;
+            notice(el.bodyError, 'ok', 'Formatting kept from your document \u2014 <strong>' +
+                headings + ' headings</strong>, ' + paras + ' paragraphs, ' +
+                (cleaned.match(/<li>/g) || []).length + ' bullets. The box shows the underlying ' +
+                'markup; check the preview on the right, which is what publishes.');
+            el.bodyError.hidden = false;
+            toast('Kept ' + headings + ' headings from the document');
+        });
+
         el.deletePost.addEventListener('click', confirmDelete);
         el.chooseFolder.addEventListener('click', chooseFolder);
         if (CAN_WRITE_FOLDER) {

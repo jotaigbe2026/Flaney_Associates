@@ -75,8 +75,10 @@ a:hover { color: var(--accent-hover); }
 }
 .topbar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-/* Shown only when the layout has stacked and the preview is off-screen. */
-#jumpPreview { display: none; }
+/* Always available. It was hidden whenever the preview was supposed to be
+   beside the form — which is precisely the case where someone who cannot find
+   the preview needs it. A control that disappears when you need it is worse
+   than one that is occasionally redundant. */
 
 /* ===== Layout ===== */
 .workspace {
@@ -485,8 +487,6 @@ pre.terminal .c { color: #6b8299; }
     .workspace { grid-template-columns: 1fr; }
     .preview-column { position: static; }
     #previewFrame { height: 70vh; }
-    /* Only useful once the preview is no longer beside the form. */
-    #jumpPreview { display: inline-flex; }
 }
 @media (max-width: 640px) {
     .workspace { padding: 16px; }

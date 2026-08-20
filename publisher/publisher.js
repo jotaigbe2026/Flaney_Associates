@@ -454,7 +454,37 @@
         return html;
     }
 
+    /* An empty form renders an empty article — a date, the PDF box and the
+       author bio, with no headline and no text. That reads as a broken preview
+       rather than an empty one, and cost a real author a long detour looking
+       for a preview that was in front of them the whole time. Say so instead. */
+    function previewPlaceholder() {
+        el.previewFrame.srcdoc = `<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="publisher.css"></head>
+<body style="background:#f7f9fc">
+  <div style="display:grid;place-items:center;min-height:70vh;padding:40px;text-align:center">
+    <div style="max-width:34ch">
+      <div style="font-size:2.2rem;color:#2d8cf0">&#9670;</div>
+      <h3 style="color:#1a3a5c;margin:12px 0 8px">Your article will appear here</h3>
+      <p style="color:#555;font-size:0.92rem;line-height:1.65">
+        This panel shows the finished page as you write it, using the real
+        stylesheet &mdash; what you see here is what publishes.
+      </p>
+      <p style="color:#888;font-size:0.86rem;line-height:1.65;margin-top:14px">
+        Add a title and paste the article in steps 2 and 3, or switch to
+        <strong>Edit published</strong> to load a post you have already written.
+      </p>
+    </div>
+  </div>
+</body></html>`;
+    }
+
     function previewArticle(post) {
+        // Nothing written yet, and no post loaded to edit.
+        if (!post.title && !T.stripTags(post.content)) {
+            previewPlaceholder();
+            return;
+        }
         const related = T.pickRelated(post, state.posts, 3);
         let html = fixPreviewPaths(T.article(post, related, state.assets), post);
         // blog.js sits one directory over and would 404 too; it has nothing to

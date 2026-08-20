@@ -87,12 +87,15 @@ say "✓ committed — $MESSAGE"
 
 if git push -q origin main 2>/dev/null; then
     say "✓ pushed to GitHub"
-    printf '\n  Live in about a minute:\n'
-    [ -n "$SLUG" ] && printf '  https://jotaigbe2026.github.io/Flaney_Associates/blog/%s.html\n\n' "$SLUG"
+    if [ -n "$SLUG" ]; then
+        printf '\n  Live in about a minute:\n'
+        printf '  https://jotaigbe2026.github.io/Flaney_Associates/blog/%s.html\n\n' "$SLUG"
+    else
+        printf '\n  Live in about a minute.\n\n'
+    fi
 else
     printf '\n  ✗ Push failed — the commit is saved locally and nothing is lost.\n'
     printf '    Run:  git push origin main\n'
     printf '    and copy me whatever it says.\n\n'
     exit 1
 fi
-# probe

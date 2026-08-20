@@ -31,6 +31,7 @@
         image: null,          // { name, ext, bytes, url, type }
         pdfUpload: null,      // { name, bytes }
         editing: null,        // the published post being revised, or null
+        repoDir: null,        // FileSystemDirectoryHandle, when connected
         originalImage: '',    // its existing blog/images/ filename
         bundle: null,
         ready: false
@@ -47,7 +48,8 @@
         'pdfUploadWrap', 'pdfDrop', 'pdfInput', 'pdfTargetName', 'pdfUploadInfo',
         'generate', 'generateFeedback', 'queueList', 'queueHint', 'previewFrame', 'cardFrame',
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
-        'commitCommands', 'toast', 'startNextMonth', 'resetForm'
+        'commitCommands', 'toast', 'startNextMonth', 'resetForm',
+        'chooseFolder', 'folderStatus'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -712,6 +714,122 @@
         document.querySelector('.tab[data-view=files]').click();
     }
 
+    // --------------------------------------------------- direct folder access
+
+    /* Chrome and Edge can grant a page write access to one folder the user
+       picks. That removes the whole download-find-unzip dance: pressing
+       Generate puts the files where they belong and the only step left is the
+       publish script. Safari has no equivalent, so the zip stays as the
+       fallback and this whole section simply never activates there. */
+    const CAN_WRITE_FOLDER = typeof window.showDirectoryPicker === 'function';
+
+    /* The handle is stored in IndexedDB — it is a live object, not a path, and
+       cannot be serialised to localStorage. */
+    function idb(mode, fn) {
+        return new Promise(function (resolve, reject) {
+            const open = indexedDB.open('flaney_publisher', 1);
+            open.onupgradeneeded = () => open.result.createObjectStore('handles');
+            open.onerror = () => reject(open.error);
+            open.onsuccess = function () {
+                const db = open.result;
+                const store = db.transaction('handles', mode).objectStore('handles');
+                const req = fn(store);
+                req.onsuccess = () => { resolve(req.result); db.close(); };
+                req.onerror = () => { reject(req.error); db.close(); };
+            };
+        });
+    }
+
+    const saveHandle = h => idb('readwrite', s => s.put(h, 'repo'));
+    const readHandle = () => idb('readonly', s => s.get('repo')).catch(() => null);
+
+    /* Refuse anything that is not obviously this repository. Writing five files
+       into the wrong folder would scatter them somewhere harmless but confusing,
+       and the mistake is easy to make in a folder picker. */
+    async function looksLikeRepo(dir) {
+        const wanted = [['index.html', 'file'], ['blog', 'directory'], ['publisher', 'directory']];
+        for (const [name, kind] of wanted) {
+            try {
+                if (kind === 'file') await dir.getFileHandle(name);
+                else await dir.getDirectoryHandle(name);
+            } catch (e) {
+                return name;
+            }
+        }
+        return null;
+    }
+
+    async function ensurePermission(handle) {
+        const opts = { mode: 'readwrite' };
+        if (await handle.queryPermission(opts) === 'granted') return true;
+        return await handle.requestPermission(opts) === 'granted';
+    }
+
+    async function chooseFolder() {
+        let dir;
+        try {
+            dir = await window.showDirectoryPicker({ mode: 'readwrite' });
+        } catch (e) {
+            return;   // the picker was dismissed
+        }
+        const missing = await looksLikeRepo(dir);
+        if (missing) {
+            notice(el.folderStatus, 'err', 'That folder has no <code>' + T.esc(missing) +
+                '</code> in it, so it is not the site repository. Choose the folder that ' +
+                'contains <code>index.html</code>, <code>blog</code> and <code>publisher</code>.');
+            return;
+        }
+        if (!await ensurePermission(dir)) {
+            notice(el.folderStatus, 'err', 'Chrome did not grant write access, so the files cannot be written for you.');
+            return;
+        }
+        await saveHandle(dir);
+        state.repoDir = dir;
+        showFolderStatus();
+        toast('Connected — Generate now writes straight into the folder');
+    }
+
+    async function writeBundleToFolder(files) {
+        const dir = state.repoDir;
+        if (!dir || !await ensurePermission(dir)) return null;
+
+        for (const file of files) {
+            const parts = file.name.split('/');
+            const filename = parts.pop();
+            let target = dir;
+            for (const part of parts) {
+                target = await target.getDirectoryHandle(part, { create: true });
+            }
+            const handle = await target.getFileHandle(filename, { create: true });
+            const writable = await handle.createWritable();
+            await writable.write(typeof file.data === 'string'
+                ? new Blob([file.data], { type: 'text/plain' })
+                : new Blob([file.data]));
+            await writable.close();
+        }
+        return files.length;
+    }
+
+    function showFolderStatus() {
+        if (!CAN_WRITE_FOLDER) {
+            notice(el.folderStatus, 'info',
+                'This browser cannot write to a folder \u2014 that is Chrome and Edge only. ' +
+                'Use <strong>Download all as .zip</strong> instead; the publish script unpacks it for you.');
+            el.chooseFolder.hidden = true;
+            return;
+        }
+        if (state.repoDir) {
+            notice(el.folderStatus, 'ok', 'Connected to <strong>' + T.esc(state.repoDir.name) +
+                '</strong>. Generate writes the files straight in \u2014 no download, no unzipping.');
+            el.chooseFolder.textContent = 'Choose a different folder';
+        } else {
+            notice(el.folderStatus, 'info',
+                'Connect your <strong>Flaney_Associates</strong> folder once and Generate will write ' +
+                'the files straight into it, with no zip to download or unpack.');
+            el.chooseFolder.textContent = '\uD83D\uDCC1 Connect repository folder';
+        }
+    }
+
     // ------------------------------------------------------- publish command
 
     function loadPaths() {
@@ -771,6 +889,21 @@
             savePaths({ repo: el.repoPath.value.trim() });
             if (state.bundle) el.commitCommands.innerHTML = publishCommand(state.bundle);
         });
+
+        el.chooseFolder.addEventListener('click', chooseFolder);
+        if (CAN_WRITE_FOLDER) {
+            readHandle().then(function (handle) {
+                if (!handle) { showFolderStatus(); return; }
+                handle.queryPermission({ mode: 'readwrite' }).then(function (p) {
+                    // A stored handle needs re-approval after a browser restart;
+                    // treat it as connected only once permission is actually held.
+                    if (p === 'granted') state.repoDir = handle;
+                    showFolderStatus();
+                });
+            });
+        } else {
+            showFolderStatus();
+        }
 
         el.saveTemplate.addEventListener('click', saveTemplate);
         el.exportTemplate.addEventListener('click', exportTemplate);
@@ -852,13 +985,30 @@
             Promise.resolve()
                 .then(buildBundle)
                 .then(function (bundle) {
-                    if (bundle) {
-                        renderBundle(bundle);
+                    if (!bundle) return;
+                    renderBundle(bundle);
+                    if (!state.repoDir) {
                         notice(el.generateFeedback, 'ok',
                             'Bundle ready — <strong>' + bundle.files.length + ' files</strong>. ' +
                             'Open the <strong>Files</strong> tab to download them.');
                         toast('Bundle ready');
+                        return;
                     }
+                    // Folder connected: put the files where they belong instead
+                    // of making the author download and unpack them.
+                    return writeBundleToFolder(bundle.files).then(function (written) {
+                        if (written === null) {
+                            notice(el.generateFeedback, 'warn',
+                                'Could not write to the folder — permission was withdrawn. ' +
+                                'Reconnect it, or use <strong>Download all as .zip</strong>.');
+                            return;
+                        }
+                        notice(el.generateFeedback, 'ok',
+                            '<strong>' + written + ' files written</strong> into ' +
+                            T.esc(state.repoDir.name) + '. Now run <code>./publish.sh</code> ' +
+                            'in Terminal — that is the whole last step.');
+                        toast(written + ' files written into the folder');
+                    });
                 })
                 .catch(function (err) {
                     notice(el.generateFeedback, 'err', 'Something went wrong: ' + T.esc(err.message));

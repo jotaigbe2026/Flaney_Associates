@@ -70,6 +70,20 @@ Two guards: a PNG that actually uses transparency stays a PNG, because JPEG cann
 The chosen format decides the stored filename, so a converted photo becomes `<slug>.jpg` — which also means a format change naturally busts any cached copy of the old image.
 
 ### Getting a bundle into the repo
+
+**The short version: press Generate, then run `./publish.sh`.**
+
+`publish.sh` does its own `cd` to the repository, because Terminal opens in the home folder and running git there is the single most common way to get nowhere. It unpacks a downloaded bundle if one is waiting, derives the commit message from the most recently modified post in `posts.json` (`Publish:` when the article file is new to git, `Update:` when it already exists, and plain `Site update` when no post changed at all), commits, pushes and prints the live URL.
+
+There are two ways to get files into the repo:
+
+**Direct folder write (Chrome/Edge).** `showDirectoryPicker()` grants the page write access to one folder. The handle is kept in IndexedDB — it is a live object, not a path, so it cannot go in `localStorage` — and needs re-approval after a browser restart, which is why a stored handle counts as connected only once `queryPermission` actually returns `granted`. The picked folder is rejected unless it contains `index.html`, `blog/` and `publisher/`; writing five files into the wrong folder is an easy mistake to make in a picker.
+
+**The zip (any browser, and the Safari fallback).** Note that **double-clicking a zip in Finder does not work** — macOS expands it into a new folder rather than merging it into the repo, so the files land somewhere harmless and the publish silently does nothing. `publish.sh` and the generated command both use `unzip -o`, which merges. The newest matching zip is chosen (`ls -t | head -1`), because a second download of the same post arrives as `flaney-<slug>-1.zip` and unpacking the older one would republish stale content.
+
+The repository path used by the generated command lives in `localStorage` under `flaney_publisher_paths`, **not** in `template.json` — that file is committed and served publicly, and a local path containing the machine's username does not belong in it.
+
+### Getting a bundle into the repo (detail)
 The Files tab prints one command that unzips the bundle, commits and pushes. **Double-clicking the zip in Finder does not work** — macOS extracts it into a new folder rather than merging it into the repo, so the files land in the wrong place. `unzip -o` merges and overwrites without prompting.
 
 The command picks the newest matching download (`ls -t | head -1`) because a second download of the same post arrives as `flaney-<slug>-1.zip`, and unzipping the older one would quietly publish a stale bundle.

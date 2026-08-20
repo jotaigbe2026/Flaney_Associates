@@ -107,7 +107,19 @@ window.FlaneyTemplate = (function () {
        to a heading — the same conservative rule generate_blog.py applies to bold
        runs in the imported WordPress copy. */
     function fromPlainText(input) {
-        const lines = String(input).replace(/\r\n?/g, '\n').split('\n');
+        const raw = String(input).replace(/\r\n?/g, '\n');
+
+        // Markdown separates paragraphs with a blank line; word processors,
+        // Google Docs and Canva put one paragraph per line with no blank line
+        // between. Requiring blank lines silently glued every heading onto the
+        // paragraph below it, producing openings like "BoardGPT — Using AI in
+        // the Boardroom Artificial intelligence is changing how organizations…".
+        // So: if the text has no blank lines anywhere, every line is its own
+        // block. Hard-wrapped text would suffer, but nothing pasted from a
+        // modern editor is hard-wrapped.
+        const lineIsBlock = !/\n[ \t]*\n/.test(raw);
+
+        const lines = raw.split('\n');
         const out = [];
         let paragraph = [], list = null, quote = [];
 
@@ -175,6 +187,7 @@ window.FlaneyTemplate = (function () {
 
             flushList(); flushQuote();
             paragraph.push(line);
+            if (lineIsBlock) flushParagraph();
         });
 
         flushAll();

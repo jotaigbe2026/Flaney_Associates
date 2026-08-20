@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R] /Count 4 >>
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] /Count 5 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -19,7 +19,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 7768 >>
+<< /Length 7343 >>
 stream
 0.969 0.976 0.988 rg
 0 746 612 46 re f
@@ -71,15 +71,29 @@ ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 586 Tm
-0.310 Tw
+0.503 Tw
 /F1 11 Tf
+(BoardGPT ) Tj
+(\227 ) Tj
+(Using ) Tj
+(AI ) Tj
+(in ) Tj
+(the ) Tj
+(Boardroom ) Tj
 (Artificial ) Tj
 (intelligence ) Tj
 (is ) Tj
 (changing ) Tj
 (how ) Tj
 (organizations ) Tj
-(think, ) Tj
+(think,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 569 Tm
+0.668 Tw
+/F1 11 Tf
 (decide, ) Tj
 (and ) Tj
 (lead. ) Tj
@@ -88,14 +102,7 @@ BT
 (as ) Tj
 (a ) Tj
 (set ) Tj
-(of) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 569 Tm
-5.261 Tw
-/F1 11 Tf
+(of ) Tj
 (technical ) Tj
 (tools ) Tj
 (for ) Tj
@@ -104,56 +111,56 @@ BT
 (has ) Tj
 (become ) Tj
 (a ) Tj
-(strategic ) Tj
-(capability ) Tj
-(reshaping ) Tj
-(boardroom) Tj
+(strategic) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 552 Tm
-1.662 Tw
+2.557 Tw
 /F1 11 Tf
+(capability ) Tj
+(reshaping ) Tj
+(boardroom ) Tj
 (conversations ) Tj
 (around ) Tj
 (governance, ) Tj
 (risk, ) Tj
 (innovation, ) Tj
 (and ) Tj
-(ethics. ) Tj
-(BoardGPT ) Tj
-(\227 ) Tj
-(a ) Tj
-(shorthand ) Tj
-(for ) Tj
-(AI) Tj
+(ethics.) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 535 Tm
-2.206 Tw
+0.952 Tw
 /F1 11 Tf
+(BoardGPT ) Tj
+(\227 ) Tj
+(a ) Tj
+(shorthand ) Tj
+(for ) Tj
+(AI ) Tj
 (systems ) Tj
 (purpose-built ) Tj
 (to ) Tj
 (support ) Tj
 (board-level ) Tj
 (decision-making ) Tj
-(\227 ) Tj
-(represents ) Tj
-(the ) Tj
-(next ) Tj
-(frontier ) Tj
-(of) Tj
+(\227) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 518 Tm
-2.149 Tw
+2.945 Tw
 /F1 11 Tf
+(represents ) Tj
+(the ) Tj
+(next ) Tj
+(frontier ) Tj
+(of ) Tj
 (executive ) Tj
 (technology. ) Tj
 (Understanding ) Tj
@@ -162,23 +169,30 @@ BT
 (use ) Tj
 (it ) Tj
 (wisely ) Tj
-(can ) Tj
-(distinguish ) Tj
-(resilient, ) Tj
-(future-ready) Tj
+(can) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 501 Tm
-0.067 Tw
+0.000 Tw
 /F1 11 Tf
+(distinguish ) Tj
+(resilient, ) Tj
+(future-ready ) Tj
 (organizations ) Tj
 (from ) Tj
 (those ) Tj
 (that ) Tj
 (fall ) Tj
-(behind. ) Tj
+(behind.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 474 Tm
+0.815 Tw
+/F1 11 Tf
 (The ) Tj
 (New ) Tj
 (Role ) Tj
@@ -188,19 +202,19 @@ BT
 (Data ) Tj
 (to ) Tj
 (Judgment ) Tj
-(For) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 484 Tm
-1.253 Tw
-/F1 11 Tf
+(For ) Tj
 (decades, ) Tj
 (corporate ) Tj
 (boards ) Tj
 (have ) Tj
-(relied ) Tj
+(relied) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 457 Tm
+1.398 Tw
+/F1 11 Tf
 (on ) Tj
 (a ) Tj
 (rhythm ) Tj
@@ -209,19 +223,19 @@ BT
 (reports ) Tj
 (\227 ) Tj
 (financial ) Tj
-(statements,) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 467 Tm
-0.816 Tw
-/F1 11 Tf
+(statements, ) Tj
 (risk ) Tj
 (assessments, ) Tj
 (market ) Tj
 (forecasts ) Tj
-(\227 ) Tj
+(\227) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 440 Tm
+0.841 Tw
+/F1 11 Tf
 (often ) Tj
 (delivered ) Tj
 (weeks ) Tj
@@ -231,20 +245,20 @@ BT
 (The ) Tj
 (boardroom ) Tj
 (was ) Tj
-(a) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 450 Tm
-2.478 Tw
-/F1 11 Tf
+(a ) Tj
 (world ) Tj
 (of ) Tj
 (hindsight. ) Tj
 (AI ) Tj
 (is ) Tj
-(fundamentally ) Tj
+(fundamentally) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 423 Tm
+2.196 Tw
+/F1 11 Tf
 (shifting ) Tj
 (that ) Tj
 (timeline. ) Tj
@@ -252,20 +266,20 @@ BT
 (can ) Tj
 (now ) Tj
 (process ) Tj
-(vast) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 433 Tm
-0.248 Tw
-/F1 11 Tf
+(vast ) Tj
 (streams ) Tj
 (of ) Tj
 (real-time ) Tj
 (data, ) Tj
 (flag ) Tj
-(patterns ) Tj
+(patterns) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 406 Tm
+0.760 Tw
+/F1 11 Tf
 (humans ) Tj
 (might ) Tj
 (miss, ) Tj
@@ -274,41 +288,41 @@ BT
 (the ) Tj
 (potential ) Tj
 (outcomes ) Tj
-(of) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 416 Tm
-0.174 Tw
-/F1 11 Tf
+(of ) Tj
 (strategic ) Tj
 (choices. ) Tj
 (The ) Tj
 (leap ) Tj
 (is ) Tj
 (not ) Tj
-(just ) Tj
+(just) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 389 Tm
+2.177 Tw
+/F1 11 Tf
 (informational; ) Tj
 (it\222s ) Tj
 (cognitive. ) Tj
 (However, ) Tj
 (what ) Tj
 (makes ) Tj
-(BoardGPT) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 399 Tm
-0.491 Tw
-/F1 11 Tf
+(BoardGPT ) Tj
 (transformative ) Tj
 (is ) Tj
 (not ) Tj
 (its ) Tj
 (ability ) Tj
-(to ) Tj
+(to) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 372 Tm
+2.390 Tw
+/F1 11 Tf
 (\223know\224 ) Tj
 (but ) Tj
 (to ) Tj
@@ -320,18 +334,18 @@ BT
 (tool ) Tj
 (in ) Tj
 (the ) Tj
-(boardroom) Tj
+(boardroom ) Tj
+(does ) Tj
+(not ) Tj
+(replace ) Tj
+(directors\222) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 382 Tm
-1.771 Tw
+1 0 0 1 64 355 Tm
+0.903 Tw
 /F1 11 Tf
-(does ) Tj
-(not ) Tj
-(replace ) Tj
-(directors\222 ) Tj
 (expertise ) Tj
 (or ) Tj
 (judgment. ) Tj
@@ -341,19 +355,19 @@ BT
 (When ) Tj
 (properly ) Tj
 (designed, ) Tj
-(it) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 365 Tm
-0.598 Tw
-/F1 11 Tf
+(it ) Tj
 (helps ) Tj
 (leaders ) Tj
 (ask, ) Tj
 (\223What ) Tj
-(if?\224 ) Tj
+(if?\224) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 338 Tm
+2.036 Tw
+/F1 11 Tf
 (and ) Tj
 (\223So ) Tj
 (what?\224 ) Tj
@@ -364,18 +378,18 @@ BT
 (quarterly ) Tj
 (meeting ) Tj
 (where, ) Tj
-(instead) Tj
+(instead ) Tj
+(of ) Tj
+(static ) Tj
+(dashboards, ) Tj
+(the) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 348 Tm
-1.816 Tw
+1 0 0 1 64 321 Tm
+2.192 Tw
 /F1 11 Tf
-(of ) Tj
-(static ) Tj
-(dashboards, ) Tj
-(the ) Tj
 (directors ) Tj
 (engage ) Tj
 (an ) Tj
@@ -386,17 +400,17 @@ BT
 (the ) Tj
 (organization\222s ) Tj
 (exposure ) Tj
-(to) Tj
+(to ) Tj
+(energy ) Tj
+(volatility, ) Tj
+(shifting) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 331 Tm
-0.644 Tw
+1 0 0 1 64 304 Tm
+1.462 Tw
 /F1 11 Tf
-(energy ) Tj
-(volatility, ) Tj
-(shifting ) Tj
 (consumer ) Tj
 (sentiment, ) Tj
 (and ) Tj
@@ -407,16 +421,16 @@ BT
 (integrated ) Tj
 (into ) Tj
 (a ) Tj
-(dynamic) Tj
+(dynamic ) Tj
+(simulation. ) Tj
+(BoardGPT) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 314 Tm
-1.207 Tw
+1 0 0 1 64 287 Tm
+3.424 Tw
 /F1 11 Tf
-(simulation. ) Tj
-(BoardGPT ) Tj
 (can ) Tj
 (then ) Tj
 (pose ) Tj
@@ -430,17 +444,17 @@ BT
 (supply ) Tj
 (chain ) Tj
 (by ) Tj
-(15%,) Tj
+(15%, ) Tj
+(how ) Tj
+(would ) Tj
+(our) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 297 Tm
-0.267 Tw
+1 0 0 1 64 270 Tm
+0.952 Tw
 /F1 11 Tf
-(how ) Tj
-(would ) Tj
-(our ) Tj
 (risk-weighted ) Tj
 (return ) Tj
 (on ) Tj
@@ -451,38 +465,45 @@ BT
 (climate ) Tj
 (scenarios?\224 ) Tj
 (That\222s ) Tj
-(a) Tj
+(a ) Tj
+(different ) Tj
+(kind) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 280 Tm
-5.479 Tw
+1 0 0 1 64 253 Tm
+0.000 Tw
 /F1 11 Tf
-(different ) Tj
-(kind ) Tj
 (of ) Tj
-(conversation. ) Tj
+(conversation.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 226 Tm
+0.387 Tw
+/F1 11 Tf
 (Augmenting, ) Tj
 (Not ) Tj
 (Replacing, ) Tj
 (Governance ) Tj
 (The ) Tj
 (best ) Tj
-(boards) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 263 Tm
-2.003 Tw
-/F1 11 Tf
+(boards ) Tj
 (understand ) Tj
 (that ) Tj
 (governance ) Tj
 (is ) Tj
 (a ) Tj
-(human ) Tj
+(human) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 209 Tm
+0.100 Tw
+/F1 11 Tf
 (craft ) Tj
 (grounded ) Tj
 (in ) Tj
@@ -490,14 +511,7 @@ BT
 (ethics, ) Tj
 (and ) Tj
 (accountability. ) Tj
-(The) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 246 Tm
-1.598 Tw
-/F1 11 Tf
+(The ) Tj
 (introduction ) Tj
 (of ) Tj
 (AI ) Tj
@@ -506,26 +520,33 @@ BT
 (craft ) Tj
 (only ) Tj
 (if ) Tj
-(it ) Tj
+(it) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 192 Tm
+1.868 Tw
+/F1 11 Tf
 (reinforces, ) Tj
 (rather ) Tj
 (than ) Tj
 (erodes, ) Tj
 (these ) Tj
-(foundations.) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 229 Tm
-0.000 Tw
-/F1 11 Tf
+(foundations. ) Tj
 (BoardGPT ) Tj
 (systems ) Tj
 (are ) Tj
 (designed ) Tj
 (to ) Tj
-(augment ) Tj
+(augment) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 175 Tm
+0.000 Tw
+/F1 11 Tf
 (directors\222 ) Tj
 (work ) Tj
 (in ) Tj
@@ -537,12 +558,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 202 Tm
+1 0 0 1 70 148 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 202 Tm
+1 0 0 1 86 148 Tm
 0.000 Tw
 /F1 11 Tf
 (Information ) Tj
@@ -559,7 +580,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 185 Tm
+1 0 0 1 86 131 Tm
 0.000 Tw
 /F1 11 Tf
 (oversimplifying ) Tj
@@ -569,12 +590,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 162 Tm
+1 0 0 1 70 108 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 162 Tm
+1 0 0 1 86 108 Tm
 0.000 Tw
 /F1 11 Tf
 (Scenario ) Tj
@@ -587,15 +608,38 @@ BT
 (risks.) Tj
 0 Tw
 ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 1 of 5) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 7539 >>
+stream
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 139 Tm
+1 0 0 1 70 703 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 139 Tm
+1 0 0 1 86 703 Tm
 0.000 Tw
 /F1 11 Tf
 (Decision ) Tj
@@ -611,7 +655,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 122 Tm
+1 0 0 1 86 686 Tm
 0.000 Tw
 /F1 11 Tf
 (transparency ) Tj
@@ -622,7 +666,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 99 Tm
+1 0 0 1 64 663 Tm
 2.427 Tw
 /F1 11 Tf
 (Used ) Tj
@@ -640,32 +684,9 @@ BT
 (anticipatory) Tj
 0 Tw
 ET
-0.886 0.906 0.929 RG
-0.75 w
-64 62 m 548 62 l S
-BT
-0.400 0.400 0.400 rg
-/F1 8.5 Tf
-1 0 0 1 64 48 Tm
-(\251 2026 Flaney Associates) Tj
-ET
-BT
-0.400 0.400 0.400 rg
-/F1 8.5 Tf
-1 0 0 1 504.5225 48 Tm
-(Page 1 of 4) Tj
-ET
-endstream
-endobj
-8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
-endobj
-9 0 obj
-<< /Length 7935 >>
-stream
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 703 Tm
+1 0 0 1 64 646 Tm
 1.494 Tw
 /F1 11 Tf
 (leadership. ) Tj
@@ -688,7 +709,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 686 Tm
+1 0 0 1 64 629 Tm
 0.446 Tw
 /F1 11 Tf
 (Directors ) Tj
@@ -712,8 +733,8 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 669 Tm
-0.117 Tw
+1 0 0 1 64 612 Tm
+0.000 Tw
 /F1 11 Tf
 (\223objectivity\224 ) Tj
 (is ) Tj
@@ -723,20 +744,20 @@ BT
 (outright ) Tj
 (resistance ) Tj
 (to ) Tj
-(innovation. ) Tj
+(innovation.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 585 Tm
+0.851 Tw
+/F1 11 Tf
 (Ethics, ) Tj
 (Bias, ) Tj
 (and ) Tj
 (Fiduciary ) Tj
 (Duty ) Tj
-(in) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 652 Tm
-0.837 Tw
-/F1 11 Tf
+(in ) Tj
 (an ) Tj
 (AI ) Tj
 (Age ) Tj
@@ -748,21 +769,21 @@ BT
 (leadership ) Tj
 (must ) Tj
 (confront ) Tj
-(its ) Tj
+(its) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 568 Tm
+1.949 Tw
+/F1 11 Tf
 (risks ) Tj
 (head-on: ) Tj
 (bias ) Tj
 (in ) Tj
 (data, ) Tj
 (lack ) Tj
-(of) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 635 Tm
-0.124 Tw
-/F1 11 Tf
+(of ) Tj
 (transparency ) Tj
 (in ) Tj
 (algorithms, ) Tj
@@ -770,20 +791,20 @@ BT
 (the ) Tj
 (temptation ) Tj
 (to ) Tj
-(automate ) Tj
+(automate) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 551 Tm
+1.861 Tw
+/F1 11 Tf
 (judgment. ) Tj
 (Boards ) Tj
 (are ) Tj
 (stewards ) Tj
 (of ) Tj
-(trust.) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 618 Tm
-2.477 Tw
-/F1 11 Tf
+(trust. ) Tj
 (As ) Tj
 (soon ) Tj
 (as ) Tj
@@ -792,19 +813,19 @@ BT
 (AI ) Tj
 (into ) Tj
 (deliberations, ) Tj
-(they ) Tj
-(inherit ) Tj
-(new ) Tj
-(fiduciary ) Tj
-(responsibilities. ) Tj
-(A) Tj
+(they) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 601 Tm
+1 0 0 1 64 534 Tm
 0.000 Tw
 /F1 11 Tf
+(inherit ) Tj
+(new ) Tj
+(fiduciary ) Tj
+(responsibilities. ) Tj
+(A ) Tj
 (responsible ) Tj
 (AI ) Tj
 (governance ) Tj
@@ -816,12 +837,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 574 Tm
+1 0 0 1 70 507 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 574 Tm
+1 0 0 1 86 507 Tm
 0.000 Tw
 /F1 11 Tf
 (Explainability: ) Tj
@@ -840,12 +861,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 551 Tm
+1 0 0 1 70 484 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 551 Tm
+1 0 0 1 86 484 Tm
 0.000 Tw
 /F1 11 Tf
 (Accountability: ) Tj
@@ -862,7 +883,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 534 Tm
+1 0 0 1 86 467 Tm
 0.000 Tw
 /F1 11 Tf
 (recommendations ) Tj
@@ -873,12 +894,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 511 Tm
+1 0 0 1 70 444 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 511 Tm
+1 0 0 1 86 444 Tm
 0.000 Tw
 /F1 11 Tf
 (Data ) Tj
@@ -901,7 +922,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 494 Tm
+1 0 0 1 86 427 Tm
 0.000 Tw
 /F1 11 Tf
 (advocate ) Tj
@@ -919,12 +940,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 471 Tm
+1 0 0 1 70 404 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 471 Tm
+1 0 0 1 86 404 Tm
 0.000 Tw
 /F1 11 Tf
 (Diversity ) Tj
@@ -943,7 +964,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 454 Tm
+1 0 0 1 86 387 Tm
 0.000 Tw
 /F1 11 Tf
 (reproduce ) Tj
@@ -964,7 +985,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 437 Tm
+1 0 0 1 86 370 Tm
 0.000 Tw
 /F1 11 Tf
 (and ) Tj
@@ -975,7 +996,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 414 Tm
+1 0 0 1 64 347 Tm
 1.308 Tw
 /F1 11 Tf
 (In ) Tj
@@ -995,7 +1016,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 397 Tm
+1 0 0 1 64 330 Tm
 3.370 Tw
 /F1 11 Tf
 (new ) Tj
@@ -1018,8 +1039,8 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 380 Tm
-0.539 Tw
+1 0 0 1 64 313 Tm
+0.000 Tw
 /F1 11 Tf
 (algorithmic ) Tj
 (input ) Tj
@@ -1027,19 +1048,19 @@ BT
 (our ) Tj
 (responsibility ) Tj
 (to ) Tj
-(stakeholders?\224 ) Tj
-(Decision ) Tj
-(Velocity ) Tj
-(and ) Tj
-(Strategic ) Tj
-(Patience) Tj
+(stakeholders?\224) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 363 Tm
-1.820 Tw
+1 0 0 1 64 286 Tm
+3.747 Tw
 /F1 11 Tf
+(Decision ) Tj
+(Velocity ) Tj
+(and ) Tj
+(Strategic ) Tj
+(Patience ) Tj
 (One ) Tj
 (of ) Tj
 (AI\222s ) Tj
@@ -1048,24 +1069,31 @@ BT
 (promises ) Tj
 (is ) Tj
 (speed. ) Tj
-(It ) Tj
-(compresses ) Tj
-(research ) Tj
-(cycles, ) Tj
-(accelerates ) Tj
-(due) Tj
+(It) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 346 Tm
-0.027 Tw
+1 0 0 1 64 269 Tm
+1.066 Tw
 /F1 11 Tf
+(compresses ) Tj
+(research ) Tj
+(cycles, ) Tj
+(accelerates ) Tj
+(due ) Tj
 (diligence, ) Tj
 (and ) Tj
 (provides ) Tj
 (near-instant ) Tj
-(benchmarking. ) Tj
+(benchmarking.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 252 Tm
+0.813 Tw
+/F1 11 Tf
 (Yet, ) Tj
 (in ) Tj
 (the ) Tj
@@ -1075,14 +1103,7 @@ BT
 (be ) Tj
 (a ) Tj
 (liability ) Tj
-(if) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 329 Tm
-3.804 Tw
-/F1 11 Tf
+(if ) Tj
 (it ) Tj
 (outpaces ) Tj
 (deliberation. ) Tj
@@ -1090,26 +1111,33 @@ BT
 (art ) Tj
 (lies ) Tj
 (in ) Tj
-(balancing ) Tj
-(algorithmic ) Tj
-(velocity ) Tj
-(with ) Tj
-(human ) Tj
-(patience.) Tj
+(balancing) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 312 Tm
-0.000 Tw
+1 0 0 1 64 235 Tm
+0.875 Tw
 /F1 11 Tf
+(algorithmic ) Tj
+(velocity ) Tj
+(with ) Tj
+(human ) Tj
+(patience. ) Tj
 (High-performing ) Tj
 (boards ) Tj
 (will ) Tj
 (develop ) Tj
 (new ) Tj
 (workflows ) Tj
-(that ) Tj
+(that) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 218 Tm
+0.000 Tw
+/F1 11 Tf
 (use ) Tj
 (AI ) Tj
 (for:) Tj
@@ -1118,12 +1146,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 285 Tm
+1 0 0 1 70 191 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 285 Tm
+1 0 0 1 86 191 Tm
 0.000 Tw
 /F1 11 Tf
 (Rapid ) Tj
@@ -1141,12 +1169,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 262 Tm
+1 0 0 1 70 168 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 262 Tm
+1 0 0 1 86 168 Tm
 0.000 Tw
 /F1 11 Tf
 (Continuous ) Tj
@@ -1163,12 +1191,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 239 Tm
+1 0 0 1 70 145 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 239 Tm
+1 0 0 1 86 145 Tm
 0.000 Tw
 /F1 11 Tf
 (Decision ) Tj
@@ -1184,7 +1212,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 216 Tm
+1 0 0 1 64 122 Tm
 3.003 Tw
 /F1 11 Tf
 (But ) Tj
@@ -1207,7 +1235,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 199 Tm
+1 0 0 1 64 105 Tm
 0.059 Tw
 /F1 11 Tf
 (replicate. ) Tj
@@ -1230,101 +1258,6 @@ BT
 (integrate) Tj
 0 Tw
 ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 182 Tm
-0.162 Tw
-/F1 11 Tf
-(it ) Tj
-(without ) Tj
-(losing ) Tj
-(their ) Tj
-(human ) Tj
-(wisdom. ) Tj
-(Building ) Tj
-(the ) Tj
-(AI-Literate ) Tj
-(Board ) Tj
-(For ) Tj
-(many ) Tj
-(current ) Tj
-(directors, ) Tj
-(this) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 165 Tm
-1.557 Tw
-/F1 11 Tf
-(evolution ) Tj
-(is ) Tj
-(both ) Tj
-(exciting ) Tj
-(and ) Tj
-(unsettling. ) Tj
-(Few ) Tj
-(board ) Tj
-(members ) Tj
-(were ) Tj
-(trained ) Tj
-(as ) Tj
-(data ) Tj
-(scientists ) Tj
-(or) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 148 Tm
-1.409 Tw
-/F1 11 Tf
-(technologists. ) Tj
-(Yet, ) Tj
-(that ) Tj
-(is ) Tj
-(no ) Tj
-(obstacle ) Tj
-(if ) Tj
-(boards ) Tj
-(embrace ) Tj
-(structured ) Tj
-(learning ) Tj
-(and ) Tj
-(interdisciplinary) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 131 Tm
-0.881 Tw
-/F1 11 Tf
-(fluency. ) Tj
-(To ) Tj
-(become ) Tj
-(\223AI-literate\224 ) Tj
-(does ) Tj
-(not ) Tj
-(mean ) Tj
-(learning ) Tj
-(to ) Tj
-(code; ) Tj
-(it ) Tj
-(means ) Tj
-(learning ) Tj
-(to ) Tj
-(question ) Tj
-(AI) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 114 Tm
-0.000 Tw
-/F1 11 Tf
-(well.) Tj
-0 Tw
-ET
 0.886 0.906 0.929 RG
 0.75 w
 64 62 m 548 62 l S
@@ -1338,7 +1271,7 @@ BT
 0.400 0.400 0.400 rg
 /F1 8.5 Tf
 1 0 0 1 504.5225 48 Tm
-(Page 2 of 4) Tj
+(Page 2 of 5) Tj
 ET
 endstream
 endobj
@@ -1346,17 +1279,112 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
 endobj
 11 0 obj
-<< /Length 8358 >>
+<< /Length 7685 >>
 stream
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 703 Tm
 0.000 Tw
 /F1 11 Tf
+(it ) Tj
+(without ) Tj
+(losing ) Tj
+(their ) Tj
+(human ) Tj
+(wisdom.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 676 Tm
+3.135 Tw
+/F1 11 Tf
+(Building ) Tj
+(the ) Tj
+(AI-Literate ) Tj
+(Board ) Tj
+(For ) Tj
+(many ) Tj
+(current ) Tj
+(directors, ) Tj
+(this ) Tj
+(evolution ) Tj
+(is ) Tj
+(both ) Tj
+(exciting ) Tj
+(and) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 659 Tm
+1.819 Tw
+/F1 11 Tf
+(unsettling. ) Tj
+(Few ) Tj
+(board ) Tj
+(members ) Tj
+(were ) Tj
+(trained ) Tj
+(as ) Tj
+(data ) Tj
+(scientists ) Tj
+(or ) Tj
+(technologists. ) Tj
+(Yet, ) Tj
+(that ) Tj
+(is ) Tj
+(no) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 642 Tm
+0.095 Tw
+/F1 11 Tf
+(obstacle ) Tj
+(if ) Tj
+(boards ) Tj
+(embrace ) Tj
+(structured ) Tj
+(learning ) Tj
+(and ) Tj
+(interdisciplinary ) Tj
+(fluency. ) Tj
+(To ) Tj
+(become ) Tj
+(\223AI-literate\224) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 625 Tm
+1.475 Tw
+/F1 11 Tf
+(does ) Tj
+(not ) Tj
+(mean ) Tj
+(learning ) Tj
+(to ) Tj
+(code; ) Tj
+(it ) Tj
+(means ) Tj
+(learning ) Tj
+(to ) Tj
+(question ) Tj
+(AI ) Tj
+(well. ) Tj
 (Boards ) Tj
 (can ) Tj
 (take ) Tj
-(several ) Tj
+(several) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+0.000 Tw
+/F1 11 Tf
 (practical ) Tj
 (steps:) Tj
 0 Tw
@@ -1364,12 +1392,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 676 Tm
+1 0 0 1 70 581 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 676 Tm
+1 0 0 1 86 581 Tm
 0.000 Tw
 /F1 11 Tf
 (Education: ) Tj
@@ -1386,7 +1414,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 659 Tm
+1 0 0 1 86 564 Tm
 0.000 Tw
 /F1 11 Tf
 (and ) Tj
@@ -1397,12 +1425,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 636 Tm
+1 0 0 1 70 541 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 636 Tm
+1 0 0 1 86 541 Tm
 0.000 Tw
 /F1 11 Tf
 (Advisory ) Tj
@@ -1423,12 +1451,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 613 Tm
+1 0 0 1 70 518 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 613 Tm
+1 0 0 1 86 518 Tm
 0.000 Tw
 /F1 11 Tf
 (Scenario ) Tj
@@ -1448,7 +1476,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 596 Tm
+1 0 0 1 86 501 Tm
 0.000 Tw
 /F1 11 Tf
 (governance ) Tj
@@ -1458,12 +1486,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 573 Tm
+1 0 0 1 70 478 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 573 Tm
+1 0 0 1 86 478 Tm
 0.000 Tw
 /F1 11 Tf
 (Governance ) Tj
@@ -1484,7 +1512,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 556 Tm
+1 0 0 1 86 461 Tm
 0.000 Tw
 /F1 11 Tf
 (human ) Tj
@@ -1495,7 +1523,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 533 Tm
+1 0 0 1 64 438 Tm
 3.605 Tw
 /F1 11 Tf
 (The ) Tj
@@ -1516,8 +1544,8 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 516 Tm
-1.610 Tw
+1 0 0 1 64 421 Tm
+0.000 Tw
 /F1 11 Tf
 (challenge, ) Tj
 (debate, ) Tj
@@ -1525,20 +1553,20 @@ BT
 (direct ) Tj
 (AI ) Tj
 (insights ) Tj
-(responsibly. ) Tj
+(responsibly.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 394 Tm
+1.020 Tw
+/F1 11 Tf
 (The ) Tj
 (Human ) Tj
 (Edge: ) Tj
 (Empathy, ) Tj
 (Intuition, ) Tj
-(and) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 499 Tm
-0.750 Tw
-/F1 11 Tf
+(and ) Tj
 (Collective ) Tj
 (Wisdom ) Tj
 (No ) Tj
@@ -1546,45 +1574,52 @@ BT
 (can ) Tj
 (replicate ) Tj
 (the ) Tj
-(tacit ) Tj
-(wisdom ) Tj
-(of ) Tj
-(leadership ) Tj
-(accumulated ) Tj
-(through) Tj
+(tacit) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 482 Tm
-2.480 Tw
+1 0 0 1 64 377 Tm
+3.316 Tw
 /F1 11 Tf
+(wisdom ) Tj
+(of ) Tj
+(leadership ) Tj
+(accumulated ) Tj
+(through ) Tj
 (years ) Tj
 (of ) Tj
 (experience. ) Tj
 (Human ) Tj
 (cognition ) Tj
 (thrives ) Tj
-(on ) Tj
+(on) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 360 Tm
+2.373 Tw
+/F1 11 Tf
 (ambiguity, ) Tj
 (empathy, ) Tj
 (and ) Tj
 (moral ) Tj
 (reasoning ) Tj
-(\227) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 465 Tm
-1.158 Tw
-/F1 11 Tf
+(\227 ) Tj
 (capacities ) Tj
 (that ) Tj
 (resist ) Tj
 (formalization. ) Tj
 (As ) Tj
-(BoardGPT ) Tj
+(BoardGPT) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 343 Tm
+0.390 Tw
+/F1 11 Tf
 (tools ) Tj
 (evolve, ) Tj
 (they ) Tj
@@ -1592,14 +1627,7 @@ BT
 (be ) Tj
 (designed ) Tj
 (to ) Tj
-(deepen) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 448 Tm
-2.472 Tw
-/F1 11 Tf
+(deepen ) Tj
 (human ) Tj
 (deliberation, ) Tj
 (not ) Tj
@@ -1607,21 +1635,21 @@ BT
 (it. ) Tj
 (Imagine ) Tj
 (a ) Tj
-(future ) Tj
+(future) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 326 Tm
+0.596 Tw
+/F1 11 Tf
 (meeting ) Tj
 (where ) Tj
 (the ) Tj
 (AI, ) Tj
 (after ) Tj
 (modeling ) Tj
-(ten) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 431 Tm
-1.254 Tw
-/F1 11 Tf
+(ten ) Tj
 (scenarios, ) Tj
 (adds: ) Tj
 (\223Here ) Tj
@@ -1630,19 +1658,19 @@ BT
 (three ) Tj
 (trade-offs ) Tj
 (that ) Tj
-(most ) Tj
-(affect ) Tj
-(community ) Tj
-(impact ) Tj
-(and ) Tj
-(employee) Tj
+(most) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 414 Tm
-2.479 Tw
+1 0 0 1 64 309 Tm
+0.492 Tw
 /F1 11 Tf
+(affect ) Tj
+(community ) Tj
+(impact ) Tj
+(and ) Tj
+(employee ) Tj
 (wellbeing.\224 ) Tj
 (Directors ) Tj
 (then ) Tj
@@ -1650,19 +1678,19 @@ BT
 (not ) Tj
 (numbers, ) Tj
 (but ) Tj
-(values. ) Tj
-(That ) Tj
-(synthesis ) Tj
-(\227 ) Tj
-(human ) Tj
-(empathy) Tj
+(values.) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 397 Tm
-1.900 Tw
+1 0 0 1 64 292 Tm
+2.309 Tw
 /F1 11 Tf
+(That ) Tj
+(synthesis ) Tj
+(\227 ) Tj
+(human ) Tj
+(empathy ) Tj
 (guided ) Tj
 (by ) Tj
 (precise ) Tj
@@ -1673,19 +1701,26 @@ BT
 (highest ) Tj
 (possible ) Tj
 (use ) Tj
-(of ) Tj
-(technology ) Tj
-(in ) Tj
-(leadership. ) Tj
-(The ) Tj
-(Road) Tj
+(of) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 380 Tm
-1.860 Tw
+1 0 0 1 64 275 Tm
+0.000 Tw
 /F1 11 Tf
+(technology ) Tj
+(in ) Tj
+(leadership.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 248 Tm
+1.045 Tw
+/F1 11 Tf
+(The ) Tj
+(Road ) Tj
 (Ahead ) Tj
 (The ) Tj
 (future ) Tj
@@ -1699,16 +1734,16 @@ BT
 (unevenly. ) Tj
 (Some ) Tj
 (organizations ) Tj
-(will ) Tj
-(rush ) Tj
-(in,) Tj
+(will) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 363 Tm
-1.495 Tw
+1 0 0 1 64 231 Tm
+0.447 Tw
 /F1 11 Tf
+(rush ) Tj
+(in, ) Tj
 (dazzled ) Tj
 (by ) Tj
 (efficiency, ) Tj
@@ -1723,15 +1758,15 @@ BT
 (blind ) Tj
 (spots. ) Tj
 (Others ) Tj
-(will ) Tj
-(hold) Tj
+(will) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 346 Tm
-1.112 Tw
+1 0 0 1 64 214 Tm
+3.839 Tw
 /F1 11 Tf
+(hold ) Tj
 (back ) Tj
 (too ) Tj
 (cautiously, ) Tj
@@ -1744,15 +1779,15 @@ BT
 (in ) Tj
 (measured ) Tj
 (adoption, ) Tj
-(blending ) Tj
-(enthusiasm) Tj
+(blending) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 329 Tm
-0.939 Tw
+1 0 0 1 64 197 Tm
+1.046 Tw
 /F1 11 Tf
+(enthusiasm ) Tj
 (with ) Tj
 (rigor. ) Tj
 (BoardGPT ) Tj
@@ -1767,18 +1802,18 @@ BT
 (a ) Tj
 (mindset ) Tj
 (where ) Tj
-(boards ) Tj
-(see ) Tj
-(AI ) Tj
-(as ) Tj
-(a) Tj
+(boards) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 312 Tm
-0.406 Tw
+1 0 0 1 64 180 Tm
+0.700 Tw
 /F1 11 Tf
+(see ) Tj
+(AI ) Tj
+(as ) Tj
+(a ) Tj
 (partner ) Tj
 (in ) Tj
 (better ) Tj
@@ -1793,16 +1828,16 @@ BT
 (used ) Tj
 (ethically, ) Tj
 (it ) Tj
-(can ) Tj
-(reinforce ) Tj
-(the) Tj
+(can) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 295 Tm
-1.045 Tw
+1 0 0 1 64 163 Tm
+0.597 Tw
 /F1 11 Tf
+(reinforce ) Tj
+(the ) Tj
 (board\222s ) Tj
 (ultimate ) Tj
 (purpose: ) Tj
@@ -1817,15 +1852,15 @@ BT
 (in ) Tj
 (an ) Tj
 (age ) Tj
-(of ) Tj
-(complexity.) Tj
+(of) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 278 Tm
-4.614 Tw
+1 0 0 1 64 146 Tm
+0.435 Tw
 /F1 11 Tf
+(complexity. ) Tj
 (The ) Tj
 (next ) Tj
 (generation ) Tj
@@ -1845,7 +1880,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 261 Tm
+1 0 0 1 64 129 Tm
 2.479 Tw
 /F1 11 Tf
 (collaboration ) Tj
@@ -1864,7 +1899,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 244 Tm
+1 0 0 1 64 112 Tm
 1.604 Tw
 /F1 11 Tf
 (Where ) Tj
@@ -1886,161 +1921,10 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 227 Tm
-0.039 Tw
+1 0 0 1 64 95 Tm
+0.000 Tw
 /F1 11 Tf
-(humane. ) Tj
-(Conclusions ) Tj
-(and ) Tj
-(Take-Home ) Tj
-(Message ) Tj
-(Artificial ) Tj
-(intelligence ) Tj
-(is ) Tj
-(reshaping ) Tj
-(how ) Tj
-(boards ) Tj
-(think) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 210 Tm
-2.989 Tw
-/F1 11 Tf
-(and ) Tj
-(act. ) Tj
-(BoardGPT ) Tj
-(refers ) Tj
-(to ) Tj
-(AI ) Tj
-(systems ) Tj
-(designed ) Tj
-(to ) Tj
-(support ) Tj
-(board-level ) Tj
-(decision-making ) Tj
-(\227) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 193 Tm
-0.832 Tw
-/F1 11 Tf
-(enhancing, ) Tj
-(not ) Tj
-(replacing, ) Tj
-(human ) Tj
-(judgment. ) Tj
-(This ) Tj
-(summary ) Tj
-(distills ) Tj
-(key ) Tj
-(themes ) Tj
-(from ) Tj
-(the ) Tj
-(full ) Tj
-(5-page) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 176 Tm
-1.766 Tw
-/F1 11 Tf
-(discussion. ) Tj
-(Why ) Tj
-(It ) Tj
-(Matters: ) Tj
-(Corporate ) Tj
-(boards ) Tj
-(have ) Tj
-(traditionally ) Tj
-(relied ) Tj
-(on ) Tj
-(retrospective ) Tj
-(data ) Tj
-(and) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 159 Tm
-0.973 Tw
-/F1 11 Tf
-(static ) Tj
-(reports. ) Tj
-(AI ) Tj
-(shifts ) Tj
-(that ) Tj
-(paradigm ) Tj
-(by ) Tj
-(enabling ) Tj
-(real-time ) Tj
-(insights ) Tj
-(and ) Tj
-(predictive ) Tj
-(modeling. ) Tj
-(With) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 142 Tm
-1.537 Tw
-/F1 11 Tf
-(BoardGPT, ) Tj
-(directors ) Tj
-(can ) Tj
-(test ) Tj
-(assumptions, ) Tj
-(visualize ) Tj
-(potential ) Tj
-(outcomes, ) Tj
-(and ) Tj
-(focus ) Tj
-(meetings ) Tj
-(on) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 125 Tm
-1.815 Tw
-/F1 11 Tf
-(high-value ) Tj
-(strategic ) Tj
-(discussions. ) Tj
-(What ) Tj
-(BoardGPT ) Tj
-(Can ) Tj
-(Do: ) Tj
-(\(1\) ) Tj
-(Synthesize ) Tj
-(information: ) Tj
-(Integrate) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 108 Tm
-3.702 Tw
-/F1 11 Tf
-(financial, ) Tj
-(risk, ) Tj
-(and ) Tj
-(market ) Tj
-(data ) Tj
-(into ) Tj
-(clear ) Tj
-(insights. ) Tj
-(\(2\) ) Tj
-(Model ) Tj
-(scenarios: ) Tj
-(Simulate ) Tj
-(risks ) Tj
-(and) Tj
+(humane.) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -2056,7 +1940,7 @@ BT
 0.400 0.400 0.400 rg
 /F1 8.5 Tf
 1 0 0 1 504.5225 48 Tm
-(Page 3 of 4) Tj
+(Page 3 of 5) Tj
 ET
 endstream
 endobj
@@ -2064,53 +1948,218 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 5737 >>
+<< /Length 6920 >>
 stream
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 703 Tm
-1.566 Tw
+0.341 Tw
 /F1 11 Tf
-(opportunities ) Tj
-(under ) Tj
-(various ) Tj
-(conditions; ) Tj
+(Conclusions ) Tj
 (and ) Tj
-(\(3\) ) Tj
-(Support ) Tj
-(governance: ) Tj
-(Improve ) Tj
-(recordkeeping ) Tj
-(and) Tj
+(Take-Home ) Tj
+(Message ) Tj
+(Artificial ) Tj
+(intelligence ) Tj
+(is ) Tj
+(reshaping ) Tj
+(how ) Tj
+(boards ) Tj
+(think ) Tj
+(and ) Tj
+(act.) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 686 Tm
-2.304 Tw
+0.237 Tw
 /F1 11 Tf
+(BoardGPT ) Tj
+(refers ) Tj
+(to ) Tj
+(AI ) Tj
+(systems ) Tj
+(designed ) Tj
+(to ) Tj
+(support ) Tj
+(board-level ) Tj
+(decision-making ) Tj
+(\227 ) Tj
+(enhancing, ) Tj
+(not) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+0.000 Tw
+/F1 11 Tf
+(replacing, ) Tj
+(human ) Tj
+(judgment. ) Tj
+(This ) Tj
+(summary ) Tj
+(distills ) Tj
+(key ) Tj
+(themes ) Tj
+(from ) Tj
+(the ) Tj
+(full ) Tj
+(5-page ) Tj
+(discussion.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 642 Tm
+0.737 Tw
+/F1 11 Tf
+(Why ) Tj
+(It ) Tj
+(Matters: ) Tj
+(Corporate ) Tj
+(boards ) Tj
+(have ) Tj
+(traditionally ) Tj
+(relied ) Tj
+(on ) Tj
+(retrospective ) Tj
+(data ) Tj
+(and ) Tj
+(static ) Tj
+(reports.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 625 Tm
+1.971 Tw
+/F1 11 Tf
+(AI ) Tj
+(shifts ) Tj
+(that ) Tj
+(paradigm ) Tj
+(by ) Tj
+(enabling ) Tj
+(real-time ) Tj
+(insights ) Tj
+(and ) Tj
+(predictive ) Tj
+(modeling. ) Tj
+(With ) Tj
+(BoardGPT,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+1.926 Tw
+/F1 11 Tf
+(directors ) Tj
+(can ) Tj
+(test ) Tj
+(assumptions, ) Tj
+(visualize ) Tj
+(potential ) Tj
+(outcomes, ) Tj
+(and ) Tj
+(focus ) Tj
+(meetings ) Tj
+(on ) Tj
+(high-value) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 591 Tm
+0.000 Tw
+/F1 11 Tf
+(strategic ) Tj
+(discussions.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 564 Tm
+0.502 Tw
+/F1 11 Tf
+(What ) Tj
+(BoardGPT ) Tj
+(Can ) Tj
+(Do: ) Tj
+(\(1\) ) Tj
+(Synthesize ) Tj
+(information: ) Tj
+(Integrate ) Tj
+(financial, ) Tj
+(risk, ) Tj
+(and ) Tj
+(market ) Tj
+(data ) Tj
+(into) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 547 Tm
+0.698 Tw
+/F1 11 Tf
+(clear ) Tj
+(insights. ) Tj
+(\(2\) ) Tj
+(Model ) Tj
+(scenarios: ) Tj
+(Simulate ) Tj
+(risks ) Tj
+(and ) Tj
+(opportunities ) Tj
+(under ) Tj
+(various ) Tj
+(conditions; ) Tj
+(and) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 530 Tm
+3.169 Tw
+/F1 11 Tf
+(\(3\) ) Tj
+(Support ) Tj
+(governance: ) Tj
+(Improve ) Tj
+(recordkeeping ) Tj
+(and ) Tj
 (transparency ) Tj
 (around ) Tj
 (decisions. ) Tj
-(Properly ) Tj
+(Properly) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 513 Tm
+0.000 Tw
+/F1 11 Tf
 (implemented, ) Tj
 (AI ) Tj
 (transforms ) Tj
 (the ) Tj
 (board\222s ) Tj
 (oversight ) Tj
-(role) Tj
+(role ) Tj
+(from ) Tj
+(reactive ) Tj
+(to ) Tj
+(anticipatory.) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 669 Tm
-0.817 Tw
+1 0 0 1 64 486 Tm
+1.753 Tw
 /F1 11 Tf
-(from ) Tj
-(reactive ) Tj
-(to ) Tj
-(anticipatory. ) Tj
 (Key ) Tj
 (Challenges ) Tj
 (and ) Tj
@@ -2118,17 +2167,17 @@ BT
 (Guardrails: ) Tj
 (AI ) Tj
 (introduces ) Tj
-(responsibilities) Tj
+(responsibilities ) Tj
+(around ) Tj
+(bias, ) Tj
+(explainability,) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 652 Tm
-1.317 Tw
+1 0 0 1 64 469 Tm
+1.707 Tw
 /F1 11 Tf
-(around ) Tj
-(bias, ) Tj
-(explainability, ) Tj
 (and ) Tj
 (accountability. ) Tj
 (Directors ) Tj
@@ -2137,17 +2186,17 @@ BT
 (Ensure ) Tj
 (algorithmic ) Tj
 (outputs ) Tj
-(are) Tj
+(are ) Tj
+(interpretable. ) Tj
+(\(2\) ) Tj
+(Maintain) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 635 Tm
-1.865 Tw
+1 0 0 1 64 452 Tm
+0.991 Tw
 /F1 11 Tf
-(interpretable. ) Tj
-(\(2\) ) Tj
-(Maintain ) Tj
 (human ) Tj
 (ownership ) Tj
 (of ) Tj
@@ -2158,18 +2207,18 @@ BT
 (Protect ) Tj
 (data ) Tj
 (quality ) Tj
-(and) Tj
+(and ) Tj
+(privacy; ) Tj
+(\(4\) ) Tj
+(Embed ) Tj
+(diversity) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 618 Tm
-1.291 Tw
+1 0 0 1 64 435 Tm
+4.743 Tw
 /F1 11 Tf
-(privacy; ) Tj
-(\(4\) ) Tj
-(Embed ) Tj
-(diversity ) Tj
 (and ) Tj
 (ethical ) Tj
 (oversight ) Tj
@@ -2181,34 +2230,34 @@ BT
 (Boards ) Tj
 (adopting ) Tj
 (AI ) Tj
-(must) Tj
+(must ) Tj
+(reinforce ) Tj
+(trust ) Tj
+(and) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 601 Tm
-1.356 Tw
+1 0 0 1 64 418 Tm
+0.000 Tw
 /F1 11 Tf
-(reinforce ) Tj
-(trust ) Tj
-(and ) Tj
 (transparency, ) Tj
 (not ) Tj
 (erode ) Tj
-(them. ) Tj
+(them.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 391 Tm
+1.818 Tw
+/F1 11 Tf
 (Speed ) Tj
 (and ) Tj
 (Judgment: ) Tj
 (AI ) Tj
 (accelerates ) Tj
-(analysis,) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 584 Tm
-3.216 Tw
-/F1 11 Tf
+(analysis, ) Tj
 (but ) Tj
 (boards ) Tj
 (must ) Tj
@@ -2216,48 +2265,55 @@ BT
 (that ) Tj
 (velocity ) Tj
 (with ) Tj
-(reflective ) Tj
+(reflective) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 374 Tm
+0.000 Tw
+/F1 11 Tf
 (judgment. ) Tj
 (The ) Tj
 (advantage ) Tj
 (lies ) Tj
 (not ) Tj
 (in ) Tj
-(faster) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 567 Tm
-1.153 Tw
-/F1 11 Tf
+(faster ) Tj
 (decisions, ) Tj
 (but ) Tj
 (in ) Tj
 (more ) Tj
 (informed, ) Tj
 (values-aligned ) Tj
-(ones. ) Tj
+(ones.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 347 Tm
+1.151 Tw
+/F1 11 Tf
 (Building ) Tj
 (the ) Tj
 (AI-Literate ) Tj
 (Board: ) Tj
 (An ) Tj
-(effective) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 550 Tm
-0.000 Tw
-/F1 11 Tf
+(effective ) Tj
 (board ) Tj
 (doesn\222t ) Tj
 (need ) Tj
 (coders, ) Tj
 (but ) Tj
 (questioners. ) Tj
-(Practical ) Tj
+(Practical) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 330 Tm
+0.000 Tw
+/F1 11 Tf
 (steps ) Tj
 (include:) Tj
 0 Tw
@@ -2265,12 +2321,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 523 Tm
+1 0 0 1 70 303 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 523 Tm
+1 0 0 1 86 303 Tm
 0.000 Tw
 /F1 11 Tf
 (Regular ) Tj
@@ -2285,12 +2341,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 500 Tm
+1 0 0 1 70 280 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 500 Tm
+1 0 0 1 86 280 Tm
 0.000 Tw
 /F1 11 Tf
 (Appointing ) Tj
@@ -2305,12 +2361,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 477 Tm
+1 0 0 1 70 257 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 477 Tm
+1 0 0 1 86 257 Tm
 0.000 Tw
 /F1 11 Tf
 (Testing ) Tj
@@ -2326,12 +2382,12 @@ ET
 BT
 0.176 0.549 0.941 rg
 /F1 11 Tf
-1 0 0 1 70 454 Tm
+1 0 0 1 70 234 Tm
 (\225) Tj
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 86 454 Tm
+1 0 0 1 86 234 Tm
 0.000 Tw
 /F1 11 Tf
 (Updating ) Tj
@@ -2348,7 +2404,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 431 Tm
+1 0 0 1 64 211 Tm
 2.692 Tw
 /F1 11 Tf
 (The ) Tj
@@ -2370,7 +2426,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 414 Tm
+1 0 0 1 64 194 Tm
 1.510 Tw
 /F1 11 Tf
 (BoardGPT ) Tj
@@ -2390,11 +2446,18 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 397 Tm
-2.427 Tw
+1 0 0 1 64 177 Tm
+0.000 Tw
 /F1 11 Tf
 (human ) Tj
-(wisdom. ) Tj
+(wisdom.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 150 Tm
+0.134 Tw
+/F1 11 Tf
 (The ) Tj
 (Takeaway: ) Tj
 (BoardGPT ) Tj
@@ -2404,17 +2467,17 @@ BT
 (evolution ) Tj
 (in ) Tj
 (corporate ) Tj
-(governance.) Tj
+(governance. ) Tj
+(Boards ) Tj
+(that ) Tj
+(integrate) Tj
 0 Tw
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 380 Tm
-1.159 Tw
+1 0 0 1 64 133 Tm
+0.393 Tw
 /F1 11 Tf
-(Boards ) Tj
-(that ) Tj
-(integrate ) Tj
 (AI ) Tj
 (thoughtfully ) Tj
 (will ) Tj
@@ -2425,19 +2488,19 @@ BT
 (more ) Tj
 (foresighted ) Tj
 (decisions. ) Tj
-(The) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 363 Tm
-2.388 Tw
-/F1 11 Tf
+(The ) Tj
 (goal ) Tj
 (is ) Tj
 (not ) Tj
 (to ) Tj
-(automate ) Tj
+(automate) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 116 Tm
+0.000 Tw
+/F1 11 Tf
 (leadership ) Tj
 (but ) Tj
 (to ) Tj
@@ -2448,20 +2511,36 @@ BT
 (partnership ) Tj
 (between ) Tj
 (intelligence ) Tj
-(and) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 346 Tm
-0.000 Tw
-/F1 11 Tf
+(and ) Tj
 (insight.) Tj
 0 Tw
 ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 4 of 5) Tj
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 1219 >>
+stream
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 319 Tm
+1 0 0 1 64 703 Tm
 1.679 Tw
 /F1 11 Tf
 (At ) Tj
@@ -2482,7 +2561,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 302 Tm
+1 0 0 1 64 686 Tm
 0.000 Tw
 /F1 11 Tf
 (more ) Tj
@@ -2490,33 +2569,46 @@ BT
 (FlaneyAssociates.com.) Tj
 0 Tw
 ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 659 Tm
+0.000 Tw
+/F3 11 Tf
+(Written ) Tj
+(by ) Tj
+(Joshua ) Tj
+(U. ) Tj
+(Otaigbe, ) Tj
+(PhD) Tj
+0 Tw
+ET
 0.969 0.976 0.988 rg
-64 176 484 92 re f
+64 533 484 92 re f
 0.176 0.549 0.941 RG
 3 w
-65.5 176 m 65.5 268 l S
+65.5 533 m 65.5 625 l S
 BT
 0.102 0.227 0.361 rg
 /F2 12 Tf
-1 0 0 1 84 242 Tm
+1 0 0 1 84 599 Tm
 (Talk to us about your materials challenge) Tj
 ET
 BT
 0.200 0.200 0.200 rg
 /F1 10 Tf
-1 0 0 1 84 224 Tm
+1 0 0 1 84 581 Tm
 (Joshua U. Otaigbe, PhD  \267  Materials Engineering Consultant) Tj
 ET
 BT
 0.200 0.200 0.200 rg
 /F1 10 Tf
-1 0 0 1 84 208 Tm
+1 0 0 1 84 565 Tm
 (info@flaneyassociates.com  \267  +1 \(601\) 402-7282) Tj
 ET
 BT
 0.176 0.549 0.941 rg
 /F1 10 Tf
-1 0 0 1 84 192 Tm
+1 0 0 1 84 549 Tm
 (flaneyassociates.com) Tj
 ET
 0.886 0.906 0.929 RG
@@ -2532,28 +2624,30 @@ BT
 0.400 0.400 0.400 rg
 /F1 8.5 Tf
 1 0 0 1 504.5225 48 Tm
-(Page 4 of 4) Tj
+(Page 5 of 5) Tj
 ET
 endstream
 endobj
 xref
-0 14
+0 16
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000141 00000 n 
-0000000238 00000 n 
-0000000340 00000 n 
-0000000445 00000 n 
-0000000591 00000 n 
-0000008411 00000 n 
-0000008557 00000 n 
-0000016544 00000 n 
-0000016692 00000 n 
-0000025103 00000 n 
-0000025251 00000 n 
+0000000148 00000 n 
+0000000245 00000 n 
+0000000347 00000 n 
+0000000452 00000 n 
+0000000598 00000 n 
+0000007993 00000 n 
+0000008139 00000 n 
+0000015730 00000 n 
+0000015878 00000 n 
+0000023616 00000 n 
+0000023764 00000 n 
+0000030737 00000 n 
+0000030885 00000 n 
 trailer
-<< /Size 14 /Root 1 0 R >>
+<< /Size 16 /Root 1 0 R >>
 startxref
-31041
+32157
 %%EOF

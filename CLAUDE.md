@@ -60,6 +60,15 @@ Two things make this work, and both are easy to break:
 
 A consequence worth knowing: `template.js`'s `article()` renders `content` verbatim and so is only correct for `local`/`edited` posts. That is all it is ever asked to do — the bundle writes exactly one article page, the post being created or edited — but do not reuse it to render an imported post.
 
+### Images are optimised on upload
+`optimiseImage()` in publisher.js downscales to 1600px wide and re-encodes before the image ever reaches a bundle. The article renders its hero in a 760px column, so anything wider buys nothing on screen; 1600 keeps it sharp at 2x on a retina display.
+
+Photographs saved as PNG are the case that matters — the first image published through the dashboard was a 1.8 MB PNG, more than three times the size of anything else on the blog. Re-encoded it is 138 KB.
+
+Two guards: a PNG that actually uses transparency stays a PNG, because JPEG cannot represent an alpha channel; and if re-encoding produces something *larger* (a small flat graphic, or an already-optimised file) the original is kept untouched. Animated GIFs are skipped entirely, since a canvas round-trip would flatten them to the first frame.
+
+The chosen format decides the stored filename, so a converted photo becomes `<slug>.jpg` — which also means a format change naturally busts any cached copy of the old image.
+
 ### Getting a bundle into the repo
 The Files tab prints one command that unzips the bundle, commits and pushes. **Double-clicking the zip in Finder does not work** — macOS extracts it into a new folder rather than merging it into the repo, so the files land in the wrong place. `unzip -o` merges and overwrites without prompting.
 

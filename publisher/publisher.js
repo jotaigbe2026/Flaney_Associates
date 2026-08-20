@@ -894,25 +894,106 @@
 
     const IMAGE_EXT = { 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp', 'image/gif': '.gif' };
 
+    //: The article renders its hero image in a 760px column, so anything wider
+    //: than this buys nothing on screen and costs load time. 1600 keeps it sharp
+    //: on a retina display at 2x.
+    const MAX_IMAGE_WIDTH = 1600;
+    const JPEG_QUALITY = 0.85;
+
+    /* Photographs saved as PNG are enormous — the first image published through
+       this dashboard was 1.8 MB, over three times the size of anything else on
+       the blog, and it was a photo in a PNG wrapper. Re-encoding it as JPEG at
+       1600px brought it to 254 KB with no visible difference at display size.
+
+       JPEG cannot represent transparency, so a PNG that uses it stays a PNG. */
+    function hasTransparency(ctx, w, h) {
+        const data = ctx.getImageData(0, 0, w, h).data;
+        for (let i = 3; i < data.length; i += 4) {
+            if (data[i] < 250) return true;
+        }
+        return false;
+    }
+
+    function optimiseImage(file, bytes) {
+        // An animated GIF would be flattened to its first frame, so leave it be.
+        if (file.type === 'image/gif') return Promise.resolve(null);
+
+        return new Promise(function (resolve) {
+            const url = URL.createObjectURL(new Blob([bytes], { type: file.type }));
+            const img = new Image();
+
+            img.onload = function () {
+                const scale = Math.min(1, MAX_IMAGE_WIDTH / img.naturalWidth);
+                const w = Math.round(img.naturalWidth * scale);
+                const h = Math.round(img.naturalHeight * scale);
+
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+
+                const keepAlpha = file.type === 'image/png' && hasTransparency(ctx, w, h);
+                const type = keepAlpha ? 'image/png' : 'image/jpeg';
+
+                canvas.toBlob(function (blob) {
+                    URL.revokeObjectURL(url);
+                    // Re-encoding can make a small flat graphic bigger. Never
+                    // hand back something worse than what was given.
+                    if (!blob || blob.size >= bytes.length) { resolve(null); return; }
+                    blob.arrayBuffer().then(function (buf) {
+                        resolve({
+                            bytes: new Uint8Array(buf),
+                            type: type,
+                            ext: type === 'image/png' ? '.png' : '.jpg',
+                            width: w, height: h,
+                            from: bytes.length,
+                            fromWidth: img.naturalWidth
+                        });
+                    });
+                }, type, JPEG_QUALITY);
+            };
+
+            img.onerror = function () { URL.revokeObjectURL(url); resolve(null); };
+            img.src = url;
+        });
+    }
+
     function acceptImage(file) {
         if (!file) return;
         if (!IMAGE_EXT[file.type]) { toast('Use a JPG, PNG, WebP or GIF'); return; }
-        readFile(file).then(function (bytes) {
-            if (state.image) URL.revokeObjectURL(state.image.url);
-            state.image = {
-                name: file.name,
-                ext: IMAGE_EXT[file.type],
-                type: file.type,
-                bytes: bytes,
-                url: URL.createObjectURL(new Blob([bytes], { type: file.type }))
-            };
-            el.imagePreview.src = state.image.url;
-            el.imageName.textContent = file.name;
-            el.imageSize.textContent = humanSize(bytes.length);
-            el.imageThumb.classList.add('on');
-            if (!el.imageAlt.value.trim()) el.imageAlt.value = el.title.value.trim();
-            render();
-        });
+
+        readFile(file)
+            .then(bytes => optimiseImage(file, bytes).then(better => ({ bytes, better })))
+            .then(function (result) {
+                const better = result.better;
+                const bytes = better ? better.bytes : result.bytes;
+                const type = better ? better.type : file.type;
+                const ext = better ? better.ext : IMAGE_EXT[file.type];
+
+                if (state.image) URL.revokeObjectURL(state.image.url);
+                state.image = {
+                    name: file.name,
+                    ext: ext,
+                    type: type,
+                    bytes: bytes,
+                    url: URL.createObjectURL(new Blob([bytes], { type: type }))
+                };
+
+                el.imagePreview.src = state.image.url;
+                el.imageName.textContent = file.name;
+                el.imageSize.textContent = better
+                    ? humanSize(better.from) + ' \u2192 ' + humanSize(bytes.length)
+                    : humanSize(bytes.length);
+                el.imageThumb.classList.add('on');
+                if (!el.imageAlt.value.trim()) el.imageAlt.value = el.title.value.trim();
+
+                if (better) {
+                    toast('Resized to ' + better.width + 'px \u2014 ' +
+                        humanSize(better.from) + ' down to ' + humanSize(bytes.length));
+                }
+                render();
+            });
     }
 
     function clearImage() {

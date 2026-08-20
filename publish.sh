@@ -37,6 +37,15 @@ if [ -z "$(git status --porcelain)" ]; then
 fi
 
 # ---- 2. work out what this publish is about
+# Only call it a post publish if a post actually changed. Otherwise the message
+# would name whichever post happened to be edited last, which is misleading in
+# the history when the change was something else entirely.
+if git status --porcelain -- blog/ articles/ | grep -q .; then
+    POST_PUBLISH=yes
+else
+    POST_PUBLISH=no
+fi
+
 SLUG=$(python3 - <<'PY' 2>/dev/null
 import json
 try:
@@ -58,13 +67,14 @@ except Exception:
 PY
 )
 
-if [ -n "$SLUG" ] && git ls-files --error-unmatch "blog/$SLUG.html" >/dev/null 2>&1; then
-    VERB="Update"
+if [ "$POST_PUBLISH" = "no" ] || [ -z "$TITLE" ]; then
+    SLUG=""
+    MESSAGE="Site update"
+elif git ls-files --error-unmatch "blog/$SLUG.html" >/dev/null 2>&1; then
+    MESSAGE="Update: $TITLE"
 else
-    VERB="Publish"
+    MESSAGE="Publish: $TITLE"
 fi
-[ -n "$TITLE" ] || TITLE="site update"
-MESSAGE="$VERB: $TITLE"
 
 say "Changed files:"
 git status --porcelain | sed 's/^/    /'
@@ -85,3 +95,4 @@ else
     printf '    and copy me whatever it says.\n\n'
     exit 1
 fi
+# probe

@@ -709,7 +709,7 @@
 
         el.bundleActions.hidden = false;
         el.commitBlock.hidden = false;
-        el.commitCommands.innerHTML = publishCommand(bundle);
+        el.commitCommands.innerHTML = publishCommand();
 
         document.querySelector('.tab[data-view=files]').click();
     }
@@ -850,20 +850,9 @@
        `ls -t | head -1` picks the newest matching download because a second
        download of the same post lands as flaney-<slug>-1.zip, and unzipping the
        older one would quietly publish a stale bundle. */
-    function publishCommand(bundle) {
+    function publishCommand() {
         const repo = loadPaths().repo || '<your-repo-folder>';
-        const zip = '~/Downloads/flaney-' + bundle.post.slug + '*.zip';
-        // Titles are stored entity-encoded ("Pglass &#038; PET"), and a commit
-        // message wants the characters, not the entities.
-        const decoder = document.createElement('textarea');
-        decoder.innerHTML = T.stripTags(bundle.post.title);
-        const message = (state.editing ? 'Update: ' : 'Publish: ') + decoder.value;
-
-        const command = 'cd ' + JSON.stringify(repo) + ' \\\n' +
-            '  && unzip -o "$(ls -t ' + zip + ' | head -1)" \\\n' +
-            '  && git add -A \\\n' +
-            '  && git commit -m ' + JSON.stringify(message) + ' \\\n' +
-            '  && git push origin main';
+        const command = 'cd ' + JSON.stringify(repo) + ' && ./publish.sh';
 
         const hint = loadPaths().repo ? ''
             : '<span class="c"># fill in "Repository folder" in step 1 and this completes itself</span>\n';

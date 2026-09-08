@@ -19,7 +19,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 6905 >>
+<< /Length 6339 >>
 stream
 0.969 0.976 0.988 rg
 0 746 612 46 re f
@@ -44,7 +44,7 @@ BT
 0.176 0.549 0.941 rg
 /F2 9 Tf
 1 0 0 1 64 700 Tm
-(ADVANCED MATERIALS ENGINEERING  \267  MATERIALS ENGINEERING INNOVATIONS  \267  BIOMATERIALS AND BIOMEDICAL ENGINEERING  \267  TISSUE ENGINEERING) Tj
+(ADVANCED MATERIALS ENGINEERING) Tj
 ET
 BT
 0.102 0.227 0.361 rg
@@ -79,8 +79,24 @@ ET
 1 w
 64 592 m 548 592 l S
 BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 543 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Biomaterials: ) Tj
+(engineering ) Tj
+(materials ) Tj
+(that ) Tj
+(work ) Tj
+(with ) Tj
+(the ) Tj
+(human ) Tj
+(body) Tj
+0 Tw
+ET
+BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 559 Tm
+1 0 0 1 64 520 Tm
 3.347 Tw
 /F1 11 Tf
 (Every ) Tj
@@ -102,7 +118,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 542 Tm
+1 0 0 1 64 503 Tm
 0.000 Tw
 /F1 11 Tf
 (fuselage, ) Tj
@@ -124,7 +140,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 515 Tm
+1 0 0 1 64 476 Tm
 0.884 Tw
 /F1 11 Tf
 (The ) Tj
@@ -146,7 +162,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 498 Tm
+1 0 0 1 64 459 Tm
 1.293 Tw
 /F1 11 Tf
 (guard. ) Tj
@@ -168,7 +184,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 481 Tm
+1 0 0 1 64 442 Tm
 0.458 Tw
 /F1 11 Tf
 (surface ) Tj
@@ -189,7 +205,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 464 Tm
+1 0 0 1 64 425 Tm
 0.958 Tw
 /F1 11 Tf
 (within ) Tj
@@ -215,7 +231,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 447 Tm
+1 0 0 1 64 408 Tm
 0.000 Tw
 /F1 11 Tf
 (response, ) Tj
@@ -237,7 +253,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 420 Tm
+1 0 0 1 64 381 Tm
 1.036 Tw
 /F1 11 Tf
 (That's ) Tj
@@ -259,7 +275,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 403 Tm
+1 0 0 1 64 364 Tm
 0.000 Tw
 /F1 11 Tf
 (performance ) Tj
@@ -273,7 +289,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 360 Tm
+1 0 0 1 64 321 Tm
 0.000 Tw
 /F2 12.5 Tf
 (What ) Tj
@@ -285,7 +301,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 337 Tm
+1 0 0 1 64 298 Tm
 1.876 Tw
 /F1 11 Tf
 (Biocompatibility ) Tj
@@ -305,7 +321,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 320 Tm
+1 0 0 1 64 281 Tm
 1.630 Tw
 /F1 11 Tf
 (whether ) Tj
@@ -326,7 +342,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 303 Tm
+1 0 0 1 64 264 Tm
 0.000 Tw
 /F1 11 Tf
 (that's ) Tj
@@ -350,7 +366,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 276 Tm
+1 0 0 1 64 237 Tm
 2.955 Tw
 /F1 11 Tf
 (The ) Tj
@@ -372,7 +388,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 259 Tm
+1 0 0 1 64 220 Tm
 1.871 Tw
 /F1 11 Tf
 (plasma, ) Tj
@@ -391,7 +407,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 242 Tm
+1 0 0 1 64 203 Tm
 1.766 Tw
 /F1 11 Tf
 (surface. ) Tj
@@ -411,7 +427,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 225 Tm
+1 0 0 1 64 186 Tm
 1.842 Tw
 /F1 11 Tf
 (everything ) Tj
@@ -434,7 +450,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 208 Tm
+1 0 0 1 64 169 Tm
 1.462 Tw
 /F1 11 Tf
 (proteins. ) Tj
@@ -454,7 +470,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 191 Tm
+1 0 0 1 64 152 Tm
 0.000 Tw
 /F1 11 Tf
 (whether ) Tj
@@ -475,7 +491,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 164 Tm
+1 0 0 1 64 125 Tm
 1.306 Tw
 /F1 11 Tf
 (Surface ) Tj
@@ -495,7 +511,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 147 Tm
+1 0 0 1 64 108 Tm
 3.348 Tw
 /F1 11 Tf
 (properties ) Tj
@@ -513,61 +529,6 @@ BT
 (what ) Tj
 (the ) Tj
 (body) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 130 Tm
-4.262 Tw
-/F1 11 Tf
-(responds ) Tj
-(to. ) Tj
-(This ) Tj
-(is ) Tj
-(why ) Tj
-(surface ) Tj
-(treatments, ) Tj
-(coatings, ) Tj
-(and ) Tj
-(functionalization ) Tj
-(are ) Tj
-(central ) Tj
-(to) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 113 Tm
-1.631 Tw
-/F1 11 Tf
-(biomaterials ) Tj
-(development: ) Tj
-(you ) Tj
-(can ) Tj
-(have ) Tj
-(a ) Tj
-(mechanically ) Tj
-(excellent ) Tj
-(material ) Tj
-(and ) Tj
-(still ) Tj
-(have ) Tj
-(a ) Tj
-(poor) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 96 Tm
-0.000 Tw
-/F1 11 Tf
-(biological ) Tj
-(response ) Tj
-(if ) Tj
-(the ) Tj
-(surface ) Tj
-(isn't ) Tj
-(right.) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -591,11 +552,66 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
 endobj
 9 0 obj
-<< /Length 6587 >>
+<< /Length 6510 >>
 stream
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 703 Tm
+4.262 Tw
+/F1 11 Tf
+(responds ) Tj
+(to. ) Tj
+(This ) Tj
+(is ) Tj
+(why ) Tj
+(surface ) Tj
+(treatments, ) Tj
+(coatings, ) Tj
+(and ) Tj
+(functionalization ) Tj
+(are ) Tj
+(central ) Tj
+(to) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 686 Tm
+1.631 Tw
+/F1 11 Tf
+(biomaterials ) Tj
+(development: ) Tj
+(you ) Tj
+(can ) Tj
+(have ) Tj
+(a ) Tj
+(mechanically ) Tj
+(excellent ) Tj
+(material ) Tj
+(and ) Tj
+(still ) Tj
+(have ) Tj
+(a ) Tj
+(poor) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+0.000 Tw
+/F1 11 Tf
+(biological ) Tj
+(response ) Tj
+(if ) Tj
+(the ) Tj
+(surface ) Tj
+(isn't ) Tj
+(right.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 642 Tm
 3.498 Tw
 /F1 11 Tf
 (ISO ) Tj
@@ -615,7 +631,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 686 Tm
+1 0 0 1 64 625 Tm
 0.346 Tw
 /F1 11 Tf
 (hierarchy ) Tj
@@ -640,7 +656,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 669 Tm
+1 0 0 1 64 608 Tm
 0.653 Tw
 /F1 11 Tf
 (culture?\), ) Tj
@@ -658,7 +674,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 652 Tm
+1 0 0 1 64 591 Tm
 0.000 Tw
 /F1 11 Tf
 (tests ) Tj
@@ -678,7 +694,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 609 Tm
+1 0 0 1 64 548 Tm
 0.000 Tw
 /F2 12.5 Tf
 (Three ) Tj
@@ -689,7 +705,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 570 Tm
+1 0 0 1 64 509 Tm
 0.000 Tw
 /F2 12.5 Tf
 (First ) Tj
@@ -699,7 +715,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 547 Tm
+1 0 0 1 64 486 Tm
 0.358 Tw
 /F1 11 Tf
 (The ) Tj
@@ -720,7 +736,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 530 Tm
+1 0 0 1 64 469 Tm
 0.163 Tw
 /F1 11 Tf
 (a ) Tj
@@ -742,7 +758,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 513 Tm
+1 0 0 1 64 452 Tm
 0.000 Tw
 /F1 11 Tf
 (mechanically ) Tj
@@ -756,7 +772,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 486 Tm
+1 0 0 1 64 425 Tm
 1.144 Tw
 /F1 11 Tf
 (Titanium ) Tj
@@ -774,7 +790,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 469 Tm
+1 0 0 1 64 408 Tm
 1.428 Tw
 /F1 11 Tf
 (Titanium ) Tj
@@ -796,7 +812,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 452 Tm
+1 0 0 1 64 391 Tm
 3.797 Tw
 /F1 11 Tf
 (oxygen ) Tj
@@ -817,7 +833,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 435 Tm
+1 0 0 1 64 374 Tm
 1.324 Tw
 /F1 11 Tf
 (environment, ) Tj
@@ -835,7 +851,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 418 Tm
+1 0 0 1 64 357 Tm
 0.000 Tw
 /F1 11 Tf
 (around ) Tj
@@ -856,7 +872,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 391 Tm
+1 0 0 1 64 330 Tm
 0.274 Tw
 /F1 11 Tf
 (That ) Tj
@@ -881,7 +897,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 374 Tm
+1 0 0 1 64 313 Tm
 1.134 Tw
 /F1 11 Tf
 (much ) Tj
@@ -905,7 +921,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 357 Tm
+1 0 0 1 64 296 Tm
 3.928 Tw
 /F1 11 Tf
 (The ) Tj
@@ -924,7 +940,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 340 Tm
+1 0 0 1 64 279 Tm
 0.000 Tw
 /F1 11 Tf
 (weakens ) Tj
@@ -943,7 +959,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 313 Tm
+1 0 0 1 64 252 Tm
 1.487 Tw
 /F1 11 Tf
 (Ultra-high ) Tj
@@ -962,7 +978,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 296 Tm
+1 0 0 1 64 235 Tm
 0.335 Tw
 /F1 11 Tf
 (hip ) Tj
@@ -984,7 +1000,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 279 Tm
+1 0 0 1 64 218 Tm
 1.303 Tw
 /F1 11 Tf
 (resistance, ) Tj
@@ -1005,7 +1021,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 262 Tm
+1 0 0 1 64 201 Tm
 3.481 Tw
 /F1 11 Tf
 (wear ) Tj
@@ -1024,7 +1040,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 245 Tm
+1 0 0 1 64 184 Tm
 0.597 Tw
 /F1 11 Tf
 (response ) Tj
@@ -1046,7 +1062,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 228 Tm
+1 0 0 1 64 167 Tm
 4.094 Tw
 /F1 11 Tf
 (UHMWPE, ) Tj
@@ -1065,74 +1081,12 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 211 Tm
+1 0 0 1 64 150 Tm
 0.000 Tw
 /F1 11 Tf
 (extended ) Tj
 (implant ) Tj
 (lifetimes.) Tj
-0 Tw
-ET
-BT
-0.059 0.153 0.251 rg
-1 0 0 1 64 168 Tm
-0.000 Tw
-/F2 12.5 Tf
-(Second ) Tj
-(generation: ) Tj
-(bioactive) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 145 Tm
-1.657 Tw
-/F1 11 Tf
-(The ) Tj
-(shift ) Tj
-(toward ) Tj
-(bioactive ) Tj
-(materials ) Tj
-(came ) Tj
-(with ) Tj
-(the ) Tj
-(recognition ) Tj
-(that ) Tj
-(passive ) Tj
-(tolerance ) Tj
-(wasn't ) Tj
-(the) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 128 Tm
-2.301 Tw
-/F1 11 Tf
-(same ) Tj
-(as ) Tj
-(integration. ) Tj
-(A ) Tj
-(better ) Tj
-(outcome ) Tj
-(was ) Tj
-(possible ) Tj
-(if ) Tj
-(the ) Tj
-(material ) Tj
-(could ) Tj
-(actively ) Tj
-(interact ) Tj
-(with) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 111 Tm
-0.000 Tw
-/F1 11 Tf
-(surrounding ) Tj
-(tissue.) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -1156,11 +1110,73 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
 endobj
 11 0 obj
-<< /Length 7214 >>
+<< /Length 7291 >>
 stream
 BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 702 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Second ) Tj
+(generation: ) Tj
+(bioactive) Tj
+0 Tw
+ET
+BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 703 Tm
+1 0 0 1 64 679 Tm
+1.657 Tw
+/F1 11 Tf
+(The ) Tj
+(shift ) Tj
+(toward ) Tj
+(bioactive ) Tj
+(materials ) Tj
+(came ) Tj
+(with ) Tj
+(the ) Tj
+(recognition ) Tj
+(that ) Tj
+(passive ) Tj
+(tolerance ) Tj
+(wasn't ) Tj
+(the) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 662 Tm
+2.301 Tw
+/F1 11 Tf
+(same ) Tj
+(as ) Tj
+(integration. ) Tj
+(A ) Tj
+(better ) Tj
+(outcome ) Tj
+(was ) Tj
+(possible ) Tj
+(if ) Tj
+(the ) Tj
+(material ) Tj
+(could ) Tj
+(actively ) Tj
+(interact ) Tj
+(with) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 645 Tm
+0.000 Tw
+/F1 11 Tf
+(surrounding ) Tj
+(tissue.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 618 Tm
 2.478 Tw
 /F1 11 Tf
 (Larry ) Tj
@@ -1181,7 +1197,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 686 Tm
+1 0 0 1 64 601 Tm
 0.217 Tw
 /F1 11 Tf
 (implanted, ) Tj
@@ -1202,7 +1218,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 669 Tm
+1 0 0 1 64 584 Tm
 0.311 Tw
 /F1 11 Tf
 (reaction ) Tj
@@ -1225,7 +1241,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 652 Tm
+1 0 0 1 64 567 Tm
 0.360 Tw
 /F1 11 Tf
 (just ) Tj
@@ -1246,7 +1262,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 635 Tm
+1 0 0 1 64 550 Tm
 2.090 Tw
 /F1 11 Tf
 (orthopedic ) Tj
@@ -1265,7 +1281,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 618 Tm
+1 0 0 1 64 533 Tm
 0.000 Tw
 /F1 11 Tf
 (death ) Tj
@@ -1275,7 +1291,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 591 Tm
+1 0 0 1 64 506 Tm
 4.374 Tw
 /F1 11 Tf
 (Hydroxyapatite ) Tj
@@ -1294,7 +1310,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 574 Tm
+1 0 0 1 64 489 Tm
 2.335 Tw
 /F1 11 Tf
 (technology. ) Tj
@@ -1315,7 +1331,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 557 Tm
+1 0 0 1 64 472 Tm
 2.373 Tw
 /F1 11 Tf
 (arrangement. ) Tj
@@ -1334,7 +1350,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 540 Tm
+1 0 0 1 64 455 Tm
 2.380 Tw
 /F1 11 Tf
 (osseointegration: ) Tj
@@ -1355,7 +1371,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 523 Tm
+1 0 0 1 64 438 Tm
 0.510 Tw
 /F1 11 Tf
 (coating ) Tj
@@ -1377,7 +1393,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 506 Tm
+1 0 0 1 64 421 Tm
 0.000 Tw
 /F1 11 Tf
 (an ) Tj
@@ -1388,7 +1404,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 463 Tm
+1 0 0 1 64 378 Tm
 0.000 Tw
 /F2 12.5 Tf
 (Third ) Tj
@@ -1400,7 +1416,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 440 Tm
+1 0 0 1 64 355 Tm
 0.733 Tw
 /F1 11 Tf
 (If ) Tj
@@ -1426,7 +1442,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 423 Tm
+1 0 0 1 64 338 Tm
 0.000 Tw
 /F1 11 Tf
 (temporary ) Tj
@@ -1445,7 +1461,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 396 Tm
+1 0 0 1 64 311 Tm
 0.880 Tw
 /F1 11 Tf
 (Polyglycolic ) Tj
@@ -1466,7 +1482,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 379 Tm
+1 0 0 1 64 294 Tm
 1.035 Tw
 /F1 11 Tf
 (bioresorbable ) Tj
@@ -1485,7 +1501,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 362 Tm
+1 0 0 1 64 277 Tm
 4.215 Tw
 /F1 11 Tf
 (screws ) Tj
@@ -1505,7 +1521,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 345 Tm
+1 0 0 1 64 260 Tm
 0.124 Tw
 /F1 11 Tf
 (undesirable, ) Tj
@@ -1526,7 +1542,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 328 Tm
+1 0 0 1 64 243 Tm
 0.828 Tw
 /F1 11 Tf
 (PLA:PGA ) Tj
@@ -1547,7 +1563,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 311 Tm
+1 0 0 1 64 226 Tm
 3.039 Tw
 /F1 11 Tf
 (the ) Tj
@@ -1566,7 +1582,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 294 Tm
+1 0 0 1 64 209 Tm
 0.000 Tw
 /F1 11 Tf
 (responses.) Tj
@@ -1574,7 +1590,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 267 Tm
+1 0 0 1 64 182 Tm
 0.923 Tw
 /F1 11 Tf
 (Bioresorbable ) Tj
@@ -1595,7 +1611,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 250 Tm
+1 0 0 1 64 165 Tm
 1.183 Tw
 /F1 11 Tf
 (an ) Tj
@@ -1616,7 +1632,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 233 Tm
+1 0 0 1 64 148 Tm
 1.820 Tw
 /F1 11 Tf
 (approved ) Tj
@@ -1639,7 +1655,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 216 Tm
+1 0 0 1 64 131 Tm
 0.126 Tw
 /F1 11 Tf
 (higher ) Tj
@@ -1660,7 +1676,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 199 Tm
+1 0 0 1 64 114 Tm
 2.392 Tw
 /F1 11 Tf
 (strength ) Tj
@@ -1682,7 +1698,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 182 Tm
+1 0 0 1 64 97 Tm
 0.000 Tw
 /F1 11 Tf
 (example ) Tj
@@ -1696,60 +1712,6 @@ BT
 (don't ) Tj
 (always ) Tj
 (align.) Tj
-0 Tw
-ET
-BT
-0.059 0.153 0.251 rg
-1 0 0 1 64 139 Tm
-0.000 Tw
-/F2 12.5 Tf
-(PEEK ) Tj
-(in ) Tj
-(spinal ) Tj
-(surgery: ) Tj
-(a ) Tj
-(case ) Tj
-(study ) Tj
-(in ) Tj
-(tradeoffs) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 116 Tm
-2.650 Tw
-/F1 11 Tf
-(PEEK ) Tj
-(\(polyether ) Tj
-(ether ) Tj
-(ketone\) ) Tj
-(is ) Tj
-(a ) Tj
-(high-performance ) Tj
-(thermoplastic ) Tj
-(used ) Tj
-(extensively ) Tj
-(in ) Tj
-(spinal) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 99 Tm
-3.650 Tw
-/F1 11 Tf
-(surgery ) Tj
-(for ) Tj
-(intervertebral ) Tj
-(fusion ) Tj
-(cages: ) Tj
-(devices ) Tj
-(inserted ) Tj
-(between ) Tj
-(vertebral ) Tj
-(bodies ) Tj
-(after ) Tj
-(disc) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -1773,11 +1735,65 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 7266 >>
+<< /Length 7191 >>
 stream
 BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 702 Tm
+0.000 Tw
+/F2 12.5 Tf
+(PEEK ) Tj
+(in ) Tj
+(spinal ) Tj
+(surgery: ) Tj
+(a ) Tj
+(case ) Tj
+(study ) Tj
+(in ) Tj
+(tradeoffs) Tj
+0 Tw
+ET
+BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 703 Tm
+1 0 0 1 64 679 Tm
+2.650 Tw
+/F1 11 Tf
+(PEEK ) Tj
+(\(polyether ) Tj
+(ether ) Tj
+(ketone\) ) Tj
+(is ) Tj
+(a ) Tj
+(high-performance ) Tj
+(thermoplastic ) Tj
+(used ) Tj
+(extensively ) Tj
+(in ) Tj
+(spinal) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 662 Tm
+3.650 Tw
+/F1 11 Tf
+(surgery ) Tj
+(for ) Tj
+(intervertebral ) Tj
+(fusion ) Tj
+(cages: ) Tj
+(devices ) Tj
+(inserted ) Tj
+(between ) Tj
+(vertebral ) Tj
+(bodies ) Tj
+(after ) Tj
+(disc) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 645 Tm
 0.000 Tw
 /F1 11 Tf
 (removal ) Tj
@@ -1793,7 +1809,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 676 Tm
+1 0 0 1 64 618 Tm
 0.752 Tw
 /F1 11 Tf
 (PEEK's ) Tj
@@ -1815,7 +1831,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 659 Tm
+1 0 0 1 64 601 Tm
 0.757 Tw
 /F1 11 Tf
 (it's ) Tj
@@ -1839,7 +1855,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 642 Tm
+1 0 0 1 64 584 Tm
 3.556 Tw
 /F1 11 Tf
 (bone ) Tj
@@ -1860,7 +1876,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 625 Tm
+1 0 0 1 64 567 Tm
 1.515 Tw
 /F1 11 Tf
 (\(approximately ) Tj
@@ -1882,7 +1898,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 608 Tm
+1 0 0 1 64 550 Tm
 0.000 Tw
 /F1 11 Tf
 (than ) Tj
@@ -1901,7 +1917,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 581 Tm
+1 0 0 1 64 523 Tm
 2.522 Tw
 /F1 11 Tf
 (But ) Tj
@@ -1926,7 +1942,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 564 Tm
+1 0 0 1 64 506 Tm
 1.460 Tw
 /F1 11 Tf
 (PEEK-bone ) Tj
@@ -1946,7 +1962,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 547 Tm
+1 0 0 1 64 489 Tm
 0.026 Tw
 /F1 11 Tf
 (rates ) Tj
@@ -1969,7 +1985,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 530 Tm
+1 0 0 1 64 472 Tm
 0.000 Tw
 /F1 11 Tf
 (of ) Tj
@@ -1981,7 +1997,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 503 Tm
+1 0 0 1 64 445 Tm
 6.014 Tw
 /F1 11 Tf
 (The ) Tj
@@ -2000,7 +2016,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 486 Tm
+1 0 0 1 64 428 Tm
 2.628 Tw
 /F1 11 Tf
 (Plasma-sprayed ) Tj
@@ -2017,7 +2033,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 469 Tm
+1 0 0 1 64 411 Tm
 0.031 Tw
 /F1 11 Tf
 (Porous ) Tj
@@ -2038,7 +2054,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 452 Tm
+1 0 0 1 64 394 Tm
 0.472 Tw
 /F1 11 Tf
 (fiber ) Tj
@@ -2056,7 +2072,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 435 Tm
+1 0 0 1 64 377 Tm
 1.687 Tw
 /F1 11 Tf
 (between ) Tj
@@ -2078,7 +2094,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 418 Tm
+1 0 0 1 64 360 Tm
 3.316 Tw
 /F1 11 Tf
 (because ) Tj
@@ -2097,7 +2113,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 401 Tm
+1 0 0 1 64 343 Tm
 0.000 Tw
 /F1 11 Tf
 (properties ) Tj
@@ -2115,7 +2131,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 374 Tm
+1 0 0 1 64 316 Tm
 0.624 Tw
 /F1 11 Tf
 (It's ) Tj
@@ -2136,7 +2152,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 357 Tm
+1 0 0 1 64 299 Tm
 0.000 Tw
 /F1 11 Tf
 (a ) Tj
@@ -2159,7 +2175,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 314 Tm
+1 0 0 1 64 256 Tm
 0.000 Tw
 /F2 12.5 Tf
 (Hydrogels ) Tj
@@ -2170,7 +2186,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 291 Tm
+1 0 0 1 64 233 Tm
 0.678 Tw
 /F1 11 Tf
 (Tissue ) Tj
@@ -2193,7 +2209,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 274 Tm
+1 0 0 1 64 216 Tm
 0.000 Tw
 /F1 11 Tf
 (into ) Tj
@@ -2209,7 +2225,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 247 Tm
+1 0 0 1 64 189 Tm
 2.594 Tw
 /F1 11 Tf
 (The ) Tj
@@ -2230,7 +2246,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 230 Tm
+1 0 0 1 64 172 Tm
 2.426 Tw
 /F1 11 Tf
 (strategy: ) Tj
@@ -2250,7 +2266,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 213 Tm
+1 0 0 1 64 155 Tm
 1.774 Tw
 /F1 11 Tf
 (result. ) Tj
@@ -2271,7 +2287,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 196 Tm
+1 0 0 1 64 138 Tm
 1.631 Tw
 /F1 11 Tf
 (engineering ) Tj
@@ -2289,7 +2305,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 179 Tm
+1 0 0 1 64 121 Tm
 1.106 Tw
 /F1 11 Tf
 (bladder ) Tj
@@ -2309,71 +2325,10 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 162 Tm
+1 0 0 1 64 104 Tm
 0.000 Tw
 /F1 11 Tf
 (elusive.) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 135 Tm
-3.448 Tw
-/F1 11 Tf
-(Hydrogels ) Tj
-(have ) Tj
-(become ) Tj
-(central ) Tj
-(to ) Tj
-(tissue ) Tj
-(engineering ) Tj
-(scaffolds. ) Tj
-(A ) Tj
-(hydrogel ) Tj
-(is ) Tj
-(a ) Tj
-(crosslinked) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 118 Tm
-4.177 Tw
-/F1 11 Tf
-(polymer ) Tj
-(network ) Tj
-(that ) Tj
-(absorbs ) Tj
-(large ) Tj
-(amounts ) Tj
-(of ) Tj
-(water, ) Tj
-(up ) Tj
-(to ) Tj
-(99% ) Tj
-(water ) Tj
-(content ) Tj
-(in ) Tj
-(some) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 101 Tm
-2.151 Tw
-/F1 11 Tf
-(formulations, ) Tj
-(producing ) Tj
-(a ) Tj
-(soft, ) Tj
-(pliable ) Tj
-(material ) Tj
-(that ) Tj
-(mechanically ) Tj
-(resembles ) Tj
-(soft ) Tj
-(tissue. ) Tj
-(Natural) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -2397,11 +2352,72 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
 endobj
 15 0 obj
-<< /Length 7099 >>
+<< /Length 7446 >>
 stream
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 703 Tm
+3.448 Tw
+/F1 11 Tf
+(Hydrogels ) Tj
+(have ) Tj
+(become ) Tj
+(central ) Tj
+(to ) Tj
+(tissue ) Tj
+(engineering ) Tj
+(scaffolds. ) Tj
+(A ) Tj
+(hydrogel ) Tj
+(is ) Tj
+(a ) Tj
+(crosslinked) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 686 Tm
+4.177 Tw
+/F1 11 Tf
+(polymer ) Tj
+(network ) Tj
+(that ) Tj
+(absorbs ) Tj
+(large ) Tj
+(amounts ) Tj
+(of ) Tj
+(water, ) Tj
+(up ) Tj
+(to ) Tj
+(99% ) Tj
+(water ) Tj
+(content ) Tj
+(in ) Tj
+(some) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+2.151 Tw
+/F1 11 Tf
+(formulations, ) Tj
+(producing ) Tj
+(a ) Tj
+(soft, ) Tj
+(pliable ) Tj
+(material ) Tj
+(that ) Tj
+(mechanically ) Tj
+(resembles ) Tj
+(soft ) Tj
+(tissue. ) Tj
+(Natural) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 652 Tm
 0.653 Tw
 /F1 11 Tf
 (hydrogels ) Tj
@@ -2419,7 +2435,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 686 Tm
+1 0 0 1 64 635 Tm
 5.042 Tw
 /F1 11 Tf
 (acid, ) Tj
@@ -2438,7 +2454,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 669 Tm
+1 0 0 1 64 618 Tm
 0.591 Tw
 /F1 11 Tf
 (\(polyethylene ) Tj
@@ -2456,7 +2472,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 652 Tm
+1 0 0 1 64 601 Tm
 0.000 Tw
 /F1 11 Tf
 (rates.) Tj
@@ -2464,7 +2480,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 625 Tm
+1 0 0 1 64 574 Tm
 2.762 Tw
 /F1 11 Tf
 (Gelatin ) Tj
@@ -2485,7 +2501,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 608 Tm
+1 0 0 1 64 557 Tm
 2.022 Tw
 /F1 11 Tf
 (bioprinting: ) Tj
@@ -2505,7 +2521,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 591 Tm
+1 0 0 1 64 540 Tm
 1.679 Tw
 /F1 11 Tf
 (then ) Tj
@@ -2526,7 +2542,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 574 Tm
+1 0 0 1 64 523 Tm
 3.275 Tw
 /F1 11 Tf
 (supplying ) Tj
@@ -2547,7 +2563,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 557 Tm
+1 0 0 1 64 506 Tm
 0.000 Tw
 /F1 11 Tf
 (unsolved ) Tj
@@ -2559,7 +2575,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 530 Tm
+1 0 0 1 64 479 Tm
 1.536 Tw
 /F1 11 Tf
 (Injectable ) Tj
@@ -2580,7 +2596,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 513 Tm
+1 0 0 1 64 462 Tm
 0.202 Tw
 /F1 11 Tf
 (body ) Tj
@@ -2601,7 +2617,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 496 Tm
+1 0 0 1 64 445 Tm
 0.923 Tw
 /F1 11 Tf
 (for ) Tj
@@ -2624,7 +2640,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 479 Tm
+1 0 0 1 64 428 Tm
 0.000 Tw
 /F1 11 Tf
 (fillers ) Tj
@@ -2641,7 +2657,7 @@ BT
 ET
 BT
 0.059 0.153 0.251 rg
-1 0 0 1 64 436 Tm
+1 0 0 1 64 385 Tm
 0.000 Tw
 /F2 12.5 Tf
 (Where ) Tj
@@ -2653,7 +2669,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 413 Tm
+1 0 0 1 64 362 Tm
 2.176 Tw
 /F1 11 Tf
 (Zwitterionic ) Tj
@@ -2673,7 +2689,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 396 Tm
+1 0 0 1 64 345 Tm
 3.445 Tw
 /F1 11 Tf
 (protein ) Tj
@@ -2693,7 +2709,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 379 Tm
+1 0 0 1 64 328 Tm
 3.680 Tw
 /F1 11 Tf
 (standard ) Tj
@@ -2712,7 +2728,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 362 Tm
+1 0 0 1 64 311 Tm
 1.169 Tw
 /F1 11 Tf
 (maintain ) Tj
@@ -2735,7 +2751,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 345 Tm
+1 0 0 1 64 294 Tm
 3.650 Tw
 /F1 11 Tf
 (excludes ) Tj
@@ -2753,7 +2769,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 328 Tm
+1 0 0 1 64 277 Tm
 0.000 Tw
 /F1 11 Tf
 (catheters, ) Tj
@@ -2771,7 +2787,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 301 Tm
+1 0 0 1 64 250 Tm
 2.584 Tw
 /F1 11 Tf
 (Bioelectric ) Tj
@@ -2791,7 +2807,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 284 Tm
+1 0 0 1 64 233 Tm
 1.558 Tw
 /F1 11 Tf
 (tissue, ) Tj
@@ -2813,7 +2829,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 267 Tm
+1 0 0 1 64 216 Tm
 1.395 Tw
 /F1 11 Tf
 (with ) Tj
@@ -2834,7 +2850,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 250 Tm
+1 0 0 1 64 199 Tm
 3.850 Tw
 /F1 11 Tf
 (polymers ) Tj
@@ -2851,7 +2867,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 233 Tm
+1 0 0 1 64 182 Tm
 1.765 Tw
 /F1 11 Tf
 (biodegradable ) Tj
@@ -2871,7 +2887,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 216 Tm
+1 0 0 1 64 165 Tm
 0.000 Tw
 /F1 11 Tf
 (spatial ) Tj
@@ -2880,7 +2896,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 189 Tm
+1 0 0 1 64 138 Tm
 0.445 Tw
 /F1 11 Tf
 (The ) Tj
@@ -2906,7 +2922,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 172 Tm
+1 0 0 1 64 121 Tm
 0.887 Tw
 /F1 11 Tf
 (scaffold ) Tj
@@ -2929,7 +2945,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 155 Tm
+1 0 0 1 64 104 Tm
 2.238 Tw
 /F1 11 Tf
 (probably ) Tj
@@ -2947,39 +2963,6 @@ BT
 (the ) Tj
 (most ) Tj
 (active) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 138 Tm
-0.000 Tw
-/F1 11 Tf
-(translational ) Tj
-(work ) Tj
-(is ) Tj
-(happening ) Tj
-(right ) Tj
-(now.) Tj
-0 Tw
-ET
-BT
-0.200 0.200 0.200 rg
-1 0 0 1 64 111 Tm
-0.000 Tw
-/F3 11 Tf
-(For ) Tj
-(more ) Tj
-(information ) Tj
-(or ) Tj
-(if ) Tj
-(you ) Tj
-(have ) Tj
-(any ) Tj
-(questions, ) Tj
-(please ) Tj
-(contact ) Tj
-(the ) Tj
-(author.) Tj
 0 Tw
 ET
 0.886 0.906 0.929 RG
@@ -3003,11 +2986,44 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 17 0 R >>
 endobj
 17 0 obj
-<< /Length 962 >>
+<< /Length 1333 >>
 stream
 BT
 0.200 0.200 0.200 rg
 1 0 0 1 64 703 Tm
+0.000 Tw
+/F1 11 Tf
+(translational ) Tj
+(work ) Tj
+(is ) Tj
+(happening ) Tj
+(right ) Tj
+(now.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 676 Tm
+0.000 Tw
+/F3 11 Tf
+(For ) Tj
+(more ) Tj
+(information ) Tj
+(or ) Tj
+(if ) Tj
+(you ) Tj
+(have ) Tj
+(any ) Tj
+(questions, ) Tj
+(please ) Tj
+(contact ) Tj
+(the ) Tj
+(author.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 649 Tm
 0.000 Tw
 /F2 11 Tf
 (Joshua ) Tj
@@ -3017,7 +3033,7 @@ BT
 ET
 BT
 0.200 0.200 0.200 rg
-1 0 0 1 64 676 Tm
+1 0 0 1 64 622 Tm
 0.000 Tw
 /F3 11 Tf
 (Written ) Tj
@@ -3029,32 +3045,32 @@ BT
 0 Tw
 ET
 0.969 0.976 0.988 rg
-64 550 484 92 re f
+64 496 484 92 re f
 0.176 0.549 0.941 RG
 3 w
-65.5 550 m 65.5 642 l S
+65.5 496 m 65.5 588 l S
 BT
 0.102 0.227 0.361 rg
 /F2 12 Tf
-1 0 0 1 84 616 Tm
+1 0 0 1 84 562 Tm
 (Talk to us about your materials challenge) Tj
 ET
 BT
 0.200 0.200 0.200 rg
 /F1 10 Tf
-1 0 0 1 84 598 Tm
+1 0 0 1 84 544 Tm
 (Joshua U. Otaigbe, PhD  \267  Materials Engineering Consultant) Tj
 ET
 BT
 0.200 0.200 0.200 rg
 /F1 10 Tf
-1 0 0 1 84 582 Tm
+1 0 0 1 84 528 Tm
 (info@flaneyassociates.com  \267  +1 \(601\) 402-7282) Tj
 ET
 BT
 0.176 0.549 0.941 rg
 /F1 10 Tf
-1 0 0 1 84 566 Tm
+1 0 0 1 84 512 Tm
 (flaneyassociates.com) Tj
 ET
 0.886 0.906 0.929 RG
@@ -3084,18 +3100,18 @@ xref
 0000000354 00000 n 
 0000000459 00000 n 
 0000000605 00000 n 
-0000007562 00000 n 
-0000007708 00000 n 
-0000014347 00000 n 
-0000014495 00000 n 
-0000021762 00000 n 
-0000021910 00000 n 
-0000029229 00000 n 
-0000029377 00000 n 
-0000036529 00000 n 
-0000036677 00000 n 
+0000006996 00000 n 
+0000007142 00000 n 
+0000013704 00000 n 
+0000013852 00000 n 
+0000021196 00000 n 
+0000021344 00000 n 
+0000028588 00000 n 
+0000028736 00000 n 
+0000036235 00000 n 
+0000036383 00000 n 
 trailer
 << /Size 18 /Root 1 0 R >>
 startxref
-37691
+37769
 %%EOF

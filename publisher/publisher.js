@@ -50,7 +50,8 @@
         'generate', 'generateFeedback', 'queueList', 'queueHint', 'previewFrame', 'cardFrame',
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
-        'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary', 'jumpPreview'
+        'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary', 'jumpPreview',
+        'openGuide', 'guideOverlay', 'guideClose'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -989,6 +990,27 @@
         return hint + T.esc(command);
     }
 
+    // ------------------------------------------------------------------ guide
+
+    /* The Help modal. Focus is moved into the panel on open and returned to the
+       button on close, so keyboard and screen-reader users are not left behind
+       in the page underneath. */
+    let guideOpener = null;
+
+    function openGuide() {
+        guideOpener = document.activeElement;
+        el.guideOverlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        el.guideOverlay.querySelector('.guide-panel').focus();
+    }
+
+    function closeGuide() {
+        el.guideOverlay.hidden = true;
+        document.body.style.overflow = '';
+        if (guideOpener && guideOpener.focus) guideOpener.focus();
+        guideOpener = null;
+    }
+
     // ------------------------------------------------------------------ wiring
 
     function wire() {
@@ -1052,6 +1074,16 @@
         });
 
         el.deletePost.addEventListener('click', confirmDelete);
+        el.openGuide.addEventListener('click', openGuide);
+        el.guideClose.addEventListener('click', closeGuide);
+        el.guideOverlay.addEventListener('click', function (e) {
+            // Only a click on the backdrop itself, not inside the panel.
+            if (e.target === el.guideOverlay) closeGuide();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !el.guideOverlay.hidden) closeGuide();
+        });
+
         el.jumpPreview.addEventListener('click', function () {
             document.querySelector('.preview-column').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });

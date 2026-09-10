@@ -495,3 +495,152 @@ pre.terminal .c { color: #6b8299; }
     .brand .sub { display: none; }
     .panel-body { padding: 16px; }
 }
+
+/* ===== Guide modal =====
+   Opened from the Help button. Deliberately its own overlay rather than reusing
+   the site's .modal-overlay: publisher.css does not load styles.css, and the
+   guide is a long scrolling document rather than a short form. */
+.guide-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(15, 39, 64, 0.55);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.guide-panel {
+    background: var(--bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: min(760px, 100%);
+    max-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    outline: none;
+}
+
+.guide-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #fff, var(--bg-alt));
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+.guide-head h2 {
+    font-size: 1.05rem;
+    color: var(--primary);
+    letter-spacing: 0.01em;
+}
+
+.guide-close {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 6px;
+}
+.guide-close:hover { color: var(--err); background: var(--bg-alt); }
+
+.guide-body {
+    padding: 4px 24px 28px;
+    overflow-y: auto;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-light);
+}
+
+.guide-body h3 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin: 26px 0 10px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+.guide-body h3:first-child { border-top: 0; padding-top: 8px; margin-top: 8px; }
+
+.guide-body p { margin-bottom: 10px; }
+.guide-body a { text-decoration: underline; }
+.guide-body code {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.88em;
+    color: var(--primary);
+}
+.guide-body kbd {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.82em;
+    font-family: inherit;
+    color: var(--primary);
+}
+
+.guide-sub {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 16px 0 6px !important;
+    font-size: 0.88rem;
+}
+
+.guide-steps, .guide-list { padding-left: 20px; margin-bottom: 12px; }
+.guide-steps li, .guide-list li { margin-bottom: 9px; }
+.guide-steps { counter-reset: none; }
+
+/* The one thing on each screen that stops a bad publish. */
+.guide-flag {
+    display: block;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: #fef3e2;
+    color: #8a5200;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+}
+
+.guide-note {
+    padding: 10px 14px;
+    background: var(--accent-light);
+    color: var(--primary-dark);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+}
+
+.guide-table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+.guide-table th, .guide-table td {
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.88rem;
+}
+.guide-table th { background: var(--bg-alt); color: var(--primary); width: 38%; }
+
+.guide-trouble { margin-bottom: 8px; }
+.guide-trouble dt {
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 14px;
+    font-size: 0.9rem;
+}
+.guide-trouble dd { margin: 4px 0 0; padding-left: 0; }
+
+@media (max-width: 640px) {
+    .guide-overlay { padding: 0; }
+    .guide-panel { max-height: 100vh; border-radius: 0; }
+    .guide-head { border-radius: 0; }
+    .guide-body { padding: 4px 18px 24px; }
+    .guide-table th { width: auto; }
+}

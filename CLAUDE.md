@@ -292,6 +292,11 @@ The command picks the newest matching download (`ls -t | head -1`) because a sec
 
 The repository path it needs lives in `localStorage` under `flaney_publisher_paths`, **not** in `template.json` — that file is committed and served publicly, and a local filesystem path (with the machine's username in it) does not belong there. The field is in step 1; without it the command shows a placeholder.
 
+### The in-app guide
+A **❓ Help** button in the top bar opens a modal documenting the workflow, every control, and the common failures — cache confusion, PAT prompts, non-fast-forward pushes, a post missing from the queue because it was never pushed. It is plain markup in `publisher/index.html`; editing the copy needs no code change.
+
+Two things it states explicitly, because both have been assumed otherwise: the dashboard **cannot push to GitHub** (it prepares files; `publish.sh` does the git work), and the **LinkedIn tab performs no authentication and posts nothing** — it composes text for the author to copy by hand.
+
 ### The monthly template
 Defaults live in **`publisher/template.json`**, committed to the repo:
 

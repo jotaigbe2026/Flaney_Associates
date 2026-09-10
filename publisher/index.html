@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="publisher.css?v=1a8ad43b">
+    <link rel="stylesheet" href="publisher.css?v=898115d3">
 </head>
 <body>
 
@@ -24,6 +24,7 @@
             <button class="btn btn-ghost btn-sm" id="startNextMonth" type="button">&#128197; Start next month's post</button>
             <button class="btn btn-ghost btn-sm" id="resetForm" type="button">Clear</button>
             <button class="btn btn-ghost btn-sm" id="jumpPreview" type="button">&#128071; Preview</button>
+            <button class="btn btn-ghost btn-sm" id="openGuide" type="button">&#10067; Help</button>
             <a class="btn btn-ghost btn-sm" href="../blog/index.html" target="_blank" rel="noopener">View blog &#8599;</a>
         </div>
     </div>
@@ -316,11 +317,177 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
     </div>
 </main>
 
+
+<div class="guide-overlay" id="guideOverlay" hidden>
+    <div class="guide-panel" role="dialog" aria-modal="true" aria-labelledby="guideTitle" tabindex="-1">
+        <div class="guide-head">
+            <h2 id="guideTitle">Publisher guide</h2>
+            <button class="guide-close" id="guideClose" type="button" aria-label="Close the guide">&times;</button>
+        </div>
+
+        <div class="guide-body">
+
+            <h3>1 &middot; Publish a post in five steps</h3>
+
+            <ol class="guide-steps">
+                <li><strong>Start.</strong> Click <em>&#128197; Start next month&rsquo;s post</em>. The date, byline and
+                    categories fill in from your monthly template, using the next month that has no post.</li>
+                <li><strong>Write.</strong> Copy your article in <strong>Word</strong> and paste it into step 3.
+                    A green note confirms what arrived &mdash; <em>&ldquo;Formatting kept from your document &mdash;
+                    8 headings, 31 paragraphs, 18 bullets.&rdquo;</em>
+                    <span class="guide-flag">If it says 0 or 1 headings, stop and check the preview. Something did not
+                    survive the paste.</span></li>
+                <li><strong>Add the image.</strong> Drop your Canva export into step 4. It is resized to 1600px and
+                    converted automatically &mdash; a 2&nbsp;MB PNG becomes roughly 140&nbsp;KB. Do not resize it yourself.</li>
+                <li><strong>Check the preview.</strong> The right-hand panel renders the finished page with the real
+                    stylesheet. Confirm the headings are bold and the paragraphs are separated.</li>
+                <li><strong>Generate, then publish.</strong> Press <em>Generate the publish bundle</em>, then run the
+                    command from the <strong>Files</strong> tab in Terminal. Live in about a minute.</li>
+            </ol>
+
+            <p class="guide-note">Editing a post you have already written? Use <em>Edit published</em> in step 2, and
+                press <em>&#8635; Regenerate from the article</em> under the card summary after a rewrite &mdash; the
+                summary keeps its old text otherwise, and that text is what appears on the blog card, in Google and in
+                the LinkedIn preview.</p>
+
+            <h3>2 &middot; How your files reach GitHub</h3>
+
+            <p><strong>This dashboard never touches GitHub.</strong> It holds no password and has no connection to it.
+                It only prepares files. There are two routes:</p>
+
+            <table class="guide-table">
+                <tr>
+                    <th>Folder connected (Chrome)</th>
+                    <td>Generate writes the files straight into your repository folder. No download.</td>
+                </tr>
+                <tr>
+                    <th>Not connected, or Safari</th>
+                    <td>Generate gives you a <code>.zip</code>; the publish script finds and unpacks it.</td>
+                </tr>
+            </table>
+
+            <p>Either way, <code>./publish.sh</code> does the committing and pushing, and deletes the bundle once it has
+                been published.</p>
+
+            <h3>3 &middot; Every button, briefly</h3>
+
+            <p class="guide-sub">Top bar</p>
+            <ul class="guide-list">
+                <li><strong>&#128197; Start next month&rsquo;s post</strong> &mdash; sets up the next open month</li>
+                <li><strong>Clear</strong> &mdash; empties the form; your monthly template is kept</li>
+                <li><strong>&#128071; Preview</strong> &mdash; jumps to the preview panel, which moves below the form on
+                    a narrow window</li>
+                <li><strong>View blog &#8599;</strong> &mdash; opens your live blog</li>
+                <li><strong>&#10067; Help</strong> &mdash; this guide</li>
+            </ul>
+
+            <p class="guide-sub">Steps 1&ndash;6</p>
+            <ul class="guide-list">
+                <li><strong>1 Monthly template</strong> &mdash; byline, publish day, standing byline, repository folder.
+                    Saved per browser; <em>Download for repo</em> makes it permanent across machines</li>
+                <li><strong>2 Article details</strong> &mdash; title, URL, categories, date. Two tabs:
+                    <em>New post</em> and <em>Edit published</em></li>
+                <li><strong>3 The article</strong> &mdash; paste here</li>
+                <li><strong>4 Featured image</strong> &mdash; optimised automatically</li>
+                <li><strong>5 Gated PDF</strong> &mdash; built from your text; readers give a name and email to download it</li>
+                <li><strong>6 Publish</strong> &mdash; connect the folder, then Generate</li>
+            </ul>
+
+            <p class="guide-sub">Scheduled queue</p>
+            <p>Posts dated in the future, waiting. A scheduled post is committed like any other but stays hidden from the
+                blog and homepage until its morning, then appears on its own. Its own URL works straight away, so you can
+                proof it early.</p>
+
+            <p class="guide-sub">Preview tabs</p>
+            <ul class="guide-list">
+                <li><strong>Article page</strong> &mdash; the finished page</li>
+                <li><strong>Archive card</strong> &mdash; how it looks in the blog list</li>
+                <li><strong>LinkedIn</strong> &mdash; see below</li>
+                <li><strong>Files</strong> &mdash; what to commit, and the command to run</li>
+            </ul>
+
+            <h3>4 &middot; The LinkedIn tab &mdash; what it does not do</h3>
+
+            <p class="guide-flag">It does not connect to LinkedIn. There is no login, no authorisation, no automatic
+                posting and no cross-posting. Nothing is sent anywhere.</p>
+
+            <p>It is a writing aid. It shows two things for you to copy by hand:</p>
+
+            <ul class="guide-list">
+                <li><strong>Page URL</strong> &mdash; your article&rsquo;s address, with a Copy button</li>
+                <li><strong>Draft post</strong> &mdash; the headline, your summary, a line pointing at the article, the
+                    URL, and hashtags built from your categories</li>
+            </ul>
+
+            <p>Copy it, open LinkedIn yourself, paste, edit and post. Put the URL on its own line: LinkedIn builds the
+                preview card from your page&rsquo;s title, description and image, all of which are written into the page
+                automatically.</p>
+
+            <h3>5 &middot; Troubleshooting</h3>
+
+            <dl class="guide-trouble">
+                <dt>A change I made is not showing</dt>
+                <dd>GitHub caches pages for ten minutes. Hard-refresh with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>,
+                    or add <code>?v=2</code> to the address. Use one browser &mdash; switching between Chrome and Safari
+                    shows you two different cached versions.</dd>
+
+                <dt>&ldquo;Support for password authentication was removed&rdquo;, or the push is refused</dt>
+                <dd>GitHub wants a token, not your password. Create one at
+                    <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a>
+                    &rarr; <em>Generate new token (classic)</em> &rarr; tick <code>repo</code>. At the prompt the
+                    username is <code>jotaigbe2026</code> and the password is the token. Your keychain remembers it.</dd>
+
+                <dt>&ldquo;Updates were rejected&hellip; non-fast-forward&rdquo;</dt>
+                <dd>Something else pushed first, usually the automated monthly featured-article job. Run
+                    <code>git pull --no-rebase origin main</code>, resolve anything it flags, then run the publish script.
+                    <strong>Never force-push.</strong></dd>
+
+                <dt><code>fatal: not a git repository</code></dt>
+                <dd>Terminal opened in your home folder. The <code>cd</code> is part of the command &mdash; paste the
+                    whole line, not just the last part.</dd>
+
+                <dt>I ran the command and nothing happened</dt>
+                <dd>You pasted into a window that is already running something, such as the preview server. Open a new
+                    Terminal window with <kbd>Cmd</kbd>+<kbd>N</kbd>.</dd>
+
+                <dt>My post vanished from the queue and the Edit list</dt>
+                <dd>It is on your Mac but not on GitHub. Run <code>git status</code>; if it reports commits ahead, run
+                    the publish script.</dd>
+
+                <dt>The preview is blank</dt>
+                <dd>An empty form previews an empty article. Load a post with <em>Edit published</em>, or start typing.</dd>
+
+                <dt>I cannot find the preview</dt>
+                <dd>On a narrow window it moves below the form. Widen the window, or press <em>&#128071; Preview</em>.</dd>
+
+                <dt>I deleted something by accident</dt>
+                <dd>Nothing is ever lost. Every version of every file is kept in the repository&rsquo;s history and can be
+                    restored exactly, including posts, images and PDFs.</dd>
+            </dl>
+
+            <h3>Getting help</h3>
+
+            <ul class="guide-list">
+                <li><strong>Something is broken and you want it fixed</strong> &mdash; open Claude Code in the
+                    <code>Flaney_Associates</code> folder and describe what happened. It can read the site, check what is
+                    published and repair things directly. That is how this dashboard was built.</li>
+                <li><strong>How and why it works this way</strong> &mdash;
+                    <a href="https://github.com/jotaigbe2026/Flaney_Associates/blob/main/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>
+                    records the decisions behind it</li>
+                <li><strong>Something to come back to later</strong> &mdash;
+                    <a href="https://github.com/jotaigbe2026/Flaney_Associates/issues" target="_blank" rel="noopener">open an issue</a>.
+                    Note that this repository is public, so anything written there is public too.</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="lib/zip.js?v=87fd8664"></script>
 <script src="lib/pdf.js?v=b4f0c65b"></script>
 <script src="lib/template.js?v=553eee45"></script>
-<script src="publisher.js?v=81175d93"></script>
+<script src="publisher.js?v=db89ea1a"></script>
 </body>
 </html>

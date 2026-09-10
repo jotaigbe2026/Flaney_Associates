@@ -500,6 +500,12 @@ pre.terminal .c { color: #6b8299; }
    Opened from the Help button. Deliberately its own overlay rather than reusing
    the site's .modal-overlay: publisher.css does not load styles.css, and the
    guide is a long scrolling document rather than a short form. */
+/* Must beat `.guide-overlay`'s own display. The hidden attribute only carries
+   `display: none` from the UA stylesheet, which any class rule outranks — so
+   `display: grid` below left the panel permanently on screen and made the
+   close button, Escape and the backdrop all appear to do nothing. */
+.guide-overlay[hidden] { display: none; }
+
 .guide-overlay {
     position: fixed;
     inset: 0;

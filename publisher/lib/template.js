@@ -910,8 +910,7 @@ ${chips.map(c => '                ' + c).join('\n')}
     const HOMEPAGE_EXCLUDE = new Set([
         'unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness',
         'boardgpt-using-ai-in-the-boardroom',
-        'empowering-smarter-corporate-boards-with-ai',
-        'how-ai-is-transforming-scientific-research'
+            'how-ai-is-transforming-scientific-research'
     ]);
 
     /* Swap the insights strip inside the existing index.html. Only the marked

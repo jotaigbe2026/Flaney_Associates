@@ -812,7 +812,6 @@ END = "            <!-- END imported-blog -->"
 HOMEPAGE_EXCLUDE = {
     "unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness",
     "boardgpt-using-ai-in-the-boardroom",
-    "empowering-smarter-corporate-boards-with-ai",
     "how-ai-is-transforming-scientific-research",
 }
 

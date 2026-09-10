@@ -293,11 +293,21 @@
         el.summary.value = post.summary || post.excerpt || '';
         el.imageAlt.value = post.image_alt || '';
 
+        /* The slug is always locked — it is the published address. The date is
+           only locked once the post has actually appeared: re-dating a live
+           article would shove a typo fix to the top of the archive, but a
+           scheduled post has not been seen by anyone, so moving it from October
+           to November is an ordinary thing to want and nothing downstream
+           cares. */
+        const notYetVisible = String(post.date).slice(0, 10) > todayISO();
         el.slug.readOnly = true;
-        el.pubDate.readOnly = true;
+        el.pubDate.readOnly = !notYetVisible;
         el.deletePost.hidden = false;
         el.slugLockNote.hidden = false;
-        el.dateLockNote.hidden = false;
+        el.dateLockNote.hidden = notYetVisible;
+        el.dateHelp.textContent = notYetVisible
+            ? 'Not published yet — you can still move this date.'
+            : '';
         el.generate.textContent = 'Rebuild the bundle for this post';
 
         state.selected.clear();
@@ -415,10 +425,13 @@
             id: editing ? editing.id
                 : state.posts.reduce((max, p) => Math.max(max, p.id || 0), 16000) + 1,
             slug: slug,
-            // Keep a published post's date verbatim — a correction is not a
+            // A live post keeps its date verbatim — a correction is not a
             // republication, and re-dating it would shove a typo fix to the top
-            // of the archive and into the homepage strip.
-            date: editing ? editing.date : (el.pubDate.value || todayISO()) + 'T09:00:00',
+            // of the archive and into the homepage strip. A post that has not
+            // appeared yet may be moved, so the field wins when it is unlocked.
+            date: (editing && el.pubDate.readOnly)
+                ? editing.date
+                : (el.pubDate.value || todayISO()) + 'T09:00:00',
             modified: todayISO() + 'T09:00:00',
             link: editing ? editing.link : T.SITE + '/blog/' + slug + '.html',
             title: title,
@@ -548,11 +561,23 @@
             `<span class="stat-pill"><strong>${(post.content.match(/<li>/g) || []).length}</strong> list items</span>`;
         el.bodyHint.textContent = post.words ? T.readTime(post.words) + ' min read' : 'Paste and go';
 
-        if (state.editing) {
+        if (state.editing && el.pubDate.readOnly) {
             notice(el.scheduleNotice, 'ok',
                 'Revising a published article. It keeps its address and its date of <strong>' +
                 T.fmtDate(post.date) + '</strong>, so it stays where it is in the archive ' +
                 'rather than being promoted as new. The change is live once you commit.');
+        } else if (state.editing) {
+            const moved = String(post.date).slice(0, 10) !== String(state.editing.date).slice(0, 10);
+            if (!scheduled) {
+                notice(el.scheduleNotice, 'warn',
+                    'That date is today or earlier, so this post stops being scheduled and ' +
+                    '<strong>appears as soon as you commit</strong>. Its address does not change.');
+            } else {
+                notice(el.scheduleNotice, 'info',
+                    (moved ? 'Moved to <strong>' : 'Scheduled for <strong>') + T.fmtDate(post.date) +
+                    '</strong>. It has not appeared yet, so changing the date costs nothing — ' +
+                    'the card stays hidden until that morning. Its address stays the same.');
+            }
         } else if (!el.pubDate.value) {
             el.scheduleNotice.hidden = true;
         } else if (scheduled) {

@@ -24,7 +24,9 @@ printf '\nPublishing from %s\n\n' "$(pwd)"
 # Finder cannot do this: double-clicking a zip expands it into a new folder
 # rather than merging it into the repository.
 ZIP=$(ls -t ~/Downloads/flaney-*.zip 2>/dev/null | head -1)
+USED_ZIP=""
 if [ -n "$ZIP" ] && [ -z "$(git status --porcelain)" ]; then
+    USED_ZIP="$ZIP"
     say "No pending changes, but found a bundle: $(basename "$ZIP")"
     say "Unpacking it…"
     unzip -o -q "$ZIP" || fail "Could not unpack that bundle."
@@ -121,6 +123,15 @@ say "✓ committed — $MESSAGE"
 
 if git push -q origin main 2>/dev/null; then
     say "✓ pushed to GitHub"
+
+    # The bundle has done its job and its contents are now committed and
+    # pushed. Leaving it in Downloads is a trap rather than a backup: this
+    # script unpacks the newest matching zip whenever the repo is clean, so a
+    # stale one can silently overwrite newer work on a later run. Only the zip
+    # actually unpacked by this run is removed.
+    if [ -n "$USED_ZIP" ] && [ -f "$USED_ZIP" ]; then
+        rm -f "$USED_ZIP" && say "✓ removed $(basename "$USED_ZIP") from Downloads"
+    fi
     if [ -n "$SLUG" ]; then
         printf '\n  Live in about a minute:\n'
         printf '  https://jotaigbe2026.github.io/Flaney_Associates/blog/%s.html\n\n' "$SLUG"

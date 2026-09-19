@@ -37,6 +37,8 @@ SOURCE_SITE = "https://flaneyassociates.com"
 with open(os.path.join(ROOT, "site.json")) as _f:
     BASE_URL = json.load(_f)["base_url"]
 
+LIVE = "https://www.flaneyassociates.com"
+
 # ---------------------------------------------------------------- sanitising
 
 SHORTCODE = re.compile(r"\[/?(?:vc_|wpb_)[a-z_]*(?:[^\]]*)\]", re.I)
@@ -685,6 +687,8 @@ def build_post(p, posts):
     cats = p["categories"] or ["Materials Engineering"]
     desc = summarise(p).replace('"', "&quot;")
 
+    post_url = "%s/blog/%s.html" % (LIVE, p["slug"])
+
     og = """    <meta property="og:type" content="article">
     <meta property="og:title" content="{t}">
     <meta property="og:description" content="{d}">
@@ -697,6 +701,33 @@ def build_post(p, posts):
            # authoritative copy lived somewhere that will stop resolving.
            canon="%s/blog/%s.html" % (BASE_URL, p["slug"]),
            img=('    <meta property="og:image" content="%s">\n' % p["image"]) if p["image"] else "")
+
+    schema_ld = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": strip_tags(p["title"]),
+        "description": summarise(p),
+        "url": post_url,
+        "mainEntityOfPage": post_url,
+        "datePublished": p["date"][:10],
+        "dateModified": p.get("modified", p["date"])[:10],
+        "author": {
+            "@type": "Person",
+            "name": "Joshua U. Otaigbe",
+            "honorificSuffix": "PhD, CEng, FIMMM",
+            "url": "%s/about.html" % LIVE,
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Flaney Associates",
+            "url": LIVE,
+        },
+    }
+    if p.get("image"):
+        schema_ld["image"] = p["image"]
+    og += ('    <script type="application/ld+json">\n'
+           + json.dumps(schema_ld, indent=4)
+           + '\n    </script>\n')
 
     html = head("%s | Flaney Associates" % strip_tags(p["title"]), desc, depth=1, extra=og)
     html += nav(1, solid=True) + "\n"

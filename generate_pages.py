@@ -29,6 +29,10 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(ROOT, "site.json")) as _f:
     SITE = json.load(_f)["base_url"]
 
+# The live custom domain — used only for schema markup URLs, which must always
+# point at the canonical origin rather than the GitHub Pages deployment URL.
+LIVE = "https://www.flaneyassociates.com"
+
 # Two inboxes, deliberately. The general address is a shared mailbox and is what
 # the site has always used; the principal's address is for the attorney conflict
 # check, where the enquiry names opposing parties and should reach one person.
@@ -115,11 +119,11 @@ def asset_version(name):
 
 # ------------------------------------------------------------------- chrome
 
-def head(title, description, depth=0, canonical=""):
+def head(title, description, depth=0, canonical="", schema=""):
     up = "../" * depth
     canon = ('    <link rel="canonical" href="%s/%s">\n' % (SITE, canonical)
              if canonical else "")
-    return """<!DOCTYPE html>
+    result = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,6 +151,10 @@ def head(title, description, depth=0, canonical=""):
 """.format(title=title, desc=description, up=up, canon=canon,
            cssv=asset_version("styles.css"),
            blogv=asset_version(os.path.join("blog", "blog.css")))
+    if schema:
+        inject = '    <script type="application/ld+json">\n' + schema + '\n    </script>\n'
+        result = result.replace('</head>\n', inject + '</head>\n', 1)
+    return result
 
 
 # How We Help. The order is the order a problem usually arrives in: something
@@ -467,6 +475,102 @@ def tags(items):
     return ('<ul class="tag-list">\n'
             + "\n".join("                    <li>%s</li>" % i for i in items)
             + "\n                </ul>")
+
+
+# ---------------------------------------------------------- schema helpers
+
+_ORG_REF = {
+    "@type": "Organization",
+    "name": "Flaney Associates",
+    "url": LIVE,
+}
+
+_SERVICE_META = {
+    "failure-analysis": {
+        "name": "Failure & Root-Cause Analysis",
+        "description": ("Independent materials failure analysis for manufacturers "
+                        "and attorneys. Determine why a material, component or "
+                        "product failed and what corrective action is defensible."),
+        "serviceType": "Materials Failure Analysis",
+    },
+    "materials-selection": {
+        "name": "Materials Selection & Qualification",
+        "description": ("Materials selection and qualification for product teams "
+                        "and manufacturers. Choose and validate the right material "
+                        "for the application, processing route and regulatory context."),
+        "serviceType": "Materials Selection Consulting",
+    },
+    "product-development": {
+        "name": "Product Development & Materials Innovation",
+        "description": ("Independent materials-science support from concept through "
+                        "production — formulation, testing, scale-up and supplier "
+                        "qualification for new products and reformulations."),
+        "serviceType": "Product Development Consulting",
+    },
+    "process-optimization": {
+        "name": "Manufacturing Process Optimization",
+        "description": ("Process optimization for polymer and composite manufacturers. "
+                        "Improve yield, quality and throughput by targeting the "
+                        "root cause of defects and process variability."),
+        "serviceType": "Manufacturing Process Consulting",
+    },
+    "technical-due-diligence": {
+        "name": "Technical Due Diligence & R&D Strategy",
+        "description": ("Independent technical due diligence and R&D strategy for "
+                        "technology and investment decisions in materials and "
+                        "manufacturing businesses."),
+        "serviceType": "Technical Due Diligence",
+    },
+    "expert-witness": {
+        "name": "Expert Witness & Litigation Support",
+        "description": ("Materials science expert witness and litigation support for "
+                        "product liability, IP and technical disputes. Independent, "
+                        "court-ready opinions from a chartered engineer."),
+        "serviceType": "Expert Witness Services",
+    },
+}
+
+
+def service_schema_ld(slug):
+    m = _SERVICE_META[slug]
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": m["name"],
+        "description": m["description"],
+        "serviceType": m["serviceType"],
+        "provider": _ORG_REF,
+        "url": "%s/services/%s.html" % (LIVE, slug),
+        "areaServed": "US",
+    }
+    return json.dumps(ld, indent=4)
+
+
+def person_schema_ld():
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": PRINCIPAL,
+        "honorificSuffix": LETTERS_FULL,
+        "jobTitle": "Founder and Principal",
+        "worksFor": _ORG_REF,
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Manchester (UMIST)",
+        },
+        "url": "%s/about.html" % LIVE,
+        "description": ("Professor Emeritus of Polymer Science & Engineering "
+                        "with four decades of materials science and engineering "
+                        "experience across industry and academia in North America, "
+                        "Europe and Africa."),
+        "knowsAbout": [
+            "Polymer Science", "Materials Engineering", "Failure Analysis",
+            "Composites", "Expert Witness", "Plastics Processing",
+        ],
+        "telephone": PHONE_PRINCIPAL_TEL,
+        "email": EMAIL_PRINCIPAL,
+    }
+    return json.dumps(ld, indent=4)
 
 
 SERVICES = {}
@@ -838,7 +942,8 @@ def service_aside(current):
 def build_service(slug):
     s = SERVICES[slug]
     html = head(s["title"], s["meta"], depth=1,
-                canonical="services/%s.html" % slug)
+                canonical="services/%s.html" % slug,
+                schema=service_schema_ld(slug))
     html += nav(depth=1, active="services/" + slug) + "\n"
     html += page_hero(s["name"], s["lede"],
                       [("Home", "index.html"), ("How We Help", None),
@@ -921,7 +1026,8 @@ def build_about():
                 "Professor Joshua U. Otaigbe, PhD, CEng, FIMMM, CSci, FAEng, "
                 "FSPE — Founder and Principal of Flaney Associates, "
                 "LLC, and Professor Emeritus of Polymer Science & Engineering.",
-                depth=0, canonical="about.html")
+                depth=0, canonical="about.html",
+                schema=person_schema_ld())
     html += nav(active="about") + "\n"
     html += page_hero(
         PRINCIPAL,

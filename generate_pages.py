@@ -133,7 +133,10 @@ def head(title, description, depth=0, canonical="", schema=""):
     <meta property="og:type" content="website">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{desc}">
-{canon}    <link rel="preload" href="{up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
+{canon}    <link rel="icon" type="image/png" href="{up}favicon.png">
+    <link rel="icon" sizes="any" href="{up}favicon.ico">
+    <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
+    <link rel="preload" href="{up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{up}fonts/inter.css">
     <link rel="stylesheet" href="{up}styles.css?v={cssv}">
     <link rel="stylesheet" href="{up}blog/blog.css?v={blogv}">

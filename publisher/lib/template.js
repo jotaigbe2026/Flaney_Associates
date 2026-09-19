@@ -644,7 +644,10 @@ window.FlaneyTemplate = (function () {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <meta name="description" content="${description}">
-${extra || ''}    <link rel="preload" href="${up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
+${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
+    <link rel="icon" sizes="any" href="${up}favicon.ico">
+    <link rel="apple-touch-icon" href="${up}apple-touch-icon.png">
+    <link rel="preload" href="${up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="${up}fonts/inter.css">
     <link rel="stylesheet" href="${up}styles.css${assets.site}">
     <link rel="stylesheet" href="${up}blog/blog.css${assets.css}">

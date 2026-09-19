@@ -481,10 +481,22 @@ def tags(items):
 
 # ---------------------------------------------------------- schema helpers
 
+_ADDRESS = {
+    "@type": "PostalAddress",
+    "streetAddress": "6600 U.S. Highway 98 West, Suite D",
+    "addressLocality": "Hattiesburg",
+    "addressRegion": "MS",
+    "postalCode": "39402",
+    "addressCountry": "US",
+}
+
 _ORG_REF = {
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
     "name": "Flaney Associates",
     "url": LIVE,
+    "logo": LIVE + "/images/flaney-logo.png",
+    "telephone": PHONE_GENERAL_TEL,
+    "address": _ADDRESS,
 }
 
 _SERVICE_META = {

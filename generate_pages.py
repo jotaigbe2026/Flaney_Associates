@@ -1016,7 +1016,11 @@ def service_aside(current):
     person = ("""                <div class="aside-card" style="text-align:center">
                     %s
                     <h3 style="margin-top:14px">%s</h3>
-                    <p style="margin-bottom:0">%s<br>%s</p>
+                    <p style="margin-bottom:10px">%s<br>%s</p>
+                    <div class="cred-badges-strip" style="justify-content:center;margin:10px 0 0">
+                        <img src="../images/ceng-logo.svg" alt="Chartered Engineer (CEng)" title="Registered Chartered Engineer (UK)" style="height:48px">
+                        <img src="../images/iom3-fellow-badge.svg" alt="Fellow, Institute of Materials, Minerals &amp; Mining (FIMMM)" title="FIMMM Fellow" style="height:48px">
+                    </div>
                 </div>
 """ % (headshot(depth=1), PRINCIPAL, LETTERS_FULL, ROLE)
               if current == "expert-witness" else "")
@@ -1166,6 +1170,10 @@ def build_about():
                     <h3>{principal}</h3>
                     <p class="bio-letters">{letters}</p>
                     <p class="bio-post">Founder &amp; Principal, Flaney Associates, LLC<br>Professor Emeritus, The University of Southern Mississippi</p>
+                    <div class="cred-badges-bar">
+                        <img src="images/ceng-logo.svg" alt="Chartered Engineer (CEng)" title="Registered Chartered Engineer (UK)">
+                        <img src="images/iom3-fellow-badge.svg" alt="Fellow, Institute of Materials, Minerals &amp; Mining (FIMMM)" title="FIMMM Fellow">
+                    </div>
                     <ul>
                         <li>PhD, polymer science and engineering, University of Manchester (UMIST), England, 1984</li>
                         <li>Formerly Senior Project Leader and Engineer, Corning Incorporated</li>
@@ -1193,6 +1201,10 @@ def build_about():
                     <p>No laboratory to keep busy, no product line to favour, no material to sell. Where the answer is that the problem does not need outside help, that is the answer you get.</p>
 
                     <h2 id="credentials">Credentials, awards and honours</h2>
+                    <div class="cred-badges-strip">
+                        <img src="images/ceng-logo.svg" alt="Chartered Engineer (CEng)" title="Registered Chartered Engineer (UK)">
+                        <img src="images/iom3-fellow-badge.svg" alt="Fellow, Institute of Materials, Minerals &amp; Mining (FIMMM)" title="FIMMM Fellow">
+                    </div>
                 </div>
             </div>
         </div>

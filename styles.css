@@ -1672,6 +1672,41 @@ button.btn-download {
 .cred-card strong { display: block; font-size: 0.98rem; margin-bottom: 5px; }
 .cred-card span { font-size: 0.88rem; color: var(--text-light); }
 
+/* Professional credential badges */
+.cred-badges-bar {
+    background: rgba(255,255,255,0.94);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+}
+.cred-badges-bar img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+.cred-badges-strip {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin: 24px 0 32px;
+    flex-wrap: wrap;
+}
+.cred-badges-strip img {
+    height: 68px;
+    width: auto;
+    object-fit: contain;
+}
+@media (max-width: 480px) {
+    .cred-badges-strip { gap: 18px; }
+    .cred-badges-strip img { height: 52px; }
+    .cred-badges-bar img { height: 30px; }
+}
+
 .bio-layout {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr);

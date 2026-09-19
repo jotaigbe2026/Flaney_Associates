@@ -679,7 +679,7 @@ SERVICES = {}
 SERVICES["failure-analysis"] = dict(
     name="Failure &amp; Root-Cause Analysis",
     short="Failure Analysis",
-    title="Failure &amp; Root-Cause Analysis | Flaney Associates",
+    title="Materials Failure Analysis Consultant | Flaney Associates",
     meta=("Independent materials failure analysis for manufacturers and "
           "attorneys. Determine why a material, component or product failed "
           "and what corrective action is defensible."),
@@ -738,7 +738,7 @@ SERVICES["failure-analysis"] = dict(
 SERVICES["materials-selection"] = dict(
     name="Materials Selection &amp; Qualification",
     short="Materials Selection",
-    title="Materials Selection &amp; Qualification | Flaney Associates",
+    title="Materials Selection Consultant | Flaney Associates",
     meta=("Independent materials selection and qualification. Select and "
           "validate materials for performance, manufacturability, cost and "
           "real service conditions."),
@@ -791,7 +791,7 @@ SERVICES["materials-selection"] = dict(
 SERVICES["product-development"] = dict(
     name="Product Development &amp; Materials Innovation",
     short="Product Development",
-    title="Product Development &amp; Materials Innovation | Flaney Associates",
+    title="Materials Product Development Consultant | Flaney Associates",
     meta=("Reduce materials risk in product development, from concept through "
           "scale-up and production, with senior independent materials-science "
           "expertise."),
@@ -840,7 +840,7 @@ SERVICES["product-development"] = dict(
 SERVICES["process-optimization"] = dict(
     name="Manufacturing Process Optimization",
     short="Process Optimization",
-    title="Manufacturing Process Optimization | Flaney Associates",
+    title="Polymer &amp; Composite Process Optimization | Flaney Associates",
     meta=("Improve yield, quality, throughput and process consistency in "
           "extrusion, injection moulding, compounding and coating operations."),
     lede="Improve yield, quality, throughput and process consistency.",
@@ -944,7 +944,7 @@ SERVICES["technical-due-diligence"] = dict(
 SERVICES["expert-witness"] = dict(
     name="Expert Witness &amp; Litigation Support",
     short="Expert Witness",
-    title="Expert Witness &amp; Litigation Support | Flaney Associates",
+    title="Materials Science Expert Witness | Flaney Associates",
     meta=("Independent materials-science expert witness and litigation support "
           "for product liability, intellectual property and technical "
           "disputes. Confidential conflict checks."),
@@ -1141,7 +1141,7 @@ def build_about():
         '                    %s\n'
         '                </details>' % (q, a) for q, a in FAQS)
 
-    html = head("About %s, %s | Flaney Associates" % (PRINCIPAL, LETTERS_FULL),
+    html = head("%s, PhD | Materials Science Expert | Flaney Associates" % PRINCIPAL,
                 "Professor Joshua U. Otaigbe, PhD, CEng, FIMMM, CSci, FAEng, "
                 "FSPE — Founder and Principal of Flaney Associates, "
                 "LLC, and Professor Emeritus of Polymer Science & Engineering.",
@@ -1366,7 +1366,7 @@ def build_industries():
                 </ul>
             </div>""".format(**fields))
 
-    html = head("Industries | Flaney Associates",
+    html = head("Polymers, Composites &amp; Manufacturing Industries | Flaney Associates",
                 "Materials-science and engineering expertise across polymers "
                 "and plastics, composites, manufacturing, consumer products, "
                 "automotive and transportation, and energy and oil/gas.",

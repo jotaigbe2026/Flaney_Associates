@@ -1022,7 +1022,7 @@ def service_aside(current):
                         <img src="../images/iom3-fellow-badge.svg" alt="Fellow, Institute of Materials, Minerals &amp; Mining (FIMMM)" title="FIMMM Fellow" style="height:48px">
                     </div>
                 </div>
-""" % (headshot(depth=1), PRINCIPAL, LETTERS_FULL, ROLE)
+""" % (headshot(depth=1), PRINCIPAL, LETTERS, ROLE)
               if current == "expert-witness" else "")
 
     return """            <aside class="svc-aside">
@@ -1147,8 +1147,8 @@ def build_about():
         '                </details>' % (q, a) for q, a in FAQS)
 
     html = head("%s, PhD | Materials Science Expert | Flaney Associates" % PRINCIPAL,
-                "Professor Joshua U. Otaigbe, PhD, CEng, FIMMM, CSci, FAEng, "
-                "FSPE — Founder and Principal of Flaney Associates, "
+                "Professor Joshua U. Otaigbe, PhD, CEng, FIMMM "
+                "— Founder and Principal of Flaney Associates, "
                 "LLC, and Professor Emeritus of Polymer Science & Engineering.",
                 depth=0, canonical="about.html",
                 schema=person_schema_ld())
@@ -1235,7 +1235,7 @@ def build_about():
 {faqs}
         </div>
     </section>
-""".format(principal=PRINCIPAL, letters=LETTERS_FULL, linkedin=LINKEDIN,
+""".format(principal=PRINCIPAL, letters=LETTERS, linkedin=LINKEDIN,
            creds=creds, appointments=appointments, faqs=faqs,
            headshot=headshot(large=True))
 

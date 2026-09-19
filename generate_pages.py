@@ -497,6 +497,10 @@ _ORG_REF = {
     "logo": LIVE + "/images/flaney-logo.png",
     "telephone": PHONE_GENERAL_TEL,
     "address": _ADDRESS,
+    "sameAs": [
+        "https://www.linkedin.com/in/joshuaotaigbe-ceng-fimmm-faeng-22751322",
+        "https://www.google.com/maps/place/Flaney+Associates+LLC/data=!4m2!3m1!1s0x0:0x403e22f0f039f967",
+    ],
 }
 
 _SERVICE_META = {

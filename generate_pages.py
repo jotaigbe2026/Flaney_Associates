@@ -134,6 +134,14 @@ def head(title, description, depth=0, canonical=""):
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{up}styles.css?v={cssv}">
     <link rel="stylesheet" href="{up}blog/blog.css?v={blogv}">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJQJ26474Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', 'G-FJQJ26474Z');
+    </script>
 </head>
 <body>
 """.format(title=title, desc=description, up=up, canon=canon,

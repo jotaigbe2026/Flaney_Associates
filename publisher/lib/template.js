@@ -647,12 +647,12 @@ ${extra || ''}    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="${up}styles.css${assets.site}">
     <link rel="stylesheet" href="${up}blog/blog.css${assets.css}">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJQJ26474Z"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVGZ9HK8Y6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-FJQJ26474Z');
+      gtag('config', 'G-LVGZ9HK8Y6');
     </script>
 </head>
 <body>

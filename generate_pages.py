@@ -133,9 +133,8 @@ def head(title, description, depth=0, canonical="", schema=""):
     <meta property="og:type" content="website">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{desc}">
-{canon}    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+{canon}    <link rel="preload" href="{up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{up}fonts/inter.css">
     <link rel="stylesheet" href="{up}styles.css?v={cssv}">
     <link rel="stylesheet" href="{up}blog/blog.css?v={blogv}">
     <!-- Google tag (gtag.js) -->

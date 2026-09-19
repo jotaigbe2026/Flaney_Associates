@@ -641,9 +641,8 @@ window.FlaneyTemplate = (function () {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <meta name="description" content="${description}">
-${extra || ''}    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+${extra || ''}    <link rel="preload" href="${up}fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="${up}fonts/inter.css">
     <link rel="stylesheet" href="${up}styles.css${assets.site}">
     <link rel="stylesheet" href="${up}blog/blog.css${assets.css}">
     <!-- Google tag (gtag.js) -->

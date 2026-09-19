@@ -551,10 +551,13 @@ window.FlaneyTemplate = (function () {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="${up}index.html" class="logo">
-                        <span class="logo-icon">&#9670;</span>
-                        Flaney<span class="logo-accent">Associates</span>
+                    <a href="${up}index.html" class="footer-logo-link">
+                        <img src="${up}images/flaney-logo.png" alt="Flaney Associates LLC" class="footer-logo" width="180" height="121">
                     </a>
+                    <address class="footer-address">
+                        6600 U.S. Highway 98 West, Suite D<br>
+                        Hattiesburg,&nbsp;MS&nbsp;39402
+                    </address>
                     <p>Independent materials-science and engineering expertise for manufacturers, product teams and attorneys. Led by Joshua U. Otaigbe, PhD, CEng, FIMMM &mdash; Founder &amp; Principal, Flaney Associates.</p>
                     <div class="footer-social">
                         <a href="https://www.linkedin.com/in/joshua-otaigbe-ceng-fimmm-faeng-22751322" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">

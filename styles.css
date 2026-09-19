@@ -886,6 +886,26 @@ img {
     margin-bottom: 16px;
 }
 
+.footer-logo-link {
+    display: inline-block;
+}
+
+.footer-logo {
+    width: 180px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.footer-address {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
 .footer-brand p {
     font-size: 0.9rem;
     line-height: 1.7;

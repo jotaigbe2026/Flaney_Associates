@@ -548,10 +548,86 @@ _SERVICE_META = {
     },
 }
 
+_SERVICE_FAQS = {
+    "failure-analysis": [
+        ("What types of failures do you investigate?",
+         "Polymers, composites, elastomers, coatings and adhesives across product liability, manufacturing defect, field failure, fatigue and fracture cases. Both consumer products and industrial components."),
+        ("How long does a failure analysis take?",
+         "Straightforward cases — a fractured component with clear loading history — typically take two to three weeks from receipt of the sample. Complex litigation matters requiring multiple test methods or third-party laboratory work run six to twelve weeks. You will be told at the outset what the realistic timeframe is."),
+        ("Can the findings be used as evidence in litigation?",
+         "Yes. Written opinions are structured to meet court standards, address the applicable technical question directly, and survive cross-examination. The principal has testified in federal and state proceedings and is familiar with both Daubert and Frye admissibility standards."),
+        ("What should I provide to start?",
+         "Photographs of the failure, the failed component if it can be preserved, the material specification or datasheet, and a brief description of the service history and the conditions at the time of failure. A short call to discuss what is available is always the best first step."),
+    ],
+    "materials-selection": [
+        ("What is independent materials selection?",
+         "An objective assessment of which material best meets the mechanical, thermal, chemical, processing and cost requirements of a specific application — without preference for any supplier or product line."),
+        ("Can you help with regulatory and compliance requirements?",
+         "Yes. Selection work routinely includes FDA food-contact and medical device requirements, RoHS, REACH and relevant ASTM or ISO standards. Compliance is treated as a constraint, not an afterthought."),
+        ("How do you handle proprietary supplier data?",
+         "Under non-disclosure. Where a supplier's proprietary formulation or test data is involved, an NDA is put in place before that material is reviewed."),
+        ("Do you work with both established and novel materials?",
+         "Both. The majority of selection projects involve established commercial materials chosen and qualified for a new application. A smaller number involve novel or developmental materials where independent assessment of the claims is the specific requirement."),
+    ],
+    "product-development": [
+        ("At what stage should I bring in independent expertise?",
+         "The highest-value point is early — before tooling investment commits you to a material or geometry. Independent review at the formulation or prototype stage catches problems that are cheap to fix there and expensive to fix in production."),
+        ("Do you work with polymer formulations specifically?",
+         "Yes. Specialty polymers, blends, composites and nanocomposites have been a research and industrial focus for four decades. Formulation work, scale-up from lab to pilot to production, and supplier qualification are all within scope."),
+        ("Can you work alongside our internal team?",
+         "Yes. The typical arrangement is a defined scope of independent review rather than a displacement of your team. Where your team already has testing arrangements or supplier relationships, that work is specified, reviewed and interpreted rather than duplicated."),
+    ],
+    "process-optimization": [
+        ("What manufacturing processes do you work with?",
+         "Extrusion, injection moulding, compounding, blow moulding, compression moulding and related polymer and composite processing operations. The diagnostic applies equally to a new process that is not hitting targets and an established line where scrap rate or quality has shifted."),
+        ("How do you identify the root cause of process variability?",
+         "Through a structured diagnostic: review of process parameters, incoming material characterisation, statistical analysis of output data, and targeted trials. The goal is to separate material variability, equipment variability and parameter drift so the fix addresses the actual cause rather than the most visible symptom."),
+        ("Can you help with a process that uses materials from multiple suppliers?",
+         "Yes. Multi-supplier supply chains are a common source of process variability. Characterising the incoming material population — not just the datasheet specification — is often the fastest path to understanding why the process behaves differently batch to batch."),
+    ],
+    "technical-due-diligence": [
+        ("What does a technical due diligence review cover?",
+         "Assessment of the technology's readiness level, IP position, scalability claims, material or process assumptions, and the gap between what has been demonstrated and what the business plan requires. The output is a written assessment of technical risk, not a commercial opinion."),
+        ("When should I commission technical due diligence?",
+         "Before a material investment, licensing deal, acquisition or joint venture where the value depends on a technical claim you cannot independently verify. The earlier in the process, the more useful — a concern raised before term sheets are signed is cheaper than one raised after."),
+        ("How long does a review take?",
+         "A focused written assessment of a single technology typically takes two to four weeks. Broader scope — multiple technologies or a full R&D portfolio — is scoped on request."),
+    ],
+    "expert-witness": [
+        ("Are you available to both plaintiff and defence?",
+         "Yes. Opinions follow the evidence. A practice that only works for one side is an advocate, not an expert — and a competent opposing counsel will establish that quickly."),
+        ("What are your qualifications to testify as an expert?",
+         "PhD in polymer science and engineering (University of Manchester); forty years of materials science and engineering experience across industry and academia; Chartered Engineer (CEng) and Chartered Scientist (CSci); Fellow of the Institute of Materials, Minerals and Mining (FIMMM); Fellow of the Nigerian Academy of Engineering (FAEng); seven patents and 150-plus refereed publications. Curriculum vitae available on request."),
+        ("How early in a case should we retain you?",
+         "As early as possible — ideally before discovery closes. Early retention allows input on what documents and physical evidence to request, what testing to specify, and what questions the opposing expert is likely to raise."),
+        ("What courts and jurisdictions have you been qualified in?",
+         "Federal and state courts. Familiar with both Daubert and Frye admissibility standards. Details are in the curriculum vitae."),
+    ],
+}
+
+
+def faq_schema_ld(slug):
+    faqs = _SERVICE_FAQS.get(slug, [])
+    if not faqs:
+        return ""
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            }
+            for q, a in faqs
+        ],
+    }
+    return json.dumps(ld, indent=4)
+
 
 def service_schema_ld(slug):
     m = _SERVICE_META[slug]
-    ld = {
+    service = {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": m["name"],
@@ -561,7 +637,11 @@ def service_schema_ld(slug):
         "url": "%s/services/%s.html" % (LIVE, slug),
         "areaServed": "US",
     }
-    return json.dumps(ld, indent=4)
+    faq_str = faq_schema_ld(slug)
+    if faq_str:
+        combined = [service, json.loads(faq_str)]
+        return json.dumps(combined, indent=4)
+    return json.dumps(service, indent=4)
 
 
 def person_schema_ld():
@@ -978,6 +1058,24 @@ def build_service(slug):
         </div>
     </section>
 """ % (s["body"], service_aside(slug))
+    faqs = _SERVICE_FAQS.get(slug, [])
+    if faqs:
+        faq_items = "\n".join(
+            '                <details class="faq-item">\n'
+            '                    <summary>%s</summary>\n'
+            '                    <p>%s</p>\n'
+            '                </details>' % (q, a) for q, a in faqs)
+        html += """    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="svc-layout">
+                <div class="prose">
+                    <h2>Frequently asked questions</h2>
+%s
+                </div>
+            </div>
+        </div>
+    </section>
+""" % faq_items
     html += closing_cta(depth=1) + "\n"
     html += footer(depth=1) + "\n"
     html += scripts(depth=1)

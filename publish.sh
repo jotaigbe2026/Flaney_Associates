@@ -134,7 +134,10 @@ if git push -q origin main 2>/dev/null; then
     fi
     if [ -n "$SLUG" ]; then
         printf '\n  Live in about a minute:\n'
-        printf '  https://jotaigbe2026.github.io/Flaney_Associates/blog/%s.html\n\n' "$SLUG"
+        # The site's address lives in site.json, the one place every generator
+        # reads it from — it moved from github.io to its own domain once already.
+        BASE=$(python3 -c 'import json;print(json.load(open("site.json"))["base_url"].rstrip("/"))' 2>/dev/null)
+        printf '  %s/blog/%s.html\n\n' "${BASE:-https://www.flaneyassociates.com}" "$SLUG"
     else
         printf '\n  Live in about a minute.\n\n'
     fi

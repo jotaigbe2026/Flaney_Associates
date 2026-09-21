@@ -374,8 +374,17 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 been published.</p>
 
             <p class="guide-sub">Connecting (or reconnecting) the folder</p>
-            <p>Do this whenever step 6 does not say <em>Connected to Flaney_Associates</em>. Chrome forgets the
-                connection after a restart, and sometimes after a reload.</p>
+            <p><strong>Usually one click.</strong> After Chrome restarts, and sometimes after a reload, Chrome asks
+                again for permission to write to the folder. It still remembers <em>which</em> folder, so step 6 shows
+                <strong>&#128273; Reconnect Flaney_Associates</strong>. Click it, then <strong>Allow</strong>. That is all.</p>
+            <p><strong>The full three steps</strong> are only needed when step 6 shows
+                <em>&#128193; Connect repository folder</em> instead, which happens if you:</p>
+            <ul class="guide-list">
+                <li>rename or move the repository folder (Chrome remembers the exact folder, not its name)</li>
+                <li>open the dashboard at a different address (Chrome keeps each address&rsquo;s settings separately,
+                    which is why the move from <code>jotaigbe2026.github.io</code> started from scratch)</li>
+                <li>clear Chrome&rsquo;s saved data for this site</li>
+            </ul>
             <ol class="guide-steps">
                 <li>In step 6, click <strong>&#128193; Connect repository folder</strong>.</li>
                 <li>Press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>, paste
@@ -384,6 +393,9 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
             </ol>
             <p>Step 6 turns green. To double-check which folder it is, press <em>&#128268; Test connection</em>, then
                 <em>Remove test file</em>.</p>
+            <p class="guide-note">Always open the dashboard at <code>https://www.flaneyassociates.com/publisher/</code>
+                and leave the folder where it is. Then the most you will ever need is the one Reconnect click. The
+                <em>Repository folder</em> field in step 1 is saved the same way, so it survives restarts too.</p>
 
             <h3>3 &middot; Every button, briefly</h3>
 

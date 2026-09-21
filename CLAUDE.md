@@ -387,6 +387,9 @@ python3 generate_blog.py    # rebuild all blog HTML
 
 `generate_blog.py` is idempotent — running it repeatedly is safe.
 
+### The WordPress source is gone
+`flaneyassociates.com` now redirects to this site, so `extract_blog.py` can no longer refresh anything: the API URL returns an HTML 404, `curl_json()` fails to parse it and the script raises before writing `posts.json`. Imported posts are therefore safe to edit in place — the *Biomaterials* category was added to three imported papers and one imported article without the `edited` flag. **Do not set `edited` on a non-gated imported post to "protect" it**: that switches `build_post()` to rendering the stored content verbatim, and imported content is raw WordPress markup that still needs `clean()`. If the importer is ever revived, category edits to imported posts would be lost and need carrying across.
+
 ### Locally authored posts
 Posts written in `publisher/` live only in `posts.json` and are flagged `local: true`. `extract_blog.py` rewrites that file from the WordPress API, so it deliberately carries local posts across (`local_posts()`); without that, a content refresh would delete them. They also carry `pdf: "articles/<slug>.pdf"`, which is what puts the gated download block on the article page.
 

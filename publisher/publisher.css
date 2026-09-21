@@ -9,6 +9,15 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* `hidden` must always win. The attribute's display:none comes from the
+   browser's default stylesheet, which any class rule outranks — so .btn's
+   inline-flex and .notice's flex silently un-hid five elements: the Test
+   connection and Remove test file buttons, Delete this post in New post mode,
+   and two empty notice strips. The guide overlay had the same bug. One global
+   rule instead of a per-element patch, so the next hidden element is covered
+   before anyone notices it. */
+[hidden] { display: none !important; }
+
 :root {
     --primary: #1a3a5c;
     --primary-dark: #0f2740;

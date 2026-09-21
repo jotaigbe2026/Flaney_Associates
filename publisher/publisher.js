@@ -893,9 +893,17 @@
     const TEST_FILE = 'publisher-connection-test.txt';
 
     async function testConnection() {
+        // A remembered folder only needs re-approval, which this click can give
+        // — Chrome drops the permission on a restart and sometimes on a reload.
+        if (!state.repoDir && state.pendingDir && await ensurePermission(state.pendingDir)) {
+            state.repoDir = state.pendingDir;
+            state.pendingDir = null;
+            showFolderStatus();
+        }
         const dir = state.repoDir;
         if (!dir || !await ensurePermission(dir)) {
-            notice(el.folderStatus, 'err', 'Not connected \u2014 connect the repository folder first.');
+            notice(el.folderStatus, 'err', 'No folder is connected right now. Click <strong>' +
+                T.esc(el.chooseFolder.textContent.trim()) + '</strong> above, then test again.');
             return;
         }
         const token = Math.random().toString(36).slice(2, 8).toUpperCase();
@@ -959,7 +967,7 @@
             el.chooseFolder.hidden = true;
             return;
         }
-        el.testConnection.hidden = !state.repoDir;
+        el.testConnection.hidden = !(state.repoDir || state.pendingDir);
         if (state.repoDir) checkForLeftoverTest(); else el.removeTest.hidden = true;
         if (state.repoDir) {
             notice(el.folderStatus, 'ok', 'Connected to <strong>' + T.esc(state.repoDir.name) +
@@ -968,8 +976,8 @@
         } else if (state.pendingDir) {
             notice(el.folderStatus, 'warn',
                 '<strong>' + T.esc(state.pendingDir.name) + '</strong> is remembered, but Chrome ' +
-                'drops write permission when it restarts. One click to reconnect \u2014 you will not ' +
-                'have to find the folder again.');
+                'drops write permission when it restarts, and sometimes when the page reloads. One ' +
+                'click to reconnect \u2014 you will not have to find the folder again.');
             el.chooseFolder.textContent = '\uD83D\uDD11 Reconnect ' + state.pendingDir.name;
         } else {
             notice(el.folderStatus, 'info',

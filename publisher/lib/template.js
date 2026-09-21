@@ -37,6 +37,15 @@ window.FlaneyTemplate = (function () {
 
     // -------------------------------------------------------------- utilities
 
+    /* JSON exactly as Python's json.dumps(value, indent=4) writes it. The two
+       agree on layout; the difference is ensure_ascii, which Python applies by
+       default and JSON.stringify does not — so an em dash is \u2014 on one side
+       and a literal character on the other unless it is escaped here. */
+    function pythonJson(value) {
+        return JSON.stringify(value, null, 4).replace(/[\u0080-\uffff]/g,
+            c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
+    }
+
     function stripTags(html) {
         return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
     }
@@ -727,12 +736,45 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
         // WordPress API reported — which pointed at a site being retired.
         const canonical = siteOrThrow() + '/blog/' + post.slug + '.html';
 
-        const og = `    <meta property="og:type" content="article">
+        let og = `    <meta property="og:type" content="article">
     <meta property="og:title" content="${attr(post.title)}">
     <meta property="og:description" content="${desc}">
     <meta property="article:published_time" content="${post.date}">
 ${post.image ? `    <meta property="og:image" content="${post.image}">\n` : ''}    <link rel="canonical" href="${canonical}">
 `;
+
+        /* schema.org BlogPosting — what tells a search engine this page is an
+           article, who wrote it and when. build_post() in generate_blog.py
+           emits the same block; without it here, a post published from the
+           dashboard went live with none, and only gained it if someone later
+           happened to run the Python generator. Key order, values and the
+           serialisation all mirror the Python so the pages stay byte-identical. */
+        const postUrl = siteOrThrow() + '/blog/' + post.slug + '.html';
+        const schema = {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: stripTags(post.title),
+            description: post.summary || summarise(post.content, stripTags(post.title), 300),
+            url: postUrl,
+            mainEntityOfPage: postUrl,
+            datePublished: String(post.date).slice(0, 10),
+            // Python's p.get("modified", p["date"]): fall back only when the key
+            // is absent, not when it is empty.
+            dateModified: String(post.modified !== undefined ? post.modified : post.date).slice(0, 10),
+            author: {
+                '@type': 'Person',
+                name: 'Joshua U. Otaigbe',
+                honorificSuffix: 'PhD, CEng, FIMMM',
+                url: siteOrThrow() + '/about.html'
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'Flaney Associates',
+                url: siteOrThrow()
+            }
+        };
+        if (post.image) schema.image = post.image;
+        og += '    <script type="application/ld+json">\n' + pythonJson(schema) + '\n    </script>\n';
 
         let html = head(stripTags(post.title) + ' | Flaney Associates', desc, 1, og, assets);
         html += nav(1, true) + '\n';

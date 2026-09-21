@@ -37,7 +37,11 @@ SOURCE_SITE = "https://flaneyassociates.com"
 with open(os.path.join(ROOT, "site.json")) as _f:
     BASE_URL = json.load(_f)["base_url"]
 
-LIVE = "https://www.flaneyassociates.com"
+# Kept as an alias so existing references read naturally. It used to repeat
+# the address as a literal, three lines below the comment saying site.json
+# is the only place it is written down — and publisher/lib/template.js takes
+# it from site.json, so the two renderers could have diverged.
+LIVE = BASE_URL
 
 # ---------------------------------------------------------------- sanitising
 

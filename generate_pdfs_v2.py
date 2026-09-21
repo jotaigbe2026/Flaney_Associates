@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate 6 NEW Flaney Associates blog article PDFs — Round 2."""
 
+import os
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import HexColor
@@ -164,7 +165,7 @@ def add_contact_footer(story, styles):
 
 
 def build_pdf(filename, build_func):
-    path = f"/Users/otaigbe2013/Claude Coding/Flaney_Associates/articles/{filename}"
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "articles", filename)
     doc = SimpleDocTemplate(
         path,
         pagesize=letter,

@@ -8,7 +8,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 import os
 
-ARTICLES_DIR = "/Users/otaigbe2013/Claude Coding/Flaney_Associates/articles"
+ARTICLES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "articles")
 
 # ── Brand colours ──────────────────────────────────────────────────────────────
 C_PRIMARY  = RGBColor(0x1a, 0x3a, 0x5c)   # dark navy

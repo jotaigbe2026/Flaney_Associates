@@ -1262,11 +1262,34 @@
             el.generate.disabled = true;
             el.generate.textContent = 'Building…';
 
-            Promise.resolve()
+            // A remembered folder whose permission Chrome dropped (restart or
+            // reload) would otherwise leave the bundle sitting on the page, with
+            // nothing written and nothing downloaded, and publish.sh reporting
+            // "nothing to publish". This click is a user gesture, so ask for
+            // permission now, before anything else is awaited.
+            const reconnect = (!state.repoDir && state.pendingDir)
+                ? ensurePermission(state.pendingDir).then(function (ok) {
+                    if (!ok) return;
+                    state.repoDir = state.pendingDir;
+                    state.pendingDir = null;
+                    showFolderStatus();
+                }).catch(function () {})
+                : Promise.resolve();
+
+            reconnect
                 .then(buildBundle)
                 .then(function (bundle) {
                     if (!bundle) return;
                     renderBundle(bundle);
+                    if (!state.repoDir && state.pendingDir) {
+                        notice(el.generateFeedback, 'warn',
+                            '<strong>Nothing was written to your folder</strong> &mdash; Chrome did not ' +
+                            'allow it. Click <strong>&#128273; Reconnect ' + T.esc(state.pendingDir.name) +
+                            '</strong> above, then Generate again. Running <code>./publish.sh</code> ' +
+                            'now would find nothing to publish.');
+                        toast('Not written — reconnect the folder');
+                        return;
+                    }
                     if (!state.repoDir) {
                         notice(el.generateFeedback, 'ok',
                             'Bundle ready — <strong>' + bundle.files.length + ' files</strong>. ' +

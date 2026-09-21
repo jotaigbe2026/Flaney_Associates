@@ -478,6 +478,12 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 <dd>You pasted into a window that is already running something, such as the preview server. Open a new
                     Terminal window with <kbd>Cmd</kbd>+<kbd>N</kbd>.</dd>
 
+                <dt>&ldquo;Nothing to publish &mdash; no changed files&rdquo;</dt>
+                <dd>Generate did not reach your folder, usually because Chrome dropped its permission. <strong>Do not
+                    reload the page</strong> (the form is not saved and your post would be lost). Click
+                    <em>&#128273; Reconnect Flaney_Associates</em> in step 6, then <em>Allow</em>, then Generate again,
+                    then run the publish script. Generate now asks for this permission itself, so this should be rare.</dd>
+
                 <dt>My post vanished from the queue and the Edit list</dt>
                 <dd>It is on your Mac but not on GitHub. Run <code>git status</code>; if it reports commits ahead, run
                     the publish script.</dd>
@@ -516,6 +522,6 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
 <script src="lib/zip.js?v=87fd8664"></script>
 <script src="lib/pdf.js?v=b4f0c65b"></script>
 <script src="lib/template.js?v=2804bd16"></script>
-<script src="publisher.js?v=e7d2f76a"></script>
+<script src="publisher.js?v=d993d11b"></script>
 </body>
 </html>

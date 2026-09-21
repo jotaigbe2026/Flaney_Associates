@@ -51,7 +51,7 @@
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
         'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary', 'jumpPreview',
-        'openGuide', 'guideOverlay', 'guideClose'
+        'openGuide', 'guideOverlay', 'guideClose', 'testConnection', 'removeTest'
     ].forEach(id => { el[id] = $(id); });
 
     // ------------------------------------------------------------------ utils
@@ -883,6 +883,74 @@
         return files.length;
     }
 
+    /* Proves which folder is connected. A browser never tells a page the full
+       path of a folder it was granted — only its name — so the green "Connected
+       to Flaney_Associates" cannot distinguish two folders of the same name.
+       Writing a file with a one-off token and finding that token on disk can.
+
+       The file is listed in .gitignore: publish.sh runs `git add -A`, and a
+       forgotten test file would otherwise be published with the next post. */
+    const TEST_FILE = 'publisher-connection-test.txt';
+
+    async function testConnection() {
+        const dir = state.repoDir;
+        if (!dir || !await ensurePermission(dir)) {
+            notice(el.folderStatus, 'err', 'Not connected \u2014 connect the repository folder first.');
+            return;
+        }
+        const token = Math.random().toString(36).slice(2, 8).toUpperCase();
+        const text = 'Flaney Publisher connection test\n' +
+            'Token:   ' + token + '\n' +
+            'Written: ' + new Date().toLocaleString() + '\n' +
+            'From:    ' + location.origin + '/publisher/\n\n' +
+            'Safe to delete. Git ignores this file, so it can never be published.\n';
+        try {
+            const handle = await dir.getFileHandle(TEST_FILE, { create: true });
+            const writable = await handle.createWritable();
+            await writable.write(text);
+            await writable.close();
+            // Read it back, so "written" means the folder really holds it.
+            const back = await (await handle.getFile()).text();
+            if (back.indexOf(token) === -1) throw new Error('the file read back differently');
+        } catch (e) {
+            notice(el.folderStatus, 'err', 'Could not write to <strong>' + T.esc(dir.name) +
+                '</strong>: ' + T.esc(e.message) + '. Reconnect the folder and try again.');
+            return;
+        }
+        notice(el.folderStatus, 'ok',
+            'Wrote and read back a test file in <strong>' + T.esc(dir.name) + '</strong> \u2014 token ' +
+            '<code>' + token + '</code>. To confirm it is the right folder, ask Claude to ' +
+            '\u201ccheck the connection test\u201d, or open ' +
+            '<code>claude-coding/Flaney_Associates</code> in Finder and look for <code>' + TEST_FILE + '</code>.');
+        el.removeTest.hidden = false;
+    }
+
+    async function removeTestFile() {
+        const dir = state.repoDir;
+        if (!dir || !await ensurePermission(dir)) return;
+        try {
+            await dir.removeEntry(TEST_FILE);
+        } catch (e) {
+            if (e.name !== 'NotFoundError') {
+                notice(el.folderStatus, 'err', 'Could not remove the test file: ' + T.esc(e.message));
+                return;
+            }
+        }
+        el.removeTest.hidden = true;
+        showFolderStatus();
+        toast('Test file removed');
+    }
+
+    /* Offer removal if a test file is still sitting there from an earlier visit. */
+    async function checkForLeftoverTest() {
+        el.removeTest.hidden = true;
+        if (!state.repoDir) return;
+        try {
+            await state.repoDir.getFileHandle(TEST_FILE);
+            el.removeTest.hidden = false;
+        } catch (e) { /* none there */ }
+    }
+
     function showFolderStatus() {
         if (!CAN_WRITE_FOLDER) {
             notice(el.folderStatus, 'info',
@@ -891,6 +959,8 @@
             el.chooseFolder.hidden = true;
             return;
         }
+        el.testConnection.hidden = !state.repoDir;
+        if (state.repoDir) checkForLeftoverTest(); else el.removeTest.hidden = true;
         if (state.repoDir) {
             notice(el.folderStatus, 'ok', 'Connected to <strong>' + T.esc(state.repoDir.name) +
                 '</strong>. Generate writes the files straight in \u2014 no download, no unzipping.');
@@ -1088,6 +1158,8 @@
             document.querySelector('.preview-column').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
+        el.testConnection.addEventListener('click', testConnection);
+        el.removeTest.addEventListener('click', removeTestFile);
         el.chooseFolder.addEventListener('click', chooseFolder);
         if (CAN_WRITE_FOLDER) {
             readHandle().then(function (handle) {

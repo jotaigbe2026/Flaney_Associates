@@ -1,2 +1,7 @@
 # macOS Finder metadata
 .DS_Store
+
+# Written by the publisher's Test connection button. Never commit it —
+# publish.sh runs `git add -A`, so without this line a leftover test file
+# would be published along with the next post.
+publisher-connection-test.txt

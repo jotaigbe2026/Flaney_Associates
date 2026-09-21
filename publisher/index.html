@@ -240,7 +240,11 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
             </div>
             <div class="panel-body">
                 <div class="notice notice-info" id="folderStatus"></div>
-                <button class="btn btn-outline btn-sm" id="chooseFolder" type="button" style="margin:12px 0 16px">&#128193; Connect repository folder</button>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 16px">
+                    <button class="btn btn-outline btn-sm" id="chooseFolder" type="button">&#128193; Connect repository folder</button>
+                    <button class="btn btn-outline btn-sm" id="testConnection" type="button" hidden>&#128268; Test connection</button>
+                    <button class="btn btn-outline btn-sm" id="removeTest" type="button" hidden>Remove test file</button>
+                </div>
                 <button class="btn btn-primary btn-lg" id="generate" type="button">Generate the publish bundle</button>
                 <div id="generateFeedback"></div>
             </div>
@@ -390,7 +394,7 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 <li><strong>3 The article</strong> &mdash; paste here</li>
                 <li><strong>4 Featured image</strong> &mdash; optimised automatically</li>
                 <li><strong>5 Gated PDF</strong> &mdash; built from your text; readers give a name and email to download it</li>
-                <li><strong>6 Publish</strong> &mdash; connect the folder, then Generate</li>
+                <li><strong>6 Publish</strong> &mdash; connect the folder, then Generate. <em>&#128268; Test connection</em> writes a small test file with a one-off token, so you can confirm which folder is connected without a post ready; <em>Remove test file</em> deletes it. Git ignores the file, so it can never be published.</li>
             </ul>
 
             <p class="guide-sub">Scheduled queue</p>
@@ -488,6 +492,6 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
 <script src="lib/zip.js?v=87fd8664"></script>
 <script src="lib/pdf.js?v=b4f0c65b"></script>
 <script src="lib/template.js?v=2804bd16"></script>
-<script src="publisher.js?v=db89ea1a"></script>
+<script src="publisher.js?v=1ef6af23"></script>
 </body>
 </html>

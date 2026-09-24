@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Peer-reviewed papers, reachable only through the download form on their
+# article pages. Kept out of search results rather than out of reach — a
+# static site cannot withhold a file, so treat these as public.
+Disallow: /articles/pglass-pet-crystallization-breakthrough.pdf
+Disallow: /articles/enhancing-polymer-performance-with-quasicrystal-composites.pdf
+Disallow: /articles/revolutionizing-polyamide-performance-with-nanocomposites.pdf
+
 Sitemap: https://www.flaneyassociates.com/sitemap.xml

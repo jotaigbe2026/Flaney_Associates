@@ -752,15 +752,32 @@ def build_post(p, posts):
     # `pdf` path; the imported WordPress archive does not.
     download_block = ""
     if p.get("pdf"):
+        # `pdf_kind: "paper"` marks a peer-reviewed paper rather than a briefing
+        # written for this site, so the box does not promise a summary of the
+        # page the reader is already on. Keep this branch identical to the one
+        # in publisher/lib/template.js.
+        if p.get("pdf_kind") == "paper":
+            dl_head = "&#128196; Read the peer-reviewed paper"
+            blurb = ("The published research behind this article, in full — "
+                     "figures, methods and references.")
+            modal_attrs = (' data-modal-heading="Get the paper"'
+                           ' data-modal-subtitle="Enter your details and the paper will'
+                           ' download straight away. No spam — just expert insights."'
+                           ' data-modal-submit="&#11015; Send Me the Paper"')
+        else:
+            dl_head = "&#128196; Download this article as a PDF"
+            blurb = ("Take the full briefing with you — formatted for print, "
+                     "filing and sharing with your team.")
+            modal_attrs = ""
         download_block = """
             <div class="article-download">
                 <div class="article-download-text">
-                    <h4>&#128196; Download this article as a PDF</h4>
-                    <p>Take the full briefing with you — formatted for print, filing and sharing with your team.</p>
+                    <h4>{head}</h4>
+                    <p>{blurb}</p>
                 </div>
-                <button class="btn btn-primary gated-download" data-pdf="../{pdf}" data-title="{t}">&#11015; Get the PDF</button>
+                <button class="btn btn-primary gated-download" data-pdf="../{pdf}" data-title="{t}"{modal}>&#11015; Get the PDF</button>
             </div>
-""".format(pdf=p["pdf"], t=attr(p["title"]))
+""".format(head=dl_head, blurb=blurb, pdf=p["pdf"], t=attr(p["title"]), modal=modal_attrs)
 
     if p.get("local"):
         source_block = ("""

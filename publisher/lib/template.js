@@ -805,13 +805,30 @@ ${post.content}
 `;
 
         if (post.pdf) {
+            // `pdf_kind: "paper"` marks a peer-reviewed paper rather than a
+            // briefing written for this site. Keep identical to generate_blog.py.
+            const paper = post.pdf_kind === 'paper';
+            const head = paper
+                ? '&#128196; Read the peer-reviewed paper'
+                : '&#128196; Download this article as a PDF';
+            const blurb = paper
+                ? 'The published research behind this article, in full — figures, methods and references.'
+                : 'Take the full briefing with you — formatted for print, filing and sharing with your team.';
+            // The shared modal is headed "Get Your Free Article", which does not
+            // describe a journal paper. applyModalCopy() reads these.
+            const modal = paper
+                ? ' data-modal-heading="Get the paper"' +
+                  ' data-modal-subtitle="Enter your details and the paper will download straight away.' +
+                  ' No spam — just expert insights."' +
+                  ' data-modal-submit="&#11015; Send Me the Paper"'
+                : '';
             html += `
             <div class="article-download">
                 <div class="article-download-text">
-                    <h4>&#128196; Download this article as a PDF</h4>
-                    <p>Take the full briefing with you — formatted for print, filing and sharing with your team.</p>
+                    <h4>${head}</h4>
+                    <p>${blurb}</p>
                 </div>
-                <button class="btn btn-primary gated-download" data-pdf="../${post.pdf}" data-title="${attr(post.title)}">&#11015; Get the PDF</button>
+                <button class="btn btn-primary gated-download" data-pdf="../${post.pdf}" data-title="${attr(post.title)}"${modal}>&#11015; Get the PDF</button>
             </div>
 `;
         }

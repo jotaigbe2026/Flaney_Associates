@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Flaney Associates is a static marketing website for a materials engineering consultancy. It is deployed via GitHub Pages at **https://jotaigbe2026.github.io/Flaney_Associates**.
+Flaney Associates is a static marketing website for a materials engineering consultancy. It is deployed via GitHub Pages at
+**https://www.flaneyassociates.com** (the `CNAME` file). The old `jotaigbe2026.github.io/Flaney_Associates` address still
+301-redirects, so links to it work, but nothing in the repository should name it — `site.json` holds the canonical origin
+and every generator reads it from there.
 
 There is no build system, bundler, or package manager. The site is pure HTML/CSS/JS.
 
@@ -313,7 +316,7 @@ Defaults live in **`publisher/template.json`**, committed to the repo:
 An empty `titlePattern` is treated as a setting, not as missing data: **Start next month's post** fills in everything else and puts the cursor in the title field.
 
 ### publisher/ is served publicly
-Pages serves the whole repository, so the dashboard is live at `/Flaney_Associates/publisher/`. Reviewed and accepted (August 2026): it reads only files that are already public (`posts.json`, `index.html`, `template.json`), writes nothing anywhere, holds no credentials, and carries `noindex` so it stays out of search results. Keeping it deployed is what lets it be used from any machine without cloning the repo or running a local server.
+Pages serves the whole repository, so the dashboard is live at `https://www.flaneyassociates.com/publisher/`. Reviewed and accepted (August 2026): it reads only files that are already public (`posts.json`, `index.html`, `template.json`), writes nothing anywhere, holds no credentials, and carries `noindex` so it stays out of search results. Keeping it deployed is what lets it be used from any machine without cloning the repo or running a local server.
 
 ### Why the bundle includes regenerated pages
 A new article page on its own would never be linked from anywhere. The archive and the homepage strip both list every post, so both have to be rebuilt on every publish — which is exactly what `generate_blog.py` does. The publisher reproduces that work in the browser so a post can ship without running Python.

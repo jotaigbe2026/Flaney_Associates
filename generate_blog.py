@@ -786,11 +786,14 @@ def build_post(p, posts):
             </div>
 """ % fmt_date(p["date"]))
     else:
+        # No link: the WordPress site it pointed at is retired, and every one of
+        # those URLs now 404s. The attribution is still true, so it stays as
+        # plain text. Keep identical to publisher/lib/template.js.
         source_block = ("""
             <div class="article-source">
-                <p>Originally published on <a href="%s" target="_blank" rel="noopener">flaneyassociates.com</a> on %s.</p>
+                <p>Originally published on flaneyassociates.com on %s.</p>
             </div>
-""" % (p["link"], fmt_date(p["date"])))
+""" % fmt_date(p["date"]))
 
     html += """
     <article class="article-page" data-publish="{publish}">

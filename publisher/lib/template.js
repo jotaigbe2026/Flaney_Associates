@@ -840,9 +840,11 @@ ${post.content}
             </div>
 `;
         } else {
+            // No link: the retired WordPress URLs all 404 now. Keep identical
+            // to generate_blog.py.
             html += `
             <div class="article-source">
-                <p>Originally published on <a href="${post.link}" target="_blank" rel="noopener">flaneyassociates.com</a> on ${fmtDate(post.date)}.</p>
+                <p>Originally published on flaneyassociates.com on ${fmtDate(post.date)}.</p>
             </div>
 `;
         }

@@ -779,21 +779,13 @@ def build_post(p, posts):
             </div>
 """.format(head=dl_head, blurb=blurb, pdf=p["pdf"], t=attr(p["title"]), modal=modal_attrs)
 
-    if p.get("local"):
-        source_block = ("""
-            <div class="article-source">
-                <p>Published by Flaney Associates on %s.</p>
-            </div>
-""" % fmt_date(p["date"]))
-    else:
-        # No link: the WordPress site it pointed at is retired, and every one of
-        # those URLs now 404s. The attribution is still true, so it stays as
-        # plain text. Keep identical to publisher/lib/template.js.
-        source_block = ("""
-            <div class="article-source">
-                <p>Originally published on flaneyassociates.com on %s.</p>
-            </div>
-""" % fmt_date(p["date"]))
+    # No provenance line. It used to read "Originally published on
+    # flaneyassociates.com on <date>", which on this domain tells a reader the
+    # article came from the site they are already on, and repeats the date the
+    # meta line carries three inches above. The locally authored variant said
+    # the same thing about its own publisher. Keep identical to
+    # publisher/lib/template.js.
+    source_block = ""
 
     html += """
     <article class="article-page" data-publish="{publish}">

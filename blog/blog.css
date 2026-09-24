@@ -478,22 +478,6 @@
     overflow-x: auto;
 }
 
-.article-source {
-    margin-top: 44px;
-    padding: 16px 20px;
-    background: var(--bg-alt);
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-
-.article-source p { margin: 0; }
-
-.article-source a {
-    color: var(--accent);
-    font-weight: 600;
-}
-
 .article-author {
     display: flex;
     gap: 18px;

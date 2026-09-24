@@ -833,21 +833,8 @@ ${post.content}
 `;
         }
 
-        if (post.local) {
-            html += `
-            <div class="article-source">
-                <p>Published by Flaney Associates on ${fmtDate(post.date)}.</p>
-            </div>
-`;
-        } else {
-            // No link: the retired WordPress URLs all 404 now. Keep identical
-            // to generate_blog.py.
-            html += `
-            <div class="article-source">
-                <p>Originally published on flaneyassociates.com on ${fmtDate(post.date)}.</p>
-            </div>
-`;
-        }
+        // No provenance line: it named this very site and repeated the date
+        // from the meta line. Keep identical to generate_blog.py.
 
         html += `
             <div class="article-author">

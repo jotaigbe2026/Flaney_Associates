@@ -477,7 +477,7 @@ When adding a new article:
 
 - **General email:** info@flaneyassociates.com — **phone:** +1 (601) 402-7282
 - **Principal / attorney conflict checks:** jotaigbe@flaneyassociates.com — **phone:** +1 (601) 451-8452
-- **LinkedIn:** https://www.linkedin.com/in/joshua-otaigbe-ceng-fimmm-faeng-22751322
+- **LinkedIn:** https://www.linkedin.com/in/joshua-otaigbe-phd-ceng-fimmm-22751322
 - **Author credit on articles:** Joshua U. Otaigbe, PhD
 - **Principal, in full:** Professor Joshua U. Otaigbe, PhD, CEng, FIMMM, CSci, FAEng, FSPE — Founder & Principal Partner, Flaney Associates, LLC; Professor Emeritus of Polymer Science & Engineering, The University of Southern Mississippi
 - **Form submissions go to:** formsubmit.co → the address matching the form's `data-inbox` (see **Two inboxes**)

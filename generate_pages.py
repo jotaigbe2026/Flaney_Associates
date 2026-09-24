@@ -43,7 +43,7 @@ PHONE_GENERAL_TEL = "+16014027282"
 PHONE_PRINCIPAL = "+1 (601) 451-8452"
 PHONE_PRINCIPAL_TEL = "+16014518452"
 LINKEDIN = ("https://www.linkedin.com/in/"
-            "joshua-otaigbe-ceng-fimmm-faeng-22751322")
+            "joshua-otaigbe-phd-ceng-fimmm-22751322")
 
 # Two forms of the name, deliberately.
 #
@@ -502,7 +502,9 @@ _ORG_REF = {
     "address": _ADDRESS,
     "sameAs": [
         "https://www.linkedin.com/company/flaney-associates-llc",
-        "https://www.linkedin.com/in/joshuaotaigbe-ceng-fimmm-faeng-22751322",
+        # The constant, not a second copy: this pair drifted once already and
+        # the personal profile URL here 404'd for months.
+        LINKEDIN,
         "https://www.google.com/maps/place/Flaney+Associates+LLC/data=!4m2!3m1!1s0x0:0x403e22f0f039f967",
     ],
 }

@@ -219,6 +219,7 @@ python3 generate_pages.py          # services/, about, industries, guides, check
 python3 generate_blog.py           # blog archive, article pages, the homepage insights strip
 python3 generate_checklist_pdf.py  # the lead-magnet PDF
 python3 generate_featured.py       # content/featured/featured.json (also runs monthly in CI)
+python3 generate_sitemap.py        # sitemap.xml (generate_blog.py already calls this)
 ```
 
 All three are idempotent and independent of each other. Order does not matter, but **after editing `styles.css`, `lead-capture.js`, `nav.js`, `featured.js` or `script.js`, re-run `generate_pages.py` and `generate_blog.py`** — both bake a content hash of those files into the pages they write, and a stale hash means returning visitors get new markup against a cached stylesheet or script.
@@ -373,6 +374,26 @@ git push origin main
 ```
 
 GitHub Pages serves from the `main` branch root. Changes are live within ~60 seconds of push.
+
+## The sitemap
+
+`sitemap.xml` is written by `generate_sitemap.py`, which `generate_blog.py` calls at the end of every run — so a
+publish keeps it current without anyone remembering. `--dry-run` prints it instead.
+
+It was hand-written until October 2026 and had already drifted: three articles missing, one deleted post still
+listed, and every entry claiming `lastmod 2026-09-18`, the day the file was created.
+
+Three decisions worth keeping:
+
+- **`priority` and `changefreq` stay hand-set**, in `PAGES` and the `POST_*` constants. They are editorial
+  judgements — the homepage outranks a 2024 archive post — not something to re-derive per run.
+- **`lastmod` comes from git**, the date of the last commit touching that file, falling back to today when the file
+  has uncommitted changes. That last part matters: the generator runs *before* `publish.sh` commits, so a file being
+  rewritten right now would otherwise advertise the previous commit's date. For an article it is the later of that
+  date and the publication date.
+- **Future-dated posts are left out.** Their pages are reachable — scheduling is presentation, not embargo — but the
+  archive and homepage hide them until the day, and a search result for a post the site itself is hiding reads as a
+  mistake. The first rebuild on or after the date adds it.
 
 ## Blog
 

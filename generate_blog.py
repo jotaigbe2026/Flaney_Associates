@@ -20,6 +20,7 @@ import os
 import re
 from datetime import datetime
 
+import generate_sitemap
 import stamp_assets
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -948,6 +949,9 @@ def main():
     print("gated (abstract + link)  %d" % (len(posts) - len(full)))
     update_homepage(posts)
     stamp_assets.main()
+    # Keeps sitemap.xml in step with the posts that exist and are published.
+    # It was hand-written before, and drifted within a month.
+    generate_sitemap.main()
 
 
 if __name__ == "__main__":

@@ -121,6 +121,29 @@ git add -A || fail "git add failed."
 git commit -q -m "$MESSAGE" || fail "git commit failed."
 say "✓ committed — $MESSAGE"
 
+# Collect anything pushed since this copy last caught up, before trying to
+# push. The monthly featured-article job commits content/featured/featured.json
+# on the 1st, and a push from here is refused while that commit is missing —
+# the "non-fast-forward" rejection. Merging it first is what the fix always
+# was; doing it here means it never reaches the author. --no-rebase keeps the
+# merge explicit, --no-edit accepts the default merge message. A pull that
+# cannot merge cleanly leaves the conflict in place and stops, because guessing
+# at a resolution is exactly the thing a script must not do.
+if ! git pull --no-rebase --no-edit -q origin main >/dev/null 2>&1; then
+    printf '\n  ✗ Could not merge what is already on GitHub.\n'
+    printf '    Your commit is saved locally and nothing is lost.\n'
+    if git ls-files --unmerged | head -1 | grep -q .; then
+        printf '    These files changed in both places:\n'
+        git diff --name-only --diff-filter=U | sed 's/^/      /'
+        printf '    Ask Claude to sort it out, or resolve them and run:\n'
+        printf '      git commit && git push origin main\n\n'
+    else
+        printf '    Run:  git pull --no-rebase origin main\n'
+        printf '    and copy me whatever it says.\n\n'
+    fi
+    exit 1
+fi
+
 if git push -q origin main 2>/dev/null; then
     say "✓ pushed to GitHub"
 

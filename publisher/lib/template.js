@@ -82,7 +82,12 @@ window.FlaneyTemplate = (function () {
             .replace(/&/g, ' and ')
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '')
-            .slice(0, 80).replace(/-+$/, '');
+            // 80 characters, but never mid-word: a title landing exactly on the
+            // cap produced ...self-healing-sy, which reads as a broken URL.
+            // Trim back to the last whole word, unless that leaves too little.
+            .slice(0, 80).replace(/-+$/, '')
+            .replace(/-[^-]*$/, (tail, i) => (i >= 40 && 80 - i <= 20) ? '' : tail)
+            .replace(/-+$/, '');
     }
 
     const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',

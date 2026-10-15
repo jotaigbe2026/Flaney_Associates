@@ -158,18 +158,25 @@
         'August', 'September', 'October', 'November', 'December'];
 
     /* The first slot on or after today that no post already occupies. Lets you
-       queue several months in one sitting without picking dates by hand. */
+       queue several months in one sitting without picking dates by hand.
+
+       "Occupied" means that exact date, not that month. An extra post on
+       another day — 1 November alongside the regular 15th — used to take the
+       whole month out of the rota, so the monthly slot silently stopped being
+       offered. Any date can still be typed in by hand; this only decides what
+       the button fills in. */
     function nextOpenSlot(day) {
-        const taken = new Set(state.posts.map(p => String(p.date).slice(0, 7)));
+        const taken = new Set(state.posts.map(p => String(p.date).slice(0, 10)));
         const now = new Date();
         let year = now.getFullYear(), month = now.getMonth();
         if (now.getDate() >= day) month += 1;
         for (let i = 0; i < 36; i++) {
             const y = year + Math.floor(month / 12);
             const m = ((month % 12) + 12) % 12;
-            const key = y + '-' + String(m + 1).padStart(2, '0');
-            if (!taken.has(key)) {
-                return { year: y, month: m, iso: key + '-' + String(day).padStart(2, '0') };
+            const iso = y + '-' + String(m + 1).padStart(2, '0') +
+                '-' + String(day).padStart(2, '0');
+            if (!taken.has(iso)) {
+                return { year: y, month: m, iso: iso };
             }
             month += 1;
         }

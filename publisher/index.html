@@ -480,9 +480,15 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                     username is <code>jotaigbe2026</code> and the password is the token. Your keychain remembers it.</dd>
 
                 <dt>&ldquo;Updates were rejected&hellip; non-fast-forward&rdquo;</dt>
-                <dd>Something else pushed first, usually the automated monthly featured-article job. Run
-                    <code>git pull --no-rebase origin main</code>, resolve anything it flags, then run the publish script.
-                    <strong>Never force-push.</strong></dd>
+                <dd>Something else pushed first, usually the automated monthly featured-article job, which commits
+                    on the 1st of each month. The publish script now collects that work itself before pushing, so you
+                    should not see this any more. If you do, run <code>git pull --no-rebase origin main</code>, resolve
+                    anything it flags, then run the publish script again. <strong>Never force-push.</strong></dd>
+
+                <dt>&ldquo;Could not merge what is already on GitHub&rdquo;</dt>
+                <dd>The same file was changed here and on GitHub, so the publish script stopped rather than guess which
+                    version wins. Your work is committed and safe. It lists the files involved &mdash; ask Claude to sort
+                    it out, which is the quickest route.</dd>
 
                 <dt><code>fatal: not a git repository</code></dt>
                 <dd>Terminal opened in your home folder. The <code>cd</code> is part of the command &mdash; paste the

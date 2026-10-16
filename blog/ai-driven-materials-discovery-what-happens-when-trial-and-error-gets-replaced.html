@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-driven materials discovery: what happens when trial and error gets replaced by prediction | Flaney Associates</title>
+    <meta name="description" content="In November 2023, DeepMind published a list. It contained 2.2 million crystal structures.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="AI-driven materials discovery: what happens when trial and error gets replaced by prediction">
+    <meta property="og:description" content="In November 2023, DeepMind published a list. It contained 2.2 million crystal structures.">
+    <meta property="article:published_time" content="2027-01-01T09:00:00">
+    <meta property="og:image" content="https://www.flaneyassociates.com/blog/images/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.jpg">
+    <link rel="canonical" href="https://www.flaneyassociates.com/blog/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.html">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI-driven materials discovery: what happens when trial and error gets replaced by prediction",
+    "description": "In November 2023, DeepMind published a list. It contained 2.2 million crystal structures.",
+    "url": "https://www.flaneyassociates.com/blog/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.html",
+    "mainEntityOfPage": "https://www.flaneyassociates.com/blog/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.html",
+    "datePublished": "2027-01-01",
+    "dateModified": "2026-10-16",
+    "author": {
+        "@type": "Person",
+        "name": "Joshua U. Otaigbe",
+        "honorificSuffix": "PhD, CEng, FIMMM",
+        "url": "https://www.flaneyassociates.com/about.html"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Flaney Associates",
+        "url": "https://www.flaneyassociates.com"
+    },
+    "image": "https://www.flaneyassociates.com/blog/images/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.jpg"
+}
+    </script>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="icon" sizes="any" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="preload" href="../fonts/inter-v20-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../fonts/inter.css">
+    <link rel="stylesheet" href="../styles.css?v=d1fa38e5">
+    <link rel="stylesheet" href="../blog/blog.css?v=199d6eef">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVGZ9HK8Y6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LVGZ9HK8Y6');
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-solid" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                Flaney<span class="logo-accent">Associates</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li class="has-dropdown">
+                    <button type="button" class="nav-trigger">How We Help</button>
+                    <ul class="dropdown">
+                        <li><a href="../services/failure-analysis.html">Failure &amp; Root-Cause Analysis<span class="dropdown-note">Why it failed, and what is defensible</span></a></li>
+                        <li><a href="../services/materials-selection.html">Materials Selection &amp; Qualification<span class="dropdown-note">Choosing and validating a material</span></a></li>
+                        <li><a href="../services/product-development.html">Product Development &amp; Materials Innovation<span class="dropdown-note">Concept through production</span></a></li>
+                        <li><a href="../services/process-optimization.html">Manufacturing Process Optimization<span class="dropdown-note">Yield, quality, throughput</span></a></li>
+                        <li><a href="../services/technical-due-diligence.html">Technical Due Diligence &amp; R&amp;D Strategy<span class="dropdown-note">Technology and investment decisions</span></a></li>
+                        <li><a href="../services/expert-witness.html">Expert Witness &amp; Litigation Support<span class="dropdown-note">Product liability, IP, technical disputes</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <button type="button" class="nav-trigger">Industries</button>
+                    <ul class="dropdown">
+                        <li><a href="../industries.html#polymers-plastics">Polymers &amp; Plastics</a></li>
+                        <li><a href="../industries.html#composites">Composites</a></li>
+                        <li><a href="../industries.html#manufacturing">Manufacturing &amp; Processing</a></li>
+                        <li><a href="../industries.html#consumer-products">Consumer Products</a></li>
+                        <li><a href="../industries.html#automotive">Automotive &amp; Transportation</a></li>
+                        <li><a href="../industries.html#energy">Energy &amp; Oil/Gas</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <button type="button" class="nav-trigger">Insights</button>
+                    <ul class="dropdown">
+                        <li><a href="../featured.html">Featured This Month<span class="dropdown-note">One article, chosen monthly</span></a></li>
+                        <li><a href="../blog/index.html" class="active">Blog<span class="dropdown-note">Articles on materials and manufacturing</span></a></li>
+                        <li><a href="../guides.html">Guides &amp; Briefings<span class="dropdown-note">Checklists and sector briefings</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <button type="button" class="nav-trigger">About</button>
+                    <ul class="dropdown">
+                        <li><a href="../about.html">Joshua U. Otaigbe<span class="dropdown-note">Founder &amp; Principal &middot; credentials and approach</span></a></li>
+                        <li><a href="../about.html#credentials">Credentials</a></li>
+                        <li><a href="../about.html#approach">Approach</a></li>
+                        <li><a href="../about.html#faqs">FAQs</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <button type="button" class="nav-trigger">Contact</button>
+                    <ul class="dropdown">
+                        <li><a href="../contact.html">Discuss Your Challenge<span class="dropdown-note">Manufacturers and product teams</span></a></li>
+                        <li><a href="../attorney-inquiry.html">Attorney Conflict Check<span class="dropdown-note">Confidential, no case details</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html" class="btn btn-nav">Discuss Your Challenge</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="article-page" data-publish="2027-01-01">
+        <div class="container container-narrow">
+            <a class="back-link" href="index.html">&larr; All articles</a>
+            <div class="post-cats"><span class="blog-category">Advanced Materials Engineering</span><span class="blog-category">Artificial Intelligence (AI)</span><span class="blog-category">Materials Science</span></div>
+            <h1>AI-driven materials discovery: what happens when trial and error gets replaced by prediction</h1>
+            <div class="article-meta">
+                <span>January 1, 2027</span>
+                <span aria-hidden="true">&middot;</span>
+                <span>8 min read</span>
+                <span aria-hidden="true">&middot;</span>
+                <span>Joshua Otaigbe</span>
+            </div>
+        </div>
+        <figure class="article-figure">
+            <img src="images/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.jpg" alt="AI-driven materials discovery: what happens when trial and error gets replaced by prediction">
+        </figure>
+        <div class="container container-narrow">
+            <div class="article-body">
+<p>In November 2023, DeepMind published a list. It
+contained 2.2 million crystal structures.</p>
+<p>Not compounds that had been synthesized. Not materials
+that had been tested. Structures that a machine learning model predicted would
+be stable, based on patterns in the physics of known crystals. Of those 2.2
+million, roughly 380,000 were genuinely novel: compositions and arrangements
+that no one had made or computed before. The entire catalogue of stable
+inorganic crystals accumulated through human discovery up to that point
+numbered around <strong>28,000.</strong></p>
+<p>That is the scale shift AI is introducing into materials
+science.</p>
+<h3>The old way of finding materials</h3>
+<p>Materials discovery has historically been a slow,
+expensive, and largely empirical process. You had a hypothesis, a synthesis
+route, and a furnace. You made something. You measured its properties. If it
+was useful, you refined it; if not, you tried something else. Thomas Edison
+tested over 6,000 candidate materials looking for a durable incandescent
+filament. That was the method: systematic elimination by experiment, guided by
+intuition and experience.</p>
+<p>The process from initial discovery to commercial product
+averaged 10 to 20 years across the 20th century. Synthesis takes time. Characterization
+takes equipment. Iteration requires people. And the space of possible materials
+is vast almost beyond imagination: roughly 100 elements, capable of forming
+millions of distinct compositions, each in multiple possible crystal
+structures. Searching that space experimentally, one compound at a time, is
+equivalent to exploring an ocean by wading.</p>
+<p>The US Materials Genome Initiative, launched in 2011, recognized
+this bottleneck explicitly. Its stated goal was to halve the time from
+discovery to deployment, using computational tools and data sharing. The
+initiative seeded a network of databases and tools that became the substrate
+for what happened a decade later when machine learning arrived.</p>
+<h3>What the models actually do</h3>
+<p>The core capability of modern ML in materials science is
+property prediction from structure. Given a crystal structure, a trained model
+can predict whether it's thermodynamically stable, what its electronic band
+structure looks like, what its thermal conductivity is, whether it might be
+magnetic, and dozens of other properties, in seconds, without running a single
+experiment or even a computationally expensive quantum chemistry calculation.</p>
+<p>The models are trained on databases of computed
+materials properties: the Materials Project (now over 150,000 computed
+inorganic materials), AFLOW, and OQMD (Open Quantum Materials Database). These
+databases were built by running density functional theory (DFT) calculations,
+which are expensive but can be parallelized across supercomputer clusters. DFT
+is the physics-based ground truth. ML learns to approximate DFT's predictions
+much faster, trading some accuracy for enormous speed gains.</p>
+<p>Graph neural networks (GNNs) are the dominant
+architecture for this task. A crystal structure maps naturally onto a graph:
+atoms as nodes, bonds and proximity relationships as edges. GNNs learn
+representations of local chemical environments and propagate information across
+the structure to predict global properties. Models like MEGNet, CGCNN, and
+GNoME are GNN-based. They've gotten good enough that predicted formation
+energies are within a few tens of meV per atom of DFT values for most
+compositions, which is sufficient to distinguish stable from unstable
+structures.</p>
+<p>The generative side is newer and faster-moving. Rather
+than just predicting properties of proposed structures, generative models can
+propose novel structures with target properties. Variational autoencoders,
+diffusion models adapted from image generation, and large language models
+trained on materials databases can all generate candidate crystal structures or
+molecular compositions with specified characteristics. You tell the model you
+want a solid electrolyte with high ionic conductivity and a wide
+electrochemical window: it proposes candidates.</p>
+<p>The loop that emerges: generate candidates, filter by
+predicted stability, rank by predicted performance, synthesize the top
+candidates, feed experimental results back into the training set, repeat. This
+is active learning: a closed-loop discovery workflow.</p>
+<h3>GNoME and what it means</h3>
+<p>DeepMind's GNoME paper in Nature in November 2023 is the
+most prominent recent example of this approach at scale. The model was trained
+on existing DFT-computed data from the Materials Project and similar databases,
+then used to generate and screen 2.2 million candidate crystal structures for
+thermodynamic stability.</p>
+<p>The number is legitimately significant. It expanded the
+known space of stable inorganic crystals by roughly 80-fold. Many of the
+predicted materials fall into classes of interest for energy storage,
+superconductivity, and catalysis.</p>
+<p>The verification step is equally important. Working with
+Lawrence Berkeley National Laboratory's A-Lab, the team autonomously
+synthesized 736 of the novel GNoME-predicted materials using a robotic
+laboratory system with minimal human intervention. 41% of synthesis attempts
+yielded the target phase. For novel compositions in unexplored spaces, that's a
+strong hit rate.</p>
+<p>What GNoME doesn't do is tell you which of those 380,000
+novel structures are useful for a specific application, how to make them at
+scale, or what their real-world performance looks like. Thermodynamic stability
+is a necessary but not sufficient condition for a useful material. There are
+compounds in those 2.2 million that will turn out to be genuinely important.
+Identifying which ones requires targeted follow-up, and the AI model hands that
+question back to human scientists.</p>
+<h3>Self-driving laboratories</h3>
+<p>The A-Lab at Berkeley is part of a broader shift toward
+autonomous experimental systems that ML drives rather than just informs.</p>
+<p>A self-driving lab integrates robotic synthesis and
+characterisation with a machine learning model that proposes the next
+experiment based on results so far. The robot doesn't sleep. It doesn't have
+competing priorities. It runs 24 hours a day with consistent technique. The
+model learns in real time from every experiment it runs.</p>
+<p>The Acceleration Consortium at the University of
+Toronto, led by Alán Aspuru-Guzik, has built one of the most advanced
+self-driving lab platforms. Their system has been used to find new organic
+molecules with specific photophysical properties, running thousands of
+experimental cycles in the time it would take a human team to run dozens. NIMS
+in Japan and Argonne National Laboratory have similar programs for inorganic
+materials.</p>
+<p>The throughput advantage is real. But the more important
+advantage is exploration. A self-driving lab can pursue many parallel
+hypotheses without the cognitive constraints that push human researchers toward
+familiar chemical spaces. It goes to the parts of the composition map that
+intuition wouldn't.</p>
+<h3>Where the method runs into limits</h3>
+<p>Three problems are genuine and not trivially solvable.</p>
+<p>Data quality is the most fundamental. ML models learn
+from training data, and materials databases are sparser, noisier, and less
+consistently curated than the datasets that trained large language models or
+image recognition systems. DFT has known systematic errors for certain classes
+of materials: strongly correlated electron systems, some transition metal
+oxides, surfaces. A model trained on imperfect data will have systematic blind
+spots, which become dangerous when the model is confident in predictions in
+those regions.</p>
+<p>Synthesizability is a distinct problem from stability.
+Thermodynamic stability means the structure is at a free energy minimum. It
+says nothing about whether you can reach that minimum from starting materials
+at laboratory conditions. Many predicted stable structures are kinetically
+inaccessible: the synthesis pathway is blocked by energy barriers that
+room-temperature chemistry can't overcome. The GNoME paper's 41% synthesis
+success rate implicitly captures this: 59% of attempts failed, partly because
+the structures were real but unreachable by the synthesis routes tried.</p>
+<p>Interpretability matters in practice. A model that
+predicts a high-performance lithium-ion cathode material without explaining
+which structural features drive the prediction gives the experimentalist no
+guidance for modification. Black-box predictions are useful for screening but
+insufficient for design. Explainability methods for GNNs have improved, but
+materials science needs predictions coupled with mechanistic insight, and most
+current models don't provide that reliably.</p>
+<strong>
+</strong>
+<h3>What this means for the materials scientist</h3>
+<p>The bottleneck in materials discovery is moving. It used
+to be at hypothesis generation and early-stage synthesis: finding the right
+composition to investigate. ML is compressing that step dramatically. The
+bottleneck is shifting downstream, toward experimental validation at scale,
+toward understanding why a promising material behaves as it does, and toward
+solving the engineering problems of manufacturing and integration that no model
+addresses.</p>
+<p>A materials scientist in 2035 will spend less time
+running exploratory synthesis at small scale and more time running scale-up
+trials, analyzing anomalous ML predictions, curating training data for the next
+generation of models, and translating model outputs into manufacturable
+products. The analytical and creative work remains human-intensive. The
+combinatorial search work is increasingly machine-intensive.</p>
+<p>This is analogous to what happened in genomics. DNA
+sequencing became cheap and fast enough to read entire genomes routinely. The
+bottleneck shifted from sequencing to interpretation: figuring out what the
+sequence means, which variants matter, how genes interact. Bioinformatics
+became an essential discipline. Materials informatics is following the same
+trajectory, roughly 15 years behind.</p>
+<p>The tools are changing. The questions are not.</p>
+<h3>Where the series ends</h3>
+<p>This is the eighth and final article in the Materials
+Engineering Innovations series. We started with the glass on your phone screen
+and the foam in your running shoes: advanced materials hiding in plain sight,
+doing remarkable things without recognition.</p>
+<p>We've covered materials that remember their shape and
+respond to temperature, the twenty-year audit of graphene's promises and
+deliveries, biomaterials designed to survive the immune response, the carbon
+problem embedded in cement and steel chemistry, the cost curve that turned
+carbon fiber from a fighter jet material into a bicycle frame, the chemistry
+bottleneck behind batteries and solar cells, and now the ML tools accelerating
+the search for whatever comes next.</p>
+<p>The common thread across all eight articles is this:
+materials define what's possible. Every performance limit, every safety
+constraint, every cost ceiling in engineering ultimately traces back to the
+properties of the physical stuff things are made from. The machines get better.
+The software gets smarter. But the performance of every physical system, from
+an aircraft turbine blade to a solar cell to a hip implant, is bounded by
+material properties.</p>
+<p>Those properties are being pushed, systematically, by
+people who understand them.</p>
+<p><em>For more information or if
+you have any questions, please contact the author.</em></p>
+<p><em>Written by Joshua U. Otaigbe, PhD</em></p>
+            </div>
+
+            <div class="article-download">
+                <div class="article-download-text">
+                    <h4>&#128196; Download this article as a PDF</h4>
+                    <p>Take the full briefing with you — formatted for print, filing and sharing with your team.</p>
+                </div>
+                <button class="btn btn-primary gated-download" data-pdf="../articles/ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced.pdf" data-title="AI-driven materials discovery: what happens when trial and error gets replaced by prediction">&#11015; Get the PDF</button>
+            </div>
+
+            <div class="article-author">
+                <div class="author-avatar" aria-hidden="true">JO</div>
+                <div>
+                    <h4>Joshua U. Otaigbe, PhD</h4>
+                    <p>Materials engineering consultant specialising in polymers, composites and hybrid materials. Get in touch at <a href="mailto:info@flaneyassociates.com">info@flaneyassociates.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <section class="section related-section">
+        <div class="container">
+            <h2 class="related-heading">Related articles</h2>
+            <div class="post-grid">
+                <article class="post-card" data-title="composites in the real world: how carbon fiber went from f1 to furniture in 1981, john watson crashed his mclaren at monza at roughly 170 mph. the car disintegrated. watson climbed out and walked to the medical center." data-cats="Advanced Materials Engineering|Polymers and Composites" data-publish="2026-12-15">
+                    <a class="post-thumb" href="composites-in-the-real-world-how-carbon-fiber-went-from-f1-to.html"><img src="images/composites-in-the-real-world-how-carbon-fiber-went-from-f1-to.jpg" alt="Composites in the real world: how carbon fiber went from F1 to furniture" loading="lazy"></a>
+                    <div class="post-body">
+                        <div class="post-cats"><span class="blog-category">Advanced Materials Engineering</span><span class="blog-category">Polymers and Composites</span></div>
+                        <h3><a href="composites-in-the-real-world-how-carbon-fiber-went-from-f1-to.html">Composites in the real world: how carbon fiber went from F1 to furniture</a></h3>
+                        <p>In 1981, John Watson crashed his McLaren at Monza at roughly 170 mph. The car disintegrated. Watson climbed out and walked to the medical center.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">December 15, 2026</span>
+                            <span class="blog-read">6 min read</span>
+                        </div>
+                        <a class="card-link" href="composites-in-the-real-world-how-carbon-fiber-went-from-f1-to.html">Read full article &rarr;</a>
+                    </div>
+                </article>
+                <article class="post-card" data-title="energy materials: the chemistry bottleneck behind batteries, solar cells, and fuel cells the energy transition is, at its core, a materials problem." data-cats="Advanced Materials Engineering|Energy Materials|Materials Science" data-publish="2026-12-01">
+                    <a class="post-thumb" href="energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and.html"><img src="images/energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and.jpg" alt="Energy materials: the chemistry bottleneck behind batteries, solar cells, and fuel cells" loading="lazy"></a>
+                    <div class="post-body">
+                        <div class="post-cats"><span class="blog-category">Advanced Materials Engineering</span><span class="blog-category">Energy Materials</span><span class="blog-category">Materials Science</span></div>
+                        <h3><a href="energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and.html">Energy materials: the chemistry bottleneck behind batteries, solar cells, and fuel cells</a></h3>
+                        <p>The energy transition is, at its core, a materials problem.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">December 1, 2026</span>
+                            <span class="blog-read">9 min read</span>
+                        </div>
+                        <a class="card-link" href="energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and.html">Read full article &rarr;</a>
+                    </div>
+                </article>
+                <article class="post-card" data-title="graphene: a decade of promise - what actually shipped? in 2004, andre geim and konstantin novoselov used scotch tape to peel single-atom-thick flakes of carbon off a graphite block at the university of manchester. it sounds ridiculous. it worked. six years later, they shared the nobel prize in physics." data-cats="Advanced Materials Engineering|Nanotechnology" data-publish="2026-11-15">
+                    <a class="post-thumb" href="graphene-a-decade-of-promise-what-actually-shipped.html"><img src="images/graphene-a-decade-of-promise-what-actually-shipped.jpg" alt="Graphene: A Decade of Promise — What Actually Shipped?" loading="lazy"></a>
+                    <div class="post-body">
+                        <div class="post-cats"><span class="blog-category">Advanced Materials Engineering</span><span class="blog-category">Nanotechnology</span></div>
+                        <h3><a href="graphene-a-decade-of-promise-what-actually-shipped.html">Graphene: A Decade of Promise — What Actually Shipped?</a></h3>
+                        <p>In 2004, Andre Geim and Konstantin Novoselov used Scotch tape to peel single-atom-thick flakes of carbon off a graphite block at the University of Manchester. It sounds ridiculous. It worked. Six years later, they shared the Nobel Prize in Physics.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">November 15, 2026</span>
+                            <span class="blog-read">7 min read</span>
+                        </div>
+                        <a class="card-link" href="graphene-a-decade-of-promise-what-actually-shipped.html">Read full article &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-band">
+        <div class="container">
+            <h2>Need independent input on a materials problem?</h2>
+            <p>Failure and root-cause analysis, materials selection, process optimization and expert-witness work — led by Joshua U. Otaigbe, PhD, CEng, FIMMM, Founder and Principal of Flaney Associates.</p>
+            <a href="../contact.html" class="btn btn-primary btn-lg">Discuss Your Challenge</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo-link">
+                        <img src="../images/flaney-logo.png" alt="Flaney Associates LLC" class="footer-logo" width="180" height="121">
+                    </a>
+                    <address class="footer-address">
+                        6600 U.S. Highway 98 West, Suite D<br>
+                        Hattiesburg,&nbsp;MS&nbsp;39402
+                    </address>
+                    <p>Independent materials-science and engineering expertise for manufacturers, product teams and attorneys. Led by Joshua U. Otaigbe, PhD, CEng, FIMMM &mdash; Founder &amp; Principal, Flaney Associates.</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/joshua-otaigbe-phd-ceng-fimmm-22751322" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="tel:+16014027282" class="social-link" aria-label="Phone">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>How We Help</h4>
+                    <ul>
+                        <li><a href="../services/failure-analysis.html">Failure &amp; Root-Cause Analysis</a></li>
+                        <li><a href="../services/materials-selection.html">Materials Selection &amp; Qualification</a></li>
+                        <li><a href="../services/product-development.html">Product Development &amp; Materials Innovation</a></li>
+                        <li><a href="../services/process-optimization.html">Manufacturing Process Optimization</a></li>
+                        <li><a href="../services/technical-due-diligence.html">Technical Due Diligence &amp; R&amp;D Strategy</a></li>
+                        <li><a href="../services/expert-witness.html">Expert Witness &amp; Litigation Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../about.html">About Joshua U. Otaigbe</a></li>
+                        <li><a href="../about.html#credentials">Credentials</a></li>
+                        <li><a href="../industries.html">Industries</a></li>
+                        <li><a href="../featured.html">Featured This Month</a></li>
+                        <li><a href="../blog/index.html">Blog</a></li>
+                        <li><a href="../guides.html">Guides &amp; Briefings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="../contact.html">Discuss Your Challenge</a></li>
+                        <li><a href="../attorney-inquiry.html">Attorney Conflict Check</a></li>
+                        <li><a href="mailto:info@flaneyassociates.com">info@flaneyassociates.com</a></li>
+                        <li><a href="tel:+16014027282">+1 (601) 402-7282</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Flaney Associates, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="modal-icon">&#128218;</div>
+            <h3>Get Your Free Article</h3>
+            <p class="modal-subtitle">Enter your details below and the PDF will download instantly. No spam — just expert insights.</p>
+            <form class="modal-form" id="downloadForm">
+                <div class="form-group">
+                    <input type="text" id="dlName" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="dlEmail" name="email" placeholder="Work Email" required>
+                    <span class="email-feedback" id="dlEmailFeedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dlCompany" name="company" placeholder="Company (optional)">
+                </div>
+                <input type="hidden" id="dlArticle" name="article" value="">
+                <button type="submit" class="btn btn-primary btn-lg btn-full">&#11015; Download Now — Free</button>
+                <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../lead-capture.js?v=bd51694a"></script>
+    <script src="blog.js?v=9853573a"></script>
+</body>
+</html>

@@ -349,12 +349,45 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                     command from the <strong>Files</strong> tab in Terminal. Live in about a minute.</li>
             </ol>
 
-            <p class="guide-note">Editing a post you have already written? Use <em>Edit published</em> in step 2, and
-                press <em>&#8635; Regenerate from the article</em> under the card summary after a rewrite &mdash; the
-                summary keeps its old text otherwise, and that text is what appears on the blog card, in Google and in
-                the LinkedIn preview.</p>
+            <h3>2 &middot; Edit an article you already published</h3>
 
-            <h3>2 &middot; How your files reach GitHub</h3>
+            <p>Same dashboard, same Generate, same publish script. The difference is that the article keeps its address
+                and its date, so a correction does not look like a new post.</p>
+
+            <ol class="guide-steps">
+                <li><strong>Refresh first</strong> if you have published since opening this page
+                    (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>). The list of articles is read from the live site when
+                    the dashboard loads, so a post published minutes ago is missing until you reload.</li>
+                <li><strong>Step 2 &rarr; <em>Edit published</em></strong>, then choose the article. Every article whose
+                    text lives on this site is listed, including ones still scheduled. The &ldquo;Members only&rdquo;
+                    posts are not: their text has never been here, so there is nothing to edit.</li>
+                <li><strong>The form fills itself</strong> with the article as it currently reads &mdash; title,
+                    categories, body, summary. An amber note says where the post came from and reminds you it already
+                    has an image.</li>
+                <li><strong>Make the change in step 3.</strong> Edit in place, or paste a corrected version from Word.</li>
+                <li><strong>Leave step 4 empty to keep the existing image.</strong> Only drop a new one in if you mean
+                    to replace it.</li>
+                <li><strong>After a rewrite, press <em>&#8635; Regenerate from the article</em></strong> under the card
+                    summary. The summary does not follow the body on its own, and it is what appears on the blog card,
+                    in Google results and in the LinkedIn preview.</li>
+                <li><strong>Check the preview</strong>, press <em>Generate the publish bundle</em>, then run
+                    <code>./publish.sh</code>. Live in about a minute.</li>
+            </ol>
+
+            <p class="guide-sub">What stays fixed, and why</p>
+            <ul class="guide-list">
+                <li><strong>The address.</strong> Changing it would break every LinkedIn post and search result pointing
+                    at the article, and leave the old page stranded.</li>
+                <li><strong>The date.</strong> A correction is not a republication, so a fixed typo does not jump to the
+                    top of the archive and the homepage.</li>
+                <li><strong>The PDF is rebuilt</strong> from your edited text, so nobody can download a version that
+                    contradicts the corrected page.</li>
+            </ul>
+
+            <p class="guide-note">Nothing is ever lost. Every previous version of every article is kept in the
+                repository&rsquo;s history and can be restored exactly &mdash; text, image and PDF.</p>
+
+            <h3>3 &middot; How your files reach GitHub</h3>
 
             <p><strong>This dashboard never touches GitHub.</strong> It holds no password and has no connection to it.
                 It only prepares files. There are two routes:</p>
@@ -406,7 +439,7 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 and leave the folder where it is. Then the most you will ever need is the one Reconnect click. The
                 <em>Repository folder</em> field in step 1 is saved the same way, so it survives restarts too.</p>
 
-            <h3>3 &middot; Every button, briefly</h3>
+            <h3>4 &middot; Every button, briefly</h3>
 
             <p class="guide-sub">Top bar</p>
             <ul class="guide-list">
@@ -446,7 +479,7 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 <li><strong>Files</strong> &mdash; what to commit, and the command to run</li>
             </ul>
 
-            <h3>4 &middot; The LinkedIn tab &mdash; what it does not do</h3>
+            <h3>5 &middot; The LinkedIn tab &mdash; what it does not do</h3>
 
             <p class="guide-flag">It does not connect to LinkedIn. There is no login, no authorisation, no automatic
                 posting and no cross-posting. Nothing is sent anywhere.</p>
@@ -468,7 +501,7 @@ Blank lines separate paragraphs. A short line on its own becomes a heading. You 
                 reader&rsquo;s own clock, and the <em>Scheduled preview</em> banner disappears at the same moment, so
                 readers arriving from LinkedIn see the article listed normally. Avoid scheduling it for the day before.</p>
 
-            <h3>5 &middot; Troubleshooting</h3>
+            <h3>6 &middot; Troubleshooting</h3>
 
             <dl class="guide-trouble">
                 <dt>A change I made is not showing</dt>

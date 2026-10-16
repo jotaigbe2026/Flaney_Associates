@@ -1,0 +1,3028 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 6671 >>
+stream
+0.969 0.976 0.988 rg
+0 746 612 46 re f
+0.102 0.227 0.361 rg
+64 770.5 m 68.5 766 l 64 761.5 l 59.5 766 l h f
+BT
+0.102 0.227 0.361 rg
+/F2 10.5 Tf
+1 0 0 1 76 763 Tm
+(FLANEY ASSOCIATES) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 9 Tf
+1 0 0 1 408.437 763.5 Tm
+(Materials Engineering & Innovation) Tj
+ET
+0.176 0.549 0.941 RG
+2 w
+0 746 m 612 746 l S
+BT
+0.176 0.549 0.941 rg
+/F2 9 Tf
+1 0 0 1 64 700 Tm
+(ADVANCED MATERIALS ENGINEERING  \267  ENERGY MATERIALS  \267  MATERIALS SCIENCE) Tj
+ET
+BT
+0.102 0.227 0.361 rg
+1 0 0 1 64 653 Tm
+0.000 Tw
+/F2 21 Tf
+(Energy ) Tj
+(materials: ) Tj
+(the ) Tj
+(chemistry ) Tj
+(bottleneck) Tj
+0 Tw
+ET
+BT
+0.102 0.227 0.361 rg
+1 0 0 1 64 626 Tm
+0.000 Tw
+/F2 21 Tf
+(behind ) Tj
+(batteries, ) Tj
+(solar ) Tj
+(cells, ) Tj
+(and ) Tj
+(fuel ) Tj
+(cells) Tj
+0 Tw
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 10 Tf
+1 0 0 1 64 606 Tm
+(Joshua Otaigbe  \267  December 1, 2026) Tj
+ET
+0.886 0.906 0.929 RG
+1 w
+64 592 m 548 592 l S
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 559 Tm
+0.000 Tw
+/F1 11 Tf
+(The ) Tj
+(energy ) Tj
+(transition ) Tj
+(is, ) Tj
+(at ) Tj
+(its ) Tj
+(core, ) Tj
+(a ) Tj
+(materials ) Tj
+(problem.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 532 Tm
+2.981 Tw
+/F1 11 Tf
+(The ) Tj
+(physics ) Tj
+(of ) Tj
+(solar ) Tj
+(conversion, ) Tj
+(electrochemical ) Tj
+(storage, ) Tj
+(and ) Tj
+(hydrogen ) Tj
+(oxidation ) Tj
+(have ) Tj
+(been) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 515 Tm
+3.955 Tw
+/F1 11 Tf
+(understood ) Tj
+(for ) Tj
+(decades. ) Tj
+(Photovoltaic ) Tj
+(cells ) Tj
+(work ) Tj
+(on ) Tj
+(principles ) Tj
+(described ) Tj
+(in ) Tj
+(the ) Tj
+(1950s. ) Tj
+(The) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 498 Tm
+0.784 Tw
+/F1 11 Tf
+(lithium-ion ) Tj
+(battery ) Tj
+(was ) Tj
+(commercialised ) Tj
+(in ) Tj
+(1991. ) Tj
+(Proton ) Tj
+(exchange ) Tj
+(membrane ) Tj
+(fuel ) Tj
+(cells ) Tj
+(date ) Tj
+(to ) Tj
+(the) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 481 Tm
+0.000 Tw
+/F1 11 Tf
+(1960s. ) Tj
+(The ) Tj
+(equations ) Tj
+(governing ) Tj
+(these ) Tj
+(systems ) Tj
+(aren't ) Tj
+(under ) Tj
+(debate.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 454 Tm
+1.462 Tw
+/F1 11 Tf
+(The ) Tj
+(limitation ) Tj
+(is ) Tj
+(that ) Tj
+(transforming ) Tj
+(those ) Tj
+(well-understood ) Tj
+(physical ) Tj
+(principles ) Tj
+(into ) Tj
+(devices ) Tj
+(that ) Tj
+(are) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 437 Tm
+1.709 Tw
+/F1 11 Tf
+(cheap ) Tj
+(enough, ) Tj
+(durable ) Tj
+(enough, ) Tj
+(and ) Tj
+(energy-dense ) Tj
+(enough ) Tj
+(to ) Tj
+(displace ) Tj
+(the ) Tj
+(incumbent ) Tj
+(fossil ) Tj
+(fuel) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 420 Tm
+1.322 Tw
+/F1 11 Tf
+(infrastructure ) Tj
+(requires ) Tj
+(materials ) Tj
+(that ) Tj
+(either ) Tj
+(don't ) Tj
+(exist ) Tj
+(yet ) Tj
+(or ) Tj
+(exist ) Tj
+(only ) Tj
+(at ) Tj
+(laboratory ) Tj
+(scale. ) Tj
+(Every) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 403 Tm
+1.773 Tw
+/F1 11 Tf
+(percentage ) Tj
+(point ) Tj
+(of ) Tj
+(improvement ) Tj
+(in ) Tj
+(solar ) Tj
+(cell ) Tj
+(efficiency, ) Tj
+(every ) Tj
+(watt-hour ) Tj
+(per ) Tj
+(kilogram ) Tj
+(gained ) Tj
+(in) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 386 Tm
+0.815 Tw
+/F1 11 Tf
+(battery ) Tj
+(energy ) Tj
+(density, ) Tj
+(and ) Tj
+(every ) Tj
+(order-of-magnitude ) Tj
+(reduction ) Tj
+(in ) Tj
+(electrocatalyst ) Tj
+(cost ) Tj
+(traces ) Tj
+(back) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 369 Tm
+0.000 Tw
+/F1 11 Tf
+(to ) Tj
+(materials ) Tj
+(science.) Tj
+0 Tw
+ET
+BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 326 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Lithium-ion ) Tj
+(anatomy ) Tj
+(and ) Tj
+(its ) Tj
+(ceiling) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 303 Tm
+0.067 Tw
+/F1 11 Tf
+(A ) Tj
+(lithium-ion ) Tj
+(cell ) Tj
+(is ) Tj
+(a ) Tj
+(deceptively ) Tj
+(simple ) Tj
+(device. ) Tj
+(A ) Tj
+(cathode, ) Tj
+(an ) Tj
+(anode, ) Tj
+(and ) Tj
+(an ) Tj
+(electrolyte ) Tj
+(separating) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 286 Tm
+0.457 Tw
+/F1 11 Tf
+(them, ) Tj
+(with ) Tj
+(a ) Tj
+(porous ) Tj
+(polymer ) Tj
+(membrane ) Tj
+(preventing ) Tj
+(contact. ) Tj
+(During ) Tj
+(charge, ) Tj
+(lithium ) Tj
+(ions ) Tj
+(move ) Tj
+(from) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 269 Tm
+0.123 Tw
+/F1 11 Tf
+(cathode ) Tj
+(to ) Tj
+(anode ) Tj
+(through ) Tj
+(the ) Tj
+(electrolyte; ) Tj
+(during ) Tj
+(discharge, ) Tj
+(they ) Tj
+(move ) Tj
+(back. ) Tj
+(The ) Tj
+(current ) Tj
+(collectors,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 252 Tm
+0.000 Tw
+/F1 11 Tf
+(electrolyte, ) Tj
+(and ) Tj
+(separator ) Tj
+(are ) Tj
+(mostly ) Tj
+(inert ) Tj
+(scaffolding. ) Tj
+(The ) Tj
+(chemistry ) Tj
+(is ) Tj
+(in ) Tj
+(the ) Tj
+(active ) Tj
+(materials.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 225 Tm
+1.996 Tw
+/F1 11 Tf
+(The ) Tj
+(cathode ) Tj
+(is ) Tj
+(where ) Tj
+(most ) Tj
+(of ) Tj
+(the ) Tj
+(energy ) Tj
+(density ) Tj
+(lives. ) Tj
+(NMC ) Tj
+(\(lithium ) Tj
+(nickel ) Tj
+(manganese ) Tj
+(cobalt) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 208 Tm
+0.803 Tw
+/F1 11 Tf
+(oxide\) ) Tj
+(cathodes ) Tj
+(in ) Tj
+(high-energy ) Tj
+(EV ) Tj
+(cells ) Tj
+(now ) Tj
+(run ) Tj
+(at ) Tj
+(compositions ) Tj
+(like ) Tj
+(NMC ) Tj
+(811 ) Tj
+(\(80% ) Tj
+(nickel, ) Tj
+(10%) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 191 Tm
+2.760 Tw
+/F1 11 Tf
+(manganese, ) Tj
+(10% ) Tj
+(cobalt\), ) Tj
+(which ) Tj
+(deliver ) Tj
+(specific ) Tj
+(capacities ) Tj
+(around ) Tj
+(200 ) Tj
+(mAh/g. ) Tj
+(Pushing ) Tj
+(nickel) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 174 Tm
+1.921 Tw
+/F1 11 Tf
+(content ) Tj
+(higher ) Tj
+(increases ) Tj
+(capacity ) Tj
+(but ) Tj
+(reduces ) Tj
+(thermal ) Tj
+(stability, ) Tj
+(which ) Tj
+(is ) Tj
+(why ) Tj
+(every ) Tj
+(incremental) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 157 Tm
+1.997 Tw
+/F1 11 Tf
+(nickel ) Tj
+(increase ) Tj
+(requires ) Tj
+(corresponding ) Tj
+(changes ) Tj
+(in ) Tj
+(electrolyte ) Tj
+(additives, ) Tj
+(electrode ) Tj
+(coatings, ) Tj
+(and) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 140 Tm
+4.706 Tw
+/F1 11 Tf
+(battery ) Tj
+(management ) Tj
+(systems. ) Tj
+(LFP ) Tj
+(\(lithium ) Tj
+(iron ) Tj
+(phosphate\) ) Tj
+(cathodes ) Tj
+(are ) Tj
+(the ) Tj
+(other ) Tj
+(major) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 123 Tm
+2.197 Tw
+/F1 11 Tf
+(chemistry: ) Tj
+(lower ) Tj
+(energy ) Tj
+(density ) Tj
+(\(roughly ) Tj
+(160 ) Tj
+(mAh/g\), ) Tj
+(no ) Tj
+(cobalt ) Tj
+(or ) Tj
+(nickel, ) Tj
+(much ) Tj
+(better ) Tj
+(thermal) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 106 Tm
+0.867 Tw
+/F1 11 Tf
+(stability ) Tj
+(and ) Tj
+(cycle ) Tj
+(life. ) Tj
+(BYD ) Tj
+(and ) Tj
+(CATL ) Tj
+(both ) Tj
+(rely ) Tj
+(heavily ) Tj
+(on ) Tj
+(LFP ) Tj
+(for ) Tj
+(lower-cost ) Tj
+(EVs ) Tj
+(and ) Tj
+(stationary) Tj
+0 Tw
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 1 of 6) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 7010 >>
+stream
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 703 Tm
+0.000 Tw
+/F1 11 Tf
+(storage.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 676 Tm
+1.254 Tw
+/F1 11 Tf
+(The ) Tj
+(anode ) Tj
+(is ) Tj
+(where ) Tj
+(the ) Tj
+(physics ) Tj
+(gets ) Tj
+(interesting. ) Tj
+(Graphite, ) Tj
+(which ) Tj
+(intercalates ) Tj
+(lithium ) Tj
+(between ) Tj
+(its) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 659 Tm
+1.424 Tw
+/F1 11 Tf
+(layers, ) Tj
+(has ) Tj
+(been ) Tj
+(the ) Tj
+(standard ) Tj
+(anode ) Tj
+(material ) Tj
+(since ) Tj
+(1991. ) Tj
+(Its ) Tj
+(theoretical ) Tj
+(specific ) Tj
+(capacity ) Tj
+(is ) Tj
+(372) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 642 Tm
+0.460 Tw
+/F1 11 Tf
+(mAh/g. ) Tj
+(Silicon's ) Tj
+(theoretical ) Tj
+(capacity ) Tj
+(is ) Tj
+(3,579 ) Tj
+(mAh/g. ) Tj
+(The ) Tj
+(reason ) Tj
+(silicon ) Tj
+(hasn't ) Tj
+(replaced ) Tj
+(graphite ) Tj
+(is) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 625 Tm
+1.360 Tw
+/F1 11 Tf
+(volumetric ) Tj
+(expansion: ) Tj
+(silicon ) Tj
+(expands ) Tj
+(roughly ) Tj
+(300% ) Tj
+(as ) Tj
+(it ) Tj
+(absorbs ) Tj
+(lithium ) Tj
+(ions, ) Tj
+(creating ) Tj
+(stresses) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+0.118 Tw
+/F1 11 Tf
+(that ) Tj
+(crack ) Tj
+(the ) Tj
+(particles, ) Tj
+(expose ) Tj
+(fresh ) Tj
+(surface ) Tj
+(to ) Tj
+(electrolyte, ) Tj
+(and ) Tj
+(consume ) Tj
+(lithium ) Tj
+(in ) Tj
+(irreversible ) Tj
+(side) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 591 Tm
+0.361 Tw
+/F1 11 Tf
+(reactions. ) Tj
+(The ) Tj
+(practical ) Tj
+(solution ) Tj
+(is ) Tj
+(partial ) Tj
+(substitution: ) Tj
+(silicon-graphite ) Tj
+(anodes ) Tj
+(with ) Tj
+(5 ) Tj
+(to ) Tj
+(20% ) Tj
+(silicon) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 574 Tm
+1.713 Tw
+/F1 11 Tf
+(content ) Tj
+(by ) Tj
+(weight, ) Tj
+(capturing ) Tj
+(a ) Tj
+(meaningful ) Tj
+(capacity ) Tj
+(increase ) Tj
+(without ) Tj
+(the ) Tj
+(full ) Tj
+(expansion ) Tj
+(problem.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 557 Tm
+0.000 Tw
+/F1 11 Tf
+(Several ) Tj
+(manufacturers ) Tj
+(including ) Tj
+(Panasonic ) Tj
+(and ) Tj
+(CATL ) Tj
+(have ) Tj
+(commercial ) Tj
+(cells ) Tj
+(with) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 540 Tm
+0.000 Tw
+/F1 11 Tf
+(silicon-containing ) Tj
+(anodes.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 513 Tm
+0.508 Tw
+/F1 11 Tf
+(The ) Tj
+(electrolyte ) Tj
+(is ) Tj
+(a ) Tj
+(liquid ) Tj
+(organic ) Tj
+(carbonate ) Tj
+(solution, ) Tj
+(typically ) Tj
+(a ) Tj
+(mixture ) Tj
+(of ) Tj
+(ethylene ) Tj
+(carbonate ) Tj
+(and) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 496 Tm
+2.782 Tw
+/F1 11 Tf
+(dimethyl ) Tj
+(carbonate, ) Tj
+(with ) Tj
+(a ) Tj
+(dissolved ) Tj
+(lithium ) Tj
+(salt ) Tj
+(\(LiPF6\). ) Tj
+(It ) Tj
+(works. ) Tj
+(It ) Tj
+(also ) Tj
+(burns. ) Tj
+(The ) Tj
+(organic) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 479 Tm
+0.730 Tw
+/F1 11 Tf
+(carbonates ) Tj
+(are ) Tj
+(flammable, ) Tj
+(which ) Tj
+(is ) Tj
+(why ) Tj
+(lithium-ion ) Tj
+(battery ) Tj
+(fires ) Tj
+(are ) Tj
+(difficult ) Tj
+(to ) Tj
+(extinguish ) Tj
+(and ) Tj
+(why) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 462 Tm
+0.000 Tw
+/F1 11 Tf
+(thermal ) Tj
+(runaway ) Tj
+(in ) Tj
+(a ) Tj
+(battery ) Tj
+(pack ) Tj
+(can ) Tj
+(propagate ) Tj
+(from ) Tj
+(cell ) Tj
+(to ) Tj
+(cell.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 435 Tm
+4.972 Tw
+/F1 11 Tf
+(The ) Tj
+(energy ) Tj
+(density ) Tj
+(ceiling ) Tj
+(for ) Tj
+(conventional ) Tj
+(Li-ion, ) Tj
+(based ) Tj
+(on ) Tj
+(current ) Tj
+(cathode ) Tj
+(and ) Tj
+(anode) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 418 Tm
+0.312 Tw
+/F1 11 Tf
+(chemistries, ) Tj
+(is ) Tj
+(approximately ) Tj
+(300 ) Tj
+(to ) Tj
+(350 ) Tj
+(Wh/kg ) Tj
+(at ) Tj
+(the ) Tj
+(cell ) Tj
+(level. ) Tj
+(Getting ) Tj
+(above ) Tj
+(that ) Tj
+(ceiling ) Tj
+(requires) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 401 Tm
+0.000 Tw
+/F1 11 Tf
+(a ) Tj
+(different ) Tj
+(chemistry.) Tj
+0 Tw
+ET
+BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 358 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Solid-state ) Tj
+(batteries: ) Tj
+(the ) Tj
+(state ) Tj
+(of ) Tj
+(play) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 335 Tm
+0.684 Tw
+/F1 11 Tf
+(Replacing ) Tj
+(the ) Tj
+(liquid ) Tj
+(electrolyte ) Tj
+(with ) Tj
+(a ) Tj
+(solid ) Tj
+(changes ) Tj
+(almost ) Tj
+(everything ) Tj
+(about ) Tj
+(the ) Tj
+(cell ) Tj
+(design, ) Tj
+(most) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 318 Tm
+0.000 Tw
+/F1 11 Tf
+(of ) Tj
+(it ) Tj
+(for ) Tj
+(the ) Tj
+(better ) Tj
+(on ) Tj
+(paper.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 291 Tm
+0.639 Tw
+/F1 11 Tf
+(A ) Tj
+(solid ) Tj
+(electrolyte ) Tj
+(eliminates ) Tj
+(the ) Tj
+(flammable ) Tj
+(solvent. ) Tj
+(It ) Tj
+(enables ) Tj
+(a ) Tj
+(lithium ) Tj
+(metal ) Tj
+(anode, ) Tj
+(which ) Tj
+(has ) Tj
+(a) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 274 Tm
+1.233 Tw
+/F1 11 Tf
+(theoretical ) Tj
+(specific ) Tj
+(capacity ) Tj
+(of ) Tj
+(3,860 ) Tj
+(mAh/g ) Tj
+(versus ) Tj
+(graphite's ) Tj
+(372 ) Tj
+(mAh/g. ) Tj
+(It ) Tj
+(allows ) Tj
+(cell ) Tj
+(operation) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 257 Tm
+0.760 Tw
+/F1 11 Tf
+(over ) Tj
+(a ) Tj
+(wider ) Tj
+(temperature ) Tj
+(range. ) Tj
+(And ) Tj
+(it ) Tj
+(opens ) Tj
+(the ) Tj
+(door ) Tj
+(to ) Tj
+(bipolar ) Tj
+(stacking, ) Tj
+(which ) Tj
+(reduces ) Tj
+(inactive) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 240 Tm
+0.000 Tw
+/F1 11 Tf
+(material ) Tj
+(and ) Tj
+(improves ) Tj
+(volumetric ) Tj
+(energy ) Tj
+(density ) Tj
+(at ) Tj
+(the ) Tj
+(pack ) Tj
+(level.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 213 Tm
+2.667 Tw
+/F1 11 Tf
+(Ionic ) Tj
+(conductivity ) Tj
+(in ) Tj
+(solid ) Tj
+(electrolytes ) Tj
+(is ) Tj
+(lower ) Tj
+(than ) Tj
+(in ) Tj
+(liquid ) Tj
+(electrolytes ) Tj
+(at ) Tj
+(room ) Tj
+(temperature,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 196 Tm
+2.546 Tw
+/F1 11 Tf
+(though ) Tj
+(the ) Tj
+(gap ) Tj
+(has ) Tj
+(closed ) Tj
+(substantially. ) Tj
+(Sulfide-based ) Tj
+(solid ) Tj
+(electrolytes, ) Tj
+(particularly ) Tj
+(Li6PS5Cl) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 179 Tm
+0.550 Tw
+/F1 11 Tf
+(\(argyrodite\), ) Tj
+(now ) Tj
+(achieve ) Tj
+(ionic ) Tj
+(conductivities ) Tj
+(of ) Tj
+(10 ) Tj
+(to ) Tj
+(25 ) Tj
+(mS/cm ) Tj
+(at ) Tj
+(room ) Tj
+(temperature, ) Tj
+(comparable) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 162 Tm
+3.163 Tw
+/F1 11 Tf
+(to ) Tj
+(liquid ) Tj
+(electrolytes. ) Tj
+(Oxide-based ) Tj
+(electrolytes ) Tj
+(\(LLZO: ) Tj
+(lithium ) Tj
+(lanthanum ) Tj
+(zirconium ) Tj
+(oxide\) ) Tj
+(are) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 145 Tm
+5.547 Tw
+/F1 11 Tf
+(chemically ) Tj
+(more ) Tj
+(stable ) Tj
+(but ) Tj
+(achieve ) Tj
+(lower ) Tj
+(conductivity ) Tj
+(unless ) Tj
+(carefully ) Tj
+(sintered. ) Tj
+(Polymer) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 128 Tm
+4.075 Tw
+/F1 11 Tf
+(electrolytes ) Tj
+(\(PEO-based\) ) Tj
+(are ) Tj
+(processable ) Tj
+(and ) Tj
+(flexible ) Tj
+(but ) Tj
+(require ) Tj
+(elevated ) Tj
+(temperatures ) Tj
+(to) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 111 Tm
+0.000 Tw
+/F1 11 Tf
+(achieve ) Tj
+(adequate ) Tj
+(conductivity.) Tj
+0 Tw
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 2 of 6) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 7755 >>
+stream
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 703 Tm
+3.427 Tw
+/F1 11 Tf
+(The ) Tj
+(interface ) Tj
+(problem ) Tj
+(is ) Tj
+(harder. ) Tj
+(Solid-solid ) Tj
+(interfaces ) Tj
+(between ) Tj
+(the ) Tj
+(electrolyte ) Tj
+(and ) Tj
+(electrode) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 686 Tm
+1.595 Tw
+/F1 11 Tf
+(materials ) Tj
+(generate ) Tj
+(resistance ) Tj
+(that ) Tj
+(liquid ) Tj
+(electrolytes ) Tj
+(avoid ) Tj
+(by ) Tj
+(conformally ) Tj
+(wetting ) Tj
+(every ) Tj
+(surface.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+0.591 Tw
+/F1 11 Tf
+(Mechanical ) Tj
+(contact ) Tj
+(degrades ) Tj
+(as ) Tj
+(electrodes ) Tj
+(expand ) Tj
+(and ) Tj
+(contract ) Tj
+(during ) Tj
+(cycling. ) Tj
+(Lithium ) Tj
+(dendrites,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 652 Tm
+2.291 Tw
+/F1 11 Tf
+(considered ) Tj
+(a ) Tj
+(solved ) Tj
+(problem ) Tj
+(with ) Tj
+(solid ) Tj
+(electrolytes, ) Tj
+(can ) Tj
+(still ) Tj
+(grow ) Tj
+(through ) Tj
+(solid ) Tj
+(electrolytes ) Tj
+(at) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 635 Tm
+0.000 Tw
+/F1 11 Tf
+(current ) Tj
+(densities ) Tj
+(above ) Tj
+(a ) Tj
+(threshold ) Tj
+(that ) Tj
+(varies ) Tj
+(with ) Tj
+(electrolyte ) Tj
+(grain ) Tj
+(structure ) Tj
+(and ) Tj
+(applied ) Tj
+(pressure.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+1.731 Tw
+/F1 11 Tf
+(Toyota ) Tj
+(has ) Tj
+(committed ) Tj
+(to ) Tj
+(production ) Tj
+(vehicles ) Tj
+(with ) Tj
+(solid-state ) Tj
+(batteries ) Tj
+(by ) Tj
+(2027 ) Tj
+(or ) Tj
+(2028 ) Tj
+(using ) Tj
+(a) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 591 Tm
+4.940 Tw
+/F1 11 Tf
+(sulfide-based ) Tj
+(chemistry. ) Tj
+(QuantumScape, ) Tj
+(backed ) Tj
+(by ) Tj
+(Volkswagen ) Tj
+(Group, ) Tj
+(has ) Tj
+(demonstrated) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 574 Tm
+1.497 Tw
+/F1 11 Tf
+(impressive ) Tj
+(cycle ) Tj
+(life ) Tj
+(in ) Tj
+(small-format ) Tj
+(cells ) Tj
+(and ) Tj
+(has ) Tj
+(broken ) Tj
+(ground ) Tj
+(on ) Tj
+(a ) Tj
+(pilot ) Tj
+(production ) Tj
+(facility ) Tj
+(in) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 557 Tm
+3.044 Tw
+/F1 11 Tf
+(Germany. ) Tj
+(Solid ) Tj
+(Power, ) Tj
+(backed ) Tj
+(by ) Tj
+(Ford ) Tj
+(and ) Tj
+(BMW, ) Tj
+(is ) Tj
+(at ) Tj
+(a ) Tj
+(similar ) Tj
+(stage. ) Tj
+(The ) Tj
+(manufacturing) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 540 Tm
+2.181 Tw
+/F1 11 Tf
+(challenge ) Tj
+(is ) Tj
+(underappreciated ) Tj
+(in ) Tj
+(most ) Tj
+(coverage: ) Tj
+(sulfide ) Tj
+(electrolytes ) Tj
+(are ) Tj
+(moisture-sensitive ) Tj
+(and) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 523 Tm
+0.000 Tw
+/F1 11 Tf
+(require ) Tj
+(dry-room ) Tj
+(processing ) Tj
+(significantly ) Tj
+(more ) Tj
+(stringent ) Tj
+(than ) Tj
+(current ) Tj
+(Li-ion ) Tj
+(manufacturing.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 496 Tm
+3.654 Tw
+/F1 11 Tf
+(The ) Tj
+(honest ) Tj
+(timeline ) Tj
+(for ) Tj
+(solid-state ) Tj
+(batteries ) Tj
+(in ) Tj
+(mass-market ) Tj
+(EVs ) Tj
+(is ) Tj
+(2028 ) Tj
+(to ) Tj
+(2033 ) Tj
+(for ) Tj
+(early) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 479 Tm
+0.378 Tw
+/F1 11 Tf
+(commercial ) Tj
+(volumes, ) Tj
+(later ) Tj
+(for ) Tj
+(broad ) Tj
+(deployment. ) Tj
+(First-mover ) Tj
+(applications ) Tj
+(will ) Tj
+(be ) Tj
+(premium ) Tj
+(vehicles) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 462 Tm
+0.000 Tw
+/F1 11 Tf
+(and ) Tj
+(aerospace, ) Tj
+(where ) Tj
+(the ) Tj
+(energy ) Tj
+(density ) Tj
+(and ) Tj
+(safety ) Tj
+(gains ) Tj
+(justify ) Tj
+(the ) Tj
+(cost ) Tj
+(premium.) Tj
+0 Tw
+ET
+BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 419 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Perovskite ) Tj
+(solar ) Tj
+(cells: ) Tj
+(fast ) Tj
+(climb, ) Tj
+(hard ) Tj
+(landing) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 396 Tm
+3.275 Tw
+/F1 11 Tf
+(Silicon ) Tj
+(photovoltaics ) Tj
+(have ) Tj
+(dominated ) Tj
+(solar ) Tj
+(for ) Tj
+(40 ) Tj
+(years ) Tj
+(and ) Tj
+(remain ) Tj
+(the ) Tj
+(cheapest ) Tj
+(source ) Tj
+(of) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 379 Tm
+1.863 Tw
+/F1 11 Tf
+(electricity ) Tj
+(ever ) Tj
+(produced ) Tj
+(in ) Tj
+(human ) Tj
+(history. ) Tj
+(The ) Tj
+(average ) Tj
+(cost ) Tj
+(of ) Tj
+(utility-scale ) Tj
+(solar ) Tj
+(in ) Tj
+(the ) Tj
+(US ) Tj
+(fell) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 362 Tm
+0.000 Tw
+/F1 11 Tf
+(below ) Tj
+($0.03 ) Tj
+(per ) Tj
+(kWh ) Tj
+(in ) Tj
+(2023. ) Tj
+(The ) Tj
+(efficiency ) Tj
+(record ) Tj
+(for ) Tj
+(silicon ) Tj
+(solar ) Tj
+(cells ) Tj
+(is ) Tj
+(around ) Tj
+(27%.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 335 Tm
+2.174 Tw
+/F1 11 Tf
+(Perovskite ) Tj
+(solar ) Tj
+(cells ) Tj
+(are ) Tj
+(the ) Tj
+(most ) Tj
+(significant ) Tj
+(photovoltaic ) Tj
+(development ) Tj
+(since ) Tj
+(silicon, ) Tj
+(and ) Tj
+(they) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 318 Tm
+0.596 Tw
+/F1 11 Tf
+(arrived ) Tj
+(fast. ) Tj
+(In ) Tj
+(2009, ) Tj
+(a ) Tj
+(perovskite-structured ) Tj
+(material ) Tj
+(\(methylammonium ) Tj
+(lead ) Tj
+(iodide\) ) Tj
+(was ) Tj
+(reported) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 301 Tm
+1.208 Tw
+/F1 11 Tf
+(as ) Tj
+(a ) Tj
+(solar ) Tj
+(cell ) Tj
+(sensitizer ) Tj
+(with ) Tj
+(3.8% ) Tj
+(efficiency. ) Tj
+(By ) Tj
+(2023, ) Tj
+(single-junction ) Tj
+(perovskite ) Tj
+(cells ) Tj
+(exceeded) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 284 Tm
+1.515 Tw
+/F1 11 Tf
+(26% ) Tj
+(efficiency ) Tj
+(in ) Tj
+(certified ) Tj
+(measurements. ) Tj
+(LONGi ) Tj
+(set ) Tj
+(a ) Tj
+(certified ) Tj
+(record ) Tj
+(of ) Tj
+(33.9% ) Tj
+(efficiency ) Tj
+(for ) Tj
+(a) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 267 Tm
+0.927 Tw
+/F1 11 Tf
+(perovskite-silicon ) Tj
+(tandem ) Tj
+(cell ) Tj
+(in ) Tj
+(late ) Tj
+(2023. ) Tj
+(For ) Tj
+(reference, ) Tj
+(the ) Tj
+(thermodynamic ) Tj
+(efficiency ) Tj
+(limit ) Tj
+(for ) Tj
+(a) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 250 Tm
+0.000 Tw
+/F1 11 Tf
+(single-junction ) Tj
+(silicon ) Tj
+(cell ) Tj
+(is ) Tj
+(around ) Tj
+(29%.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 223 Tm
+0.347 Tw
+/F1 11 Tf
+(The ) Tj
+(perovskite ) Tj
+(structure ) Tj
+(\(ABX3, ) Tj
+(where ) Tj
+(A ) Tj
+(is ) Tj
+(an ) Tj
+(organic ) Tj
+(or ) Tj
+(inorganic ) Tj
+(cation, ) Tj
+(B ) Tj
+(is ) Tj
+(usually ) Tj
+(lead, ) Tj
+(and ) Tj
+(X) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 206 Tm
+0.294 Tw
+/F1 11 Tf
+(is ) Tj
+(a ) Tj
+(halide\) ) Tj
+(is ) Tj
+(fabricated ) Tj
+(from ) Tj
+(solution ) Tj
+(at ) Tj
+(relatively ) Tj
+(low ) Tj
+(temperatures, ) Tj
+(which ) Tj
+(means ) Tj
+(it ) Tj
+(can ) Tj
+(be ) Tj
+(printed) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 189 Tm
+2.428 Tw
+/F1 11 Tf
+(or ) Tj
+(coated ) Tj
+(onto ) Tj
+(substrates ) Tj
+(rather ) Tj
+(than ) Tj
+(requiring ) Tj
+(the ) Tj
+(high-purity ) Tj
+(silicon ) Tj
+(ingot ) Tj
+(growth ) Tj
+(that ) Tj
+(makes) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 172 Tm
+1.114 Tw
+/F1 11 Tf
+(silicon ) Tj
+(cells ) Tj
+(capital-intensive. ) Tj
+(The ) Tj
+(bandgap ) Tj
+(is ) Tj
+(tunable ) Tj
+(by ) Tj
+(varying ) Tj
+(the ) Tj
+(halide ) Tj
+(composition, ) Tj
+(which ) Tj
+(is) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 155 Tm
+0.649 Tw
+/F1 11 Tf
+(why ) Tj
+(perovskite-silicon ) Tj
+(tandems ) Tj
+(are ) Tj
+(attractive: ) Tj
+(the ) Tj
+(perovskite ) Tj
+(top ) Tj
+(cell ) Tj
+(absorbs ) Tj
+(high-energy ) Tj
+(photons) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 138 Tm
+0.188 Tw
+/F1 11 Tf
+(that ) Tj
+(silicon ) Tj
+(would ) Tj
+(waste ) Tj
+(as ) Tj
+(heat, ) Tj
+(and ) Tj
+(the ) Tj
+(silicon ) Tj
+(bottom ) Tj
+(cell ) Tj
+(captures ) Tj
+(lower-energy ) Tj
+(photons ) Tj
+(that ) Tj
+(the) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 121 Tm
+0.000 Tw
+/F1 11 Tf
+(perovskite ) Tj
+(would ) Tj
+(miss.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 94 Tm
+4.257 Tw
+/F1 11 Tf
+(Lead-containing ) Tj
+(perovskites ) Tj
+(decompose ) Tj
+(on ) Tj
+(contact ) Tj
+(with ) Tj
+(moisture ) Tj
+(and ) Tj
+(under ) Tj
+(prolonged ) Tj
+(UV) Tj
+0 Tw
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 3 of 6) Tj
+ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 7464 >>
+stream
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 703 Tm
+1.378 Tw
+/F1 11 Tf
+(exposure. ) Tj
+(Commercial ) Tj
+(silicon ) Tj
+(cells ) Tj
+(carry ) Tj
+(25-year ) Tj
+(performance ) Tj
+(warranties. ) Tj
+(No ) Tj
+(perovskite ) Tj
+(cell ) Tj
+(has) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 686 Tm
+1.385 Tw
+/F1 11 Tf
+(yet ) Tj
+(demonstrated ) Tj
+(comparable ) Tj
+(outdoor ) Tj
+(durability, ) Tj
+(though ) Tj
+(cells ) Tj
+(encapsulated ) Tj
+(with ) Tj
+(careful ) Tj
+(moisture) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+0.333 Tw
+/F1 11 Tf
+(barriers ) Tj
+(now ) Tj
+(routinely ) Tj
+(achieve ) Tj
+(2,000 ) Tj
+(to ) Tj
+(5,000 ) Tj
+(hours ) Tj
+(in ) Tj
+(accelerated ) Tj
+(aging ) Tj
+(tests. ) Tj
+(Replacing ) Tj
+(lead ) Tj
+(with) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 652 Tm
+1.984 Tw
+/F1 11 Tf
+(tin ) Tj
+(produces ) Tj
+(cells ) Tj
+(with ) Tj
+(similar ) Tj
+(efficiency ) Tj
+(potential ) Tj
+(but ) Tj
+(worse ) Tj
+(stability, ) Tj
+(because ) Tj
+(Sn2+ ) Tj
+(oxidizes ) Tj
+(to) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 635 Tm
+0.000 Tw
+/F1 11 Tf
+(Sn4+ ) Tj
+(more ) Tj
+(readily ) Tj
+(than ) Tj
+(Pb2+.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+0.177 Tw
+/F1 11 Tf
+(The ) Tj
+(scaling ) Tj
+(problem ) Tj
+(is ) Tj
+(distinct ) Tj
+(from ) Tj
+(the ) Tj
+(stability ) Tj
+(problem. ) Tj
+(Small-area ) Tj
+(certified ) Tj
+(efficiency ) Tj
+(records ) Tj
+(are) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 591 Tm
+0.295 Tw
+/F1 11 Tf
+(measured ) Tj
+(on ) Tj
+(cells ) Tj
+(of ) Tj
+(a ) Tj
+(square ) Tj
+(centimeter ) Tj
+(or ) Tj
+(less. ) Tj
+(Commercial ) Tj
+(modules ) Tj
+(must ) Tj
+(cover ) Tj
+(square ) Tj
+(meters.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 574 Tm
+0.290 Tw
+/F1 11 Tf
+(Perovskite ) Tj
+(efficiency ) Tj
+(drops ) Tj
+(meaningfully ) Tj
+(when ) Tj
+(cells ) Tj
+(are ) Tj
+(scaled ) Tj
+(up, ) Tj
+(because ) Tj
+(coating ) Tj
+(uniformity ) Tj
+(over) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 557 Tm
+3.653 Tw
+/F1 11 Tf
+(large ) Tj
+(areas ) Tj
+(is ) Tj
+(harder ) Tj
+(to ) Tj
+(maintain. ) Tj
+(Oxford ) Tj
+(PV, ) Tj
+(the ) Tj
+(most ) Tj
+(advanced ) Tj
+(commercial ) Tj
+(developer ) Tj
+(of) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 540 Tm
+0.044 Tw
+/F1 11 Tf
+(perovskite-silicon ) Tj
+(tandems, ) Tj
+(has ) Tj
+(demonstrated ) Tj
+(module-level ) Tj
+(efficiencies ) Tj
+(above ) Tj
+(24% ) Tj
+(and ) Tj
+(announced) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 523 Tm
+0.000 Tw
+/F1 11 Tf
+(plans ) Tj
+(for ) Tj
+(commercial ) Tj
+(production.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 496 Tm
+3.653 Tw
+/F1 11 Tf
+(A ) Tj
+(conservative ) Tj
+(commercial ) Tj
+(timeline: ) Tj
+(premium ) Tj
+(perovskite-silicon ) Tj
+(tandem ) Tj
+(modules ) Tj
+(available ) Tj
+(in) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 479 Tm
+2.332 Tw
+/F1 11 Tf
+(limited ) Tj
+(quantities ) Tj
+(by ) Tj
+(2025 ) Tj
+(to ) Tj
+(2026, ) Tj
+(meaningful ) Tj
+(market ) Tj
+(penetration ) Tj
+(by ) Tj
+(2028 ) Tj
+(to ) Tj
+(2030, ) Tj
+(assuming) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 462 Tm
+0.000 Tw
+/F1 11 Tf
+(stability ) Tj
+(is ) Tj
+(resolved. ) Tj
+(Lead-free ) Tj
+(perovskites ) Tj
+(are ) Tj
+(probably ) Tj
+(5 ) Tj
+(to ) Tj
+(10 ) Tj
+(years ) Tj
+(further ) Tj
+(behind.) Tj
+0 Tw
+ET
+BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 419 Tm
+0.000 Tw
+/F2 12.5 Tf
+(Hydrogen ) Tj
+(storage: ) Tj
+(the ) Tj
+(unsolved ) Tj
+(weight ) Tj
+(problem) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 396 Tm
+1.648 Tw
+/F1 11 Tf
+(Hydrogen ) Tj
+(is ) Tj
+(a ) Tj
+(compelling ) Tj
+(energy ) Tj
+(carrier. ) Tj
+(Its ) Tj
+(gravimetric ) Tj
+(energy ) Tj
+(density ) Tj
+(is ) Tj
+(33 ) Tj
+(kWh/kg, ) Tj
+(roughly ) Tj
+(3) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 379 Tm
+0.444 Tw
+/F1 11 Tf
+(times ) Tj
+(that ) Tj
+(of ) Tj
+(diesel. ) Tj
+(It ) Tj
+(produces ) Tj
+(only ) Tj
+(water ) Tj
+(when ) Tj
+(oxidized ) Tj
+(in ) Tj
+(a ) Tj
+(fuel ) Tj
+(cell. ) Tj
+(Green ) Tj
+(hydrogen, ) Tj
+(produced) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 362 Tm
+0.000 Tw
+/F1 11 Tf
+(by ) Tj
+(electrolysis ) Tj
+(using ) Tj
+(renewable ) Tj
+(electricity, ) Tj
+(has ) Tj
+(near-zero ) Tj
+(lifecycle ) Tj
+(carbon ) Tj
+(emissions.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 335 Tm
+1.470 Tw
+/F1 11 Tf
+(The ) Tj
+(problem ) Tj
+(is ) Tj
+(storing ) Tj
+(it. ) Tj
+(At ) Tj
+(room ) Tj
+(temperature ) Tj
+(and ) Tj
+(atmospheric ) Tj
+(pressure, ) Tj
+(hydrogen ) Tj
+(gas ) Tj
+(has ) Tj
+(an) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 318 Tm
+0.000 Tw
+/F1 11 Tf
+(energy ) Tj
+(density ) Tj
+(of ) Tj
+(about ) Tj
+(3 ) Tj
+(Wh/L. ) Tj
+(Diesel ) Tj
+(is ) Tj
+(9,700 ) Tj
+(Wh/L.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 291 Tm
+0.681 Tw
+/F1 11 Tf
+(The ) Tj
+(two ) Tj
+(approaches ) Tj
+(in ) Tj
+(commercial ) Tj
+(vehicles ) Tj
+(are ) Tj
+(compressed ) Tj
+(gas ) Tj
+(\(700 ) Tj
+(bar ) Tj
+(in ) Tj
+(Type ) Tj
+(IV ) Tj
+(carbon ) Tj
+(fiber) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 274 Tm
+1.616 Tw
+/F1 11 Tf
+(composite ) Tj
+(tanks, ) Tj
+(as ) Tj
+(used ) Tj
+(in ) Tj
+(the ) Tj
+(Toyota ) Tj
+(Mirai ) Tj
+(and ) Tj
+(Hyundai ) Tj
+(Nexo\) ) Tj
+(and ) Tj
+(liquid ) Tj
+(hydrogen ) Tj
+(stored ) Tj
+(at) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 257 Tm
+2.275 Tw
+/F1 11 Tf
+(-253\260C. ) Tj
+(Compressed ) Tj
+(tanks ) Tj
+(at ) Tj
+(700 ) Tj
+(bar ) Tj
+(achieve ) Tj
+(volumetric ) Tj
+(energy ) Tj
+(densities ) Tj
+(around ) Tj
+(1.3 ) Tj
+(kWh/L.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 240 Tm
+1.554 Tw
+/F1 11 Tf
+(Liquid ) Tj
+(hydrogen ) Tj
+(reaches ) Tj
+(about ) Tj
+(2.4 ) Tj
+(kWh/L, ) Tj
+(at ) Tj
+(the ) Tj
+(cost ) Tj
+(of ) Tj
+(roughly ) Tj
+(30% ) Tj
+(of ) Tj
+(the ) Tj
+(hydrogen's ) Tj
+(energy) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 223 Tm
+0.000 Tw
+/F1 11 Tf
+(content ) Tj
+(for ) Tj
+(liquefaction ) Tj
+(and ) Tj
+(continuous ) Tj
+(boil-off ) Tj
+(losses ) Tj
+(during ) Tj
+(storage.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 196 Tm
+1.512 Tw
+/F1 11 Tf
+(Metal ) Tj
+(hydrides ) Tj
+(absorb ) Tj
+(hydrogen ) Tj
+(into ) Tj
+(a ) Tj
+(crystal ) Tj
+(lattice, ) Tj
+(achieving ) Tj
+(volumetric ) Tj
+(densities ) Tj
+(that ) Tj
+(exceed) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 179 Tm
+1.351 Tw
+/F1 11 Tf
+(liquid ) Tj
+(hydrogen ) Tj
+(in ) Tj
+(some ) Tj
+(materials. ) Tj
+(Magnesium ) Tj
+(hydride ) Tj
+(\(MgH2\) ) Tj
+(has ) Tj
+(a ) Tj
+(gravimetric ) Tj
+(capacity ) Tj
+(of ) Tj
+(7.6) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 162 Tm
+2.291 Tw
+/F1 11 Tf
+(wt%, ) Tj
+(meeting ) Tj
+(the ) Tj
+(US ) Tj
+(DOE's ) Tj
+(target ) Tj
+(of ) Tj
+(6.5 ) Tj
+(wt% ) Tj
+(for ) Tj
+(onboard ) Tj
+(storage. ) Tj
+(The ) Tj
+(problem ) Tj
+(is ) Tj
+(operating) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 145 Tm
+3.207 Tw
+/F1 11 Tf
+(temperature: ) Tj
+(MgH2 ) Tj
+(releases ) Tj
+(hydrogen ) Tj
+(only ) Tj
+(above ) Tj
+(300\260C, ) Tj
+(with ) Tj
+(slow ) Tj
+(kinetics. ) Tj
+(Practical ) Tj
+(metal) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 128 Tm
+3.702 Tw
+/F1 11 Tf
+(hydrides ) Tj
+(for ) Tj
+(vehicles ) Tj
+(need ) Tj
+(to ) Tj
+(work ) Tj
+(near ) Tj
+(room ) Tj
+(temperature, ) Tj
+(and ) Tj
+(the ) Tj
+(best ) Tj
+(room-temperature) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 111 Tm
+1.067 Tw
+/F1 11 Tf
+(materials ) Tj
+(\(FeTi, ) Tj
+(LaNi5\) ) Tj
+(store ) Tj
+(only ) Tj
+(1 ) Tj
+(to ) Tj
+(2 ) Tj
+(wt%, ) Tj
+(not ) Tj
+(enough ) Tj
+(for ) Tj
+(useful ) Tj
+(vehicle ) Tj
+(range ) Tj
+(without ) Tj
+(a ) Tj
+(very) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 94 Tm
+0.000 Tw
+/F1 11 Tf
+(heavy ) Tj
+(tank.) Tj
+0 Tw
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 4 of 6) Tj
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 5601 >>
+stream
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 703 Tm
+3.204 Tw
+/F1 11 Tf
+(Liquid ) Tj
+(organic ) Tj
+(hydrogen ) Tj
+(carriers ) Tj
+(\(LOHCs\), ) Tj
+(such ) Tj
+(as ) Tj
+(dibenzyltoluene, ) Tj
+(can ) Tj
+(be ) Tj
+(hydrogenated ) Tj
+(to) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 686 Tm
+0.901 Tw
+/F1 11 Tf
+(absorb ) Tj
+(hydrogen ) Tj
+(and ) Tj
+(dehydrogenated ) Tj
+(at ) Tj
+(a ) Tj
+(refuelling ) Tj
+(station ) Tj
+(to ) Tj
+(release ) Tj
+(it. ) Tj
+(They're ) Tj
+(compatible ) Tj
+(with) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 669 Tm
+0.796 Tw
+/F1 11 Tf
+(existing ) Tj
+(liquid ) Tj
+(fuel ) Tj
+(infrastructure. ) Tj
+(The ) Tj
+(dehydrogenation ) Tj
+(step ) Tj
+(requires ) Tj
+(heat ) Tj
+(at ) Tj
+(around ) Tj
+(300\260C, ) Tj
+(which) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 652 Tm
+0.000 Tw
+/F1 11 Tf
+(fits ) Tj
+(some ) Tj
+(industrial ) Tj
+(applications ) Tj
+(better ) Tj
+(than ) Tj
+(vehicle ) Tj
+(applications.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 625 Tm
+4.442 Tw
+/F1 11 Tf
+(The ) Tj
+(honest ) Tj
+(assessment: ) Tj
+(no ) Tj
+(hydrogen ) Tj
+(storage ) Tj
+(technology ) Tj
+(currently ) Tj
+(meets ) Tj
+(all ) Tj
+(requirements) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 608 Tm
+1.615 Tw
+/F1 11 Tf
+(simultaneously. ) Tj
+(For ) Tj
+(light ) Tj
+(vehicles, ) Tj
+(compressed ) Tj
+(700 ) Tj
+(bar ) Tj
+(tanks ) Tj
+(are ) Tj
+(the ) Tj
+(pragmatic ) Tj
+(current ) Tj
+(answer.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 591 Tm
+0.000 Tw
+/F1 11 Tf
+(Progress ) Tj
+(on ) Tj
+(room-temperature ) Tj
+(metal ) Tj
+(hydrides ) Tj
+(continues, ) Tj
+(but ) Tj
+(a ) Tj
+(vehicle-level ) Tj
+(solution ) Tj
+(isn't ) Tj
+(imminent.) Tj
+0 Tw
+ET
+BT
+0.059 0.153 0.251 rg
+1 0 0 1 64 548 Tm
+0.000 Tw
+/F2 12.5 Tf
+(What's ) Tj
+(closest ) Tj
+(to ) Tj
+(commercial ) Tj
+(viability) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 525 Tm
+2.053 Tw
+/F1 11 Tf
+(LFP ) Tj
+(batteries ) Tj
+(for ) Tj
+(stationary ) Tj
+(storage ) Tj
+(and ) Tj
+(budget ) Tj
+(EVs ) Tj
+(are ) Tj
+(already ) Tj
+(commercial ) Tj
+(and ) Tj
+(growing ) Tj
+(fast.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 508 Tm
+1.252 Tw
+/F1 11 Tf
+(Silicon-dominant ) Tj
+(anodes ) Tj
+(at ) Tj
+(20 ) Tj
+(to ) Tj
+(40% ) Tj
+(silicon ) Tj
+(are ) Tj
+(arriving ) Tj
+(in ) Tj
+(volume ) Tj
+(production ) Tj
+(cells ) Tj
+(now. ) Tj
+(These) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 491 Tm
+0.000 Tw
+/F1 11 Tf
+(are ) Tj
+(the ) Tj
+(near-term ) Tj
+(gains: ) Tj
+(real, ) Tj
+(incremental, ) Tj
+(and ) Tj
+(meaningful ) Tj
+(at ) Tj
+(gigawatt-hour ) Tj
+(scale.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 464 Tm
+1.601 Tw
+/F1 11 Tf
+(Solid-state ) Tj
+(batteries ) Tj
+(will ) Tj
+(reach ) Tj
+(premium ) Tj
+(EV ) Tj
+(applications ) Tj
+(by ) Tj
+(the ) Tj
+(end ) Tj
+(of ) Tj
+(this ) Tj
+(decade, ) Tj
+(starting ) Tj
+(with) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 447 Tm
+1.020 Tw
+/F1 11 Tf
+(Toyota ) Tj
+(and ) Tj
+(one ) Tj
+(or ) Tj
+(two ) Tj
+(Korean ) Tj
+(manufacturers. ) Tj
+(Mass ) Tj
+(market ) Tj
+(will ) Tj
+(follow ) Tj
+(when ) Tj
+(manufacturing ) Tj
+(costs) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 430 Tm
+0.000 Tw
+/F1 11 Tf
+(fall.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 403 Tm
+0.732 Tw
+/F1 11 Tf
+(Perovskite-silicon ) Tj
+(tandem ) Tj
+(solar ) Tj
+(modules ) Tj
+(will ) Tj
+(reach ) Tj
+(market ) Tj
+(in ) Tj
+(limited ) Tj
+(quantities ) Tj
+(within ) Tj
+(2 ) Tj
+(to ) Tj
+(3 ) Tj
+(years,) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 386 Tm
+3.753 Tw
+/F1 11 Tf
+(assuming ) Tj
+(Oxford ) Tj
+(PV ) Tj
+(and ) Tj
+(LONGi ) Tj
+(deliver ) Tj
+(on ) Tj
+(their ) Tj
+(roadmaps. ) Tj
+(The ) Tj
+(efficiency ) Tj
+(advantage ) Tj
+(over) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 369 Tm
+0.000 Tw
+/F1 11 Tf
+(standard ) Tj
+(silicon ) Tj
+(justifies ) Tj
+(a ) Tj
+(cost ) Tj
+(premium ) Tj
+(in ) Tj
+(space-constrained ) Tj
+(applications.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 342 Tm
+0.510 Tw
+/F1 11 Tf
+(Hydrogen ) Tj
+(storage ) Tj
+(remains ) Tj
+(the ) Tj
+(least-solved ) Tj
+(problem ) Tj
+(in ) Tj
+(this ) Tj
+(group. ) Tj
+(The ) Tj
+(physics ) Tj
+(of ) Tj
+(the ) Tj
+(molecule ) Tj
+(are) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 325 Tm
+0.000 Tw
+/F1 11 Tf
+(the ) Tj
+(constraint.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 298 Tm
+1.132 Tw
+/F1 11 Tf
+(The ) Tj
+(pattern ) Tj
+(across ) Tj
+(all ) Tj
+(of ) Tj
+(these ) Tj
+(is ) Tj
+(consistent ) Tj
+(with ) Tj
+(what ) Tj
+(this ) Tj
+(series ) Tj
+(has ) Tj
+(returned ) Tj
+(to ) Tj
+(repeatedly: ) Tj
+(the) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 281 Tm
+5.390 Tw
+/F1 11 Tf
+(physics ) Tj
+(is ) Tj
+(understood, ) Tj
+(the ) Tj
+(performance ) Tj
+(targets ) Tj
+(are ) Tj
+(defined, ) Tj
+(and ) Tj
+(the ) Tj
+(path ) Tj
+(forward ) Tj
+(is ) Tj
+(a) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 264 Tm
+1.592 Tw
+/F1 11 Tf
+(manufacturing ) Tj
+(and ) Tj
+(materials ) Tj
+(engineering ) Tj
+(problem. ) Tj
+(The ) Tj
+(chemistry ) Tj
+(and ) Tj
+(engineering ) Tj
+(of ) Tj
+(the ) Tj
+(energy) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 247 Tm
+0.000 Tw
+/F1 11 Tf
+(transition ) Tj
+(will ) Tj
+(be ) Tj
+(solved ) Tj
+(in ) Tj
+(labs ) Tj
+(and ) Tj
+(factories, ) Tj
+(not ) Tj
+(boardrooms.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 220 Tm
+0.000 Tw
+/F3 11 Tf
+(For ) Tj
+(more ) Tj
+(information ) Tj
+(or ) Tj
+(if ) Tj
+(you ) Tj
+(have ) Tj
+(any ) Tj
+(questions, ) Tj
+(please ) Tj
+(contact ) Tj
+(the ) Tj
+(author.) Tj
+0 Tw
+ET
+BT
+0.200 0.200 0.200 rg
+1 0 0 1 64 193 Tm
+0.000 Tw
+/F3 11 Tf
+(Written ) Tj
+(by ) Tj
+(Joshua ) Tj
+(U. ) Tj
+(Otaigbe, ) Tj
+(PhD) Tj
+0 Tw
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 5 of 6) Tj
+ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 720 >>
+stream
+0.969 0.976 0.988 rg
+64 604 484 92 re f
+0.176 0.549 0.941 RG
+3 w
+65.5 604 m 65.5 696 l S
+BT
+0.102 0.227 0.361 rg
+/F2 12 Tf
+1 0 0 1 84 670 Tm
+(Talk to us about your materials challenge) Tj
+ET
+BT
+0.200 0.200 0.200 rg
+/F1 10 Tf
+1 0 0 1 84 652 Tm
+(Joshua U. Otaigbe, PhD  \267  Materials Engineering Consultant) Tj
+ET
+BT
+0.200 0.200 0.200 rg
+/F1 10 Tf
+1 0 0 1 84 636 Tm
+(info@flaneyassociates.com  \267  +1 \(601\) 402-7282) Tj
+ET
+BT
+0.176 0.549 0.941 rg
+/F1 10 Tf
+1 0 0 1 84 620 Tm
+(flaneyassociates.com) Tj
+ET
+0.886 0.906 0.929 RG
+0.75 w
+64 62 m 548 62 l S
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 64 48 Tm
+(\251 2026 Flaney Associates) Tj
+ET
+BT
+0.400 0.400 0.400 rg
+/F1 8.5 Tf
+1 0 0 1 504.5225 48 Tm
+(Page 6 of 6) Tj
+ET
+endstream
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000155 00000 n 
+0000000252 00000 n 
+0000000354 00000 n 
+0000000459 00000 n 
+0000000605 00000 n 
+0000007328 00000 n 
+0000007474 00000 n 
+0000014536 00000 n 
+0000014684 00000 n 
+0000022492 00000 n 
+0000022640 00000 n 
+0000030157 00000 n 
+0000030305 00000 n 
+0000035959 00000 n 
+0000036107 00000 n 
+trailer
+<< /Size 18 /Root 1 0 R >>
+startxref
+36879
+%%EOF

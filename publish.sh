@@ -79,26 +79,17 @@ else
     POST_PUBLISH=no
 fi
 
-SLUG=$(python3 - <<'PY' 2>/dev/null
-import json
-try:
-    posts = json.load(open('blog/data/posts.json'))
-    print(max(posts, key=lambda p: p.get('modified', ''))['slug'])
-except Exception:
-    pass
-PY
-)
+# Which post is this about? Read it off the files that actually changed, not
+# off the newest `modified` stamp in posts.json: several posts queued in one
+# sitting share a stamp, and the history then names whichever one sorted last
+# rather than the one actually published. Falls back to the stamp when the
+# changed files name no post.
+read_change() {
+    python3 "$(dirname "$0")/publish_message.py" "$1" 2>/dev/null
+}
 
-TITLE=$(python3 - <<'PY' 2>/dev/null
-import json, html
-try:
-    posts = json.load(open('blog/data/posts.json'))
-    p = max(posts, key=lambda x: x.get('modified', ''))
-    print(html.unescape(p['title']).strip())
-except Exception:
-    pass
-PY
-)
+SLUG=$(read_change slug)
+TITLE=$(read_change title)
 
 if [ "$DELETED" = "yes" ]; then
     MESSAGE="Delete a published post"
@@ -106,6 +97,9 @@ if [ "$DELETED" = "yes" ]; then
 elif [ "$POST_PUBLISH" = "no" ] || [ -z "$TITLE" ]; then
     SLUG=""
     MESSAGE="Site update"
+elif [ -z "$SLUG" ]; then
+    # Several posts in one publish: no single title, so do not claim one.
+    MESSAGE="Site update: $TITLE"
 elif git ls-files --error-unmatch "blog/$SLUG.html" >/dev/null 2>&1; then
     MESSAGE="Update: $TITLE"
 else

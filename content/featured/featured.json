@@ -1,25 +1,22 @@
 {
-  "title": "Enhancing Polymer Performance with Quasicrystal Composites",
-  "slug": "enhancing-polymer-performance-with-quasicrystal-composites",
-  "url": "https://www.flaneyassociates.com/blog/enhancing-polymer-performance-with-quasicrystal-composites.html",
-  "summary": "This article sits in advanced materials engineering, nanotechnology, organic-inorganic hybrid materials and polymers and composites, which are among the material and manufacturing areas this practice works in directly. It speaks to materials selection, product development and technical due diligence, so it reaches readers already facing the kind of decision Flaney Associates is engaged to support. Selected for October 2026 from 18 eligible on-site articles.",
-  "highlight_excerpt": "A novel class of polymer/quasicrystal composites is set to transform material science by significantly enhancing mechanical properties. Researchers, including Joshua U. Otaigbe, have combined polymers with Al–Cu–Fe quasicrystals to improve wear resistance and double the storage modulus compared to traditional…",
+  "title": "How Smart Materials Mean Smarter Sustainability",
+  "slug": "how-smart-materials-mean-smarter-sustainability",
+  "url": "https://www.flaneyassociates.com/blog/how-smart-materials-mean-smarter-sustainability.html",
+  "summary": "This article sits in advanced materials engineering and sustainable materials technology, which are among the material and manufacturing areas this practice works in directly. It speaks to materials selection, product development and technical due diligence, so it reaches readers already facing the kind of decision Flaney Associates is engaged to support. Selected for November 2026 from 19 eligible on-site articles.",
+  "highlight_excerpt": "In the race toward a more sustainable future, performance is no longer the only metric that matters. While strength, durability, and efficiency remain critical, the conversation is shifting toward something deeper: lifecycle design . At the heart of this evolution…",
   "_meta": {
-    "month": "2026-10",
-    "pool_size": 18,
+    "month": "2026-11",
+    "pool_size": 19,
     "matched_categories": [
       "Advanced Materials Engineering",
-      "Nanotechnology",
-      "Organic-Inorganic Hybrid Materials",
-      "Polymers and Composites"
+      "Sustainable Materials Technology"
     ],
     "themes": [
       "materials selection",
       "product development",
-      "technical due diligence",
-      "failure analysis"
+      "technical due diligence"
     ],
-    "published": "2025-01-14",
+    "published": "2025-09-15",
     "selection": "sha256 rendezvous hash of month|slug, lowest wins"
   }
 }

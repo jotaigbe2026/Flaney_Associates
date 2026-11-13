@@ -45,6 +45,14 @@ PHONE_PRINCIPAL_TEL = "+16014518452"
 LINKEDIN = ("https://www.linkedin.com/in/"
             "joshua-otaigbe-phd-ceng-fimmm-22751322")
 
+# The principal's faculty profile at The University of Southern Mississippi.
+# It is the independent record of the emeritus appointment, the degree and the
+# fellowships, so the About page links to it where the title is stated and the
+# Person schema names it in sameAs. It is linked from the About page only: the
+# profile carries a university email and phone number, and a page where a
+# prospective client is about to get in touch should not send them there.
+USM_PROFILE = "https://www.usm.edu/faculty-directory/profile.php?id=1936493"
+
 # Two forms of the name, deliberately.
 #
 # An academic title answers "what is he"; a role title answers "what will he do
@@ -667,6 +675,7 @@ def person_schema_ld():
             "name": "University of Manchester (UMIST)",
         },
         "url": "%s/about.html" % LIVE,
+        "sameAs": [USM_PROFILE],
         "description": ("Professor Emeritus of Polymer Science & Engineering "
                         "with four decades of materials science and engineering "
                         "experience across industry and academia in North America, "
@@ -1405,7 +1414,7 @@ def build_about():
                     {headshot}
                     <h3>{principal}</h3>
                     <p class="bio-letters">{letters}</p>
-                    <p class="bio-post">Founder &amp; Principal, Flaney Associates, LLC<br>Professor Emeritus, The University of Southern Mississippi</p>
+                    <p class="bio-post">Founder &amp; Principal, Flaney Associates, LLC<br><a href="{usm}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Professor Emeritus, The University of Southern Mississippi</a></p>
                     <div class="cred-badges-bar">
                         <img src="images/ceng-logo.svg" alt="Chartered Engineer (CEng)" title="Registered Chartered Engineer (UK)">
                         <img src="images/iom3-fellow-badge.svg" alt="Fellow, Institute of Materials, Minerals &amp; Mining (FIMMM)" title="FIMMM Fellow">
@@ -1472,7 +1481,7 @@ def build_about():
         </div>
     </section>
 """.format(principal=PRINCIPAL, letters=LETTERS, linkedin=LINKEDIN,
-           creds=creds, appointments=appointments, faqs=faqs,
+           usm=USM_PROFILE, creds=creds, appointments=appointments, faqs=faqs,
            headshot=headshot(large=True))
 
     html += closing_cta() + "\n"

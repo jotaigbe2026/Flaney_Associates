@@ -75,6 +75,13 @@ if (form) {
                          form.dataset.inbox)
             .then(res => {
                 if (res.ok) {
+                    // Counted only once Formsubmit has accepted it, so a
+                    // failed send is never reported as an enquiry.
+                    trackEvent('generate_lead', {
+                        lead_type: form.dataset.inbox === 'principal' ? 'conflict_check' : 'enquiry',
+                        service: formData.service || formData.matter || '',
+                        page_path: window.location.pathname
+                    });
                     btn.textContent = 'Request Sent!';
                     btn.style.background = '#22c55e';
                     form.reset();

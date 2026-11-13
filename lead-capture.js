@@ -8,6 +8,34 @@
  * modal, or without any .gated-download button, is a no-op.
  */
 
+// ===== CONVERSION TRACKING =====
+/* Sends a Google Analytics event. Every page loads gtag in its <head>, but an
+ * ad blocker can remove it, so a missing gtag is a silent no-op — tracking must
+ * never be able to break a form or a download.
+ *
+ * No personal details go in here: event parameters carry the kind of
+ * conversion and the page or document involved, never a name or an address.
+ */
+function trackEvent(name, params) {
+    try {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+    } catch (e) {}
+}
+
+/* Clicks on a phone number or an email address. These are enquiries that never
+ * touch a form, so without this they are invisible. One delegated listener
+ * covers every page, including links added after load.
+ */
+document.addEventListener('click', e => {
+    const link = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!link) return;
+    const isPhone = link.getAttribute('href').indexOf('tel:') === 0;
+    trackEvent('contact_click', {
+        contact_method: isPhone ? 'phone' : 'email',
+        page_path: window.location.pathname
+    });
+});
+
 // ===== EMAIL VALIDATION =====
 const DISPOSABLE_DOMAINS = [
     'mailinator.com','guerrillamail.com','tempmail.com','throwaway.email',
@@ -241,7 +269,7 @@ function triggerDownload(url) {
         successDiv.innerHTML = `
             <div class="success-icon">&#10004;</div>
             <h3>Download Starting!</h3>
-            <p>Your article is downloading now.<br>We'll also send a copy to your email.</p>
+            <p>Your PDF is downloading now.</p>
         `;
         card.appendChild(successDiv);
     }
@@ -256,6 +284,7 @@ function triggerDownload(url) {
 
             const stored = getStoredLead();
             if (stored && stored.name && stored.email) {
+                trackEvent('pdf_download', { document_title: pdfTitle, returning_lead: true });
                 triggerDownload(pdfUrl);
                 return;
             }
@@ -303,6 +332,10 @@ function triggerDownload(url) {
 
         // Store the lead locally
         storeLead(name, email, company);
+
+        // Captured before finish() runs: closeModal() clears pendingPdfTitle.
+        trackEvent('generate_lead', { lead_type: 'download', document_title: pendingPdfTitle });
+        trackEvent('pdf_download', { document_title: pendingPdfTitle, returning_lead: false });
 
         const finish = () => {
             showSuccess();

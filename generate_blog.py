@@ -478,7 +478,7 @@ def download_modal():
                 </div>
                 <input type="hidden" id="dlArticle" name="article" value="">
                 <button type="submit" class="btn btn-primary btn-lg btn-full">&#11015; Download Now — Free</button>
-                <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+                <p class="form-note">We respect your privacy. Your details are not shared or sold.</p>
             </form>
         </div>
     </div>"""

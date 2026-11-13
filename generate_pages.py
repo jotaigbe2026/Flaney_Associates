@@ -133,6 +133,10 @@ def head(title, description, depth=0, canonical="", schema=""):
     <meta property="og:type" content="website">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{desc}">
+    <meta property="og:image" content="{site}/images/og-default.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 {canon}    <link rel="icon" type="image/png" href="{up}favicon.png">
     <link rel="icon" sizes="any" href="{up}favicon.ico">
     <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
@@ -150,7 +154,7 @@ def head(title, description, depth=0, canonical="", schema=""):
     </script>
 </head>
 <body>
-""".format(title=title, desc=description, up=up, canon=canon,
+""".format(title=title, desc=description, up=up, canon=canon, site=SITE,
            cssv=asset_version("styles.css"),
            blogv=asset_version(os.path.join("blog", "blog.css")))
     if schema:
@@ -367,7 +371,7 @@ def download_modal():
                 </div>
                 <input type="hidden" id="dlArticle" name="article" value="">
                 <button type="submit" class="btn btn-primary btn-lg btn-full">&#11015; Download Now — Free</button>
-                <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+                <p class="form-note">We respect your privacy. Your details are not shared or sold.</p>
             </form>
         </div>
     </div>"""

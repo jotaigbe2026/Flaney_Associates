@@ -741,7 +741,7 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
         // WordPress API reported — which pointed at a site being retired.
         const canonical = siteOrThrow() + '/blog/' + post.slug + '.html';
 
-        let og = `    <meta property="og:type" content="article">
+        let og = `${SEARCH_EXCLUDE.has(post.slug) ? ROBOTS_NOINDEX : ''}    <meta property="og:type" content="article">
     <meta property="og:title" content="${attr(post.title)}">
     <meta property="og:description" content="${desc}">
     <meta property="article:published_time" content="${post.date}">
@@ -888,7 +888,16 @@ ${post.content}
 
     /* blog/index.html — the twin of build_index(). Regenerated on every publish
        so a new post actually shows up in the archive without running Python. */
+    /* Posts that keep their page and URL but are shown nowhere on the site:
+       no archive card, no place in a count, no related card. Must match
+       UNLISTED in generate_blog.py. */
+    const UNLISTED = new Set([
+        'unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness'
+    ]);
+    function listed(posts) { return posts.filter(p => !UNLISTED.has(p.slug)); }
+
     function archive(posts, assets) {
+        posts = listed(posts);
         const allCats = Array.from(new Set(posts.flatMap(p => p.categories || []))).sort();
         const full = posts.filter(p => !p.gated);
 
@@ -973,6 +982,15 @@ ${chips.map(c => '                ' + c).join('\n')}
        HOMEPAGE_EXCLUDE in generate_blog.py — the two renderers write the same
        block, and a mismatch means regenerating silently changes which posts
        the homepage features. */
+    /* Posts kept out of search engines: a robots noindex tag on the article
+       page. Must match SEARCH_EXCLUDE in generate_blog.py, which also keeps
+       them out of sitemap.xml. */
+    const SEARCH_EXCLUDE = new Set([
+        'unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness',
+        'boardgpt-using-ai-in-the-boardroom'
+    ]);
+    const ROBOTS_NOINDEX = '    <meta name="robots" content="noindex, follow">\n';
+
     const HOMEPAGE_EXCLUDE = new Set([
         'unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness',
         'boardgpt-using-ai-in-the-boardroom',
@@ -984,15 +1002,24 @@ ${chips.map(c => '                ' + c).join('\n')}
        briefings that used to follow it now live on guides.html, so the block
        no longer emits a heading for them. */
     function homepage(currentHTML, posts, n) {
-        const latest = posts
-            .filter(p => !p.gated && !HOMEPAGE_EXCLUDE.has(p.slug))
-            .slice(0, n || 6);
+        posts = listed(posts);
+        /* Every scheduled post, then the n newest published ones — see
+           featured() in generate_blog.py for why. The browser hides the
+           scheduled cards and caps the rest at n. */
+        n = n || 6;
+        const now = new Date();
+        const today = [now.getFullYear(),
+            String(now.getMonth() + 1).padStart(2, '0'),
+            String(now.getDate()).padStart(2, '0')].join('-');
+        const eligible = posts.filter(p => !p.gated && !HOMEPAGE_EXCLUDE.has(p.slug));
+        const latest = eligible.filter(p => String(p.date).slice(0, 10) > today)
+            .concat(eligible.filter(p => String(p.date).slice(0, 10) <= today).slice(0, n));
         const lines = [HOME_BEGIN,
             '            <div class="blog-subhead">',
             '                <h3>Latest from the Flaney Associates blog</h3>',
             '                <a href="blog/index.html">View all ' + posts.length + ' articles &amp; publications &rarr;</a>',
             '            </div>',
-            '            <div class="post-grid">'];
+            '            <div class="post-grid" data-limit="' + n + '">'];
         latest.forEach(function (p) { lines.push(card(p, 'blog/').replace(/\n$/, '')); });
         lines.push('            </div>', HOME_END);
         const block = lines.join('\n') + '\n';
@@ -1005,7 +1032,7 @@ ${chips.map(c => '                ' + c).join('\n')}
 
     /* Same-category first, then most recent — matches build_post()'s ordering. */
     function pickRelated(post, posts, n) {
-        const others = posts.filter(q => q.slug !== post.slug && !q.gated);
+        const others = listed(posts).filter(q => q.slug !== post.slug && !q.gated);
         const cats = new Set(post.categories || []);
         const same = others.filter(q => (q.categories || []).some(c => cats.has(c)));
         const sameSlugs = new Set(same.map(q => q.slug));

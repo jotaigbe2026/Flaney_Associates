@@ -603,7 +603,25 @@ def card(p, prefix=""):
 
 # -------------------------------------------------------------- page writers
 
+#: Posts that keep their page and URL but are not shown anywhere on the site:
+#: no archive card, no place in a count, no "Related articles" card. An old
+#: link or a LinkedIn post still opens the page; a visitor browsing does not
+#: come across it. This is "unlisted", not "private" — the page is public to
+#: anyone with the address, and the text is still in posts.json. Anything
+#: here should also be in SEARCH_EXCLUDE, or a search engine will list a page
+#: the site itself does not. Keep in step with UNLISTED in
+#: publisher/lib/template.js.
+UNLISTED = {
+    "unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness",
+}
+
+
+def listed(posts):
+    return [p for p in posts if p["slug"] not in UNLISTED]
+
+
 def build_index(posts):
+    posts = listed(posts)
     all_cats = sorted({c for p in posts for c in (p["categories"] or [])})
     full = [p for p in posts if not p["gated"]]
 
@@ -699,12 +717,13 @@ def build_post(p, posts):
 
     post_url = "%s/blog/%s.html" % (LIVE, p["slug"])
 
-    og = """    <meta property="og:type" content="article">
+    og = """{robots}    <meta property="og:type" content="article">
     <meta property="og:title" content="{t}">
     <meta property="og:description" content="{d}">
     <meta property="article:published_time" content="{pub}">
 {img}    <link rel="canonical" href="{canon}">
 """.format(t=attr(p["title"]), d=desc, pub=p["date"],
+           robots=(ROBOTS_NOINDEX if p["slug"] in SEARCH_EXCLUDE else ""),
            # Self-referential. This used to echo p["link"], the URL the
            # WordPress API reported, which pointed at a site now being retired —
            # so 19 of the 20 article pages were telling search engines that the
@@ -822,7 +841,7 @@ def build_post(p, posts):
            publish=p["date"][:10], download=download_block, source=source_block)
 
     # related — same category first, then most recent, full-text only
-    others = [q for q in posts if q["slug"] != p["slug"] and not q["gated"]]
+    others = [q for q in listed(posts) if q["slug"] != p["slug"] and not q["gated"]]
     same = [q for q in others if set(q["categories"]) & set(p["categories"])]
     same_slugs = {q["slug"] for q in same}
     related = (same + [q for q in others if q["slug"] not in same_slugs])[:3]
@@ -870,6 +889,20 @@ END = "            <!-- END imported-blog -->"
 #
 # New posts are featured by default; this list names the exceptions. Keep it in
 # step with HOMEPAGE_EXCLUDE in publisher/lib/template.js.
+#: Posts kept out of search engines. They stay in the archive and keep their
+#: URLs, but carry a robots noindex tag and are left out of sitemap.xml. A site
+#: is judged on what it is about, and a wellness article or a boardroom-AI
+#: piece tells a search engine this is something other than a materials
+#: practice. "follow" is deliberate: the links on the page still count.
+#: Narrower than HOMEPAGE_EXCLUDE on purpose — being off the homepage is an
+#: editorial choice, being out of search is a stronger one. Keep in step with
+#: SEARCH_EXCLUDE in publisher/lib/template.js.
+SEARCH_EXCLUDE = {
+    "unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness",
+    "boardgpt-using-ai-in-the-boardroom",
+}
+ROBOTS_NOINDEX = '    <meta name="robots" content="noindex, follow">\n'
+
 HOMEPAGE_EXCLUDE = {
     "unlocking-the-healing-power-of-cassava-leaves-simple-extraction-methods-for-everyday-wellness",
     "boardgpt-using-ai-in-the-boardroom",
@@ -877,10 +910,26 @@ HOMEPAGE_EXCLUDE = {
 }
 
 
-def featured(posts, n=6):
-    """The posts that appear in the homepage strip, newest first."""
-    return [p for p in posts
-            if not p["gated"] and p["slug"] not in HOMEPAGE_EXCLUDE][:n]
+def featured(posts, n=6, today=None):
+    """The posts written into the homepage strip, newest first.
+
+    Every scheduled post, then the `n` newest published ones. The strip shows
+    `n` cards; the browser hides scheduled cards until their date and then
+    shows only the first `n` that remain (capVisibleCards in lead-capture.js).
+
+    It used to be simply the newest `n`. With posts queued two a month, the
+    newest six were all future-dated, every card was hidden, and the homepage
+    showed a heading over an empty section until the first of them came due.
+    Emitting the published posts behind the queue means there are always `n`
+    to show, and each scheduled post still takes its place on its own morning
+    with no rebuild.
+    """
+    today = today or datetime.now().strftime("%Y-%m-%d")
+    eligible = [p for p in listed(posts)
+                if not p["gated"] and p["slug"] not in HOMEPAGE_EXCLUDE]
+    scheduled = [p for p in eligible if str(p["date"])[:10] > today]
+    published = [p for p in eligible if str(p["date"])[:10] <= today]
+    return scheduled + published[:n]
 
 
 def update_homepage(posts, n=6):
@@ -898,9 +947,9 @@ def update_homepage(posts, n=6):
              '            <div class="blog-subhead">',
              '                <h3>Latest from the Flaney Associates blog</h3>',
              '                <a href="blog/index.html">View all %d articles &amp; publications &rarr;</a>'
-             % len(posts),
+             % len(listed(posts)),
              "            </div>",
-             '            <div class="post-grid">']
+             '            <div class="post-grid" data-limit="%d">' % n]
     for p in latest:
         block.append(card(p, prefix="blog/").rstrip("\n"))
     block += ["            </div>", END]

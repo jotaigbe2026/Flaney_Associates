@@ -948,6 +948,22 @@ SERVICES["technical-due-diligence"] = dict(
 """,
 )
 
+# The credentials list is shared by the main expert-witness page and the four
+# matter-specific pages below it. One copy, because a credential corrected in
+# one place and not the other is exactly the inconsistency opposing counsel
+# looks for.
+EXPERT_CREDENTIALS = """                <h2>Credentials relevant to admissibility</h2>
+                <ul>
+                    <li>PhD in polymer science and engineering, University of Manchester (UMIST), England.</li>
+                    <li>Professor Emeritus of Polymer Science &amp; Engineering, The University of Southern Mississippi; formerly professor of chemical engineering and of materials science and engineering, Iowa State University.</li>
+                    <li>Registered Chartered Engineer (UK) and Registered Chartered Scientist (UK).</li>
+                    <li>Fellow of the Institute of Materials, Minerals &amp; Mining (UK), the Society of Plastics Engineers, and the Nigerian Academy of Engineering.</li>
+                    <li>Holder of seven patents; author of more than 150 publications in refereed archival scientific and engineering journals and books.</li>
+                    <li>Senior industrial experience, including as Senior Project Leader and Engineer at Corning Incorporated.</li>
+                </ul>
+                <p>The full record, including awards and appointments, is set out on the <a href="../about.html#credentials">credentials page</a>.</p>
+"""
+
 SERVICES["expert-witness"] = dict(
     name="Expert Witness &amp; Litigation Support",
     short="Expert Witness",
@@ -984,26 +1000,24 @@ SERVICES["expert-witness"] = dict(
                 <h3>Explanation a jury can follow</h3>
                 <p>Molecular degradation, environmental stress cracking and fibre debonding decide cases, and they have to be explained to people with no technical background without being distorted in the process. Four decades of teaching graduate and undergraduate engineering, and of presenting technical findings to boards and non-specialist audiences, is directly applicable here.</p>
 
-                <h2>Credentials relevant to admissibility</h2>
-                <ul>
-                    <li>PhD in polymer science and engineering, University of Manchester (UMIST), England.</li>
-                    <li>Professor Emeritus of Polymer Science &amp; Engineering, The University of Southern Mississippi; formerly professor of chemical engineering and of materials science and engineering, Iowa State University.</li>
-                    <li>Registered Chartered Engineer (UK) and Registered Chartered Scientist (UK).</li>
-                    <li>Fellow of the Institute of Materials, Minerals &amp; Mining (UK), the Society of Plastics Engineers, and the Nigerian Academy of Engineering.</li>
-                    <li>Holder of seven patents; author of more than 150 publications in refereed archival scientific and engineering journals and books.</li>
-                    <li>Senior industrial experience, including as Senior Project Leader and Engineer at Corning Incorporated.</li>
-                </ul>
-                <p>The full record, including awards and appointments, is set out on the <a href="../about.html#credentials">credentials page</a>.</p>
-
+""" + EXPERT_CREDENTIALS + """
                 <h2>Material systems and technical subject matter</h2>
                 """ + tags(MATERIALS) + """
+
+                <h2>By material and matter type</h2>
+                <ul>
+                    <li><a href="plastics-expert-witness.html">Plastics and polymer expert witness</a> &mdash; plastic product failure, degradation and stress cracking.</li>
+                    <li><a href="composites-expert-witness.html">Composites expert witness</a> &mdash; fibre-reinforced and hybrid materials, delamination and interface failure.</li>
+                    <li><a href="patent-expert-witness.html">Materials-science expert for patent matters</a> &mdash; infringement, invalidity and prior art.</li>
+                    <li><a href="coatings-tanks-piping-expert-witness.html">Coatings, storage tank and piping expert witness</a> &mdash; protective coatings, underground storage tanks and flexible piping.</li>
+                </ul>
 """,
 )
 
 
 # ------------------------------------------------------------ service pages
 
-def service_aside(current):
+def service_aside(current, lead_with_person=None):
     """Sticky rail: the call to action, then the other five services.
 
     Every service page links to every other one, which is the whole reason
@@ -1029,7 +1043,8 @@ def service_aside(current):
                     </div>
                 </div>
 """ % (headshot(depth=1), PRINCIPAL, LETTERS, ROLE)
-              if current == "expert-witness" else "")
+              if (current == "expert-witness" if lead_with_person is None
+                  else lead_with_person) else "")
 
     return """            <aside class="svc-aside">
 """ + person + """                <div class="aside-card aside-dark">
@@ -1090,6 +1105,221 @@ def build_service(slug):
         </div>
     </section>
 """ % faq_items
+    html += closing_cta(depth=1) + "\n"
+    html += footer(depth=1) + "\n"
+    html += scripts(depth=1)
+    html += "</body>\n</html>\n"
+    return html
+
+
+# ------------------------------------------------- matter-specific expert pages
+#
+# Counsel does not search for "materials science expert witness". They search
+# for the material in the complaint: a plastics expert, a composites expert, a
+# coatings expert. Each page below answers one of those searches and hands the
+# reader to the conflict check.
+#
+# Proof discipline applies here more than anywhere. These pages describe the
+# disputes and the technical questions that decide them, and they restate
+# credentials already on the site. They do not claim a case count, a named
+# matter or a testimony record — none of that is published anywhere else on the
+# site, so it is not asserted here either.
+#
+# They are deliberately absent from SERVICE_NAV: the navbar is duplicated in
+# four files (see CLAUDE.md), and these are reached from the expert-witness
+# page and from search, not from the menu.
+
+_CONFLICT_CALLOUT = """
+                <div class="callout">
+                    <p><strong>Start with a conflict check.</strong> Send the party names and the technical subject matter only. Do not send case details, documents, samples or privileged material before an engagement agreement is in place.</p>
+                    <p><a href="../attorney-inquiry.html">Request a confidential conflict check &rarr;</a></p>
+                </div>
+"""
+
+_EXPERT_FOOT = """
+                <h2>How an engagement runs</h2>
+                <p>Conflicts are cleared first. After an engagement agreement is in place, the evidence is reviewed, any testing is commissioned through independent university and industry laboratories, and the opinion is reported to counsel before it is written up. The scope of expert work, and answers to the questions counsel usually ask first, are on the <a href="expert-witness.html">Expert Witness &amp; Litigation Support</a> page.</p>
+"""
+
+EXPERT_PAGES = {}
+
+EXPERT_PAGES["plastics-expert-witness"] = dict(
+    name="Plastics &amp; Polymer Expert Witness",
+    short="Plastics &amp; Polymers",
+    title="Plastics &amp; Polymer Expert Witness | Flaney Associates",
+    meta=("Independent plastics and polymer expert witness for product "
+          "liability, manufacturing and supply disputes. PhD polymer "
+          "scientist, Chartered Engineer. Confidential conflict checks."),
+    schema_desc=("Independent plastics and polymer expert witness for product "
+                 "liability, manufacturing and supply disputes."),
+    service_type="Plastics Expert Witness",
+    lede=("Independent polymer-science opinion on why a plastic part failed, "
+          "and whether the material, the design or the process was responsible."),
+    body="""
+                <h2>Disputes this covers</h2>
+                <ul>
+                    <li><strong>Product liability</strong> &mdash; a plastic component cracked, fractured, leaked or degraded in service, and cause is contested.</li>
+                    <li><strong>Supply and specification disputes</strong> &mdash; whether the resin, compound or moulded part delivered was the one specified, and whether a substituted grade was equivalent.</li>
+                    <li><strong>Manufacturing disputes</strong> &mdash; whether a moulding, extrusion or compounding process was run in a way that damaged the material.</li>
+                    <li><strong>Insurance and subrogation</strong> &mdash; a loss that traces back to a plastic fitting, housing, pipe or container.</li>
+                </ul>
+""" + _CONFLICT_CALLOUT + """
+                <h2>The technical questions that usually decide the matter</h2>
+                <ul>
+                    <li>Was the fracture brittle or ductile, and where did it start?</li>
+                    <li>Is there evidence of environmental stress cracking, and what chemical was the part exposed to?</li>
+                    <li>Has the polymer degraded &mdash; by hydrolysis, oxidation, heat or ultraviolet light &mdash; and did that happen in processing or in service?</li>
+                    <li>Does the material in the failed part match the specified grade, including its additives and any regrind content?</li>
+                    <li>Did moulded-in stress, weld lines, voids or contamination put a defect where the load was highest?</li>
+                    <li>Was the material a reasonable choice for the temperature, load, chemicals and service life it was actually given?</li>
+                </ul>
+
+                <h2>Why this sits inside the principal&#8217;s field</h2>
+                <p>Polymer science and engineering is the core discipline of this practice: it is the subject of the principal&#8217;s doctorate, of his professorship at The University of Southern Mississippi, and of the larger part of his refereed publications. The material classes covered include engineering plastics, polyolefins, polyamides, polyesters and polycarbonates, styrenics, polyurethanes and thermosets.</p>
+
+""" + EXPERT_CREDENTIALS + _EXPERT_FOOT,
+)
+
+EXPERT_PAGES["composites-expert-witness"] = dict(
+    name="Composites Expert Witness",
+    short="Composites",
+    title="Composites Expert Witness | Flaney Associates",
+    meta=("Independent composites expert witness for fibre-reinforced "
+          "plastics, carbon and aramid fibre composites and nanocomposites. "
+          "Product liability, supply and IP disputes. Confidential conflict checks."),
+    schema_desc=("Independent composites expert witness covering "
+                 "fibre-reinforced plastics, carbon and aramid fibre composites "
+                 "and nanocomposites."),
+    service_type="Composites Expert Witness",
+    lede=("Independent opinion on failures of fibre-reinforced and hybrid "
+          "materials, where the interface and the process matter as much as "
+          "the constituents."),
+    body="""
+                <h2>Disputes this covers</h2>
+                <ul>
+                    <li><strong>Product liability</strong> &mdash; a composite structure or component delaminated, cracked or lost stiffness in service.</li>
+                    <li><strong>Manufacturing and supply disputes</strong> &mdash; whether a laminate, moulding or pultruded section was made to specification, and whether cure, fibre content or lay-up departed from it.</li>
+                    <li><strong>Intellectual property</strong> &mdash; composite and nanocomposite formulations, reinforcement systems and processing methods.</li>
+                    <li><strong>Insurance and subrogation</strong> &mdash; losses involving FRP or GRP tanks, pipe, panels and structures.</li>
+                </ul>
+""" + _CONFLICT_CALLOUT + """
+                <h2>The technical questions that usually decide the matter</h2>
+                <ul>
+                    <li>Did failure start in the fibre, in the matrix, or at the interface between them?</li>
+                    <li>Was the resin fully cured, and was the fibre content and orientation what the design required?</li>
+                    <li>Are voids, dry fibre or resin-rich regions present, and do they coincide with the origin of the failure?</li>
+                    <li>Did moisture, chemicals, heat or ultraviolet exposure degrade the matrix or the bond over time?</li>
+                    <li>Was the damage caused by a single overload or impact, or by fatigue and creep over the service life?</li>
+                </ul>
+
+                <h2>Why this sits inside the principal&#8217;s field</h2>
+                <p>Nanocomposites and organic&ndash;inorganic hybrid materials are a direct research specialism of the principal, alongside carbon and aramid fibre composites, FRP and GRP. Fibre&ndash;matrix debonding, delamination and interface failure are the mechanisms most composite disputes turn on, and they are the ones a jury most needs explained plainly.</p>
+
+""" + EXPERT_CREDENTIALS + _EXPERT_FOOT,
+)
+
+EXPERT_PAGES["patent-expert-witness"] = dict(
+    name="Materials-Science Expert for Patent Matters",
+    short="Patent Matters",
+    title="Polymer &amp; Materials Patent Expert Witness | Flaney Associates",
+    meta=("Materials-science and polymer technical expert for patent "
+          "infringement, invalidity and prior-art matters. PhD polymer "
+          "scientist and named inventor on seven patents. Confidential conflict checks."),
+    schema_desc=("Materials-science and polymer technical expert for patent "
+                 "infringement, invalidity and prior-art matters."),
+    service_type="Patent Expert Witness",
+    lede=("Technical analysis for infringement, invalidity and prior-art "
+          "questions in polymers, composites and related materials."),
+    body="""
+                <h2>Matters this covers</h2>
+                <ul>
+                    <li><strong>Infringement</strong> &mdash; whether an accused material, formulation or process falls within the claims, including testing where the claim turns on a measured property.</li>
+                    <li><strong>Invalidity</strong> &mdash; whether the claimed invention was anticipated or would have been obvious to a person of ordinary skill in the art.</li>
+                    <li><strong>Prior art</strong> &mdash; searching and reading the scientific, patent and trade literature in the relevant materials area.</li>
+                    <li><strong>Patentability and prosecution support</strong> &mdash; patentability research, and technical support on initial filings, valuations and prosecution or defence before the U.S. Patent and Trademark Office.</li>
+                </ul>
+""" + _CONFLICT_CALLOUT + """
+                <h2>The technical questions that usually decide the matter</h2>
+                <ul>
+                    <li>What would a person of ordinary skill in this field have understood a claim term to mean at the priority date?</li>
+                    <li>Does the accused product actually have the claimed composition, structure or property, and by which test method?</li>
+                    <li>Does a prior publication disclose every element of the claim, or only something close to it?</li>
+                    <li>Does the specification teach enough to make and use the claimed material without undue experimentation?</li>
+                </ul>
+                <p>Where the product under evaluation cannot be assessed with standard equipment, custom test equipment can be acquired or built to suit it. That is often what produces the measurement an infringement question depends on.</p>
+
+                <h2>Why this sits inside the principal&#8217;s field</h2>
+                <p>The principal is a named inventor on seven patents and the author of more than 150 refereed publications, so he reads claims and prior art from both sides: as someone who has written them and as someone whose own work has been examined against them. Four decades of teaching also bear directly on explaining polymer chemistry to a court without distorting it.</p>
+
+""" + EXPERT_CREDENTIALS + _EXPERT_FOOT,
+)
+
+EXPERT_PAGES["coatings-tanks-piping-expert-witness"] = dict(
+    name="Coatings, Storage Tank &amp; Piping Expert Witness",
+    short="Coatings, Tanks &amp; Piping",
+    title="Coatings, Tank &amp; Piping Expert Witness | Flaney Associates",
+    meta=("Independent materials expert witness for protective coatings, "
+          "petroleum underground storage tanks and flexible piping. "
+          "Cause-of-failure opinions for liability, insurance and supply disputes."),
+    schema_desc=("Independent materials expert witness for protective "
+                 "coatings, petroleum underground storage tanks and flexible piping."),
+    service_type="Coatings and Storage Tank Expert Witness",
+    lede=("Independent opinion on failures of protective coatings, petroleum "
+          "underground storage tanks and flexible piping."),
+    body="""
+                <h2>Disputes this covers</h2>
+                <ul>
+                    <li><strong>Underground storage tanks and flexible piping</strong> &mdash; leaks, permeation and degradation of polymer and composite tank and piping systems in petroleum service.</li>
+                    <li><strong>Protective and corrosion-resistant coatings</strong> &mdash; blistering, delamination, cracking or early loss of protection.</li>
+                    <li><strong>Insurance and subrogation</strong> &mdash; independent determination of cause where a release or a coating failure sits at the centre of the loss.</li>
+                    <li><strong>Supply and installation disputes</strong> &mdash; whether the material supplied, or the way it was applied or installed, met the specification.</li>
+                </ul>
+""" + _CONFLICT_CALLOUT + """
+                <h2>The technical questions that usually decide the matter</h2>
+                <ul>
+                    <li>Was the polymer compatible with the fuel or chemical it carried, including blends introduced after it was installed?</li>
+                    <li>Did the material swell, soften, embrittle or lose additives over its service life, and at what rate?</li>
+                    <li>For a coating, did failure start at the substrate, within the film, or between coats, and was surface preparation and cure adequate?</li>
+                    <li>Was the failure a defect present from manufacture or installation, or deterioration that developed in service?</li>
+                    <li>Was the product a reasonable choice for the environment it was placed in?</li>
+                </ul>
+
+                <h2>Why this sits inside the principal&#8217;s field</h2>
+                <p>Petroleum underground storage tanks and flexible piping are a specific area of the principal&#8217;s experience, and these systems are built from the polymers and composites that are the core of his discipline. Coatings and films, adhesion, cure and barrier performance are among the process areas this practice works in directly.</p>
+
+""" + EXPERT_CREDENTIALS + _EXPERT_FOOT,
+)
+
+for _slug, _e in EXPERT_PAGES.items():
+    _SERVICE_META[_slug] = {
+        "name": _e["name"].replace("&amp;", "&"),
+        "description": _e["schema_desc"],
+        "serviceType": _e["service_type"],
+    }
+
+
+def build_expert_page(slug):
+    e = EXPERT_PAGES[slug]
+    html = head(e["title"], e["meta"], depth=1,
+                canonical="services/%s.html" % slug,
+                schema=service_schema_ld(slug))
+    html += nav(depth=1, active="services/expert-witness") + "\n"
+    html += page_hero(e["name"], e["lede"],
+                      [("Home", "index.html"), ("How We Help", None),
+                       ("Expert Witness", "services/expert-witness.html"),
+                       (e["short"], None)],
+                      depth=1,
+                      primary=("Request a Conflict Check", "attorney-inquiry.html"),
+                      secondary=("Expert Witness Overview", "services/expert-witness.html")) + "\n"
+    html += """    <section class="section">
+        <div class="container">
+            <div class="svc-layout">
+                <div class="prose">%s                </div>
+%s
+            </div>
+        </div>
+    </section>
+""" % (e["body"], service_aside("", lead_with_person=True))
     html += closing_cta(depth=1) + "\n"
     html += footer(depth=1) + "\n"
     html += scripts(depth=1)
@@ -1383,6 +1613,7 @@ def build_industries():
                 <ul>
 {points}
                 </ul>
+                <p><a href="industries/{anchor}.html">More on {name} &rarr;</a></p>
             </div>""".format(**fields))
 
     html = head("Polymers, Composites &amp; Manufacturing Industries | Flaney Associates",
@@ -1423,6 +1654,202 @@ def build_industries():
     html += closing_cta() + "\n"
     html += footer() + "\n"
     html += scripts()
+    html += "</body>\n</html>\n"
+    return html
+
+
+# ------------------------------------------------------- one page per sector
+#
+# industries.html stays as the hub — the navbar links to its anchors from four
+# files, and those keep working. Each sector also gets a page of its own,
+# because one page covering six sectors cannot rank for any of them.
+#
+# A sector page carries three things: the lede and points from INDUSTRIES
+# (already reviewed), the questions that typically bring a company in that
+# sector to an outside materials specialist, and the services that answer
+# them. The questions are descriptions of the sector's problems, not claims
+# about past clients — see CLAUDE.md, "Proof discipline".
+
+INDUSTRY_PAGES = {
+    "polymers-plastics": dict(
+        title="Plastics &amp; Polymer Consultant | Flaney Associates",
+        meta=("Independent plastics and polymer consulting: failure analysis, "
+              "material selection, degradation, formulation and processing. "
+              "Led by a PhD polymer scientist and Chartered Engineer."),
+        questions=[
+            "Why is a part that ran for years now cracking, warping or discolouring?",
+            "Is the &#8220;equivalent&#8221; grade a supplier is offering actually equivalent in this application?",
+            "Is the material degrading in processing, or in service?",
+            "Which polymer can take this combination of temperature, load and chemical exposure for the design life?",
+            "Can recycled or bio-derived content be introduced without giving up performance?",
+        ],
+        services=["failure-analysis", "materials-selection", "process-optimization"],
+        expert=("plastics-expert-witness", "Plastics and polymer expert witness"),
+    ),
+    "composites": dict(
+        title="Composites Consultant | Flaney Associates",
+        meta=("Independent composites consulting for carbon and aramid fibre "
+              "composites, FRP/GRP, nanocomposites and hybrid materials: "
+              "failure analysis, material selection and process problems."),
+        questions=[
+            "Why did the laminate delaminate, and did it start at a defect or under load?",
+            "Is the resin fully cured, and is the fibre content what the design assumed?",
+            "Is the bond between fibre and matrix holding up to moisture, heat or chemicals?",
+            "Will a nanocomposite or hybrid formulation that works in the laboratory survive scale-up?",
+            "Is a composite the right replacement for a metal part here, and what new failure modes come with it?",
+        ],
+        services=["failure-analysis", "product-development", "materials-selection"],
+        expert=("composites-expert-witness", "Composites expert witness"),
+    ),
+    "manufacturing": dict(
+        title="Plastics Processing Consultant | Flaney Associates",
+        meta=("Independent consulting on extrusion, injection moulding, "
+              "compounding, coatings and films: scrap, quality drift, process "
+              "windows and batch-to-batch variation."),
+        questions=[
+            "Why is scrap rising when the drawing, the mould and the process sheet have not changed?",
+            "Why does quality differ between shifts, machines or resin lots?",
+            "Where is the real process window, and how close to its edge is the line running?",
+            "Is the problem the material coming in, or what the process does to it?",
+            "Why does a formulation that ran at pilot scale not run in production?",
+        ],
+        services=["process-optimization", "failure-analysis", "materials-selection"],
+        expert=None,
+    ),
+    "consumer-products": dict(
+        title="Consumer Products Materials Consultant | Flaney Associates",
+        meta=("Independent materials consulting for consumer plastic products "
+              "and packaging: returns and warranty failures, material "
+              "substitution, barrier performance and sustainable alternatives."),
+        questions=[
+            "Why are returns and complaints rising on a product that passed every test?",
+            "What does a cost-down material change do to durability and warranty exposure?",
+            "Will a recycled or bio-based packaging material still protect the product?",
+            "Why is the finish, colour or surface failing before the product does?",
+            "Is the housing material suitable for the drop, heat and chemical exposure a consumer will give it?",
+        ],
+        services=["failure-analysis", "materials-selection", "product-development"],
+        expert=("plastics-expert-witness", "Plastics and polymer expert witness"),
+    ),
+    "automotive": dict(
+        title="Automotive Plastics &amp; Composites Consultant | Flaney Associates",
+        meta=("Independent materials consulting for automotive and "
+              "transportation: lightweighting, metal-to-polymer substitution, "
+              "battery-system polymers, durability, creep and fatigue."),
+        questions=[
+            "What failure modes does replacing a metal part with a polymer or composite introduce?",
+            "Will this polymer survive under-bonnet or battery-system temperatures, fluids and electrical demands?",
+            "How will the part creep, fatigue and age over a design life measured in years?",
+            "Why is a component failing in the field when it passed validation testing?",
+            "Is a supplier&#8217;s material change behind a new pattern of warranty claims?",
+        ],
+        services=["materials-selection", "failure-analysis", "product-development"],
+        expert=("composites-expert-witness", "Composites expert witness"),
+    ),
+    "energy": dict(
+        title="Oil &amp; Gas Polymer and Coatings Consultant | Flaney Associates",
+        meta=("Independent materials consulting for energy and oil and gas: "
+              "polymers and coatings in petrochemical service, underground "
+              "storage tanks, flexible piping and renewable-energy materials."),
+        questions=[
+            "Is this polymer or coating compatible with the fluid it will actually see, including future fuel blends?",
+            "Why did a tank, pipe or liner leak or degrade before the end of its rated life?",
+            "Why is a protective coating blistering, cracking or losing adhesion?",
+            "What is the remaining life of a polymer or composite asset already in service?",
+            "Which material holds up for a renewable-energy component exposed outdoors for decades?",
+        ],
+        services=["failure-analysis", "materials-selection", "technical-due-diligence"],
+        expert=("coatings-tanks-piping-expert-witness",
+                "Coatings, storage tank and piping expert witness"),
+    ),
+}
+
+
+def industry_aside(current):
+    """Rail for a sector page: the call to action, then the other sectors."""
+    others = "\n".join(
+        '                        <li><a href="{anchor}.html"{cur}>{name}</a></li>'.format(
+            anchor=anchor, name=name,
+            cur=' aria-current="page"' if anchor == current else "")
+        for anchor, name in INDUSTRY_NAV)
+    return """            <aside class="svc-aside">
+                <div class="aside-card aside-dark">
+                    <h3>Discuss Your Challenge</h3>
+                    <p>Describe what is happening, what it is costing and what decision is waiting on it. You speak with the principal, not an account manager.</p>
+                    <a href="../contact.html" class="btn btn-primary btn-full">Discuss Your Challenge</a>
+                </div>
+                <div class="aside-card">
+                    <h3>Industries</h3>
+                    <ul class="aside-list">
+{others}
+                    </ul>
+                </div>
+                <div class="aside-card">
+                    <h3>Not sure it needs an outside view?</h3>
+                    <p>Twelve questions that separate a problem worth reviewing independently from one your own team should keep.</p>
+                    <a href="../checklist.html" class="btn btn-outline btn-full">Get the Checklist</a>
+                </div>
+            </aside>""".format(others=others)
+
+
+def build_industry(anchor):
+    ind = next(i for i in INDUSTRIES if i["anchor"] == anchor)
+    page = INDUSTRY_PAGES[anchor]
+    notes = dict((slug, (name, note)) for slug, name, note in SERVICE_NAV)
+
+    points = "\n".join("                    <li>%s</li>" % p for p in ind["points"])
+    questions = "\n".join("                    <li>%s</li>" % q
+                          for q in page["questions"])
+    services = "\n".join(
+        '                    <li><a href="../services/%s.html">%s</a> &mdash; %s.</li>'
+        % (slug, notes[slug][0], notes[slug][1][0].lower() + notes[slug][1][1:])
+        for slug in page["services"])
+    expert = ""
+    if page["expert"]:
+        expert = ("""
+                <h2>For attorneys</h2>
+                <p>Where a failure in this sector has become a claim, see <a href="../services/%s.html">%s</a>, or go straight to the <a href="../attorney-inquiry.html">confidential conflict check</a>.</p>
+""" % page["expert"])
+
+    body = """
+                <h2>Where the practice works in this sector</h2>
+                <ul>
+%s
+                </ul>
+
+                <h2>Questions that typically call for an outside view</h2>
+                <ul>
+%s
+                </ul>
+
+                <h2>How the practice is engaged</h2>
+                <ul>
+%s
+                </ul>
+                <p>Every engagement starts with a short conversation with the principal and a written scope before any work begins. If the problem belongs with your own team or your supplier&#8217;s technical service group, you will be told so.</p>
+%s""" % (points, questions, services, expert)
+
+    html = head(page["title"], page["meta"], depth=1,
+                canonical="industries/%s.html" % anchor)
+    html += nav(depth=1, active="industries") + "\n"
+    html += page_hero(ind["name"], ind["lede"],
+                      [("Home", "index.html"), ("Industries", "industries.html"),
+                       (ind["name"], None)],
+                      depth=1,
+                      primary=("Discuss Your Challenge", "contact.html"),
+                      secondary=("Get the Checklist", "checklist.html")) + "\n"
+    html += """    <section class="section">
+        <div class="container">
+            <div class="svc-layout">
+                <div class="prose">%s                </div>
+%s
+            </div>
+        </div>
+    </section>
+""" % (body, industry_aside(anchor))
+    html += closing_cta(depth=1) + "\n"
+    html += footer(depth=1) + "\n"
+    html += scripts(depth=1)
     html += "</body>\n</html>\n"
     return html
 
@@ -1894,8 +2321,12 @@ def main():
     print("Rendering interior pages...")
     for slug in SERVICES:
         write(os.path.join("services", slug + ".html"), build_service(slug))
+    for slug in EXPERT_PAGES:
+        write(os.path.join("services", slug + ".html"), build_expert_page(slug))
     write("about.html", build_about())
     write("industries.html", build_industries())
+    for anchor in INDUSTRY_PAGES:
+        write(os.path.join("industries", anchor + ".html"), build_industry(anchor))
     write("guides.html", build_guides())
     write("featured.html", build_featured())
     write("checklist.html", build_checklist())

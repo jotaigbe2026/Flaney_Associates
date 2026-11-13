@@ -17,6 +17,7 @@
 // Future-dated cards in the "latest from the blog" strip stay hidden until
 // their publication date. See hideScheduledCards() in lead-capture.js.
 hideScheduledCards();
+capVisibleCards();
 
 
 // ===== ENQUIRY FORM =====

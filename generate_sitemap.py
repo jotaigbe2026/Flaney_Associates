@@ -44,9 +44,19 @@ PAGES = [
     ("/services/process-optimization.html",   "services/process-optimization.html",   "monthly", "0.8"),
     ("/services/technical-due-diligence.html", "services/technical-due-diligence.html", "monthly", "0.8"),
     ("/services/expert-witness.html",         "services/expert-witness.html",         "monthly", "0.8"),
+    ("/services/plastics-expert-witness.html",  "services/plastics-expert-witness.html",  "monthly", "0.8"),
+    ("/services/composites-expert-witness.html", "services/composites-expert-witness.html", "monthly", "0.8"),
+    ("/services/patent-expert-witness.html",    "services/patent-expert-witness.html",    "monthly", "0.8"),
+    ("/services/coatings-tanks-piping-expert-witness.html", "services/coatings-tanks-piping-expert-witness.html", "monthly", "0.8"),
     ("/blog/",                     "blog/index.html",            "weekly",  "0.8"),
     ("/about.html",                "about.html",                 "monthly", "0.7"),
     ("/industries.html",           "industries.html",            "monthly", "0.7"),
+    ("/industries/polymers-plastics.html", "industries/polymers-plastics.html", "monthly", "0.7"),
+    ("/industries/composites.html",        "industries/composites.html",        "monthly", "0.7"),
+    ("/industries/manufacturing.html",     "industries/manufacturing.html",     "monthly", "0.7"),
+    ("/industries/consumer-products.html", "industries/consumer-products.html", "monthly", "0.7"),
+    ("/industries/automotive.html",        "industries/automotive.html",        "monthly", "0.7"),
+    ("/industries/energy.html",            "industries/energy.html",            "monthly", "0.7"),
     ("/guides.html",               "guides.html",                "monthly", "0.7"),
     ("/checklist.html",            "checklist.html",             "monthly", "0.7"),
     ("/featured.html",             "featured.html",              "monthly", "0.7"),
@@ -95,9 +105,15 @@ def posts_for_sitemap(today):
     with open(os.path.join(ROOT, "blog", "data", "posts.json")) as f:
         posts = json.load(f)
 
+    # Imported here, not at the top: generate_blog.py imports this module.
+    from generate_blog import SEARCH_EXCLUDE as search_exclude
+
     out = []
     for p in posts:
         if p.get("gated"):
+            continue
+        # Carries a noindex tag; listing it here would contradict that.
+        if p["slug"] in search_exclude:
             continue
         published = str(p["date"])[:10]
         if published > today:

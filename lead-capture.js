@@ -384,6 +384,26 @@ function hideScheduledCards(root) {
 }
 
 
+/* A grid carrying data-limit="N" shows at most N cards. The homepage strip is
+ * written with every scheduled post plus the N newest published ones, so that
+ * hiding the scheduled cards never leaves it empty; this trims what is left
+ * back to N. Run it after hideScheduledCards(), which marks the scheduled
+ * cards it must skip.
+ */
+function capVisibleCards(root) {
+    (root || document).querySelectorAll('[data-limit]').forEach(grid => {
+        const limit = parseInt(grid.dataset.limit, 10);
+        if (!(limit > 0)) return;
+        let shown = 0;
+        grid.querySelectorAll('.post-card').forEach(card => {
+            if (card.dataset.scheduled === 'true') return;
+            shown++;
+            if (shown > limit) card.hidden = true;
+        });
+    });
+}
+
+
 /* ===== NAVIGATION DROPDOWNS =====
  * The site nav has children under How We Help, Industries, Insights, About and
  * Contact. On a pointer device CSS :hover alone would do, but on touch the

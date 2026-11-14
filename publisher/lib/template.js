@@ -745,7 +745,13 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
         patent:     ['../services/patent-expert-witness.html', 'Materials-Science Expert for Patent Matters', 'counsel'],
         composites: ['../industries/composites.html', 'Composites', 'client'],
         energy:     ['../industries/energy.html', 'Energy &amp; Oil/Gas', 'client'],
-        plastics:   ['../industries/polymers-plastics.html', 'Polymers &amp; Plastics', 'client']
+        plastics:   ['../industries/polymers-plastics.html', 'Polymers &amp; Plastics', 'client'],
+        'plastics-expert':   ['../services/plastics-expert-witness.html', 'Plastics &amp; Polymer Expert Witness', 'counsel'],
+        'composites-expert': ['../services/composites-expert-witness.html', 'Composites Expert Witness', 'counsel'],
+        'coatings-expert':   ['../services/coatings-tanks-piping-expert-witness.html', 'Coatings, Storage Tank &amp; Piping Expert Witness', 'counsel'],
+        manufacturing: ['../industries/manufacturing.html', 'Manufacturing &amp; Processing', 'client'],
+        consumer:      ['../industries/consumer-products.html', 'Consumer Products', 'client'],
+        automotive:    ['../industries/automotive.html', 'Automotive &amp; Transportation', 'client']
     };
     const SEE_ALSO_LEAD = {
         client: 'Facing this in your own product or plant?',
@@ -780,8 +786,16 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
         'next-generation-solar-energy-materials-innovation': 'energy',
         'redefining-plastic-waste-with-cleaner-and-more-sustainable-solutions': 'plastics'
     };
-    function seeAlsoBlock(slug) {
-        const key = SEE_ALSO[slug];
+    /* The closing-link key for a post: its own `see_also` field, chosen in the
+       publisher's "Closing link" dropdown, else the SEE_ALSO table. 'none'
+       means the author chose no link and wins over the table. Keep identical
+       to see_also_key() in generate_blog.py. */
+    function seeAlsoKey(post) {
+        const key = post.see_also || SEE_ALSO[post.slug] || '';
+        return Object.prototype.hasOwnProperty.call(SEE_ALSO_TARGETS, key) ? key : '';
+    }
+    function seeAlsoBlock(post) {
+        const key = seeAlsoKey(post);
         if (!key) return '';
         const t = SEE_ALSO_TARGETS[key];
         return '\n            <p style="margin:28px 0 0;font-weight:500">' + SEE_ALSO_LEAD[t[2]] +
@@ -864,7 +878,7 @@ ${heroImg}        <div class="container container-narrow">
 ${post.content}
             </div>
 `;
-        html += seeAlsoBlock(post.slug);
+        html += seeAlsoBlock(post);
 
         if (post.pdf) {
             // `pdf_kind: "paper"` marks a peer-reviewed paper rather than a
@@ -1100,6 +1114,6 @@ ${chips.map(c => '                ' + c).join('\n')}
         setSite, get SITE() { return SITE; },
         slugify, fmtDate, parseDate, readTime, countWords, stripTags, attr, esc, searchKey,
         parseBody, toBlocks, summarise, card, article, archive, homepage,
-        pickRelated, downloadModal
+        pickRelated, downloadModal, seeAlsoKey, SEE_ALSO_TARGETS
     };
 })();

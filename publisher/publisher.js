@@ -51,8 +51,39 @@
         'shareUrl', 'shareText', 'fileList', 'bundleActions', 'downloadZip', 'commitBlock',
         'commitCommands', 'toast', 'startNextMonth', 'resetForm',
         'chooseFolder', 'folderStatus', 'deletePost', 'regenSummary', 'jumpPreview',
-        'openGuide', 'guideOverlay', 'guideClose', 'testConnection', 'removeTest'
+        'openGuide', 'guideOverlay', 'guideClose', 'testConnection', 'removeTest',
+        'seeAlso'
     ].forEach(id => { el[id] = $(id); });
+
+    /* The "Closing link" dropdown. Options come from T.SEE_ALSO_TARGETS, so the
+       list cannot drift from what the renderers know how to draw. The empty
+       value is "None"; it is saved as see_also: "none" so that, when editing,
+       choosing None also overrides an entry in the built-in SEE_ALSO table. */
+    const SEE_ALSO_GROUPS = [
+        ['How We Help', ['failure', 'selection', 'product', 'process', 'diligence', 'expert']],
+        ['Expert witness (for attorneys)', ['plastics-expert', 'composites-expert', 'patent', 'coatings-expert']],
+        ['Industries', ['plastics', 'composites', 'manufacturing', 'consumer', 'automotive', 'energy']]
+    ];
+    function buildSeeAlsoOptions() {
+        const none = document.createElement('option');
+        none.value = '';
+        none.textContent = 'None';
+        el.seeAlso.appendChild(none);
+        SEE_ALSO_GROUPS.forEach(function (g) {
+            const group = document.createElement('optgroup');
+            group.label = g[0];
+            g[1].forEach(function (key) {
+                const t = T.SEE_ALSO_TARGETS[key];
+                if (!t) return;
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.innerHTML = t[1];
+                group.appendChild(opt);
+            });
+            el.seeAlso.appendChild(group);
+        });
+    }
+    buildSeeAlsoOptions();
 
     // ------------------------------------------------------------------ utils
 
@@ -321,6 +352,7 @@
         state.selected.clear();
         (post.categories || []).forEach(c => state.selected.add(c));
         renderCategories();
+        el.seeAlso.value = T.seeAlsoKey(post);
 
         // The PDF is rebuilt from the edited text so the download can never
         // contradict the corrected page.
@@ -346,6 +378,7 @@
 
     function clearForm() {
         ['title', 'slug', 'body', 'summary', 'imageAlt'].forEach(id => { el[id].value = ''; });
+        el.seeAlso.value = '';
         clearImage();
         state.pdfUpload = null;
         state.bundle = null;
@@ -454,6 +487,7 @@
             local_image: localImage,
             pdf: wantsPdf ? 'articles/' + slug + '.pdf' : '',
             summary: summary,
+            see_also: el.seeAlso.value || 'none',
             local: editing ? !!editing.local : true,
             // Tells extract_blog.py this post is owned here now, so a refresh
             // from the WordPress API will not quietly undo the edit.
@@ -1101,6 +1135,7 @@
     function wire() {
         ['title', 'slug', 'pubDate', 'author', 'body', 'summary', 'imageAlt', 'standingByline']
             .forEach(id => el[id].addEventListener('input', render));
+        el.seeAlso.addEventListener('change', render);
 
         // Keep the slug following the title until the slug is edited by hand.
         let slugTouched = false;

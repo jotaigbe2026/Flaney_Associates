@@ -622,6 +622,12 @@ SEE_ALSO_TARGETS = {
     "composites": ("../industries/composites.html", "Composites", "client"),
     "energy":     ("../industries/energy.html", "Energy &amp; Oil/Gas", "client"),
     "plastics":   ("../industries/polymers-plastics.html", "Polymers &amp; Plastics", "client"),
+    "plastics-expert":   ("../services/plastics-expert-witness.html", "Plastics &amp; Polymer Expert Witness", "counsel"),
+    "composites-expert": ("../services/composites-expert-witness.html", "Composites Expert Witness", "counsel"),
+    "coatings-expert":   ("../services/coatings-tanks-piping-expert-witness.html", "Coatings, Storage Tank &amp; Piping Expert Witness", "counsel"),
+    "manufacturing": ("../industries/manufacturing.html", "Manufacturing &amp; Processing", "client"),
+    "consumer":      ("../industries/consumer-products.html", "Consumer Products", "client"),
+    "automotive":    ("../industries/automotive.html", "Automotive &amp; Transportation", "client"),
 }
 SEE_ALSO_LEAD = {
     "client": "Facing this in your own product or plant?",
@@ -658,8 +664,17 @@ SEE_ALSO = {
 }
 
 
-def see_also_block(slug):
-    key = SEE_ALSO.get(slug)
+def see_also_key(p):
+    """The closing-link key for a post: its own `see_also` field, chosen in
+    the publisher's "Closing link" dropdown, else the SEE_ALSO table. "none"
+    means the author chose no link, and wins over the table. Keep identical
+    to seeAlsoKey() in publisher/lib/template.js."""
+    key = p.get("see_also") or SEE_ALSO.get(p["slug"], "")
+    return key if key in SEE_ALSO_TARGETS else ""
+
+
+def see_also_block(p):
+    key = see_also_key(p)
     if not key:
         return ""
     href, label, lead = SEE_ALSO_TARGETS[key]
@@ -903,7 +918,7 @@ def build_post(p, posts):
            title=p["title"], date=fmt_date(p["date"]), mins=read_time(p["words"]),
            author=p["author"] or "Flaney Associates", img=hero_img, body=body,
            publish=p["date"][:10], download=download_block, source=source_block,
-           seealso=see_also_block(p["slug"]))
+           seealso=see_also_block(p))
 
     # related — same category first, then most recent, full-text only
     others = [q for q in listed(posts) if q["slug"] != p["slug"] and not q["gated"]]

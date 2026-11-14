@@ -732,6 +732,62 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
 
     // ----------------------------------------------------------- article page
 
+    /* The page each article hands its reader to, as one sentence above the PDF
+       box. Must match SEE_ALSO_TARGETS, SEE_ALSO_LEAD and SEE_ALSO in
+       generate_blog.py. */
+    const SEE_ALSO_TARGETS = {
+        failure:    ['../services/failure-analysis.html', 'Failure &amp; Root-Cause Analysis', 'client'],
+        process:    ['../services/process-optimization.html', 'Manufacturing Process Optimization', 'client'],
+        selection:  ['../services/materials-selection.html', 'Materials Selection &amp; Qualification', 'client'],
+        product:    ['../services/product-development.html', 'Product Development &amp; Materials Innovation', 'client'],
+        diligence:  ['../services/technical-due-diligence.html', 'Technical Due Diligence &amp; R&amp;D Strategy', 'client'],
+        expert:     ['../services/expert-witness.html', 'Expert Witness &amp; Litigation Support', 'counsel'],
+        patent:     ['../services/patent-expert-witness.html', 'Materials-Science Expert for Patent Matters', 'counsel'],
+        composites: ['../industries/composites.html', 'Composites', 'client'],
+        energy:     ['../industries/energy.html', 'Energy &amp; Oil/Gas', 'client'],
+        plastics:   ['../industries/polymers-plastics.html', 'Polymers &amp; Plastics', 'client']
+    };
+    const SEE_ALSO_LEAD = {
+        client: 'Facing this in your own product or plant?',
+        counsel: 'Retaining an expert on a matter like this?'
+    };
+    const SEE_ALSO = {
+        'when-cold-snaps-crack-plastics-reading-a-brittle-fracture-before-the-warranty': 'failure',
+        'process-drift-in-injection-molding-why-scrap-rises-months-before-anyone': 'process',
+        'the-resin-grade-changed-and-nobody-told-you-controlling-supplier-material': 'selection',
+        'green-materials-can-engineering-save-its-own-carbon-footprint': 'selection',
+        'sustainable-solutions-materials-for-a-greener-tomorrow-2': 'selection',
+        'sustainable-solutions-materials-for-a-greener-tomorrow': 'selection',
+        'building-the-future-innovations-in-construction-materials': 'selection',
+        'materials-that-adapt-and-repair': 'product',
+        'biomaterials-engineering-materials-that-work-with-the-human-body': 'product',
+        'the-new-materials-changing-everything-around-you': 'product',
+        'building-for-the-future-carbon-storing-materials-that-fight-climate-change': 'product',
+        'how-smart-materials-mean-smarter-sustainability': 'product',
+        'the-future-of-medicine-and-how-biomaterials-are-transforming-healthcare': 'product',
+        'pglass-pet-crystallization-breakthrough': 'product',
+        'graphene-a-decade-of-promise-what-actually-shipped': 'diligence',
+        'ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced': 'diligence',
+        'how-ai-and-ml-are-changing-new-materials-discovery': 'diligence',
+        'how-ai-is-transforming-scientific-research': 'diligence',
+        'bridging-science-and-law-how-prof-joshua-otaigbe-helps-science-win-in-court': 'expert',
+        'from-lab-to-courtroom-the-impact-of-materials-science-experts-in-patent-disputes': 'patent',
+        'composites-in-the-real-world-how-carbon-fiber-went-from-f1-to': 'composites',
+        'revolutionizing-materials-the-magic-of-organic-inorganic-hybrids': 'composites',
+        'enhancing-polymer-performance-with-quasicrystal-composites': 'composites',
+        'revolutionizing-polyamide-performance-with-nanocomposites': 'composites',
+        'energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and': 'energy',
+        'next-generation-solar-energy-materials-innovation': 'energy',
+        'redefining-plastic-waste-with-cleaner-and-more-sustainable-solutions': 'plastics'
+    };
+    function seeAlsoBlock(slug) {
+        const key = SEE_ALSO[slug];
+        if (!key) return '';
+        const t = SEE_ALSO_TARGETS[key];
+        return '\n            <p style="margin:28px 0 0;font-weight:500">' + SEE_ALSO_LEAD[t[2]] +
+            ' See <a style="color:#2d8cf0;text-decoration:underline" href="' + t[0] + '">' + t[1] + '</a>.</p>\n';
+    }
+
     function article(post, related, assets) {
         const cats = (post.categories && post.categories.length)
             ? post.categories : ['Materials Engineering'];
@@ -808,6 +864,7 @@ ${heroImg}        <div class="container container-narrow">
 ${post.content}
             </div>
 `;
+        html += seeAlsoBlock(post.slug);
 
         if (post.pdf) {
             // `pdf_kind: "paper"` marks a peer-reviewed paper rather than a

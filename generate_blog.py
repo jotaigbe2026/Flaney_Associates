@@ -603,6 +603,70 @@ def card(p, prefix=""):
 
 # -------------------------------------------------------------- page writers
 
+#: The page each article hands its reader to: one sentence at the end of the
+#: article, above the PDF box. Without it an article ends on a generic call to
+#: action, and a reader who arrived from a search about cracking parts is
+#: never shown the page about cracking parts. The pairing is editorial, so it
+#: is a table rather than something derived from categories; a post with no
+#: entry simply gets no line. Keep in step with SEE_ALSO and SEE_ALSO_TARGETS
+#: in publisher/lib/template.js.
+SEE_ALSO_TARGETS = {
+    # key: (href from blog/, link text, lead-in)
+    "failure":    ("../services/failure-analysis.html", "Failure &amp; Root-Cause Analysis", "client"),
+    "process":    ("../services/process-optimization.html", "Manufacturing Process Optimization", "client"),
+    "selection":  ("../services/materials-selection.html", "Materials Selection &amp; Qualification", "client"),
+    "product":    ("../services/product-development.html", "Product Development &amp; Materials Innovation", "client"),
+    "diligence":  ("../services/technical-due-diligence.html", "Technical Due Diligence &amp; R&amp;D Strategy", "client"),
+    "expert":     ("../services/expert-witness.html", "Expert Witness &amp; Litigation Support", "counsel"),
+    "patent":     ("../services/patent-expert-witness.html", "Materials-Science Expert for Patent Matters", "counsel"),
+    "composites": ("../industries/composites.html", "Composites", "client"),
+    "energy":     ("../industries/energy.html", "Energy &amp; Oil/Gas", "client"),
+    "plastics":   ("../industries/polymers-plastics.html", "Polymers &amp; Plastics", "client"),
+}
+SEE_ALSO_LEAD = {
+    "client": "Facing this in your own product or plant?",
+    "counsel": "Retaining an expert on a matter like this?",
+}
+SEE_ALSO = {
+    "when-cold-snaps-crack-plastics-reading-a-brittle-fracture-before-the-warranty": "failure",
+    "process-drift-in-injection-molding-why-scrap-rises-months-before-anyone": "process",
+    "the-resin-grade-changed-and-nobody-told-you-controlling-supplier-material": "selection",
+    "green-materials-can-engineering-save-its-own-carbon-footprint": "selection",
+    "sustainable-solutions-materials-for-a-greener-tomorrow-2": "selection",
+    "sustainable-solutions-materials-for-a-greener-tomorrow": "selection",
+    "building-the-future-innovations-in-construction-materials": "selection",
+    "materials-that-adapt-and-repair": "product",
+    "biomaterials-engineering-materials-that-work-with-the-human-body": "product",
+    "the-new-materials-changing-everything-around-you": "product",
+    "building-for-the-future-carbon-storing-materials-that-fight-climate-change": "product",
+    "how-smart-materials-mean-smarter-sustainability": "product",
+    "the-future-of-medicine-and-how-biomaterials-are-transforming-healthcare": "product",
+    "pglass-pet-crystallization-breakthrough": "product",
+    "graphene-a-decade-of-promise-what-actually-shipped": "diligence",
+    "ai-driven-materials-discovery-what-happens-when-trial-and-error-gets-replaced": "diligence",
+    "how-ai-and-ml-are-changing-new-materials-discovery": "diligence",
+    "how-ai-is-transforming-scientific-research": "diligence",
+    "bridging-science-and-law-how-prof-joshua-otaigbe-helps-science-win-in-court": "expert",
+    "from-lab-to-courtroom-the-impact-of-materials-science-experts-in-patent-disputes": "patent",
+    "composites-in-the-real-world-how-carbon-fiber-went-from-f1-to": "composites",
+    "revolutionizing-materials-the-magic-of-organic-inorganic-hybrids": "composites",
+    "enhancing-polymer-performance-with-quasicrystal-composites": "composites",
+    "revolutionizing-polyamide-performance-with-nanocomposites": "composites",
+    "energy-materials-the-chemistry-bottleneck-behind-batteries-solar-cells-and": "energy",
+    "next-generation-solar-energy-materials-innovation": "energy",
+    "redefining-plastic-waste-with-cleaner-and-more-sustainable-solutions": "plastics",
+}
+
+
+def see_also_block(slug):
+    key = SEE_ALSO.get(slug)
+    if not key:
+        return ""
+    href, label, lead = SEE_ALSO_TARGETS[key]
+    return ('\n            <p style="margin:28px 0 0;font-weight:500">%s See '
+            '<a style="color:#2d8cf0;text-decoration:underline" href="%s">%s</a>.</p>\n' % (SEE_ALSO_LEAD[lead], href, label))
+
+
 #: Posts that keep their page and URL but are not shown anywhere on the site:
 #: no archive card, no place in a count, no "Related articles" card. An old
 #: link or a LinkedIn post still opens the page; a visitor browsing does not
@@ -825,7 +889,7 @@ def build_post(p, posts):
             <div class="article-body">
 {body}
             </div>
-{download}{source}
+{seealso}{download}{source}
             <div class="article-author">
                 <div class="author-avatar" aria-hidden="true">JO</div>
                 <div>
@@ -838,7 +902,8 @@ def build_post(p, posts):
 """.format(cats="".join('<span class="blog-category">%s</span>' % c for c in cats),
            title=p["title"], date=fmt_date(p["date"]), mins=read_time(p["words"]),
            author=p["author"] or "Flaney Associates", img=hero_img, body=body,
-           publish=p["date"][:10], download=download_block, source=source_block)
+           publish=p["date"][:10], download=download_block, source=source_block,
+           seealso=see_also_block(p["slug"]))
 
     # related — same category first, then most recent, full-text only
     others = [q for q in listed(posts) if q["slug"] != p["slug"] and not q["gated"]]

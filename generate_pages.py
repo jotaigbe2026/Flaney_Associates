@@ -1024,6 +1024,39 @@ SERVICES["expert-witness"] = dict(
 )
 
 
+# ------------------------------------------------------ typical engagements
+#
+# One illustrative example per service, shown collapsed above the FAQs. These
+# are NOT client matters and must never be edited to read as if they were: each
+# is labelled as an illustration in the summary line the reader clicks, and
+# none states a result. A real, anonymised engagement the client has cleared
+# may replace one — see CLAUDE.md, "Proof discipline". Collapsed on purpose: a
+# reader skimming the page is not slowed by it, and one who wants to know how
+# the work actually runs can open it.
+
+TYPICAL_ENGAGEMENTS = {
+    "failure-analysis": "A moulded housing that has run for years begins cracking in the field, and returns are rising. The work starts with the fracture surfaces and the service history: where the cracks start, what the part touched, and whether the resin lot or the process changed. Testing is commissioned only where it can separate the candidate causes. The client receives a written finding on cause, the evidence behind it, and the corrective action that can be defended to a customer or an insurer.",
+    "materials-selection": "A supplier offers an &#8220;equivalent&#8221; grade at lower cost for a part that is currently working. The work compares the two materials against the real service conditions, not only the datasheets: temperature, load, chemical contact and design life. The client receives a recommendation to accept, reject or qualify under stated conditions, with the tests needed before approval.",
+    "product-development": "A formulation performs at pilot scale and fails in production. The work traces which variables changed with scale: mixing, heat history, residence time and raw-material lots. The client receives a ranked list of the likely causes, the trials that would confirm each, and a route to a stable production recipe.",
+    "process-optimization": "Scrap on a moulding line climbs over several months with no change to the drawing, the tool or the process sheet. The work examines incoming material variation, drying, and how close the line runs to the edge of its process window. The client receives a defined operating window, the controls that hold it, and the incoming checks worth adding.",
+    "technical-due-diligence": "An investor is weighing a start-up whose value rests on a new material. The work tests the claim against the science, the prior art and what has actually been demonstrated at scale. The client receives a written assessment that separates resolvable technical risks from inherent ones, in language a board can act on.",
+    "expert-witness": "Counsel is retained in a dispute over a failed plastic component, and cause is contested. After a conflict check and an engagement agreement, the evidence is reviewed and any testing is commissioned through independent laboratories. Counsel is told early where the technical picture is strong and where it is weak, before a report is written.",
+}
+
+
+def typical_engagement(slug):
+    text = TYPICAL_ENGAGEMENTS.get(slug)
+    if not text:
+        return ""
+    return """
+                <h2>A typical engagement</h2>
+                <details class="faq-item">
+                    <summary>Illustrative example &mdash; not a client matter</summary>
+                    <p>%s</p>
+                </details>
+""" % text
+
+
 # ------------------------------------------------------------ service pages
 
 def service_aside(current, lead_with_person=None):
@@ -1095,7 +1128,7 @@ def build_service(slug):
             </div>
         </div>
     </section>
-""" % (s["body"], service_aside(slug))
+""" % (s["body"] + typical_engagement(slug), service_aside(slug))
     faqs = _SERVICE_FAQS.get(slug, [])
     if faqs:
         faq_items = "\n".join(
@@ -2088,8 +2121,8 @@ def build_contact():
                 <div class="cta-content">
                     <h2>What happens next</h2>
                     <ul class="why-list" style="margin-top:24px">
-                        <li><strong>You hear back within one business day.</strong> From the principal, not from a scheduler.</li>
-                        <li><strong>A short conversation, around twenty minutes.</strong> Enough to establish what the problem is and whether it needs an outside view.</li>
+                        <li><strong>Write or call.</strong> A few lines, or a short voicemail, on what is happening, what it is costing and what decision is waiting. That is enough to tell whether a conversation is worth your time and ours.</li>
+                        <li><strong>A call by arrangement.</strong> If the problem warrants it, you hear back within one business day, from the principal, to arrange a short conversation of around twenty minutes.</li>
                         <li><strong>A written scope before any work starts.</strong> What would be investigated, how, and what it would take.</li>
                         <li><strong>An honest answer if the answer is no.</strong> Some problems belong with your own team or your resin supplier&rsquo;s technical service group, and you will be told so.</li>
                     </ul>
@@ -2097,6 +2130,7 @@ def build_contact():
                         <h3>Direct contact</h3>
                         <p><a href="mailto:{email}">{email}</a><br>
                         <a href="tel:{phonetel}">{phone}</a></p>
+                        <p>Email gets the fastest reply. Prefer to call? Leave a short message with your company and the problem, and the principal will call you back.</p>
                         <h3>Attorneys</h3>
                         <p>Please use the <a href="attorney-inquiry.html">confidential conflict-check form</a> rather than this one, and send party names and technical subject matter only.</p>
                     </div>

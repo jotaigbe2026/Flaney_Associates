@@ -46,8 +46,13 @@ window.FlaneyTemplate = (function () {
             c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
     }
 
+    /* Mirrors strip_tags() in generate_blog.py, including the punctuation
+       tidy-up: a tag becomes a space so adjacent blocks do not run together,
+       which leaves "<strong>x</strong>." as "x ." until it is closed up. */
     function stripTags(html) {
-        return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+            .replace(/\s+([.,;:!?%)\]}])/g, '$1')
+            .replace(/([(\[{])\s+/g, '$1');
     }
 
     function decode(text) {

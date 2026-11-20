@@ -212,7 +212,16 @@ def clean(html, title=None):
 
 
 def strip_tags(html):
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html or "")).strip()
+    """Plain text from markup.
+
+    A tag becomes a space so that adjacent blocks do not run together, but
+    that leaves a gap when the tag hugged punctuation:
+    "<strong>lifecycle design</strong>." stripped to "lifecycle design ."
+    Close those up again, on both sides of a bracket.
+    """
+    text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html or "")).strip()
+    text = re.sub(r"\s+([.,;:!?%)\]}])", r"\1", text)
+    return re.sub(r"([(\[{])\s+", r"\1", text)
 
 
 def attr(text):

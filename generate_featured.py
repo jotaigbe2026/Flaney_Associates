@@ -188,7 +188,16 @@ WS = re.compile(r"\s+")
 
 
 def plain(text):
-    return WS.sub(" ", html.unescape(TAGS.sub(" ", text or ""))).strip()
+    """Plain text from markup. Mirrors strip_tags() in generate_blog.py.
+
+    A tag becomes a space so that adjacent blocks do not run together, but
+    that leaves a gap when the tag hugged punctuation:
+    "<strong>lifecycle design</strong>." stripped to "lifecycle design ."
+    Close those up again, on both sides of a bracket.
+    """
+    out = WS.sub(" ", html.unescape(TAGS.sub(" ", text or ""))).strip()
+    out = re.sub(r"\s+([.,;:!?%)\]}])", r"\1", out)
+    return re.sub(r"([(\[{])\s+", r"\1", out)
 
 
 SHORTCODE = re.compile(r"\[/?(?:vc_|wpb_)[a-z_]*[^\]]*\]", re.I)

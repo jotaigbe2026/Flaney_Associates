@@ -18,7 +18,8 @@
 .navbar.navbar-solid .has-dropdown.open > .nav-trigger { color: var(--primary-dark); }
 .navbar.navbar-solid .nav-links a:hover,
 .navbar.navbar-solid .nav-links a.active { color: var(--primary-dark); }
-.navbar.navbar-solid .btn-nav { color: #fff; }
+.navbar.navbar-solid .nav-links a.btn-nav,
+.navbar.navbar-solid .nav-links a.btn-nav:hover { color: #fff; }
 .navbar.navbar-solid .nav-toggle span { background: var(--text); }
 
 .navbar.scrolled .nav-links a.active,

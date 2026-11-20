@@ -232,7 +232,12 @@ img {
     color: var(--primary-dark);
 }
 
-.navbar.scrolled .btn-nav {
+/* `.nav-links a` (0,3,1) outranks a bare `.btn-nav` (0,3,0), so the button
+   has to be matched as a link to keep its white label in every navbar state. */
+.nav-links a.btn-nav,
+.nav-links a.btn-nav:hover,
+.navbar.scrolled .nav-links a.btn-nav,
+.navbar.scrolled .nav-links a.btn-nav:hover {
     color: #fff;
 }
 
@@ -803,18 +808,18 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: start;
 }
 
 .cta-content h2 {
     font-size: 2.2rem;
-    color: #fff;
+    color: var(--primary-dark);
     margin-bottom: 16px;
 }
 
 .cta-content p {
     font-size: 1.1rem;
-    color: rgba(255,255,255,0.75);
+    color: var(--text-light);
     margin-bottom: 24px;
 }
 
@@ -825,6 +830,19 @@ img {
 .cta-benefits li {
     padding: 8px 0;
     font-size: 1rem;
+    color: var(--text);
+}
+
+/* Dark gradient variant keeps the reversed-out treatment */
+.cta-section .cta-content h2 {
+    color: #fff;
+}
+
+.cta-section .cta-content p {
+    color: rgba(255,255,255,0.75);
+}
+
+.cta-section .cta-benefits li {
     color: rgba(255,255,255,0.85);
 }
 

@@ -151,9 +151,15 @@
                 <a href="contact.html" class="btn btn-primary btn-lg">Discuss Your Challenge</a>
                 <a href="checklist.html" class="btn btn-outline btn-lg">Get the Failure &amp; Cost Checklist</a>
             </div>
+            <!-- The text is one <span> on purpose. .principal-line is a flex
+                 container, so bare text around the <strong> became separate
+                 anonymous flex items that each wrapped on their own — "Led by"
+                 broke across two lines and the comma before PhD was orphaned.
+                 As a single item it wraps as ordinary prose, which also makes
+                 the &nbsp; spacing hacks unnecessary. -->
             <div class="principal-line">
                 <span class="pl-mark">JO</span>
-                Led by <strong>&nbsp;Joshua U. Otaigbe</strong>,&nbsp;PhD, CEng, FIMMM &mdash; Founder &amp; Principal, Flaney Associates
+                <span>Led by <strong>Joshua U. Otaigbe</strong>, PhD, CEng, FIMMM &mdash; Founder &amp; Principal, Flaney Associates</span>
             </div>
             <div class="hero-stats">
                 <div class="stat">

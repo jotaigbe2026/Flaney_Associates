@@ -219,8 +219,28 @@
             const nav = document.getElementById('navbar');
             const bar = document.querySelector('.blog-toolbar');
             if (!bar) return;
+            syncToolbarTop(nav, bar);
             const h = (nav ? nav.offsetHeight : 0) + bar.offsetHeight;
             document.documentElement.style.scrollPaddingTop = (h + 12) + 'px';
+        }
+
+        /* The navbar is not one height. It is 81px as a full bar at rest and
+         * 73px scrolled; in drawer mode the links leave the flow and it is
+         * 73px at rest and 65px scrolled. The toolbar is only pinned while
+         * the page is scrolled, so that is the height to match — measured
+         * here rather than guessed, because every hardcoded value tried so
+         * far was right in one state and left a visible strip of page content
+         * showing through in another. */
+        function syncToolbarTop(nav, bar) {
+            if (!nav || getComputedStyle(bar).position !== 'sticky') return;
+            const wasScrolled = nav.classList.contains('scrolled');
+            const saved = nav.style.transition;
+            nav.style.transition = 'none';          // read the end state, not a frame of the fade
+            nav.classList.add('scrolled');
+            const h = nav.offsetHeight;
+            nav.classList.toggle('scrolled', wasScrolled);
+            nav.style.transition = saved;
+            bar.style.top = h + 'px';
         }
 
         let resizeTimer;

@@ -86,18 +86,21 @@
 /* ---- Toolbar: search + category filters ----
    Sticky, so it has to earn its vertical space. Two faults were fixed here:
 
-   top was 68px, and the navbar is not a fixed height: it is 81px at rest and
-   shrinks to 73px once .scrolled applies. 68 left a gap, and 78 — the first
-   correction — left a different 5px gap in the scrolled state, which is the
-   only state where it matters. 72px keeps the toolbar flush under the
-   scrolled navbar and simply tucks further under at rest, where it is hidden
-   anyway. The background was also rgba(255,255,255,0.92), which
+   The navbar has four heights, not one: 81px full-bar at rest, 73px full-bar
+   scrolled, 73px drawer at rest, 65px drawer scrolled — the drawer takes the
+   links out of flow, so the bar shrinks. Hardcoding any single value here
+   left a strip of page content showing through in at least one of them; 68,
+   78 and 72 each failed differently. syncToolbarTop() in blog.js measures the
+   scrolled navbar and sets this from it. The 64px below is only the fallback
+   if that never runs: it sits under the smallest of the four, so the toolbar
+   tucks further under the navbar rather than ever leaving a gap.
+   The background was also rgba(255,255,255,0.92), which
    let card images ghost faintly through the chips as they scrolled past. It
    is opaque now, and the backdrop blur went with the transparency since there
    is nothing left to see through. */
 .blog-toolbar {
     position: sticky;
-    top: 72px;
+    top: 64px;
     z-index: 40;
     background: #fff;
     border-bottom: 1px solid var(--border);

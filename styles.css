@@ -1138,7 +1138,20 @@ button.btn-download {
     }
 }
 
-@media (max-width: 768px) {
+/* ---- Navigation: drawer below 1040px ----
+   The horizontal nav needs 1010px on one line — logo, five topics, the CTA.
+   Measured, it stops wrapping at 1050px, so the drawer runs to 1059px and
+   the full bar takes over at 1060 — a 10px margin for font and rendering
+   variance. Below that there is not the room, so "How We Help" wrapped
+   to two lines and the navbar grew from 81px to 114px on every screen from
+   769px up: iPad landscape, and any part-width laptop window. No amount of
+   tightening fixes it, since the shortfall is around 260px.
+
+   So the drawer takes over wherever the full bar cannot fit, rather than at
+   an arbitrary phone width. This breakpoint is deliberately separate from the
+   768px blocks below: those carry phone typography and spacing, which a
+   1024px tablet should not inherit. */
+@media (max-width: 1059px) {
     .nav-toggle {
         display: flex;
     }
@@ -1179,6 +1192,9 @@ button.btn-download {
         border-bottom: none;
     }
 
+}
+
+@media (max-width: 768px) {
     .hero h1 {
         font-size: 2.4rem;
     }
@@ -1412,7 +1428,9 @@ button.btn-download {
 
 /* Mobile: the slide-in panel is a dark column, so the dropdown becomes an
    accordion inside it rather than a floating white card off the screen edge. */
-@media (max-width: 768px) {
+/* Paired with the drawer breakpoint above — these style the dropdowns once
+   the nav becomes a drawer, so the two must move together. */
+@media (max-width: 1059px) {
     .nav-trigger {
         display: flex;
         justify-content: space-between;

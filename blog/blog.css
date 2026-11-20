@@ -83,13 +83,23 @@
     letter-spacing: 0.06em;
 }
 
-/* ---- Toolbar: search + category filters ---- */
+/* ---- Toolbar: search + category filters ----
+   Sticky, so it has to earn its vertical space. Two faults were fixed here:
+
+   top was 68px, and the navbar is not a fixed height: it is 81px at rest and
+   shrinks to 73px once .scrolled applies. 68 left a gap, and 78 — the first
+   correction — left a different 5px gap in the scrolled state, which is the
+   only state where it matters. 72px keeps the toolbar flush under the
+   scrolled navbar and simply tucks further under at rest, where it is hidden
+   anyway. The background was also rgba(255,255,255,0.92), which
+   let card images ghost faintly through the chips as they scrolled past. It
+   is opaque now, and the backdrop blur went with the transparency since there
+   is nothing left to see through. */
 .blog-toolbar {
     position: sticky;
-    top: 68px;
+    top: 72px;
     z-index: 40;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: saturate(180%) blur(12px);
+    background: #fff;
     border-bottom: 1px solid var(--border);
     padding: 18px 0;
 }
@@ -150,6 +160,40 @@
     margin-left: 2px;
 }
 
+/* ---- Collapsing the category chips ----
+   Every chip row added to the height of a *sticky* element. With 13
+   categories the pinned band reached 305px on a 1024x768 desktop window and
+   653px on a 375px phone — 40% and 80% of the viewport — so the filters
+   concealed the cards they were meant to filter. On the phone the toolbar
+   ended up taller than the screen, at which point sticky silently gives up
+   and the whole bar scrolls away.
+
+   collapseChips() in blog.js clamps the chips to the first wrapped row and
+   reveals the rest behind .chip-toggle, which holds the pinned band at a
+   fixed height however many categories the archive grows to. */
+.filter-chip.chip-hidden { display: none; }
+
+.chip-toggle {
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 100px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.chip-toggle:hover {
+    border-style: solid;
+    border-color: var(--accent);
+    background: var(--accent-light);
+}
+
+.chip-toggle[hidden] { display: none; }
+
 /* ---- Archive grid ---- */
 .blog-archive {
     background: var(--bg-alt);
@@ -162,9 +206,14 @@
     margin-bottom: 22px;
 }
 
+/* minmax(Npx, 1fr) cannot shrink below N, so on a narrow phone the track
+   stayed wider than its container and pushed the page sideways — the hero
+   button bug had the same shape. min(Npx, 100%) lets the floor collapse to
+   the container when the container is the smaller of the two, which fixes it
+   at every width without a breakpoint. */
 .post-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr));
     gap: 28px;
 }
 

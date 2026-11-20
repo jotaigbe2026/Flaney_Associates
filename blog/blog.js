@@ -119,6 +119,8 @@
             chip.classList.add('active');
             activeCat = chip.dataset.cat;
             apply();
+            // Re-run the clamp so the newly active chip is kept on screen.
+            if (typeof window.__flaneyChipLayout === 'function') window.__flaneyChipLayout();
         });
     });
 
@@ -131,6 +133,118 @@
             apply();
         });
     }
+
+    /* ---- Clamp the category chips to one row ----
+     *
+     * The toolbar is sticky, so its height is subtracted from every screen of
+     * reading. Thirteen categories wrapped to three rows on a desktop window
+     * and twelve on a phone, pinning 305px and 653px respectively — 40% and
+     * 80% of the viewport — directly over the cards.
+     *
+     * Only the first wrapped row stays; the rest hide behind a toggle. The
+     * split is measured from laid-out positions rather than assumed from a
+     * chip count, because how many fit depends on window width and on the
+     * category names, which change as the archive grows.
+     */
+    (function collapseChips() {
+        const wrap = document.getElementById('filterChips');
+        if (!wrap || chips.length < 2) return;
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'chip-toggle';
+        toggle.setAttribute('aria-controls', 'filterChips');
+        wrap.appendChild(toggle);
+
+        let expanded = false;
+
+        function layout() {
+            // Measure with everything shown: a hidden chip has no position.
+            chips.forEach(c => c.classList.remove('chip-hidden'));
+
+            const rowTop = chips[0].offsetTop;
+            const overflow = chips.filter(c => c.offsetTop > rowTop);
+
+            if (!overflow.length) {           // they all fit — nothing to collapse
+                toggle.hidden = true;
+                return;
+            }
+            toggle.hidden = false;
+
+            if (expanded) {
+                toggle.textContent = 'Show fewer';
+                toggle.setAttribute('aria-expanded', 'true');
+                return;
+            }
+
+            // The selected chip always stays on screen. Collapsing it away
+            // left the archive filtered to one category with nothing marked
+            // active — the grid showed 16 of 58 articles and no chip explained
+            // why. It flows up into the first row once the rest are hidden.
+            const active = wrap.querySelector('.filter-chip.active');
+            overflow.forEach(c => { if (c !== active) c.classList.add('chip-hidden'); });
+
+            // Hiding the overflow pulls the toggle up, but if the first row was
+            // already full it lands on a second row — which is the one thing
+            // this is meant to prevent. Give back chips until it fits, taking
+            // from the end and never taking the active one.
+            const visible = chips.filter(c => !c.classList.contains('chip-hidden'));
+            let guard = chips.length;
+            while (visible.length > 1 && toggle.offsetTop > rowTop && guard--) {
+                let i = visible.length - 1;
+                while (i >= 0 && visible[i] === active) i--;
+                if (i < 0) break;
+                visible.splice(i, 1)[0].classList.add('chip-hidden');
+            }
+
+            const n = chips.filter(c => c.classList.contains('chip-hidden')).length;
+            toggle.textContent = '+' + n + ' more';
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
+        toggle.addEventListener('click', () => {
+            expanded = !expanded;
+            layout();
+            headroom();
+        });
+
+        /* Picking a category from the expanded list keeps it expanded: a chip
+         * that collapsed out of sight the moment it was clicked would leave no
+         * visible sign of which filter is active. */
+
+        // scroll-padding-top belongs on the scrolling element, and blog.css is
+        // loaded by the homepage too, so it is set here — on the archive only,
+        // from the measured header rather than a hardcoded guess.
+        function headroom() {
+            const nav = document.getElementById('navbar');
+            const bar = document.querySelector('.blog-toolbar');
+            if (!bar) return;
+            const h = (nav ? nav.offsetHeight : 0) + bar.offsetHeight;
+            document.documentElement.style.scrollPaddingTop = (h + 12) + 'px';
+        }
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => { layout(); headroom(); }, 120);
+        });
+
+        // Exposed so the chip click handler above can re-clamp after the
+        // active chip changes.
+        window.__flaneyChipLayout = function () { layout(); headroom(); };
+
+        layout();
+        headroom();
+
+        /* Re-measure once the webfont lands. Chip widths depend on it, and the
+         * first pass runs in the fallback face: everything measures narrower,
+         * more chips appear to fit, and when Inter swaps in the row reflows and
+         * pushes the toggle onto a second row — the exact thing this avoids.
+         * Observed as a 190px toolbar that should have been 144px. */
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => { layout(); headroom(); });
+        }
+    })();
 
     apply();
 })();

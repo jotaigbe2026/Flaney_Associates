@@ -31,6 +31,12 @@ html {
 }
 
 body {
+    /* Email addresses and URLs are single unbreakable tokens, and a grid or
+       flex track with the default min-width:auto grows to fit them rather
+       than clipping — jotaigbe@flaneyassociates.com alone is 268px, enough to
+       push the attorney page sideways on a narrow phone. Breaking only ever
+       kicks in when the alternative is overflow. */
+    overflow-wrap: break-word;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--text);
     line-height: 1.7;
@@ -153,7 +159,14 @@ img {
     right: 0;
     z-index: 1000;
     padding: 16px 0;
-    transition: all var(--transition);
+    /* Named rather than `all`. .scrolled toggles on every scroll past 50px,
+       and `all` had the browser animating every animatable property each
+       time — including backdrop-filter, which is GPU work, and the inherited
+       colour change on every child link. These three are the only ones that
+       actually differ between the two states. Visually identical. */
+    transition: background-color var(--transition),
+                box-shadow var(--transition),
+                padding var(--transition);
     background: transparent;
 }
 
@@ -1199,7 +1212,7 @@ button.btn-download {
     }
 
     .cta-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 40px;
     }
 
@@ -1223,12 +1236,33 @@ button.btn-download {
         gap: 32px;
     }
 
+    /* nowrap on .btn is a desktop affordance — it stops short labels breaking
+       mid-phrase where there is room to spare. On a phone it becomes a hard
+       minimum width: the button cannot shrink below its text, so the track,
+       the container and the whole page grow to fit it and the layout spills
+       off the right edge. "Get the Failure & Cost Checklist" (331px),
+       "Guides & sector briefings" and "Send Me the Checklist" all did this.
+       Below this breakpoint a label longer than the screen wraps instead. */
+    .btn {
+        white-space: normal;
+    }
+
     .hero-cta {
         flex-direction: column;
     }
 
+    /* .btn carries white-space: nowrap, and "Get the Failure & Cost
+       Checklist" is 331px wide at this size. That is a floor, not a
+       preference: it propagated up to .container as 331 + 48px padding =
+       379px, which is wider than a 375px iPhone and leaves 11px of slack
+       inside a 390px one — so any page zoom or larger text setting pushed the
+       whole hero off the right edge mid-word. Stacking alone did not help,
+       because a nowrap button cannot shrink below its text. Letting the label
+       wrap removes the floor; full width keeps the stacked buttons even. */
     .hero-cta .btn {
         text-align: center;
+        width: 100%;
+        white-space: normal;
     }
 }
 
@@ -1612,9 +1646,14 @@ button.btn-download {
 /* ===== PROBLEM SECTION =====
    The visitor self-identifies here before any service is named, which is why
    it sits directly under the hero. */
+/* minmax(Npx, 1fr) cannot shrink below N, so on a narrow phone the track
+   stayed wider than its container and pushed the page sideways — the hero
+   button bug had the same shape. min(Npx, 100%) lets the floor collapse to
+   the container when the container is the smaller of the two, which fixes it
+   at every width without a breakpoint. */
 .problem-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 20px;
 }
 
@@ -1658,7 +1697,7 @@ button.btn-download {
 
 .cred-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 18px;
 }
 
@@ -1811,7 +1850,7 @@ button.btn-download {
 /* ===== AUDIENCE SPLIT (final CTA) =====
    Manufacturers and attorneys arrive with different first questions, so the
    closing call is two doors rather than one form. */
-.audience-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.audience-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px; }
 
 .audience-card {
     background: #fff;
@@ -1851,7 +1890,7 @@ button.btn-download {
 /* ===== RESPONSIVE (unified-site components) ===== */
 @media (max-width: 1024px) {
     .svc-layout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-    .svc-aside { position: static; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .svc-aside { position: static; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
     .bio-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
     .bio-card { position: static; }
     .magnet { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px; }
@@ -1861,7 +1900,7 @@ button.btn-download {
     .page-hero { padding: 120px 0 56px; }
     .page-hero h1 { font-size: 2.1rem; }
     .page-hero .lede { font-size: 1.02rem; }
-    .page-hero-cta .btn { width: 100%; }
+    .page-hero-cta .btn { width: 100%; white-space: normal; }
     .magnet { padding: 30px 24px; }
     .magnet h2 { font-size: 1.55rem; }
     .prose h2 { font-size: 1.45rem; margin-top: 40px; }

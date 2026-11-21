@@ -519,7 +519,7 @@
 <body style="background:#f7f9fc">
   <div style="display:grid;place-items:center;min-height:70vh;padding:40px;text-align:center">
     <div style="max-width:34ch">
-      <div style="font-size:2.2rem;color:#2d8cf0">&#9670;</div>
+      <div style="font-size:2.2rem;color:var(--accent)">&#9670;</div>
       <h3 style="color:#1a3a5c;margin:12px 0 8px">Your article will appear here</h3>
       <p style="color:#555;font-size:0.92rem;line-height:1.65">
         This panel shows the finished page as you write it, using the real

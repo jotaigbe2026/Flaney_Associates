@@ -13,7 +13,10 @@ from reportlab.platypus import (
 )
 
 PRIMARY = HexColor("#1a3a5c")
-ACCENT = HexColor("#2d8cf0")
+# Matches --accent in styles.css. Darkened from #2d8cf0, which gave 3.43:1
+# on white -- below WCAG AA for the 9.5-12pt accent text here. #236cb8 is
+# 5.37:1.
+ACCENT = HexColor("#236cb8")
 DARK = HexColor("#0f2740")
 LIGHT_BG = HexColor("#f7f9fc")
 TEXT_COLOR = HexColor("#333333")

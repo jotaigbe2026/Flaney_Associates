@@ -100,7 +100,7 @@ window.FlaneyPDF = (function () {
 
     const NAVY = '0.102 0.227 0.361';       // #1a3a5c
     const DARK = '0.059 0.153 0.251';       // #0f2740
-    const BLUE = '0.176 0.549 0.941';       // #2d8cf0
+    const BLUE = '0.137 0.424 0.722';       // #236cb8, matches --accent
     const BODY = '0.200 0.200 0.200';
     const MUTED = '0.400 0.400 0.400';
     const RULE = '0.886 0.906 0.929';       // #e2e8f0

@@ -12,7 +12,7 @@ ARTICLES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "article
 
 # ── Brand colours ──────────────────────────────────────────────────────────────
 C_PRIMARY  = RGBColor(0x1a, 0x3a, 0x5c)   # dark navy
-C_ACCENT   = RGBColor(0x2d, 0x8c, 0xf0)   # blue
+C_ACCENT   = RGBColor(0x23, 0x6c, 0xb8)   # blue, matches --accent in styles.css
 C_MUTED    = RGBColor(0x66, 0x66, 0x66)   # grey
 C_TEXT     = RGBColor(0x33, 0x33, 0x33)   # near-black
 
@@ -32,7 +32,7 @@ def add_horizontal_rule(doc):
     bottom.set(qn('w:val'), 'single')
     bottom.set(qn('w:sz'), '6')
     bottom.set(qn('w:space'), '1')
-    bottom.set(qn('w:color'), '2D8CF0')
+    bottom.set(qn('w:color'), '236CB8')  # matches --accent in styles.css
     pBdr.append(bottom)
     pPr.append(pBdr)
 

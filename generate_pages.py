@@ -1944,7 +1944,7 @@ def build_guides():
             </div>
             <div class="magnet">
                 <div>
-                    <span class="audience-tag" style="color:var(--accent)">Featured guide</span>
+                    <span class="audience-tag">Featured guide</span>
                     <h2>{ctitle}</h2>
                     <p>Twelve questions that separate a product failure, quality problem, material change or process issue that needs independent technical review from one your own team should keep.</p>
                     <ul>

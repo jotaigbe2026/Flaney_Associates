@@ -8,12 +8,19 @@
 :root {
     --primary: #1a3a5c;
     --primary-dark: #0f2740;
-    --accent: #2d8cf0;
-    --accent-hover: #1a6fd4;
+    /* --accent is darkened from #2d8cf0 to clear WCAG AA. White-on-accent and
+       accent-on-white are the same ratio, so one value fixes the CTA buttons
+       and the body links together: 3.43 -> 5.37 on white, 4.75 on
+       --accent-light, 5.09 on --bg-alt.
+       It cannot also serve accent text on a dark surface -- darkening drops
+       that from 4.42 to 2.98 -- so those few places use --accent-on-dark. */
+    --accent: #236cb8;
+    --accent-hover: #1c5693;
     --accent-light: #e8f2ff;
+    --accent-on-dark: #7ab6f5;
     --text: #1a1a2e;
     --text-light: #555;
-    --text-muted: #888;
+    --text-muted: #717171;
     --bg: #ffffff;
     --bg-alt: #f7f9fc;
     --bg-dark: #0f1923;
@@ -351,7 +358,9 @@ img {
 
 .stat-label {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.5);
+    /* 0.5 gave 3.69:1 over the hero gradient; 0.64 clears AA at 4.99 and still
+       reads as the quieter label under each figure. */
+    color: rgba(255,255,255,0.64);
     font-weight: 500;
 }
 
@@ -2119,4 +2128,16 @@ a.featured-tag:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
     .bio-mark-lg { width: 112px; height: 112px; font-size: 2rem; }
+}
+
+
+/* Accent text on a dark surface takes the lighter tint. The three places this
+   happens were found by measuring the live pages, not by reading the CSS:
+   the credentials line in the dark bio card, the "Featured guide" tag in the
+   dark magnet panel, and the logo glyph while the navbar is still transparent
+   over the hero. */
+.bio-card .bio-letters,
+.magnet .audience-tag,
+.navbar:not(.scrolled):not(.navbar-solid) .logo-icon {
+    color: var(--accent-on-dark);
 }

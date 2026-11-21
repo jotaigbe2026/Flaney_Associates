@@ -688,7 +688,7 @@ def see_also_block(p):
         return ""
     href, label, lead = SEE_ALSO_TARGETS[key]
     return ('\n            <p style="margin:28px 0 0;font-weight:500">%s See '
-            '<a style="color:#2d8cf0;text-decoration:underline" href="%s">%s</a>.</p>\n' % (SEE_ALSO_LEAD[lead], href, label))
+            '<a style="color:var(--accent);text-decoration:underline" href="%s">%s</a>.</p>\n' % (SEE_ALSO_LEAD[lead], href, label))
 
 
 #: Posts that keep their page and URL but are not shown anywhere on the site:

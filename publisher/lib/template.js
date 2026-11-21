@@ -804,7 +804,7 @@ ${extra || ''}    <link rel="icon" type="image/png" href="${up}favicon.png">
         if (!key) return '';
         const t = SEE_ALSO_TARGETS[key];
         return '\n            <p style="margin:28px 0 0;font-weight:500">' + SEE_ALSO_LEAD[t[2]] +
-            ' See <a style="color:#2d8cf0;text-decoration:underline" href="' + t[0] + '">' + t[1] + '</a>.</p>\n';
+            ' See <a style="color:var(--accent);text-decoration:underline" href="' + t[0] + '">' + t[1] + '</a>.</p>\n';
     }
 
     function article(post, related, assets) {

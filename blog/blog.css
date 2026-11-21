@@ -123,7 +123,7 @@
 .blog-search input:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
     background: #fff;
 }
 
